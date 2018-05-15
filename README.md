@@ -1,7 +1,7 @@
 # cpp-sdl2
-basic c++ bindings of SDL2 (https://wiki.libsdl.org/FrontPage)
+Basic c++ bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an header-only library
 
-# Example programm
+# Example program
 ```cpp
 #include "sdl/sdl.hpp"
 #include <cstdlib> // Using C-style rand
