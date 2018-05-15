@@ -21,17 +21,22 @@ int main(int argc, char * argv[])
 	auto window = sdl::Window{ "Random Colors", {600, 600} };
 
 	auto renderer = window.make_renderer();
-	renderer.clear(sdl::Color::Black());
-	renderer.present();
-
-	sdl::Color color;
+	
+	auto color = sdl::Color::Black();
 
 	auto done   = false;
-	auto redraw = false;
+	auto redraw = true;
 	auto event = sdl::Event{};
 
 	while (!done)
 	{
+		if (redraw)
+		{
+			renderer.clear(color);
+			renderer.present();
+			redraw = false;
+		}
+	
 		event.wait();
 		
 		if (event.type == SDL_QUIT)
@@ -45,13 +50,6 @@ int main(int argc, char * argv[])
 			color.g = std::rand() % 255;
 			color.b = std::rand() % 255;
 			redraw = true;
-		}
-
-		if (redraw)
-		{
-			renderer.clear(color);
-			renderer.present();
-			redraw = false;
 		}
 	}
 	return 0;
