@@ -26,9 +26,9 @@ int main(int argc, char * argv[])
 
 	sdl::Color color;
 
-	bool done   = false;
-	bool redraw = false;
-	sdl::Event event;
+	auto done   = false;
+	auto redraw = false;
+	auto event = sdl::Event{};
 
 	while (!done)
 	{
