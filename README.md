@@ -46,9 +46,9 @@ int main(int argc, char * argv[])
 
 		if (event.type == SDL_MOUSEBUTTONUP)
 		{
-			color.r = std::rand() % 255;
-			color.g = std::rand() % 255;
-			color.b = std::rand() % 255;
+			color.r = std::rand() % 256;
+			color.g = std::rand() % 256;
+			color.b = std::rand() % 256;
 			redraw = true;
 		}
 	}
