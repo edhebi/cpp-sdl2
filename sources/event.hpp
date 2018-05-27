@@ -295,7 +295,7 @@ struct EventFilter
 
 inline Event::State event_state(Uint32 type)
 {
-	return Event::State{ SDL_GetEventState(type) };
+	return static_cast<Event::State>(SDL_GetEventState(type));
 }
 
 inline void set_event_state(Uint32 type, Event::State state)
