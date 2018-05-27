@@ -26,8 +26,8 @@ public:
 
 	constexpr Vec2(SDL_Point const& p) : Base{ p.x, p.y } {}
 
-	Vec2(Vec2 const&) noexcept = default;
-	Vec2(Vec2&&) noexcept = default;
+	constexpr Vec2(Vec2 const&) noexcept = default;
+	constexpr Vec2(Vec2&&) noexcept = default;
 
 	template <typename A>
 	static constexpr Vec2 from_polar(A alpha, T radius)
@@ -38,41 +38,41 @@ public:
 	Vec2& operator=(Vec2 const&) noexcept = default;
 	Vec2& operator=(Vec2&&) noexcept = default;
 	
-	Vec2 operator-() const { return Vec2{ -x, -y }; }
+	constexpr Vec2 operator-() const { return Vec2{ -Base::x, -Base::y }; }
 	
-	Vec2& operator+=(Vec2 const& other) { x += other.x; y += other.y; return *this; }
-	Vec2& operator-=(Vec2 const& other) { x -= other.x; y -= other.y; return *this; }
-	Vec2& operator*=(T value) { x *= value; y *= value; return *this; }
-	Vec2& operator/=(T value) { x /= value; y /= value; return *this; }
+	Vec2& operator+=(Vec2 const& other) { Base::x += other.x; Base::y += other.y; return *this; }
+	Vec2& operator-=(Vec2 const& other) { Base::x -= other.x; Base::y -= other.y; return *this; }
+	Vec2& operator*=(T value) { Base::x *= value; Base::y *= value; return *this; }
+	Vec2& operator/=(T value) { Base::x /= value; Base::y /= value; return *this; }
 
-	Vec2 operator+(Vec2 const& other) const { return Vec2{ x, y } += other; }
-	Vec2 operator-(Vec2 const& other) const { return Vec2{ x, y } -= other; }
-	Vec2 operator*(T value) const { return Vec2{ x, y } *= value; }
-	Vec2 operator/(T value) const { return Vec2{ x, y } /= value; }
+	constexpr Vec2 operator+(Vec2 const& other) const { return Vec2{ Base::x, Base::y } += other; }
+	constexpr Vec2 operator-(Vec2 const& other) const { return Vec2{ Base::x, Base::y } -= other; }
+	constexpr Vec2 operator*(T value) const { return Vec2{ Base::x, Base::y } *= value; }
+	constexpr Vec2 operator/(T value) const { return Vec2{ Base::x, Base::y } /= value; }
 
-	friend Vec2 operator*(T lhs, Vec2 const& rhs) { return rhs * lhs; }
+	friend constexpr Vec2 operator*(T lhs, Vec2 const& rhs) { return rhs * lhs; }
 
 	Vec2 clamped(SDL_Rect const& box) const
 	{
-		auto r = Vec2{ x, y };
+		auto r = Vec2{ Base::x, Base::y };
 		r.clamp(box);
 		return r;
 	}
 
 	void clamp(SDL_Rect const& box)
 	{
-		x = clamp(x, box.x, box.x + box.w);
-		y = clamp(y, box.y, box.y + box.h);
+		Base::x = clamp(Base::x, box.x, box.x + box.w);
+		Base::y = clamp(Base::y, box.y, box.y + box.h);
 	}
 
-	T length() const { return std::sqrt(x * x + y * y); }
-	T sqlength() const { return x * x + y * y; }
+	T length() const { return std::sqrt(Base::x * Base::x + Base::y * Base::y); }
+	T sqlength() const { return Base::x * Base::x + Base::y * Base::y; }
 
-	bool is_null() const { return x == T(0.0L) || y == T(0.0L); }
+	bool is_null() const { return Base::x == T(0.0L) || Base::y == T(0.0L); }
 
 	Vec2 normalized() const
 	{
-		auto r = Vec2{ x, y };
+		auto r = Vec2{ Base::x, Base::y };
 		r.normalize();
 		return r;
 	}
@@ -81,15 +81,15 @@ public:
 	{
 		if (is_null()) return;
 
-		auto l = length();
-		x /= l;
-		y /= l;
+		const auto l = length();
+		Base::x /= l;
+		Base::y /= l;
 	}
 
 	template <typename U>
 	explicit operator Vec2<U>() const
 	{
-		return Vec2<U>{ static_cast<U>(x), static_cast<U>(y) };
+		return Vec2<U>{ static_cast<U>(Base::x), static_cast<U>(Base::y) };
 	}
 
 	friend std::ostream& operator<<(std::ostream& stream, Vec2 const& v)
@@ -98,7 +98,7 @@ public:
 	}
 
 private:
-	T clamp(T x, T a, T b) { return std::min(std::max(x, a), b); }
+	T clamp(T x, T a, T b) { return std::min(std::max(Base::x, a), b); }
 };
 
 
