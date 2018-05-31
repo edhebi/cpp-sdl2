@@ -9,7 +9,7 @@ By default, the code will throw exception in case of an SDL_Error. The Exception
 
 Exception support can be disabled by defining `CPP_SDL2_NOEXCEPTIONS` in the preprocessor. 
 
-## Depedencies
+## Dependencies
 
 - SDL2
 - SDL_image 2
