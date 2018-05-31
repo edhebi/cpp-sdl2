@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <ostream>
+#include <cmath>
 #include <SDL2/SDL_rect.h>
 
 namespace sdl::details
