@@ -2,6 +2,7 @@
 
 #include <string>
 #include <SDL2/SDL.h>
+#include <SDL_syswm.h>
 
 #include "renderer.hpp"
 #include "vec2.hpp"
@@ -112,6 +113,16 @@ public:
 	}
 
 	Window& toogle_fullscreen() { return set_fullscreen(!fullscreen()); }
+
+	SDL_SysWMinfo getWMInfo()
+	{
+		SDL_SysWMinfo info;
+		if(SDL_GetWindowWMInfo(window_, &info) == SDL_FALSE)
+		{
+			throw Exception("SDL_GetWindowWMInfo");
+		}
+		return info;
+	}
 
 private:
 
