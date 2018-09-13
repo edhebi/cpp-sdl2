@@ -117,6 +117,7 @@ public:
 	SDL_SysWMinfo getWMInfo()
 	{
 		SDL_SysWMinfo info;
+		SDL_VERSION(&info.version);
 		if(SDL_GetWindowWMInfo(window_, &info) == SDL_FALSE)
 		{
 			throw Exception("SDL_GetWindowWMInfo");
