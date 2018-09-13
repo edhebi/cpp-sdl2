@@ -4,7 +4,11 @@
 #include <string>
 
 #include <SDL2/SDL_surface.h>
-#include <SDL2/SDL_image.h>
+
+#ifdef CPP_SDL2_USE_SDL_IMAGE
+#include <SDL_image.h>
+#endif
+
 #include "exception.hpp"
 #include "vec2.hpp"
 #include "rect.hpp"
@@ -72,11 +76,21 @@ public:
 		if (!surface_) throw Exception{ "SDL_CreateRGBSurfaceWithFormatFrom" };
 	}
 
+#ifdef CPP_SDL2_USE_SDL_IMAGE
 	Surface(std::string const& filename)
 		: surface_{ IMG_Load(filename.c_str()) }
 	{
 		if (!surface_) throw Exception{ "IMG_Load" };
 	}
+
+#else
+	Surface(std::string const& filename)
+		: surface_{nullptr}
+	{
+		if (!surface_) throw Exception{ "ctor using IMG_Load has been stubbed. Install SDL_Image and define CPP_SDL2_USE_SDL_IMAGE to use image files" };
+	}
+
+#endif
 
 	~Surface() { SDL_FreeSurface(surface_); }
 
