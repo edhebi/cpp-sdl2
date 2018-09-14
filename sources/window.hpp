@@ -2,7 +2,7 @@
 
 #include <string>
 #include <SDL2/SDL.h>
-#include <SDL_syswm.h>
+#include <SDL2/SDL_syswm.h>
 
 #include "renderer.hpp"
 #include "vec2.hpp"
