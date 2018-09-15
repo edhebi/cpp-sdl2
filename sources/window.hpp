@@ -114,7 +114,7 @@ public:
 
 	Window& toogle_fullscreen() { return set_fullscreen(!fullscreen()); }
 
-	SDL_SysWMinfo getWMInfo()
+	SDL_SysWMinfo wm_info()
 	{
 		SDL_SysWMinfo info;
 		SDL_VERSION(&info.version);
