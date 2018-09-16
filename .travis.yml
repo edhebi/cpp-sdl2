@@ -1,0 +1,47 @@
+dist: trusty
+sudo: required
+language: cpp
+compiler: gcc
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-8
+      - g++-8
+      - cmake
+
+before_script:
+  - git log -2
+
+script:
+  - sudo ln -s /usr/bin/gcc-8 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-8 /usr/local/bin/g++
+  - export CC=/usr/bin/gcc-8
+  - export CXX=/usr/bin/g++-8
+  - gcc -v && g++ -v && cmake --version
+  - goback=$(pwd)
+  - mkdir sdl
+  - cd sdl
+  - travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.8.tar.gz | tar xz
+  - cd SDL2-2.0.8
+  - ./configure                  > /dev/null 2>&1
+  - make                         > /dev/null 2>&1
+  - sudo make install            > /dev/null 2>&1
+  - cd $goback
+  - mkdir sdl_image
+  - cd sdl_image
+  - travis_retry curl -L https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.3.tar.gz | tar xz
+  - cd SDL2_image-2.0.3
+  - ./configure                  > /dev/null 2>&1
+  - make                         > /dev/null 2>&1
+  - sudo make install            > /dev/null 2>&1
+  - cd $goback
+  - cd example
+  - cmake .
+  - make 
