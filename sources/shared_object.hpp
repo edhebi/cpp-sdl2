@@ -58,7 +58,7 @@ public:
 
 	///Syntactic sugar overload, provide you a way to specify the actual type of the function pointer
 	/// e.g: object.function_pointer<returnType(*)(args)>("name");
-	template <typename FuncitonPointerSignature>
+	template <typename FunctionPointerSignature>
 	FunctionPointerSignature function_pointer(std::string const& functionName) const
 	{
 		return reinterpret_cast<FunctionPointerSignature>(function_pointer(functionName));
