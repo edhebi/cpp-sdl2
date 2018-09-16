@@ -87,7 +87,10 @@ public:
 	Surface(std::string const& filename)
 		: surface_{nullptr}
 	{
-		if (!surface_) throw Exception{ "ctor using IMG_Load has been stubbed. Install SDL_Image and define CPP_SDL2_USE_SDL_IMAGE to use image files" };
+		SDL_SetError( "tryed to call sdl::Surface ctor. This function should call IMG_Load() from SDL_Image.\n"
+			"This program was built without SDL_Image.\n"
+			"Please Install SDL_Image and #define CPP_SDL2_USE_SDL_IMAGE before including sdl.hpp to use this functionality" );
+		throw Exception("IMG_Load");
 	}
 
 #endif
