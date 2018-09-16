@@ -87,7 +87,7 @@ public:
 	Surface(std::string const& filename)
 		: surface_{nullptr}
 	{
-		SDL_SetError( "tryed to call sdl::Surface ctor. This function should call IMG_Load() from SDL_Image.\n"
+		SDL_SetError( "Tried to call sdl::Surface(std::string const& filename) ctor. This function should call IMG_Load() from SDL_Image.\n"
 			"This program was built without SDL_Image.\n"
 			"Please Install SDL_Image and #define CPP_SDL2_USE_SDL_IMAGE before including sdl.hpp to use this functionality" );
 		throw Exception("IMG_Load");
