@@ -43,7 +43,7 @@ public:
 
 	SharedObject& operator=(SharedObject&& other)
 	{
-		handle_		   = other.handle_;
+		handle_       = other.handle_;
 		other.handle_ = nullptr;
 	}
 
@@ -59,9 +59,9 @@ public:
 	///Syntactic sugar overload, provide you a way to specify the actual type of the function pointer
 	/// e.g: object.function_pointer<returnType(*)(args)>("name");
 	template <typename FuncitonPointerSignature>
-	FuncitonPointerSignature funciton_pointer(std::string const& functionName) const
+	FunctionPointerSignature function_pointer(std::string const& functionName) const
 	{
-		return reinterpret_cast<FuncitonPointerSignature>(function_pointer(functionName));
+		return reinterpret_cast<FunctionPointerSignature>(function_pointer(functionName));
 	}
 };
 
