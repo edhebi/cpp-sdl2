@@ -8,6 +8,7 @@
 #include "rect.hpp"
 #include "renderer.hpp"
 #include "surface.hpp"
+#include "shared_object.hpp"
 #include "texture.hpp"
 #include "vec2.hpp"
 #include "window.hpp"
