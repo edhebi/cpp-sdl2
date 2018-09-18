@@ -51,6 +51,9 @@ public:
 	constexpr Vec2 operator*(T value) const { return Vec2{ Base::x, Base::y } *= value; }
 	constexpr Vec2 operator/(T value) const { return Vec2{ Base::x, Base::y } /= value; }
 
+	constexpr bool operator==(Vec2 const& other) const { return (Base::x == other.x && Base::y == other.y); }
+	constexpr bool operator!=(Vec2 const& other) const { return !(*this == other); }
+
 	friend constexpr Vec2 operator*(T lhs, Vec2 const& rhs) { return rhs * lhs; }
 
 	Vec2 clamped(SDL_Rect const& box) const
