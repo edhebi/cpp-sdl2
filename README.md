@@ -9,10 +9,12 @@ By default, the code will throw exception in case of an SDL_Error. The Exception
 
 Exception support can be disabled by defining `CPP_SDL2_NOEXCEPTIONS` in the preprocessor. 
 
+To be able to easilly load images into surfaces, you can install SDL_Image 2, and define `CPP_SDL2_USE_SDL_IMAGE`
+
 ## Dependencies
 
 - SDL2
-- SDL_image 2
+- SDL_image 2 (optional)
 
 You will need a C++17 complient compiler
 
