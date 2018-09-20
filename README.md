@@ -7,6 +7,8 @@ Makes the content of the "sources" directory visible by your compiler. `#include
 
 By default, the code will throw exception in case of an SDL_Error. The Exception will contain the string returned by `SDL_GetError()`
 
+`cpp-sdl2` also conviniently wrap SDL's functionallities aimed at making cross-platform OpenGL/Vulkan developement easier. For instance, the window class can help you create an opengl context, or a vulkan instance/surface without having to worry if you are running on a Windows platform or something else. This functionality can be activated by defining `CPP_SDL2_GL_WINDOW`or `CPP_SDL2_VK_WINDOW` before including `sdl.hpp`
+
 Exception support can be disabled by defining `CPP_SDL2_NOEXCEPTIONS` in the preprocessor. 
 
 To be able to easilly load images into surfaces, you can install SDL_Image 2, and define `CPP_SDL2_USE_SDL_IMAGE`
