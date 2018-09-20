@@ -193,8 +193,8 @@ public:
 		}
 
 		//Only movable, not copyable
-		GlContext(GlContext& const) = delete;
-		GlContext& operator=(GlContext& const) = delete;
+		GlContext(GlContext const&) = delete;
+		GlContext& operator=(GlContext const&) = delete;
 
 		GlContext(GlContext&& other)
 		{
