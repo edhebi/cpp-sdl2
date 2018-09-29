@@ -13,6 +13,11 @@
 namespace sdl
 {
 
+///\brief Object that reprent an event captured by SDL
+///
+///This union has the exact same memory layout as the SDL_Event structure.
+///An SDL_Event and a sdl::Event object are "the same bits" in memory if they hold infos about the same event.
+///cpp-sdl2 convert the raw SDL_Event into an sdl::Event object to add an object-oriented API around them
 union Event
 {
 	// this is copy-pasted from the definition of SDL_Event in <SDL2/SDL_events.h>
@@ -55,33 +60,38 @@ public:
 	/////////////////////////
 	// begining of c++ API //
 	/////////////////////////
-
+	///Default construct an event
 	Event() = default;
 
 	///////////////////////////////
 	// conversion from SDL_Event //
 	///////////////////////////////
-
+	
+	///converting constructor to create an sdl::Event from an SDL_Event struct
 	Event(SDL_Event const& e)
 		: Event{ *reinterpret_cast<Event const*>(&e) }
 	{
 	}
-
+	
+	///Get a const reference to an sdl::Event from an SDL_Event
 	static Event const& ref_from(SDL_Event const& e)
 	{
 		return *reinterpret_cast<Event const*>(&e);
 	}
 
+	///Get an non-const reference to an sdl::Event from an SDL_Event
 	static Event& ref_from(SDL_Event& e)
 	{
 		return *reinterpret_cast<Event*>(&e);
 	}
-
+	
+	/// \copydoc Event const& ref_from(SDL_Event const* e)
 	static Event const& ref_from(SDL_Event const* e)
 	{
 		return *reinterpret_cast<Event const*>(e);
 	}
-
+	
+	/// \copydoc Event& ref_from(SDL_Event& e)
 	static Event& ref_from(SDL_Event* e)
 	{
 		return *reinterpret_cast<Event*>(e);
@@ -91,16 +101,19 @@ public:
 	// conversion to SDL_Event //
 	/////////////////////////////
 
+	/// Implicit convertion to SDL_Event()
 	operator SDL_Event() const
 	{
 		return *reinterpret_cast<SDL_Event const*>(this);
 	}
 
+	/// Get a pointer to an SDL_Event
 	SDL_Event const* native_ptr() const
 	{
 		return reinterpret_cast<SDL_Event const*>(this);
 	}
 
+	/// Get a pointer to an SDL_Event
 	SDL_Event* native_ptr()
 	{
 		return reinterpret_cast<SDL_Event*>(this);
@@ -110,7 +123,7 @@ public:
 	// SDL2 functions wrapping //
 	/////////////////////////////
 
-	// some type safety
+	///For type safety, we will use these scoped enum values instead of raw numbers like the C api
 	enum class State : int
 	{
 		Query  = SDL_QUERY,
@@ -119,13 +132,17 @@ public:
 	};
 
 
+	///Pool for events, return false when there are no more events to poll
 	bool poll() { return SDL_PollEvent(native_ptr()); }
 
+	///Wait until next event occur. This will stop the execution of your code until *something* happens
 	void wait()
 	{
 		if (!SDL_WaitEvent(native_ptr())) throw Exception{ "SDL_WaitEvent" };
 	}
 
+	///Wait until next event occur, or until the given duration expired
+	/// \param timeout max duration to wait for in milliseconds
 	void wait(int timeout)
 	{
 		if (!SDL_WaitEventTimeout(native_ptr(), timeout))
@@ -134,6 +151,7 @@ public:
 		}
 	}
 
+	///Push the current event to the list of event to process
 	void push() const
 	{
 		// SDL_PushEvent won't modify it's argument
@@ -143,6 +161,7 @@ public:
 		}
 	}
 
+	/// Peek ot next event in the list 
 	void peek()
 	{
 		if (SDL_PeepEvents(native_ptr(), 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT) < 0)
@@ -156,35 +175,49 @@ public:
 // Internal events queue manipulation //
 ////////////////////////////////////////
 
+///Return true if there are events in the queue
 inline bool has_events()
 {
 	return SDL_HasEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
 }
 
+///Return true if there are events of a specific type in the queue
+///\param type the type of the events you want to check for
 inline bool has_events(Uint32 type)
 {
 	return SDL_HasEvent(type);
 }
 
+///Return true if there are events of a specific range of types in the queue
+///\param minType lower type boundary of the range
+///\param maxType upper type boundary of the range
 inline bool has_events(Uint32 minType, Uint32 maxType)
 {
 	return SDL_HasEvents(minType, maxType);
 }
 
+///Pump the event loop from the OS enent system. only call this from the main thread (or the thread taht initialized the video/window systems)
+///This is only usefull if you aren't polling or waiting for events
 inline void pump_events()
 {
 	SDL_PumpEvents();
 }
 
+///Clear events of a range of types from the event queue
+///\param minType lower type boundary of the range
+///\param maxType upper type boundary of the range
 inline void flush_events(Uint32 minType, Uint32 maxType)
 {
 	SDL_FlushEvents(minType, maxType);
 }
 
+///Clear all events from the event queue
 inline void flush_events() { flush_events(SDL_FIRSTEVENT, SDL_LASTEVENT); }
 
+///Clear events from a specific type from the event queue
 inline void flush_events(Uint32 type) { flush_events(type, type); }
 
+///
 inline void add_events(std::vector<Event> const& events, Uint32 minType, Uint32 maxType)
 {
 	// This use of SDL_PeepEvents don't modify the events
@@ -195,16 +228,22 @@ inline void add_events(std::vector<Event> const& events, Uint32 minType, Uint32 
 	}
 }
 
+///Add events to the queue
 inline void add_events(std::vector<Event> const& events)
 {
 	add_events(events, SDL_FIRSTEVENT, SDL_LASTEVENT);
 }
 
+///Add events of a specific type to the queue
 inline void add_events(std::vector<Event> const& events, Uint32 type)
 {
 	add_events(events, type, type);
 }
 
+///Peek at multiple future events
+///\param maxEvents max number of events to get
+///\param minType lower bound of event type range
+///\param maxType upper bound of event type range
 inline std::vector<Event> peek_events(size_t maxEvents, Uint32 minType, Uint32 maxType)
 {
 	auto res = std::vector<Event>(maxEvents);
@@ -216,16 +255,23 @@ inline std::vector<Event> peek_events(size_t maxEvents, Uint32 minType, Uint32 m
 	return res;
 }
 
+///Peek at future events
 inline std::vector<Event> peek_events(size_t maxEvents)
 {
 	return peek_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
 }
 
+///Peek events from a specific type
+///\param type The type of events to look for
 inline std::vector<Event> peek_events(size_t maxEvents, Uint32 type)
 {
 	return peek_events(maxEvents, type, type);
 }
 
+///Get events from the queue
+///\prarm maxEvents max number of events to get
+///\param minType lower bound of type range
+///\param maxType upper bound of type range
 inline std::vector<Event> get_events(size_t maxEvents, Uint32 minType, Uint32 maxType)
 {
 	auto res = std::vector<Event>(maxEvents);
@@ -237,11 +283,17 @@ inline std::vector<Event> get_events(size_t maxEvents, Uint32 minType, Uint32 ma
 	return res;
 }
 
+///Get events from the queue
+///\param type The type of events to look for
+///\param maxEvents max number of events to get
 inline std::vector<Event> get_events(size_t maxEvents)
 {
 	get_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
 }
 
+///Get events from a specific type
+///\param type The type of events to look for
+///\param maxEvents max number of events to get
 inline std::vector<Event> get_events(size_t maxEvents, Uint32 type)
 {
 	get_events(maxEvents, type, type);
@@ -251,6 +303,7 @@ inline std::vector<Event> get_events(size_t maxEvents, Uint32 type)
 // Events filtering //
 //////////////////////
 
+///Event filter object
 struct EventFilter
 {
 	using func_type = bool(*)(void*, Event&);

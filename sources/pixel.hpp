@@ -6,34 +6,47 @@
 
 namespace sdl
 {
-
+///Represent a 4 channel pixel
 class Pixel
 {
 public:
+	///Construct a pixel structure
 	Pixel(void* target, SDL_PixelFormat const& fmt)
 		: target_{ target }
 		, fmt_{ fmt } 
 	{ }
 
+	///Set color to this pixel via operator =
 	Pixel& operator=(Color const& c) { set_color(c); return *this; }
+	///Set color to this pixel
 	void set_color(Color const& c)
 	{
 		set_raw(c.as_uint(fmt_));
 	}
 
+	///Get color
 	Color color() const	{ return Color{ get_raw(), fmt_ }; }
 
+	///Get red channel as byte
 	Uint8 r() const { return color().r; }
+	///Get green channel as byte
 	Uint8 g() const { return color().g; }
+	///Get blue channel as byte
 	Uint8 b() const { return color().b; }
+	///Get alpha channel as byte
 	Uint8 a() const { return color().a; }
 
+	///Set red channel from given byte
 	void set_r(Uint8 r) { auto c = color(); c.r = r; set_color(c); }
+	///Set green channel from given byte
 	void set_g(Uint8 g) { auto c = color(); c.g = g; set_color(c); }
+	///Set blue channel from given byte
 	void set_b(Uint8 b) { auto c = color(); c.b = b; set_color(c); }
+	///Set alpha channel from given byte
 	void set_a(Uint8 a) { auto c = color(); c.a = a; set_color(c); }
 
-private: 
+private:
+	///Set this pixel from a 32byte value
 	void set_raw(Uint32 raw)
 	{
 		switch (fmt_.BytesPerPixel)
@@ -63,7 +76,7 @@ private:
 			break;
 		}
 	}
-
+	///Get pixel as 32 bit value
 	Uint32 get_raw() const
 	{
 		switch (fmt_.BytesPerPixel)
@@ -86,7 +99,9 @@ private:
 		}
 	}
 
+	///pointer to target strucure
 	void* target_;
+	///Used pixel format on this format
 	const SDL_PixelFormat& fmt_;
 };
 
