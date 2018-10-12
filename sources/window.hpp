@@ -7,6 +7,11 @@
 #include "renderer.hpp"
 #include "vec2.hpp"
 
+#ifdef CPP_SDL2_VK_WINDOW
+#include <vulkan/vulkan.hpp>
+#include <SDL2/SDL_vulkan.h>
+#endif
+
 namespace sdl
 {
 
@@ -124,6 +129,106 @@ public:
 		}
 		return info;
 	}
+
+	#ifdef CPP_SDL2_VK_WINDOW
+	///Enumerate the requred extensions to create a VkSurfaceKHR on the current system
+	/// \return a vector of const char strings containing the extensions names
+	std::vector<const char*> vk_get_instance_extensions()
+	{
+		std::vector<const char*> extensions;
+		Uint32 count;
+
+		if(!SDL_Vulkan_GetInstanceExtensions(window_, &count, nullptr))
+			throw Exception("SDL_Vulkan_GetInstanceExtnesions");
+
+		extensions.resize(count);
+
+		if(!SDL_Vulkan_GetInstanceExtensions(window_, &count, extensions.data()))
+			throw Exception("SDL_Vulkan_GetInstaceExtensions");
+
+		return extensions; //Benefit from enforced RVO
+	}
+
+	///Cretate a vulkan surface for the current platform
+	/// \return your vulkan surface
+	VkSurfaceKHR vk_create_surface(VkInstance instance)
+	{
+		VkSurfaceKHR surface;
+		if(!SDL_Vulkan_CreateSurface(window_, instance, &surface)) throw Exception("SDL_Vulkan_CreateSurface");
+
+		return surface;
+	}
+
+	///Create a vulkan surface using the C++ wrapper around UniuqeHandle
+	vk::UniqueSurfaceKHR vk_create_unique_surface(vk::Instance instance)
+	{
+		auto nakedSurface = vk_create_surface(instance);
+		return vk::UniqueSurfaceKHR(nakedSurface, instance);
+	}
+#endif //vulkan methods
+
+#ifdef CPP_SDL2_GL_WINDOW
+
+	//This function is mostly used to set values regarding SDL GL context, and is intertwined with window createion.
+	//However, this can be called before createing the window. This wrapping is mostly for API consistency and for automatic error checking.
+	static void gl_set_attribute(SDL_GLattr attr, int val)
+	{
+		if(SDL_GL_SetAttribute(attr, val) < 0) throw Exception("SDL_GL_SetAttribute");
+	}
+
+	///Nested class that represent a managed OpenGL Context by the SDL
+	class GlContext
+	{
+	public:
+		///Create a GlContext for the given window. You should use sdl::Window::gl_create_context() insdtead of this
+		GlContext(SDL_Window* w) : context_{ SDL_GL_CreateContext(w) }, owner_{ w }
+		{
+			if(!context_) throw Exception("SDL_GL_CreateContext");
+		}
+
+		///Dtor will call SDL_GL_DeleteContext on the enclosed context
+		~GlContext()
+		{
+			SDL_GL_DeleteContext(context_);
+		}
+
+		//Only movable, not copyable
+		GlContext(GlContext const&) = delete;
+		GlContext& operator=(GlContext const&) = delete;
+
+		GlContext(GlContext&& other)
+		{
+			context_	   = other.context_;
+			owner_		   = other.owner_;
+			other.context_ = nullptr;
+		}
+
+		GlContext& operator=(GlContext&& other)
+		{
+			context_	   = other.context_;
+			owner_		   = other.owner_;
+			other.context_ = nullptr;
+
+			return *this;
+		}
+
+		void make_current()
+		{
+			if(SDL_GL_MakeCurrent(owner_, context_) < 0)
+				throw Exception("SDL_GL_MakeCurrent");
+		}
+
+	private:
+		SDL_GLContext context_ = nullptr;
+		SDL_Window* owner_	 = nullptr;
+	};
+
+	///Create an OpenGL context from the current window
+	GlContext create_context() { return GlContext{ window_ }; }
+
+	///Swap buffers for GL when using double buffering on the current window
+	void gl_swap() { SDL_GL_SwapWindow(window_); }
+#endif
 
 private:
 
