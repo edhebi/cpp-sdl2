@@ -15,9 +15,19 @@ addons:
       - gcc-8
       - g++-8
       - cmake
+      - doxygen
 
 before_script:
   - git log -2
+
+after_success:
+  - cd ..
+  - cd doxygen
+  - doxygen Doxyfile
+  - cd output
+  - tar xvjf cpp-sdl2-doxygen.tar.gz .
+  - cd ..
+  - ./gh-pages.sh
 
 script:
   - sudo ln -s /usr/bin/gcc-8 /usr/local/bin/gcc
