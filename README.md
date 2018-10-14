@@ -27,7 +27,7 @@ You will need a C++17 complient compiler
 ## Example program
 
 ```cpp
-#include "sdl/sdl.hpp"
+#include "cpp-sdl2/sdl.hpp"
 #include <cstdlib> // Using C-style rand
 #include <ctime>
 
