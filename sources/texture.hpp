@@ -13,27 +13,32 @@
 namespace sdl
 {
 
+///Class that represet a renderer texture
 class Texture
 {
 public:
-
+	///Lock object that permit to access pixels directly on texture
 	class Lock
 	{
 		friend class Texture;
 
 	public:
+		///Get pixel at given location on texture
 		Pixel at(Vec2i const& pos) const { return at(pos.x, pos.y); }
+		///Get pixel at given location on texture
 		Pixel at(size_t x, size_t y) const
 		{
 			return Pixel{ static_cast<Uint8*>(pixels_) + (y * pitch_) + (x * format_->BytesPerPixel), *format_ };
 		}
 
+		///Get pixel at location with operator[]
 		Pixel operator[](Vec2i const& pos) const { return at(pos.x, pos.y); }
 
+		///Automatically unlock texture
 		~Lock() { SDL_UnlockTexture(texture_); SDL_FreeFormat(format_); }
 
 	private:
-		
+		///private ctor to create a lock. Lock are created by Texture class	
 		Lock(SDL_Texture* texture, SDL_Rect const* rect) : texture_{ texture }
 		{
 			if (SDL_LockTexture(texture_, rect, &pixels_, &pitch_) != 0)
@@ -47,43 +52,54 @@ public:
 
 			if (!format_) throw Exception{ "SDL_AllocFormat" };
 		}
-
+		
+		///pointer to raw texure 
 		SDL_Texture* texture_;
+		///pointer to pxels array
 		void* pixels_;
+		///Pixel pitch
 		int pitch_;
+		///Pixel format
 		SDL_PixelFormat* format_;
 	};
 
 
+	///Consruct texture form C SDL_Texture object
 	explicit Texture(SDL_Texture* t) : texture_{ t } {};
 
+	///Create texture
 	Texture(SDL_Renderer* render, Uint32 format, SDL_TextureAccess access, int w, int h)
 		: Texture{ SDL_CreateTexture(render, format, access, w, h) }
 	{
 		if (!texture_) throw Exception{ "SDL_CreateTexture" };
 	}
 
+	///Create texture 
 	Texture(SDL_Renderer* render, Uint32 format, SDL_TextureAccess access, Vec2i size)
 		: Texture{ render, format, access, size.x, size.y }
 	{
 	}
 
+	///Create texture from surface
 	Texture(SDL_Renderer* render, Surface const& surface)
 		: Texture{ SDL_CreateTextureFromSurface(render, surface.ptr()) }
 	{
 		if (!texture_) throw Exception{ "SDL_CreateTextureFromSurface" };
 	}
 
+	///Create texure from file
 	Texture(SDL_Renderer* render, std::string const& filename)
 		: Texture{ render, Surface{ filename } }
 	{
 	}
 
+	///Move texture into this one
 	Texture(Texture&& other) : texture_{ other.texture_ }
 	{
 		other.texture_ = nullptr;
 	}
-	
+
+	///move texture into this one
 	Texture& operator=(Texture&& other)
 	{
 		SDL_DestroyTexture(texture_);
@@ -92,12 +108,17 @@ public:
 		return *this;
 	}
 
+	///Non copiable
 	Texture(Texture const&) = delete;
+	///Non copiable
 	Texture& operator=(Texture const&) = delete;
 
+	///Destroy texture when it's not in use anymore
 	~Texture() { SDL_DestroyTexture(texture_); }
 
+	///Set texture blend mode
 	void set_blendmode(SDL_BlendMode const& bm) { if (SDL_SetTextureBlendMode(texture_, bm) != 0) throw Exception{ "SDL_SetTextureBlendMode" }; }
+	///Get texture blend mode
 	SDL_BlendMode blendmode() const
 	{
 		SDL_BlendMode bm;
@@ -105,12 +126,15 @@ public:
 		return bm;
 	}
 
+	///Set colormod
 	void set_colormod(Color const& color) { set_colormod(color.r, color.g, color.b); }
+	///Set colormod
 	void set_colormod(Uint8 r, Uint8 g, Uint8 b)
 	{
 		if (SDL_SetTextureColorMod(texture_, r, g, b) != 0) throw Exception{ "SDL_SetTextureColorMod" };
 	}
 
+	///Get colormod
 	Color colormod() const
 	{
 		Color c;
@@ -118,7 +142,9 @@ public:
 		return c;
 	}
 
+	///Set alphamod
 	void set_alphamod(Uint8 alpha) { if (SDL_SetTextureAlphaMod(texture_, alpha) != 0) throw Exception{ "SDL_SetTextureAlphaMod" }; }
+	///Set alphamod
 	Uint8 alphamod() const
 	{
 		Uint8 alpha;
@@ -126,10 +152,14 @@ public:
 		return alpha;
 	}
 
+	///Set coloralphamod
 	void set_coloralphamod(Uint8 r, Uint8 g, Uint8 b, Uint8 a) { set_colormod(r, g, b); set_alphamod(a); }
+	///Set coloralphamod
 	void set_coloralphamod(Color const& c) { set_colormod(c); set_alphamod(c.a); }
+	///Get coloralphamod
 	Color coloralphamod() { auto c = colormod(); c.a = alphamod(); return c; }
 
+	///Get texture format
 	Uint32 format() const
 	{
 		Uint32 f;
@@ -137,13 +167,15 @@ public:
 		return f;
 	}
 
+	///Access texture
 	int access()
 	{
 		int a;
 		if (SDL_QueryTexture(texture_, nullptr, &a, nullptr, nullptr) != 0) throw Exception{ "SDL_QueryTexture" };
 		return a;
 	}
-
+	
+	///Get texture size
 	Vec2i size()
 	{
 		Vec2i s;
@@ -151,12 +183,14 @@ public:
 		return s;
 	}
 
-
+	
+	///lock texture for direct access to content
 	[[nodiscard]] Lock lock()
 	{
 		return Lock{ texture_, nullptr };
 	}
 
+	///lock texture rect
 	[[nodiscard]] Lock lock(Rect const& rect)
 	{
 		return Lock{ texture_, &rect };
