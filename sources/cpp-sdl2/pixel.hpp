@@ -2,7 +2,7 @@
 
 #include "color.hpp"
 #include "exception.hpp"
-#include <SDL2/SDL_pixels.h>
+#include <SDL_pixels.h>
 
 namespace sdl
 {

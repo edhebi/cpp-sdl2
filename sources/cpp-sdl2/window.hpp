@@ -1,14 +1,14 @@
 #pragma once
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_syswm.h>
+#include <SDL.h>
+#include <SDL_syswm.h>
 #include <string>
 
 #include "renderer.hpp"
 #include "vec2.hpp"
 
 #ifdef CPP_SDL2_VK_WINDOW
-#include <SDL2/SDL_vulkan.h>
+#include <SDL_vulkan.h>
 #include <vulkan/vulkan.hpp>
 #endif
 

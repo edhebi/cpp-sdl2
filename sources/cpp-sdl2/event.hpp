@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL2/SDL_events.h>
+#include <SDL_events.h>
 
 #include <functional>
 #include <map>
@@ -8,7 +8,7 @@
 
 #include "exception.hpp"
 
-#include <SDL2/begin_code.h> // use SDL2 packing
+#include <begin_code.h> // use SDL2 packing
 
 namespace sdl
 {
@@ -370,4 +370,4 @@ inline void set_event_state(Uint32 type, Event::State state)
 
 } // namespace sdl
 
-#include <SDL2/close_code.h>
+#include <close_code.h>
