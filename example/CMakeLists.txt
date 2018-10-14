@@ -7,9 +7,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ./cmake-modules)
 find_package(SDL2 REQUIRED)
 find_package(Vulkan REQUIRED)
 
-include_directories(../sources/ ${SDL2_INCLUDE_DIRS})
+include_directories(../sources/ )
 
 
 add_executable(example main.cpp)
-target_link_libraries(example ${SDL2_LIBRARIES} Vulkan::Vulkan)
+target_link_libraries(example SDL2::SDL2 Vulkan::Vulkan)
 
