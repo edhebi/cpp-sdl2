@@ -297,7 +297,7 @@ inline std::vector<Event> get_events(
 ///\param maxEvents max number of events to get
 inline std::vector<Event> get_events(size_t maxEvents)
 {
-	get_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
+	return get_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
 }
 
 ///Get events from a specific type
@@ -305,7 +305,7 @@ inline std::vector<Event> get_events(size_t maxEvents)
 ///\param maxEvents max number of events to get
 inline std::vector<Event> get_events(size_t maxEvents, Uint32 type)
 {
-	get_events(maxEvents, type, type);
+	return get_events(maxEvents, type, type);
 }
 
 //////////////////////

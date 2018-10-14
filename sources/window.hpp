@@ -138,7 +138,7 @@ public:
 
 	///Change the size of the window
 	///\newsize the size of the window
-	Vec2i resize(Vec2i const& newsize)
+	void resize(Vec2i const& newsize)
 	{
 		SDL_SetWindowSize(window_, newsize.x, newsize.y);
 	}

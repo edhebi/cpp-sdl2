@@ -53,6 +53,8 @@ public:
 		if (handle_) SDL_UnloadObject(handle_);
 		handle_		  = other.handle_;
 		other.handle_ = nullptr;
+
+		return *this;
 	}
 
 	///Retrieve the raw address of a function inside the owned object. User has to cast this to the correct function pointer type
