@@ -21,7 +21,7 @@ namespace sdl
 class Surface
 {
 public:
-	///Represet a lock to safelly access surface content
+	///Represent a lock to safely access surface content
 	class Lock
 	{
 		friend class Surface;
@@ -135,13 +135,12 @@ public:
 			"before including sdl.hpp to use this functionality");
 		throw Exception("IMG_Load");
 	}
-
 #endif
 
 	///RAII dtor to automatically free the surface
 	~Surface() { SDL_FreeSurface(surface_); }
 
-	///Get C SDL_Surface objetct
+	///Get C SDL_Surface object
 	SDL_Surface* ptr() const { return surface_; }
 
 	///Convert surface to given format
@@ -317,7 +316,9 @@ public:
 		return c;
 	}
 
-	///Lock surface for raw access to pixel. Return a lock object that permit to access the pixels. When lock goes out of scope, resource goes unlocked automatically
+	///Lock surface for raw access to pixel. Return a lock object that permit
+	///to access the pixels. When lock goes out of scope, resources
+	/// goes unlocked automatically
 	[[nodiscard]] Lock lock()
 	{
 		if (SDL_LockSurface(surface_) != 0) throw Exception{"SDL_LockSurface"};

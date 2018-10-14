@@ -14,12 +14,12 @@
 
 namespace sdl
 {
-///\brief Represent an SDL window. Also contains accessor to any window related adjacent functionality
-///like OpenGL/Vulkan helper functions
+///\brief Represent an SDL window. Also contains accessor to any window
+/// related adjacent functionality like OpenGL/Vulkan helper functions
 class Window
 {
 public:
-	///Construct a window. This safely create an SDL_Window for your
+	///Construct a window. This safely create an SDL_Window for you
 	///\param title Name of the window
 	///\param size Size of the window on scren when shown
 	///\param flags Any flags needed to be passed to SDL_CreateWindow
@@ -61,7 +61,8 @@ public:
 	///Getter for the raw SDL2 window pointer
 	SDL_Window* ptr() { return window_; }
 
-	///2D renderer factory. Permit to easilly create a 2D renderer. Hardware acceleration enabled by default
+	///2D renderer factory. Permit to easily create a 2D renderer. 
+	/// Hardware acceleration enabled by default
 	///\param flags Any flags needed to be passed to SDL_CreateRenderer.
 	Renderer make_renderer(Uint32 flags = SDL_RENDERER_ACCELERATED)
 	{
@@ -84,23 +85,18 @@ public:
 	{
 		if (SDL_SetWindowDisplayMode(window_, &mode) != 0)
 		{
-			throw Exception("SDL_SetWindowDisplayMode");
+			throw Exception{"SDL_SetWindowDisplayMode"};
 		}
 	}
-	///\copydoc set_display_mode(SDL_DisplayMode const& mode)
-	SDL_DisplayMode& display_mode(SDL_DisplayMode& mode)
-	{
-		if (SDL_GetWindowDisplayMode(window_, &mode) != 0)
-		{
-			throw Exception("SDL_GetWindowDisplayMode");
-		}
-		return mode;
-	}
+
 	///Get the current display mode
 	SDL_DisplayMode display_mode()
 	{
 		SDL_DisplayMode m;
-		display_mode(m);
+		if (SDL_GetWindowDisplayMode(window_, &mode) != 0)
+		{
+			throw Exception{"SDL_GetWindowDisplayMode"};
+		}
 		return m;
 	}
 
@@ -166,7 +162,9 @@ public:
 	{
 		SDL_SetWindowIcon(window_, icon.ptr());
 	}
-	///\param filename path to a file you can use to set the window icon (may require linking and activating SDL_Image)
+
+	///Set the window icon (may require linking and activating SDL_Image)
+	///\param filename path to a file you can use to set the window icon
 	void set_icon(std::string const& filename)
 	{
 		auto icon = Surface{filename};
@@ -204,7 +202,8 @@ public:
 		return *this;
 	}
 
-	///Returns true if window is currently fullscreen (both real and "desktop mode"
+	///Returns true if window is currently fullscreen
+	/// (both real and "desktop mode")
 	bool fullscreen()
 	{
 		return flags()
@@ -238,7 +237,7 @@ public:
 	}
 
 #ifdef CPP_SDL2_VK_WINDOW
-	///Enumerate the requred extensions to create a VkSurfaceKHR on the current system
+	///Enumerate the required extensions to create a VkSurfaceKHR on the current system
 	/// \return a vector of const char strings containing the extensions names
 	std::vector<const char*> vk_get_instance_extensions()
 	{
@@ -246,7 +245,7 @@ public:
 		Uint32					 count;
 
 		if (!SDL_Vulkan_GetInstanceExtensions(window_, &count, nullptr))
-			throw Exception("SDL_Vulkan_GetInstanceExtnesions");
+			throw Exception("SDL_Vulkan_GetInstanceExtensions");
 
 		extensions.resize(count);
 
@@ -257,7 +256,7 @@ public:
 		return extensions; // Benefit from enforced RVO
 	}
 
-	///Cretate a vulkan surface for the current platform
+	///Create a vulkan surface for the current platform
 	/// \return your vulkan surface
 	VkSurfaceKHR vk_create_surface(VkInstance instance)
 	{
@@ -268,7 +267,7 @@ public:
 		return surface;
 	}
 
-	///Create a vulkan surface using the C++ wrapper around UniuqeHandle
+	///Create a vulkan surface using the C++ wrapper around UniqueHandle
 	vk::UniqueSurfaceKHR vk_create_unique_surface(vk::Instance instance)
 	{
 		auto nakedSurface = vk_create_surface(instance);
@@ -292,7 +291,8 @@ public:
 	class GlContext
 	{
 	public:
-		///Create a GlContext for the given window. You should use sdl::Window::gl_create_context() insdtead of this
+		///Create a GlContext for the given window.
+		/// You should use sdl::Window::gl_create_context() instead of this
 		GlContext(SDL_Window* w) : context_{SDL_GL_CreateContext(w)}, owner_{w}
 		{
 			if (!context_) throw Exception("SDL_GL_CreateContext");
@@ -306,9 +306,9 @@ public:
 		GlContext& operator=(GlContext const&) = delete;
 
 		GlContext(GlContext&& other)
+			: context_={other.context_}
+			, owner_{other.owner_}
 		{
-			context_	   = other.context_;
-			owner_		   = other.owner_;
 			other.context_ = nullptr;
 		}
 

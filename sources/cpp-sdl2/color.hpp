@@ -1,9 +1,10 @@
 ﻿#pragma once
 
-#include <ostream>
-
 #include "exception.hpp"
+
 #include <SDL_pixels.h>
+
+#include <ostream>
 
 namespace sdl
 {
@@ -11,14 +12,14 @@ namespace sdl
 class Color : public SDL_Color
 {
 public:
-	///Construct an sdl Color object. Color will be black by default
-	constexpr Color() : SDL_Color{0, 0, 0, 0} {}
+	///Construct an sdl::Color object. Color will be black by default
+	constexpr Color() : SDL_Color{0, 0, 0, 255} {}
 
-	///Construct an sdl Color object with the given 8 bit color values. Alpha channel to fully opaque by default
-	// \param r 8 bit quantity of red
-	// \param g 8 bit quantity of green
-	// \param b 8 bit quantity of blue
-	// \param a 8 bit opacity level. Default to 255 (0xff)
+	///Construct an sdl Color::object with the given 8 bit color values. Alpha channel to fully opaque by default
+	/// \param r 8 bit quantity of red
+	/// \param g 8 bit quantity of green
+	/// \param b 8 bit quantity of blue
+	/// \param a 8 bit opacity level. Default to 255 (0xff)
 	constexpr Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255)
 		: SDL_Color{r, g, b, a}
 	{
@@ -52,7 +53,7 @@ public:
 	Color& operator=(Color&&) = default;
 
 	///Return the color of the current object as a 32bit number (4 bytes)
-	// \param format pixel format to use
+	/// \param format pixel format to use
 	Uint32 as_uint(SDL_PixelFormat const& format) const
 	{
 		if (SDL_ISPIXELFORMAT_ALPHA(format.format))
@@ -81,7 +82,7 @@ public:
 		return r == c.r && g == c.g && b == c.b && a == c.a;
 	}
 
-	/// Putput stream overloadc that will print the value of the current color as a 4D vector of 8bit numbers
+	/// Output stream overload that will print the value of the current color as a 4D vector of 8bit numbers
 	friend std::ostream& operator<<(std::ostream& stream, Color const& c)
 	{
 		return stream << "(r:" << c.r << ",g:" << c.g << ",b:" << c.b

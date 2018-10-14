@@ -32,17 +32,18 @@ public:
 		if (!handle_) throw Exception("SDL_LoadObject");
 	}
 
-	///Automatically unload the library for your
+	///Automatically unload the library for you
 	~SharedObject() { SDL_UnloadObject(handle_); }
 
-	// This class isn't copyable
+	///This class isn't copyable
 	SharedObject(SharedObject const&) = delete;
+	
+	///This class isn't copyable
 	SharedObject& operator=(SharedObject const&) = delete;
 
-	///This SharedObject wrapper to another
+	/// Move ctor
 	SharedObject(SharedObject&& other)
 	{
-		if (handle_) SDL_UnloadObject(handle_);
 		handle_		  = other.handle_;
 		other.handle_ = nullptr;
 	}
@@ -66,7 +67,7 @@ public:
 	}
 
 	///Syntactic sugar overload, provide you a way to specify the actual type of the function pointer
-	/// e.g: mySharedObject.function_pointer<returnType (*) (args)>("nameOfExportedFunciton");
+	/// e.g: mySharedObject.function_pointer<returnType (*) (args)>("nameOfExportedFunction");
 	///\param functionName The name of a callable symbol that can be found in the loaded library
 	template<typename FunctionPointerSignature>
 	FunctionPointerSignature function_pointer(

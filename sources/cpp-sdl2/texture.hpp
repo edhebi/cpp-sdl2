@@ -1,14 +1,15 @@
 #pragma once
 
-#include <SDL_render.h>
-#include <string>
-
 #include "color.hpp"
 #include "exception.hpp"
 #include "pixel.hpp"
 #include "rect.hpp"
 #include "surface.hpp"
 #include "vec2.hpp"
+
+#include <SDL_render.h>
+
+#include <string>
 
 namespace sdl
 {
@@ -60,7 +61,7 @@ public:
 
 		///pointer to raw texure
 		SDL_Texture* texture_;
-		///pointer to pxels array
+		///pointer to pixel array
 		void* pixels_;
 		///Pixel pitch
 		int pitch_;
@@ -68,7 +69,7 @@ public:
 		SDL_PixelFormat* format_;
 	};
 
-	///Consruct texture form C SDL_Texture object
+	///Construct texture from C SDL_Texture object
 	explicit Texture(SDL_Texture* t) : texture_{t} {};
 
 	///Create texture
@@ -100,7 +101,7 @@ public:
 		if (!texture_) throw Exception{"SDL_CreateTextureFromSurface"};
 	}
 
-	///Create texure from file
+	///Create texture from file
 	Texture(SDL_Renderer* render, std::string const& filename)
 		: Texture{render, Surface{filename}}
 	{

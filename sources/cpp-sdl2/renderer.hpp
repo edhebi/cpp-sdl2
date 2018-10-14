@@ -1,15 +1,16 @@
 #pragma once
 
-#include <SDL.h>
-#include <SDL_render.h>
-#include <utility>
-#include <vector>
-
 #include "color.hpp"
 #include "exception.hpp"
 #include "rect.hpp"
 #include "surface.hpp"
 #include "texture.hpp"
+
+#include <SDL.h>
+#include <SDL_render.h>
+
+#include <utility>
+#include <vector>
 
 namespace sdl
 {
@@ -19,7 +20,13 @@ class Renderer
 public:
 	///Construct a renderer from the SDL_Renderer C object
 	explicit Renderer(SDL_Renderer* renderer) : renderer_{renderer} {}
-	Renderer(Renderer&& other) = default;
+	
+	///Default move ctor
+	Renderer(Renderer&& other)
+		: renderer_{other.renderer_}
+	{
+		other.renderer_ = nullptr;
+	}
 
 	///Move a renderer to this one
 	Renderer& operator=(Renderer&& other)
@@ -42,10 +49,6 @@ public:
 	///Return a pointer to the wrapped C SDL_Renderer
 	SDL_Renderer* ptr() { return renderer_; }
 
-	////////////////
-	// Attributes //
-	////////////////
-
 	///Populate renderinfo structure
 	void get_info(SDL_RendererInfo& info)
 	{
@@ -53,7 +56,7 @@ public:
 			throw Exception{"SDL_GetRendererInfo"};
 	}
 
-	///Get render infos
+	///Get renderer infos
 	SDL_RendererInfo info()
 	{
 		SDL_RendererInfo info;
@@ -70,7 +73,7 @@ public:
 		return c;
 	}
 
-	///Set the drawcolor form colors values as bytes
+	///Set the drawcolor from color values as bytes
 	void set_drawcolor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = SDL_ALPHA_OPAQUE)
 	{
 		if (SDL_SetRenderDrawColor(renderer_, r, g, b, a) != 0)
@@ -95,7 +98,7 @@ public:
 			throw Exception{"SDL_RenderSetClipRect"};
 	}
 
-	///Renturn true if clipping is enable
+	///Return true if clipping is enable
 	bool clip_enabled() { return SDL_RenderIsClipEnabled(renderer_); }
 
 	///Disable the clipping rectangle
@@ -108,16 +111,12 @@ public:
 	///Get the current integer scale
 	bool intscale() { return SDL_RenderGetIntegerScale(renderer_); }
 
-	///Set the interger scale
+	///Set the integer scale
 	void set_intscale(bool intscale)
 	{
 		if (SDL_RenderSetIntegerScale(renderer_, SDL_bool(intscale)) != 0)
 			throw Exception{"SDL_RenderSetIntegerScale"};
 	}
-
-	////////////////////
-	// TEXTURE MAKING //
-	////////////////////
 
 	///Make a new texture
 	Texture make_texture(
@@ -146,15 +145,10 @@ public:
 		return Texture{renderer_, filename};
 	}
 
-	/////////////
-	// DRAWING //
-	/////////////
-
 	///Present renderer
-	Renderer& present()
+	void present()
 	{
 		SDL_RenderPresent(renderer_);
-		return *this;
 	}
 
 	///Clear renderer
@@ -205,12 +199,11 @@ public:
 			throw Exception{"SDL_RenderDrawPoint"};
 	}
 
-	///Draw point with specified coolor
+	///Draw point with specified color
 	void draw_point(Vec2i const& point, Color const& c)
 	{
 		set_drawcolor(c);
 		draw_point(point);
-		;
 	}
 
 	///Draw array of points

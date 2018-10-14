@@ -122,7 +122,7 @@ private:
 		}
 	}
 
-	///pointer to target strucure
+	///pointer to target structure
 	void* target_;
 	///Used pixel format on this format
 	const SDL_PixelFormat& fmt_;

@@ -1,54 +1,55 @@
 #pragma once
 
+#include "exception.hpp"
+
 #include <SDL_events.h>
 
 #include <functional>
 #include <map>
 #include <vector>
 
-#include "exception.hpp"
-
 #include <begin_code.h> // use SDL2 packing
 
 namespace sdl
 {
-///\brief Object that reprent an event captured by SDL
+///\brief Object that represent an event captured by SDL
 ///
 ///This union has the exact same memory layout as the SDL_Event structure.
-///An SDL_Event and a sdl::Event object are "the same bits" in memory if they hold infos about the same event.
+///An SDL_Event and an sdl::Event object are "the same bits" in memory if they hold infos about the same event.
 ///cpp-sdl2 convert the raw SDL_Event into an sdl::Event object to add an object-oriented API around them
 union Event
 {
 	// this is copy-pasted from the definition of SDL_Event in
 	// <SDL2/SDL_events.h>
 public:
-	Uint32					  type;   /**< Event type, shared with all events */
-	SDL_CommonEvent			  common; /**< Common event data */
-	SDL_WindowEvent			  window; /**< Window event data */
-	SDL_KeyboardEvent		  key;	/**< Keyboard event data */
-	SDL_TextEditingEvent	  edit;   /**< Text editing event data */
-	SDL_TextInputEvent		  text;   /**< Text input event data */
-	SDL_MouseMotionEvent	  motion; /**< Mouse motion event data */
-	SDL_MouseButtonEvent	  button; /**< Mouse button event data */
-	SDL_MouseWheelEvent		  wheel;  /**< Mouse wheel event data */
-	SDL_JoyAxisEvent		  jaxis;  /**< Joystick axis event data */
-	SDL_JoyBallEvent		  jball;  /**< Joystick ball event data */
-	SDL_JoyHatEvent			  jhat;   /**< Joystick hat event data */
-	SDL_JoyButtonEvent		  jbutton; /**< Joystick button event data */
-	SDL_JoyDeviceEvent		  jdevice; /**< Joystick device change event data */
-	SDL_ControllerAxisEvent   caxis;   /**< Game Controller axis event data */
-	SDL_ControllerButtonEvent cbutton; /**< Game Controller button event data */
-	SDL_ControllerDeviceEvent cdevice; /**< Game Controller device event data */
-	SDL_AudioDeviceEvent	  adevice; /**< Audio device event data */
-	SDL_QuitEvent			  quit;	/**< Quit request event data */
-	SDL_UserEvent			  user;	/**< Custom event data */
-	SDL_SysWMEvent			  syswm; /**< System dependent window event data */
-	SDL_TouchFingerEvent	  tfinger;  /**< Touch finger event data */
-	SDL_MultiGestureEvent	 mgesture; /**< Gesture event data */
-	SDL_DollarGestureEvent	dgesture; /**< Gesture event data */
-	SDL_DropEvent			  drop;		/**< Drag and drop event data */
+	Uint32					  type;   ///< Event type, shared with all events 
+	SDL_CommonEvent			  common; ///< Common event data 
+	SDL_WindowEvent			  window; ///< Window event data 
+	SDL_KeyboardEvent		  key;	///< Keyboard event data 
+	SDL_TextEditingEvent	  edit;   ///< Text editing event data 
+	SDL_TextInputEvent		  text;   ///< Text input event data 
+	SDL_MouseMotionEvent	  motion; ///< Mouse motion event data 
+	SDL_MouseButtonEvent	  button; ///< Mouse button event data 
+	SDL_MouseWheelEvent		  wheel;  ///< Mouse wheel event data 
+	SDL_JoyAxisEvent		  jaxis;  ///< Joystick axis event data 
+	SDL_JoyBallEvent		  jball;  ///< Joystick ball event data 
+	SDL_JoyHatEvent			  jhat;   ///< Joystick hat event data 
+	SDL_JoyButtonEvent		  jbutton; ///< Joystick button event data 
+	SDL_JoyDeviceEvent		  jdevice; ///< Joystick device change event data 
+	SDL_ControllerAxisEvent   caxis;   ///< Game Controller axis event data 
+	SDL_ControllerButtonEvent cbutton; ///< Game Controller button event data 
+	SDL_ControllerDeviceEvent cdevice; ///< Game Controller device event data 
+	SDL_AudioDeviceEvent	  adevice; ///< Audio device event data 
+	SDL_QuitEvent			  quit;	///< Quit request event data 
+	SDL_UserEvent			  user;	///< Custom event data 
+	SDL_SysWMEvent			  syswm; ///< System dependent window event data 
+	SDL_TouchFingerEvent	  tfinger;  ///< Touch finger event data 
+	SDL_MultiGestureEvent	 mgesture; ///< Gesture event data 
+	SDL_DollarGestureEvent	dgesture; ///< Gesture event data 
+	SDL_DropEvent			  drop;		///< Drag and drop event data 
 
-	/* This is necessary for ABI compatibility between Visual C++ and GCC
+	/*
+	This is necessary for ABI compatibility between Visual C++ and GCC
 	Visual C++ will respect the push pack pragma and use 52 bytes for
 	this structure, and GCC will use the alignment of the largest datatype
 	within the union, which is 8 bytes.
@@ -57,17 +58,10 @@ public:
 	*/
 	Uint8 padding[56];
 
-	/////////////////////////
-	// begining of c++ API //
-	/////////////////////////
-	///Default construct an event
+	///Default ctor an event
 	Event() = default;
 
-	///////////////////////////////
-	// conversion from SDL_Event //
-	///////////////////////////////
-
-	///converting constructor to create an sdl::Event from an SDL_Event struct
+	///converting ctor to create an sdl::Event from an SDL_Event struct
 	Event(SDL_Event const& e) : Event{*reinterpret_cast<Event const*>(&e)} {}
 
 	///Get a const reference to an sdl::Event from an SDL_Event
@@ -76,7 +70,7 @@ public:
 		return *reinterpret_cast<Event const*>(&e);
 	}
 
-	///Get an non-const reference to an sdl::Event from an SDL_Event
+	///Get a non-const reference to an sdl::Event from an SDL_Event
 	static Event& ref_from(SDL_Event& e)
 	{
 		return *reinterpret_cast<Event*>(&e);
@@ -94,10 +88,6 @@ public:
 		return *reinterpret_cast<Event*>(e);
 	}
 
-	/////////////////////////////
-	// conversion to SDL_Event //
-	/////////////////////////////
-
 	/// Implicit convertion to SDL_Event()
 	operator SDL_Event() const
 	{
@@ -112,10 +102,6 @@ public:
 
 	/// Get a pointer to an SDL_Event
 	SDL_Event* native_ptr() { return reinterpret_cast<SDL_Event*>(this); }
-
-	/////////////////////////////
-	// SDL2 functions wrapping //
-	/////////////////////////////
 
 	///For type safety, we will use these scoped enum values instead of raw numbers like the C api
 	enum class State : int
@@ -154,7 +140,7 @@ public:
 		}
 	}
 
-	/// Peek ot next event in the list
+	/// Peek the next event in the list
 	void peek()
 	{
 		if (SDL_PeepEvents(
@@ -165,10 +151,6 @@ public:
 		}
 	}
 };
-
-////////////////////////////////////////
-// Internal events queue manipulation //
-////////////////////////////////////////
 
 ///Return true if there are events in the queue
 inline bool has_events()
@@ -191,7 +173,7 @@ inline bool has_events(Uint32 minType, Uint32 maxType)
 	return SDL_HasEvents(minType, maxType);
 }
 
-///Pump the event loop from the OS enent system. only call this from the main thread (or the thread taht initialized the video/window systems)
+///Pump the event loop from the OS event system. only call this from the main thread (or the thread that initialized the video/window systems)
 ///This is only usefull if you aren't polling or waiting for events
 inline void pump_events()
 {
@@ -218,7 +200,11 @@ inline void flush_events(Uint32 type)
 	flush_events(type, type);
 }
 
-///
+///Add events of a specific range of types to the event queue
+///\param events vector of events to be added
+///\param minType lower type boundary of the range
+///\param maxType upper type boundary of the range
+inline void flush_events(Uint32 minType, Uint32 maxType)
 inline void add_events(
 	std::vector<Event> const& events, Uint32 minType, Uint32 maxType)
 {
@@ -234,12 +220,15 @@ inline void add_events(
 }
 
 ///Add events to the queue
+///\param events vector of events to be added
 inline void add_events(std::vector<Event> const& events)
 {
 	add_events(events, SDL_FIRSTEVENT, SDL_LASTEVENT);
 }
 
 ///Add events of a specific type to the queue
+///\param events vector of events to be added
+///\param type type of events to be added 
 inline void add_events(std::vector<Event> const& events, Uint32 type)
 {
 	add_events(events, type, type);
@@ -308,18 +297,14 @@ inline std::vector<Event> get_events(size_t maxEvents, Uint32 type)
 	return get_events(maxEvents, type, type);
 }
 
-//////////////////////
-// Events filtering //
-//////////////////////
-
 ///Event filter object
 struct EventFilter
 {
-	using func_type = bool (*)(void*, Event&);
+	using func_type = bool(*)(void*, Event&);
 
-	void*	 userdata   = nullptr;
+	void*	  userdata   = nullptr;
 	func_type filter	 = nullptr;
-	bool	  is_watcher = false;
+	bool	  isWatcher  = false;
 
 	EventFilter(func_type filter, void* userdata)
 		: filter{filter}, userdata{userdata}
@@ -330,7 +315,7 @@ struct EventFilter
 
 	~EventFilter()
 	{
-		if (is_watcher) del_watcher();
+		if (isWatcher) del_watcher();
 	}
 
 	static int call_filter(void* data, SDL_Event* event)

@@ -7,7 +7,7 @@
 
 namespace sdl
 {
-///Rect, C++ wrapping of SDL_Rect
+///sdl::Rect, C++ wrapping of SDL_Rect
 class Rect : public SDL_Rect
 {
 public:
@@ -21,7 +21,7 @@ public:
 	///\param h Size on Y axis
 	constexpr Rect(int x, int y, int w, int h) : SDL_Rect{x, y, w, h} {}
 
-	///Construct a Rect with the giver dimensions
+	///Construct a Rect with the given dimensions
 	///\param corner X/Y position on screen as a 2D vector
 	///\param size X/Y size on screen as a 2D vector
 	constexpr Rect(Vec2i const& corner, Vec2i const& size)
@@ -55,7 +55,7 @@ public:
 		return Rect{center - size / 2, size};
 	}
 
-	///Construct a rect from 2 conrer points
+	///Construct a rect from 2 corner points
 	///\param x1 X position of first point
 	///\param y1 Y position of first point
 	///\param x2 X position of second point
@@ -65,6 +65,9 @@ public:
 		return Rect(x1, y1, x2 - x1, y2 - y1);
 	}
 
+	///Construct a rect from 2 corner points
+	///\param corner1 X/Y position of the first corner as a 2D vector
+	///\param corner2 X/Y position of the second corner as a 2D vector
 	static constexpr Rect from_corners(
 		Vec2i const& corner1, Vec2i const& corner2)
 	{
@@ -124,14 +127,14 @@ public:
 		return contains(point.x, point.y);
 	}
 
-	///Return true if tthis rect intersct another rect
+	///Return true if this rect intersect another rect
 	bool intersects(Rect const& r) const
 	{
 		return x1() < r.x2() && x2() > r.x1() && y1() < r.y2() && y2() > r.y1();
 	}
 
 	///Return true if this rect intersect the line
-	bool intersect(Vec2i const& p1, Vec2i const& p2) const
+	bool intersects(Vec2i const& p1, Vec2i const& p2) const
 	{
 		/* Even if SDL_IntersectRectAndLine don't modify it's arguments,
 		it doesn't use const* of int */
@@ -142,7 +145,7 @@ public:
 			this, &p1mut.x, &p1mut.y, &p2mut.x, &p2mut.y);
 	}
 
-	///Return the intersction of the two rects
+	///Return the intersection of the two rects
 	Rect inter(Rect const& r) const
 	{
 		Rect tmp;

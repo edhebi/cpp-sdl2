@@ -27,7 +27,7 @@
  *
  * SDL is written in C.
  * C here is really valuable for the portability of the SDL to many platforms,
- * and bindings to other programming languages. Howerver, This makes the library
+ * and bindings to other programming languages. However, this makes the library
  * rely on direct manipulation of pointers and data structure in memory, and
  * manual management of the lifetime of the resources owned by said pointer.
  *
@@ -35,23 +35,23 @@
  * around SDL2. Including it's internal 2D renderer, and as an aid in
  * developement using other libraries in a cross-platform context.
  *
- * These wrappers are implemented only on header files, and it's permitive
- * license allow you to simply add it's source code to any project that include
+ * These wrappers are implemented only on header files, and it's permissive
+ * license allows you to simply add it's source code to any project that include
  * and links the SDL, and that can be built with a modern C++ compiler following
- * the lattest standards
+ * the latest standards.
  *
  * This library mainly contains wrapper around SDL resources that are managed
  * using the RAII (Resource Acquisition Is Initialization) idiom. This simply
  * means that theses objects will do the dirty work for you by optaining these
- * resouorces (window, memory...) at their construciton, and clean up when they
- * naturally go out of scope, making memory safe and leak-free programs easiser
- * to acomplish.
+ * resources (window, memory...) at their construciton, and clean up when they
+ * naturally go out of scope, making memory safe and leak-free programs easier
+ * to accomplish.
  *
- * This library also allow you access to all the SDL functionalities that is
- * exposed via a collection of funcionts.
+ * This library also allows you to access to all the SDL functionalities that are
+ * exposed via a collection of functions.
  *
  * For example, all the "SDL_Functions" that act on a window and take an
- * SDL_Window pointer as argument is now a simpler to use function member of the
+ * SDL_Window pointer as argument are now simpler to use function members of the
  * sdl::Window class.
  *
  * \section license License
@@ -70,20 +70,21 @@ namespace sdl
 ///When your instance of Root goes out of scope, SDL will be deinitialized for you.
 ///This pattern (idiom) is called RAII. If you aren't familiar with it, I suggest reading
 ///https://en.cppreference.com/w/cpp/language/raii
-class [[nodiscard]] Root{
-	public:
-
-		///Construct a root object. Will initialize the SDL with the privided flags. Will thow an sdl::Exception if anything fails
-		Root(Uint32 flags){
-			if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
-} // namespace sdl
-
-///Automatically quit SDL for you!
-~Root()
+class [[nodiscard]] Root
 {
-	SDL_Quit();
-}
-}
-;
+public:
+
+	///Construct a root object. Will initialize the SDL with the privided flags. Will thow an sdl::Exception if anything fails
+	Root(Uint32 flags)
+	{
+		if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
+	}
+
+	///Automatically quit SDL for you!
+	~Root()
+	{
+		SDL_Quit();
+	}
+};
 
 } // namespace sdl

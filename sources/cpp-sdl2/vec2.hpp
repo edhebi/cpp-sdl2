@@ -19,7 +19,7 @@ struct _Vec2_Base
 
 namespace sdl
 {
-///Generic tempated 2D vector class
+///Generic templated 2D vector class
 template<typename T, class Base = details::_Vec2_Base<T>>
 class Vec2 : public Base
 {
@@ -44,7 +44,7 @@ public:
 	Vec2& operator=(Vec2 const&) noexcept = default;
 	Vec2& operator=(Vec2&&) noexcept = default;
 
-	///Return the oposite vector
+	///Return the opposite vector
 	constexpr Vec2 operator-() const { return Vec2{-Base::x, -Base::y}; }
 
 	///Add vector to this one
@@ -114,7 +114,7 @@ public:
 		return rhs * lhs;
 	}
 
-	///Clam vector inside a box
+	///Clamp vector inside a box
 	///\box rectangle were to clamp vector
 	Vec2 clamped(SDL_Rect const& box) const
 	{
@@ -135,7 +135,7 @@ public:
 	{
 		return std::sqrt(Base::x * Base::x + Base::y * Base::y);
 	}
-	///Get suqared lenght of this vector
+	///Get squared lenght of this vector
 	T sqlength() const { return Base::x * Base::x + Base::y * Base::y; }
 
 	///Return true if this vector is null
