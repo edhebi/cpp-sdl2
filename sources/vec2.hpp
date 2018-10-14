@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <SDL2/SDL_rect.h>
+#include <SDL_rect.h>
 #include <algorithm>
 #include <cmath>
 #include <ostream>

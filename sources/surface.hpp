@@ -3,7 +3,7 @@
 #include <string>
 #include <utility>
 
-#include <SDL2/SDL_surface.h>
+#include <SDL_surface.h>
 
 #ifdef CPP_SDL2_USE_SDL_IMAGE
 #include <SDL_image.h>
