@@ -42,6 +42,7 @@ BreakConstructorInitializers: BeforeComma
 BreakAfterJavaFieldAnnotations: false
 BreakStringLiterals: true
 ColumnLimit:     80
+CommentPragmas: '^/' 
 CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 ConstructorInitializerIndentWidth: 4
@@ -53,7 +54,7 @@ ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: true
 IncludeBlocks:   Preserve
 IndentCaseLabels: false
-IndentPPDirectives: AfterHash
+IndentPPDirectives: None
 IndentWidth:     4
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false

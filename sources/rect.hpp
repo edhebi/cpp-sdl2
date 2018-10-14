@@ -1,36 +1,36 @@
 ﻿#pragma once
 
-#include <algorithm>
 #include <SDL2/SDL_rect.h>
+#include <algorithm>
 
 #include "vec2.hpp"
 
 namespace sdl
 {
-
 ///Rect, C++ wrapping of SDL_Rect
 class Rect : public SDL_Rect
 {
 public:
 	///Construct a Rect initialized at 0
-	constexpr Rect() : SDL_Rect{ 0, 0, 0, 0 } {}
+	constexpr Rect() : SDL_Rect{0, 0, 0, 0} {}
 
 	///Construct a Rect with the given dimensions
 	///\param x Position on X axis
 	///\param y Position on Y axis
 	///\param w Size on X axis
 	///\param h Size on Y axis
-	constexpr Rect(int x, int y, int w, int h) : SDL_Rect{ x, y, w, h } {}
+	constexpr Rect(int x, int y, int w, int h) : SDL_Rect{x, y, w, h} {}
 
 	///Construct a Rect with the giver dimensions
 	///\param corner X/Y position on screen as a 2D vector
 	///\param size X/Y size on screen as a 2D vector
-	constexpr Rect(Vec2i const& corner, Vec2i const& size) 
-		: SDL_Rect{ corner.x, corner.y, size.x, size.y } {}
+	constexpr Rect(Vec2i const& corner, Vec2i const& size)
+		: SDL_Rect{corner.x, corner.y, size.x, size.y}
+	{
+	}
 
-	
 	///Copy a Rect
-	constexpr Rect(SDL_Rect const& r) : SDL_Rect{ r } {}
+	constexpr Rect(SDL_Rect const& r) : SDL_Rect{r} {}
 
 	///Copy a Rect
 	Rect(Rect const&) noexcept = default;
@@ -45,16 +45,16 @@ public:
 	///\param h Size on Y axis
 	static constexpr Rect from_center(int cx, int cy, int w, int h)
 	{
-		return Rect{ cx - w / 2, cy - h / 2, w, h };
+		return Rect{cx - w / 2, cy - h / 2, w, h};
 	}
 
 	///Construct a Rect with dimensions around a center point
 	///\param center X/Y position of the center point as a 2D vector
 	static constexpr Rect from_center(Vec2i const& center, Vec2i const& size)
 	{
-		return Rect{ center - size / 2, size };
+		return Rect{center - size / 2, size};
 	}
-	
+
 	///Construct a rect from 2 conrer points
 	///\param x1 X position of first point
 	///\param y1 Y position of first point
@@ -65,11 +65,13 @@ public:
 		return Rect(x1, y1, x2 - x1, y2 - y1);
 	}
 
-	static constexpr Rect from_corners(Vec2i const& corner1, Vec2i const& corner2)
+	static constexpr Rect from_corners(
+		Vec2i const& corner1, Vec2i const& corner2)
 	{
-		return Rect(corner1.x, corner1.y, corner2.x - corner1.x, corner2.y - corner1.y);
+		return Rect(
+			corner1.x, corner1.y, corner2.x - corner1.x, corner2.y - corner1.y);
 	}
-	
+
 	///Copy assign a Rect
 	Rect& operator=(Rect const&) noexcept = default;
 	///Move assign a Rect
@@ -91,24 +93,21 @@ public:
 	constexpr int y2() const { return y + h; }
 
 	///Get the bottom left corner position
-	Vec2i botleft()  const { return Vec2i{ x1(), y1() }; }
+	Vec2i botleft() const { return Vec2i{x1(), y1()}; }
 	///Get the bottom right corner position
-	Vec2i botright() const { return Vec2i{ x2(), y1() }; }
+	Vec2i botright() const { return Vec2i{x2(), y1()}; }
 	///Get the top left corner position
-	Vec2i topleft()  const { return Vec2i{ x1(), y2() }; }
+	Vec2i topleft() const { return Vec2i{x1(), y2()}; }
 	///Get the top right corner position
-	Vec2i topright() const { return Vec2i{ x2(), y2() }; }
+	Vec2i topright() const { return Vec2i{x2(), y2()}; }
 
 	///Get the size of the Rect
-	Vec2i size() const { return Vec2i{ w, h }; }
+	Vec2i size() const { return Vec2i{w, h}; }
 	///Get the center of the Rect
-	Vec2i center() const { return Vec2i{ x + w / 2, y + h / 2 }; }
+	Vec2i center() const { return Vec2i{x + w / 2, y + h / 2}; }
 
 	///Return true if this Rect is empty
-	bool is_empty() const
-	{
-		return SDL_RectEmpty(this);
-	}
+	bool is_empty() const { return SDL_RectEmpty(this); }
 
 	///Return true if this rect contains the given point
 	///\param px X position of the point
@@ -139,7 +138,8 @@ public:
 		auto p1mut = const_cast<Vec2i&>(p1);
 		auto p2mut = const_cast<Vec2i&>(p2);
 
-		return SDL_IntersectRectAndLine(this, &p1mut.x, &p1mut.y, &p2mut.x, &p2mut.y);
+		return SDL_IntersectRectAndLine(
+			this, &p1mut.x, &p1mut.y, &p2mut.x, &p2mut.y);
 	}
 
 	///Return the intersction of the two rects
@@ -158,7 +158,6 @@ public:
 		SDL_UnionRect(this, &r, &tmp);
 		return tmp;
 	}
-
 };
 
 } // namespace sdl

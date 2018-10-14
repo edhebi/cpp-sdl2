@@ -1,16 +1,16 @@
 ﻿#pragma once
 
-#include <algorithm>
-#include <ostream>
-#include <cmath>
 #include <SDL2/SDL_rect.h>
+#include <algorithm>
+#include <cmath>
+#include <ostream>
 
 ///Contains implementation details
 namespace sdl::details
 {
-
 ///base content of a vector 2
-template <typename T> struct _Vec2_Base
+template<typename T>
+struct _Vec2_Base
 {
 	T x, y;
 };
@@ -19,66 +19,106 @@ template <typename T> struct _Vec2_Base
 
 namespace sdl
 {
-
 ///Generic tempated 2D vector class
-template <typename T, class Base = details::_Vec2_Base<T>> 
+template<typename T, class Base = details::_Vec2_Base<T>>
 class Vec2 : public Base
 {
 public:
 	///ctor, that will initialize vector to null vector
-	constexpr Vec2() : Base{ 0, 0 } {}
+	constexpr Vec2() : Base{0, 0} {}
 	///ctor that will initialize it to the current value
-	constexpr Vec2(T x, T y) : Base{ x, y } {}
+	constexpr Vec2(T x, T y) : Base{x, y} {}
 	///Convert SDL_Point to sdl::Vec2
-	constexpr Vec2(SDL_Point const& p) : Base{ p.x, p.y } {}
-	
+	constexpr Vec2(SDL_Point const& p) : Base{p.x, p.y} {}
+
 	constexpr Vec2(Vec2 const&) noexcept = default;
-	constexpr Vec2(Vec2&&) noexcept = default;
-	
+	constexpr Vec2(Vec2&&) noexcept		 = default;
+
 	///Convert a vector in polar cordinates to cartesian in the 2D plan
-	template <typename A>
+	template<typename A>
 	static constexpr Vec2 from_polar(A alpha, T radius)
 	{
-		return Vec2{ radius * std::cos(alpha), radius * std::sin(alpha) };
+		return Vec2{radius * std::cos(alpha), radius * std::sin(alpha)};
 	}
 
 	Vec2& operator=(Vec2 const&) noexcept = default;
 	Vec2& operator=(Vec2&&) noexcept = default;
 
 	///Return the oposite vector
-	constexpr Vec2 operator-() const { return Vec2{ -Base::x, -Base::y }; }
-	
+	constexpr Vec2 operator-() const { return Vec2{-Base::x, -Base::y}; }
+
 	///Add vector to this one
-	Vec2& operator+=(Vec2 const& other) { Base::x += other.x; Base::y += other.y; return *this; }
+	Vec2& operator+=(Vec2 const& other)
+	{
+		Base::x += other.x;
+		Base::y += other.y;
+		return *this;
+	}
 	///Substract vector to this one
-	Vec2& operator-=(Vec2 const& other) { Base::x -= other.x; Base::y -= other.y; return *this; }
+	Vec2& operator-=(Vec2 const& other)
+	{
+		Base::x -= other.x;
+		Base::y -= other.y;
+		return *this;
+	}
 	///Multiply vector to this one (x1*x2, y1*y2)
-	Vec2& operator*=(T value) { Base::x *= value; Base::y *= value; return *this; }
+	Vec2& operator*=(T value)
+	{
+		Base::x *= value;
+		Base::y *= value;
+		return *this;
+	}
 	///Divide vector to this one (x1/x2, y1/y2)
-	Vec2& operator/=(T value) { Base::x /= value; Base::y /= value; return *this; }
+	Vec2& operator/=(T value)
+	{
+		Base::x /= value;
+		Base::y /= value;
+		return *this;
+	}
 
 	///Add vectors together
-	constexpr Vec2 operator+(Vec2 const& other) const { return Vec2{ Base::x, Base::y } += other; }
+	constexpr Vec2 operator+(Vec2 const& other) const
+	{
+		return Vec2{Base::x, Base::y} += other;
+	}
 	///Substract vectors together
-	constexpr Vec2 operator-(Vec2 const& other) const { return Vec2{ Base::x, Base::y } -= other; }
+	constexpr Vec2 operator-(Vec2 const& other) const
+	{
+		return Vec2{Base::x, Base::y} -= other;
+	}
 	///Multiply vectors together
-	constexpr Vec2 operator*(T value) const { return Vec2{ Base::x, Base::y } *= value; }
+	constexpr Vec2 operator*(T value) const
+	{
+		return Vec2{Base::x, Base::y} *= value;
+	}
 	///Divide vectors together
-	constexpr Vec2 operator/(T value) const { return Vec2{ Base::x, Base::y } /= value; }
+	constexpr Vec2 operator/(T value) const
+	{
+		return Vec2{Base::x, Base::y} /= value;
+	}
 
 	///Compare vectors, true if they are the same
-	constexpr bool operator==(Vec2 const& other) const { return (Base::x == other.x && Base::y == other.y); }
+	constexpr bool operator==(Vec2 const& other) const
+	{
+		return (Base::x == other.x && Base::y == other.y);
+	}
 	///Compare vectors, false if they are the same
-	constexpr bool operator!=(Vec2 const& other) const { return !(*this == other); }
+	constexpr bool operator!=(Vec2 const& other) const
+	{
+		return !(*this == other);
+	}
 
 	///Multiply operator that works on the other side
-	friend constexpr Vec2 operator*(T lhs, Vec2 const& rhs) { return rhs * lhs; }
+	friend constexpr Vec2 operator*(T lhs, Vec2 const& rhs)
+	{
+		return rhs * lhs;
+	}
 
 	///Clam vector inside a box
 	///\box rectangle were to clamp vector
 	Vec2 clamped(SDL_Rect const& box) const
 	{
-		auto r = Vec2{ Base::x, Base::y };
+		auto r = Vec2{Base::x, Base::y};
 		r.clamp(box);
 		return r;
 	}
@@ -91,7 +131,10 @@ public:
 	}
 
 	///Get lenghts of this vector
-	T length() const { return std::sqrt(Base::x * Base::x + Base::y * Base::y); }
+	T length() const
+	{
+		return std::sqrt(Base::x * Base::x + Base::y * Base::y);
+	}
 	///Get suqared lenght of this vector
 	T sqlength() const { return Base::x * Base::x + Base::y * Base::y; }
 
@@ -101,7 +144,7 @@ public:
 	///Return normalized copy of this vector
 	Vec2 normalized() const
 	{
-		auto r = Vec2{ Base::x, Base::y };
+		auto r = Vec2{Base::x, Base::y};
 		r.normalize();
 		return r;
 	}
@@ -117,10 +160,10 @@ public:
 	}
 
 	///Convert this vectort to a vector of <U> type
-	template <typename U>
+	template<typename U>
 	explicit operator Vec2<U>() const
 	{
-		return Vec2<U>{ static_cast<U>(Base::x), static_cast<U>(Base::y) };
+		return Vec2<U>{static_cast<U>(Base::x), static_cast<U>(Base::y)};
 	}
 
 	///Print that vector to stream
