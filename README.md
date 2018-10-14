@@ -1,6 +1,10 @@
 # cpp-sdl2 [![Build Status](https://travis-ci.com/Edhebi/cpp-sdl2.svg?branch=master)](https://travis-ci.com/Edhebi/cpp-sdl2)
 Basic c++ bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an header-only library
 
+## Doxygen doc
+
+https://edhebi.github.io/cpp-sdl2
+
 ## Usage
 
 Makes the content of the "sources" directory visible by your compiler. `#include "sdl.hpp"` Link against the SDL2 and SDL_image libraries as usual.
