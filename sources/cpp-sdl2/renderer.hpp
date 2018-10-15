@@ -20,10 +20,9 @@ class Renderer
 public:
 	///Construct a renderer from the SDL_Renderer C object
 	explicit Renderer(SDL_Renderer* renderer) : renderer_{renderer} {}
-	
+
 	///Default move ctor
-	Renderer(Renderer&& other)
-		: renderer_{other.renderer_}
+	Renderer(Renderer&& other) : renderer_{other.renderer_}
 	{
 		other.renderer_ = nullptr;
 	}
@@ -146,10 +145,7 @@ public:
 	}
 
 	///Present renderer
-	void present()
-	{
-		SDL_RenderPresent(renderer_);
-	}
+	void present() { SDL_RenderPresent(renderer_); }
 
 	///Clear renderer
 	void clear()

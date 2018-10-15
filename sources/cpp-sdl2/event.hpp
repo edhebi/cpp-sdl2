@@ -22,31 +22,31 @@ union Event
 	// this is copy-pasted from the definition of SDL_Event in
 	// <SDL2/SDL_events.h>
 public:
-	Uint32					  type;   ///< Event type, shared with all events 
-	SDL_CommonEvent			  common; ///< Common event data 
-	SDL_WindowEvent			  window; ///< Window event data 
-	SDL_KeyboardEvent		  key;	///< Keyboard event data 
-	SDL_TextEditingEvent	  edit;   ///< Text editing event data 
-	SDL_TextInputEvent		  text;   ///< Text input event data 
-	SDL_MouseMotionEvent	  motion; ///< Mouse motion event data 
-	SDL_MouseButtonEvent	  button; ///< Mouse button event data 
-	SDL_MouseWheelEvent		  wheel;  ///< Mouse wheel event data 
-	SDL_JoyAxisEvent		  jaxis;  ///< Joystick axis event data 
-	SDL_JoyBallEvent		  jball;  ///< Joystick ball event data 
-	SDL_JoyHatEvent			  jhat;   ///< Joystick hat event data 
-	SDL_JoyButtonEvent		  jbutton; ///< Joystick button event data 
-	SDL_JoyDeviceEvent		  jdevice; ///< Joystick device change event data 
-	SDL_ControllerAxisEvent   caxis;   ///< Game Controller axis event data 
-	SDL_ControllerButtonEvent cbutton; ///< Game Controller button event data 
-	SDL_ControllerDeviceEvent cdevice; ///< Game Controller device event data 
-	SDL_AudioDeviceEvent	  adevice; ///< Audio device event data 
-	SDL_QuitEvent			  quit;	///< Quit request event data 
-	SDL_UserEvent			  user;	///< Custom event data 
-	SDL_SysWMEvent			  syswm; ///< System dependent window event data 
-	SDL_TouchFingerEvent	  tfinger;  ///< Touch finger event data 
-	SDL_MultiGestureEvent	 mgesture; ///< Gesture event data 
-	SDL_DollarGestureEvent	dgesture; ///< Gesture event data 
-	SDL_DropEvent			  drop;		///< Drag and drop event data 
+	Uint32					  type;		///< Event type, shared with all events
+	SDL_CommonEvent			  common;   ///< Common event data
+	SDL_WindowEvent			  window;   ///< Window event data
+	SDL_KeyboardEvent		  key;		///< Keyboard event data
+	SDL_TextEditingEvent	  edit;		///< Text editing event data
+	SDL_TextInputEvent		  text;		///< Text input event data
+	SDL_MouseMotionEvent	  motion;   ///< Mouse motion event data
+	SDL_MouseButtonEvent	  button;   ///< Mouse button event data
+	SDL_MouseWheelEvent		  wheel;	///< Mouse wheel event data
+	SDL_JoyAxisEvent		  jaxis;	///< Joystick axis event data
+	SDL_JoyBallEvent		  jball;	///< Joystick ball event data
+	SDL_JoyHatEvent			  jhat;		///< Joystick hat event data
+	SDL_JoyButtonEvent		  jbutton;  ///< Joystick button event data
+	SDL_JoyDeviceEvent		  jdevice;  ///< Joystick device change event data
+	SDL_ControllerAxisEvent   caxis;	///< Game Controller axis event data
+	SDL_ControllerButtonEvent cbutton;  ///< Game Controller button event data
+	SDL_ControllerDeviceEvent cdevice;  ///< Game Controller device event data
+	SDL_AudioDeviceEvent	  adevice;  ///< Audio device event data
+	SDL_QuitEvent			  quit;		///< Quit request event data
+	SDL_UserEvent			  user;		///< Custom event data
+	SDL_SysWMEvent			  syswm;	///< System dependent window event data
+	SDL_TouchFingerEvent	  tfinger;  ///< Touch finger event data
+	SDL_MultiGestureEvent	 mgesture; ///< Gesture event data
+	SDL_DollarGestureEvent	dgesture; ///< Gesture event data
+	SDL_DropEvent			  drop;		///< Drag and drop event data
 
 	/*
 	This is necessary for ABI compatibility between Visual C++ and GCC
@@ -150,209 +150,198 @@ public:
 			throw Exception{"SDL_PeepEvents"};
 		}
 	}
+
+	///Return true if there are events in the queue
+	inline bool has_events()
+	{
+		return SDL_HasEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
+	}
+
+	///Return true if there are events of a specific type in the queue
+	///\param type the type of the events you want to check for
+	inline bool has_events(Uint32 type) { return SDL_HasEvent(type); }
+
+	///Return true if there are events of a specific range of types in the queue
+	///\param minType lower type boundary of the range
+	///\param maxType upper type boundary of the range
+	inline bool has_events(Uint32 minType, Uint32 maxType)
+	{
+		return SDL_HasEvents(minType, maxType);
+	}
+
+	///Pump the event loop from the OS event system. only call this from the main thread (or the thread that initialized the video/window systems)
+	///This is only usefull if you aren't polling or waiting for events
+	inline void pump_events() { SDL_PumpEvents(); }
+
+	///Clear events of a range of types from the event queue
+	///\param minType lower type boundary of the range
+	///\param maxType upper type boundary of the range
+	inline void flush_events(Uint32 minType, Uint32 maxType)
+	{
+		SDL_FlushEvents(minType, maxType);
+	}
+
+	///Clear all events from the event queue
+	inline void flush_events() { flush_events(SDL_FIRSTEVENT, SDL_LASTEVENT); }
+
+	///Clear events from a specific type from the event queue
+	inline void flush_events(Uint32 type) { flush_events(type, type); }
+
+	///Add events of a specific range of types to the event queue
+	///\param events vector of events to be added
+	///\param minType lower type boundary of the range
+	///\param maxType upper type boundary of the range
+	inline void add_events(
+		std::vector<Event> const& events, Uint32 minType, Uint32 maxType)
+	{
+		// This use of SDL_PeepEvents don't modify the events
+		auto array = const_cast<SDL_Event*>(
+			reinterpret_cast<SDL_Event const*>(&events[0]));
+		if (SDL_PeepEvents(
+				array, int(events.size()), SDL_ADDEVENT, minType, maxType)
+			< 0)
+		{
+			throw Exception{"SDL_PeepEvents"};
+		}
+	}
+
+	///Add events to the queue
+	///\param events vector of events to be added
+	inline void add_events(std::vector<Event> const& events)
+	{
+		add_events(events, SDL_FIRSTEVENT, SDL_LASTEVENT);
+	}
+
+	///Add events of a specific type to the queue
+	///\param events vector of events to be added
+	///\param type type of events to be added
+	inline void add_events(std::vector<Event> const& events, Uint32 type)
+	{
+		add_events(events, type, type);
+	}
+
+	///Peek at multiple future events
+	///\param maxEvents max number of events to get
+	///\param minType lower bound of event type range
+	///\param maxType upper bound of event type range
+	inline std::vector<Event> peek_events(
+		size_t maxEvents, Uint32 minType, Uint32 maxType)
+	{
+		auto res   = std::vector<Event>(maxEvents);
+		auto array = reinterpret_cast<SDL_Event*>(&res[0]);
+		if (SDL_PeepEvents(
+				array, int(maxEvents), SDL_PEEKEVENT, minType, maxType)
+			< 0)
+		{
+			throw Exception{"SDL_PeepEvents"};
+		}
+		return res;
+	}
+
+	///Peek at future events
+	inline std::vector<Event> peek_events(size_t maxEvents)
+	{
+		return peek_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
+	}
+
+	///Peek events from a specific type
+	///\param type The type of events to look for
+	inline std::vector<Event> peek_events(size_t maxEvents, Uint32 type)
+	{
+		return peek_events(maxEvents, type, type);
+	}
+
+	///Get events from the queue
+	///\prarm maxEvents max number of events to get
+	///\param minType lower bound of type range
+	///\param maxType upper bound of type range
+	inline std::vector<Event> get_events(
+		size_t maxEvents, Uint32 minType, Uint32 maxType)
+	{
+		auto res   = std::vector<Event>(maxEvents);
+		auto array = reinterpret_cast<SDL_Event*>(&res[0]);
+		if (SDL_PeepEvents(
+				array, int(maxEvents), SDL_GETEVENT, minType, maxType)
+			< 0)
+		{
+			throw Exception{"SDL_PeepEvents"};
+		}
+		return res;
+	}
+
+	///Get events from the queue
+	///\param type The type of events to look for
+	///\param maxEvents max number of events to get
+	inline std::vector<Event> get_events(size_t maxEvents)
+	{
+		return get_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
+	}
+
+	///Get events from a specific type
+	///\param type The type of events to look for
+	///\param maxEvents max number of events to get
+	inline std::vector<Event> get_events(size_t maxEvents, Uint32 type)
+	{
+		return get_events(maxEvents, type, type);
+	}
+
+	///Event filter object
+	struct EventFilter
+	{
+		using func_type = bool (*)(void*, Event&);
+
+		void*	 userdata_  = nullptr;
+		func_type filter_	= nullptr;
+		bool	  isWatcher_ = false;
+
+		EventFilter(func_type filter, void* userdata)
+			: filter_{filter}, userdata_{userdata}
+		{
+		}
+
+		EventFilter(func_type filter) : filter_{filter} {}
+
+		~EventFilter()
+		{
+			if (isWatcher_) del_watcher();
+		}
+
+		static int call_filter(void* data, SDL_Event* event)
+		{
+			auto filter = static_cast<EventFilter*>(data);
+			return filter->filter_(
+				filter->userdata_, sdl::Event::ref_from(event));
+		}
+
+		void filter_queue() { SDL_FilterEvents(&call_filter, this); }
+
+		void set() { SDL_SetEventFilter(&call_filter, userdata_); }
+
+		static void unset() { SDL_FilterEvents(nullptr, nullptr); }
+
+		void add_watcher()
+		{
+			SDL_AddEventWatch(&call_filter, this);
+			isWatcher_ = true;
+		}
+
+		void del_watcher()
+		{
+			SDL_DelEventWatch(&call_filter, this);
+			isWatcher_ = false;
+		}
+	};
+
+	inline Event::State event_state(Uint32 type)
+	{
+		return static_cast<Event::State>(SDL_GetEventState(type));
+	}
+
+	inline void set_event_state(Uint32 type, Event::State state)
+	{
+		SDL_EventState(type, int(state));
+	}
 };
-
-///Return true if there are events in the queue
-inline bool has_events()
-{
-	return SDL_HasEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
-}
-
-///Return true if there are events of a specific type in the queue
-///\param type the type of the events you want to check for
-inline bool has_events(Uint32 type)
-{
-	return SDL_HasEvent(type);
-}
-
-///Return true if there are events of a specific range of types in the queue
-///\param minType lower type boundary of the range
-///\param maxType upper type boundary of the range
-inline bool has_events(Uint32 minType, Uint32 maxType)
-{
-	return SDL_HasEvents(minType, maxType);
-}
-
-///Pump the event loop from the OS event system. only call this from the main thread (or the thread that initialized the video/window systems)
-///This is only usefull if you aren't polling or waiting for events
-inline void pump_events()
-{
-	SDL_PumpEvents();
-}
-
-///Clear events of a range of types from the event queue
-///\param minType lower type boundary of the range
-///\param maxType upper type boundary of the range
-inline void flush_events(Uint32 minType, Uint32 maxType)
-{
-	SDL_FlushEvents(minType, maxType);
-}
-
-///Clear all events from the event queue
-inline void flush_events()
-{
-	flush_events(SDL_FIRSTEVENT, SDL_LASTEVENT);
-}
-
-///Clear events from a specific type from the event queue
-inline void flush_events(Uint32 type)
-{
-	flush_events(type, type);
-}
-
-///Add events of a specific range of types to the event queue
-///\param events vector of events to be added
-///\param minType lower type boundary of the range
-///\param maxType upper type boundary of the range
-inline void flush_events(Uint32 minType, Uint32 maxType)
-inline void add_events(
-	std::vector<Event> const& events, Uint32 minType, Uint32 maxType)
-{
-	// This use of SDL_PeepEvents don't modify the events
-	auto array =
-		const_cast<SDL_Event*>(reinterpret_cast<SDL_Event const*>(&events[0]));
-	if (SDL_PeepEvents(
-			array, int(events.size()), SDL_ADDEVENT, minType, maxType)
-		< 0)
-	{
-		throw Exception{"SDL_PeepEvents"};
-	}
-}
-
-///Add events to the queue
-///\param events vector of events to be added
-inline void add_events(std::vector<Event> const& events)
-{
-	add_events(events, SDL_FIRSTEVENT, SDL_LASTEVENT);
-}
-
-///Add events of a specific type to the queue
-///\param events vector of events to be added
-///\param type type of events to be added 
-inline void add_events(std::vector<Event> const& events, Uint32 type)
-{
-	add_events(events, type, type);
-}
-
-///Peek at multiple future events
-///\param maxEvents max number of events to get
-///\param minType lower bound of event type range
-///\param maxType upper bound of event type range
-inline std::vector<Event> peek_events(
-	size_t maxEvents, Uint32 minType, Uint32 maxType)
-{
-	auto res   = std::vector<Event>(maxEvents);
-	auto array = reinterpret_cast<SDL_Event*>(&res[0]);
-	if (SDL_PeepEvents(array, int(maxEvents), SDL_PEEKEVENT, minType, maxType)
-		< 0)
-	{
-		throw Exception{"SDL_PeepEvents"};
-	}
-	return res;
-}
-
-///Peek at future events
-inline std::vector<Event> peek_events(size_t maxEvents)
-{
-	return peek_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
-}
-
-///Peek events from a specific type
-///\param type The type of events to look for
-inline std::vector<Event> peek_events(size_t maxEvents, Uint32 type)
-{
-	return peek_events(maxEvents, type, type);
-}
-
-///Get events from the queue
-///\prarm maxEvents max number of events to get
-///\param minType lower bound of type range
-///\param maxType upper bound of type range
-inline std::vector<Event> get_events(
-	size_t maxEvents, Uint32 minType, Uint32 maxType)
-{
-	auto res   = std::vector<Event>(maxEvents);
-	auto array = reinterpret_cast<SDL_Event*>(&res[0]);
-	if (SDL_PeepEvents(array, int(maxEvents), SDL_GETEVENT, minType, maxType)
-		< 0)
-	{
-		throw Exception{"SDL_PeepEvents"};
-	}
-	return res;
-}
-
-///Get events from the queue
-///\param type The type of events to look for
-///\param maxEvents max number of events to get
-inline std::vector<Event> get_events(size_t maxEvents)
-{
-	return get_events(maxEvents, SDL_FIRSTEVENT, SDL_LASTEVENT);
-}
-
-///Get events from a specific type
-///\param type The type of events to look for
-///\param maxEvents max number of events to get
-inline std::vector<Event> get_events(size_t maxEvents, Uint32 type)
-{
-	return get_events(maxEvents, type, type);
-}
-
-///Event filter object
-struct EventFilter
-{
-	using func_type = bool(*)(void*, Event&);
-
-	void*	  userdata   = nullptr;
-	func_type filter	 = nullptr;
-	bool	  isWatcher  = false;
-
-	EventFilter(func_type filter, void* userdata)
-		: filter{filter}, userdata{userdata}
-	{
-	}
-
-	EventFilter(func_type filter) : filter{filter} {}
-
-	~EventFilter()
-	{
-		if (isWatcher) del_watcher();
-	}
-
-	static int call_filter(void* data, SDL_Event* event)
-	{
-		auto filter = static_cast<EventFilter*>(data);
-		return filter->filter(filter->userdata, sdl::Event::ref_from(event));
-	}
-
-	void filter_queue() { SDL_FilterEvents(&call_filter, this); }
-
-	void set() { SDL_SetEventFilter(&call_filter, userdata); }
-
-	static void unset() { SDL_FilterEvents(nullptr, nullptr); }
-
-	void add_watcher()
-	{
-		SDL_AddEventWatch(&call_filter, this);
-		is_watcher = true;
-	}
-
-	void del_watcher()
-	{
-		SDL_DelEventWatch(&call_filter, this);
-		is_watcher = false;
-	}
-};
-
-inline Event::State event_state(Uint32 type)
-{
-	return static_cast<Event::State>(SDL_GetEventState(type));
-}
-
-inline void set_event_state(Uint32 type, Event::State state)
-{
-	SDL_EventState(type, int(state));
-}
-
 } // namespace sdl
 
 #include <close_code.h>

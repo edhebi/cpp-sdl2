@@ -47,8 +47,8 @@
  * naturally go out of scope, making memory safe and leak-free programs easier
  * to accomplish.
  *
- * This library also allows you to access to all the SDL functionalities that are
- * exposed via a collection of functions.
+ * This library also allows you to access to all the SDL functionalities that
+ * are exposed via a collection of functions.
  *
  * For example, all the "SDL_Functions" that act on a window and take an
  * SDL_Window pointer as argument are now simpler to use function members of the
@@ -70,21 +70,20 @@ namespace sdl
 ///When your instance of Root goes out of scope, SDL will be deinitialized for you.
 ///This pattern (idiom) is called RAII. If you aren't familiar with it, I suggest reading
 ///https://en.cppreference.com/w/cpp/language/raii
-class [[nodiscard]] Root
+class [[nodiscard]] Root{
+	public:
+
+		///Construct a root object. Will initialize the SDL with the privided flags. Will thow an sdl::Exception if anything fails
+		Root(Uint32 flags){
+			if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
+} // namespace sdl
+
+///Automatically quit SDL for you!
+~Root()
 {
-public:
-
-	///Construct a root object. Will initialize the SDL with the privided flags. Will thow an sdl::Exception if anything fails
-	Root(Uint32 flags)
-	{
-		if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
-	}
-
-	///Automatically quit SDL for you!
-	~Root()
-	{
-		SDL_Quit();
-	}
-};
+	SDL_Quit();
+}
+}
+;
 
 } // namespace sdl

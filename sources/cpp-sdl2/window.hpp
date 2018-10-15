@@ -61,7 +61,7 @@ public:
 	///Getter for the raw SDL2 window pointer
 	SDL_Window* ptr() { return window_; }
 
-	///2D renderer factory. Permit to easily create a 2D renderer. 
+	///2D renderer factory. Permit to easily create a 2D renderer.
 	/// Hardware acceleration enabled by default
 	///\param flags Any flags needed to be passed to SDL_CreateRenderer.
 	Renderer make_renderer(Uint32 flags = SDL_RENDERER_ACCELERATED)
@@ -92,12 +92,12 @@ public:
 	///Get the current display mode
 	SDL_DisplayMode display_mode()
 	{
-		SDL_DisplayMode m;
+		SDL_DisplayMode mode;
 		if (SDL_GetWindowDisplayMode(window_, &mode) != 0)
 		{
 			throw Exception{"SDL_GetWindowDisplayMode"};
 		}
-		return m;
+		return mode;
 	}
 
 	///Get the flags of this window
@@ -306,8 +306,7 @@ public:
 		GlContext& operator=(GlContext const&) = delete;
 
 		GlContext(GlContext&& other)
-			: context_={other.context_}
-			, owner_{other.owner_}
+			: context_{other.context_}, owner_{other.owner_}
 		{
 			other.context_ = nullptr;
 		}

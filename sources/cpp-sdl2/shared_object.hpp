@@ -37,7 +37,7 @@ public:
 
 	///This class isn't copyable
 	SharedObject(SharedObject const&) = delete;
-	
+
 	///This class isn't copyable
 	SharedObject& operator=(SharedObject const&) = delete;
 
