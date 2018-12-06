@@ -71,6 +71,12 @@ public:
 
 	///Construct texture from C SDL_Texture object
 	explicit Texture(SDL_Texture* t) : texture_{t} {};
+	
+	///Get SDL_Texture pointer from texture
+	SDL_Texture* ptr()
+	{
+		return texture_;
+	}
 
 	///Create texture
 	Texture(
