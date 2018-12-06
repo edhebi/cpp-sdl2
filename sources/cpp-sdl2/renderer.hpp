@@ -20,6 +20,11 @@ class Renderer
 public:
 	///Construct a renderer from the SDL_Renderer C object
 	explicit Renderer(SDL_Renderer* renderer) : renderer_{renderer} {}
+	
+	///Default ctor, create an empty renderer object
+	Renderer()
+	{
+	}
 
 	///Default move ctor
 	Renderer(Renderer&& other) : renderer_{other.renderer_}
@@ -281,7 +286,7 @@ public:
 
 private:
 	///Pointer to raw SDL_Renderer
-	SDL_Renderer* renderer_;
+	SDL_Renderer* renderer_ = nullptr;
 };
 
 } // namespace sdl
