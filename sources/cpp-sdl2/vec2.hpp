@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <SDL_rect.h>
 #include <algorithm>
@@ -10,7 +10,7 @@ namespace sdl::details
 {
 ///base content of a vector 2
 template<typename T>
-struct _Vec2_Base
+struct Vec2Base
 {
 	T x, y;
 };
@@ -20,7 +20,7 @@ struct _Vec2_Base
 namespace sdl
 {
 ///Generic templated 2D vector class
-template<typename T, class Base = details::_Vec2_Base<T>>
+template<typename T, class Base = details::Vec2Base<T>>
 class Vec2 : public Base
 {
 public:
