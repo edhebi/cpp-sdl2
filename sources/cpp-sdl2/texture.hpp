@@ -89,7 +89,7 @@ public:
 	{
 		if (!texture_) throw Exception{"SDL_CreateTexture"};
 	}
-
+	Texture() :texture_{nullptr} {}
 	///Create texture
 	Texture(
 		SDL_Renderer*	 render,

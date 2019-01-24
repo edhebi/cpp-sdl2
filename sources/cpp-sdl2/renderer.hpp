@@ -149,6 +149,13 @@ public:
 		return Texture{renderer_, filename};
 	}
 
+	void render_copy(Texture const& tex, Rect const& screen_rect, Rect const& texture_rect) const
+	{
+		//SDL will *not* modify the texture or the rects here, but the signature has a non-const pointer
+		//So we are forced to cast away our const ref on texture
+		SDL_RenderCopy(renderer_, const_cast<Texture&>(tex).ptr(), &screen_rect, &texture_rect);
+	}
+
 	///Present renderer
 	void present() { SDL_RenderPresent(renderer_); }
 
