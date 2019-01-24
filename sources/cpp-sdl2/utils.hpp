@@ -5,6 +5,19 @@
 
 namespace sdl
 {
+
+///Get version as string
+inline std::string version()
+{
+	//Need to use SDL_GetVersion, not the SDL_VERSION macro.
+	//SDL_VERSION give you the version of SDL used to build the program
+	//SDL_GetVersion get the version number from the dynamically linked library
+	SDL_version v;
+	SDL_GetVersion(&v);
+	return std::to_string(int(v.major)) + '.' + std::to_string(int(v.minor)) + '.' + std::to_string(int(v.patch));
+
+}
+
 ///Get information about the system (os, cpu, ram...)
 namespace system
 {
