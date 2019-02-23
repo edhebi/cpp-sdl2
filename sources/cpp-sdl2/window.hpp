@@ -286,6 +286,63 @@ public:
 		if (SDL_GL_SetAttribute(attr, val) < 0)
 			throw Exception("SDL_GL_SetAttribute");
 	}
+	
+	///Get the value of the specified OpenGL attribute
+	static int gl_get_attribute(SDL_GLattr attr)
+	{
+		int value;
+		if(SDL_GL_GetAttribute(attr, &value) != 0)
+			throw Exception("SDL_GL_GetAttribute");
+		return value;
+	}
+	
+	///Reset all OpenGL attributes to their default values
+	static void gl_reset_attribute()
+	{
+		SDL_GL_ResetAttributes();
+	}
+	
+	///Return true if the specified extension is supported
+	static bool gl_is_extension_supported(std::string const& ext_name)
+	{
+		return SDL_GL_ExtensionSupported(ext_name.c_str()) == SDL_TRUE;
+	}
+	
+	///Define the type of window swapping strategy for opengl windows. 
+	enum class gl_swap_interval
+	{
+		immediate, vsync, adaptive_vsync;
+	};
+	
+	///Set the swap interval. If exception thrown while attempting to use adaptive vsync, use standard vsync.
+	static void gl_set_swap_interval(gl_swap_interval swap_mode)
+	{
+		int result = 0;
+		switch(swap_mode)
+		{
+			case gl_swap_interval::immediate:
+				result = SDL_GL_SetSwapInterval(0);
+				break;
+			case gl_swap_interval::vsync:
+				result = SDL_GL_SetSwapInterval(1);
+				break:
+			case gl_swap_interval::adaptive_vsync:
+				result = SDL_GL_SetSwapInterval(-1);
+				break;
+		}
+		
+		if(result != 0)
+			throw Exception("SDL_GL_SetSwapInterval");
+	}
+	
+	///Get the current swap interval
+	static gl_swap_interval gl_get_swap_interval()
+	{
+		const auto value = SDL_GL_GetSwapInterval();
+		if(value == 1) return gl_swap_interval::vsync;
+		if(value == -1) return gl_swap_interval::adaptive_vsync;
+		return gl_swap_interval::immediate;
+	}	
 
 	///Nested class that represent a managed OpenGL Context by the SDL
 	class GlContext
