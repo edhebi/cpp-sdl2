@@ -311,7 +311,9 @@ public:
 	///Define the type of window swapping strategy for opengl windows. 
 	enum class gl_swap_interval
 	{
-		immediate, vsync, adaptive_vsync;
+		immediate,
+		vsync,
+		adaptive_vsync
 	};
 	
 	///Set the swap interval. If exception thrown while attempting to use adaptive vsync, use standard vsync.
