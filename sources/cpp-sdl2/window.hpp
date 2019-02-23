@@ -327,7 +327,7 @@ public:
 				break;
 			case gl_swap_interval::vsync:
 				result = SDL_GL_SetSwapInterval(1);
-				break:
+				break;
 			case gl_swap_interval::adaptive_vsync:
 				result = SDL_GL_SetSwapInterval(-1);
 				break;
