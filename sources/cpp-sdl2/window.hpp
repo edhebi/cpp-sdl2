@@ -385,6 +385,11 @@ public:
 				throw Exception("SDL_GL_MakeCurrent");
 		}
 
+		SDL_GLContext ptr()
+		{
+			return context_;
+		}
+
 	private:
 		SDL_GLContext context_ = nullptr;
 		SDL_Window*   owner_   = nullptr;
