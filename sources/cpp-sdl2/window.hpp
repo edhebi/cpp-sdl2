@@ -286,6 +286,11 @@ public:
 		if (SDL_GL_SetAttribute(attr, val) < 0)
 			throw Exception("SDL_GL_SetAttribute");
 	}
+
+	static void gl_set_attribute(SDL_GLattr attr, bool val)
+	{
+		gl_set_attribute(attr, val ? 1 : 0);
+	}
 	
 	///Get the value of the specified OpenGL attribute
 	static int gl_get_attribute(SDL_GLattr attr)
