@@ -38,8 +38,17 @@ public:
 		if (!window_) throw Exception{"SDL_CreateWindow"};
 	}
 
+	///Construct an invalid window object. You will need to initialize it by moving in a real sdl::Window in
+	Window() = default;
+		
+
 	///Default move ctor
-	Window(Window&&) = default;
+	Window(Window&& other)
+	{
+		SDL_DestroyWindow(window_);
+		window_ = std::move(other.window_);
+		other.window_ = nullptr;
+	}
 
 	///Move assign operator. If this object represent a valid window, it will be destroyed before
 	///acquiring the window_ pointer from other
@@ -48,6 +57,7 @@ public:
 	{
 		SDL_DestroyWindow(window_);
 		window_ = std::move(other.window_);
+		other.window_ = nullptr;
 		return *this;
 	}
 
@@ -56,7 +66,10 @@ public:
 	Window& operator=(Window&) = delete;
 
 	///Destructor. Calls SDL_DestroyWindow() automatically for you.
-	virtual ~Window() { SDL_DestroyWindow(window_); }
+	virtual ~Window()
+	{
+		SDL_DestroyWindow(window_);
+	}
 
 	///Getter for the raw SDL2 window pointer
 	SDL_Window* ptr() { return window_; }
@@ -362,6 +375,9 @@ public:
 			if (!context_) throw Exception("SDL_GL_CreateContext");
 		}
 
+		///Construct an invalid GLContext object where you will need to move a new one
+		GlContext() = default;
+
 		///Dtor will call SDL_GL_DeleteContext on the enclosed context
 		~GlContext() { SDL_GL_DeleteContext(context_); }
 
@@ -409,7 +425,7 @@ public:
 
 private:
 	///Raw naked pointer to an SDL window
-	SDL_Window* window_;
+	SDL_Window* window_ = nullptr;
 };
 
 } // namespace sdl
