@@ -45,7 +45,7 @@ script:
   - mkdir sdl
   - cd sdl
   - travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.9.tar.gz | tar xz
-  - cd SDL2-2.0.8
+  - cd SDL2-2.0.9
   - ./configure                  > /dev/null 2>&1
   - make                         > /dev/null 2>&1
   - sudo make install            > /dev/null 2>&1
