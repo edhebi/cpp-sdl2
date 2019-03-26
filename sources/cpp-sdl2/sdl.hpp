@@ -13,6 +13,7 @@
 #include "utils.hpp"
 #include "vec2.hpp"
 #include "window.hpp"
+#include "game_controller.hpp"
 
 /**
  *
