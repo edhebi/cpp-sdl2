@@ -3,13 +3,22 @@ project(cpp-sdl2-example)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ./cmake-modules)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake-modules)
+message(${CMAKE_MODULE_PATH})
 find_package(SDL2 REQUIRED)
-find_package(Vulkan REQUIRED)
+
+option(use_vulkan "set to true if you want to build vulkan wrappers" false)
+if(use_vulkan)
+	find_package(Vulkan REQUIRED)
+endif()
+
 
 include_directories(../sources/ )
 
-
 add_executable(example main.cpp)
-target_link_libraries(example SDL2::SDL2 Vulkan::Vulkan)
+target_link_libraries(example SDL2::SDL2 SDL2::SDL2main )
+if(use_vulkan)
+	target_link_libraries(example Vulkan::Vulkan)
+	target_compile_definitions(example CPP_SDL2_VK_WINDOW)
+endif()
 
