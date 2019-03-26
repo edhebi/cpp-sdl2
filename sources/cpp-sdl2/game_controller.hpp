@@ -20,6 +20,8 @@ public:
 		}
 	}
 
+	GameController(SDL_GameController* controller) : controller_(controller) {}
+
 	GameController()					  = default;
 	GameController(GameController const&) = delete;
 	GameController& operator=(GameController const&) = delete;
@@ -34,7 +36,7 @@ public:
 
 	~GameController()
 	{
-		if (controller_) SDL_GameControllerClose(controller_);
+		if (owned_ && controller_) SDL_GameControllerClose(controller_);
 	}
 
 	SDL_GameController* ptr() const { return controller_; }
@@ -54,7 +56,7 @@ public:
 		return SDL_GameControllerGetButton(controller_, button);
 	}
 
-#if SDL_VERSION_ATLEAST(2,0,9)
+#if SDL_VERSION_ATLEAST(2, 0, 9)
 	int rumble(
 		uint16_t				  low_freq,
 		uint16_t				  high_freq,
@@ -82,9 +84,8 @@ public:
 	static std::string get_controller_name(int joystick_index)
 	{
 		const char* name = SDL_GameControllerNameForIndex(joystick_index);
-		if (!name)
-			throw Exception("SDL_GameControllerNameForIndex");
-		return { name };
+		if (!name) throw Exception("SDL_GameControllerNameForIndex");
+		return {name};
 	}
 
 	// static std::string get_axis_name(SDL_GameControllerAxis axis)
@@ -156,13 +157,39 @@ public:
 		return controllers;
 	}
 
+	static GameController non_owning(SDL_JoystickID joystick_id)
+	{
+		return {SDL_GameControllerFromInstanceID(joystick_id), false};
+	}
+
+	static GameController non_owning(SDL_GameController* controller)
+	{
+		return {controller, false};
+	}
+
 private:
 	void move_from(GameController& other)
 	{
-		controller_		  = other.ptr();
-		other.controller_ = nullptr;
+		controller_ = other.ptr();
+		// We never want the value of the "owned_" boolean to change in the life
+		// of one of these objects. however, in case of a move operation, we
+		// need to transfer the owning status of the wrapper In the general
+		// case, we would only want to rely on the fact that the pointer is null
+		// or not. But here, we want to be able to easilly construct and
+		// manipulate a pointer that is not managed as an RAAI object. This is
+		// ugly, and I'm upset about it. But we're gonna cast-away const for
+		// once
+		*(const_cast<bool*>(&owned_))		= other.owned_;
+		*(const_cast<bool*>(&other.owned_)) = false;
+		other.controller_					= nullptr;
+	}
+
+	GameController(SDL_GameController* controller, bool non_owned)
+		: controller_(controller), owned_(non_owned)
+	{
 	}
 
 	SDL_GameController* controller_ = nullptr;
+	bool const			owned_		= true;
 };
 } // namespace sdl

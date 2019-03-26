@@ -37,8 +37,16 @@ int main(int argc, char* argv[])
 		for (auto& controller : controllers)
 		{
 			std::cout << "  " << controller.get_name() << '\n';
+
+			if(const auto haptics = SDL_HapticOpenFromJoystick(SDL_GameControllerGetJoystick(controller.ptr()));
+				haptics)
+			{
+				std::cout << "    " << "+ haptics supported\n";
+				SDL_HapticClose(haptics);
+			}
 		}
 	}
+
 
 	while (!done)
 	{
@@ -53,6 +61,15 @@ int main(int argc, char* argv[])
 
 		switch (event.type)
 		{
+#if SDL_VERSION_ATLEAST(2,0,9)
+		case SDL_CONTROLLERAXISMOTION: //this is not the way this API should probably be used
+			sdl::GameController::non_owning(event.caxis.which).rumble( //TODO get a "non-owned" controller object from a controller pointer? That way we don't need all this crap and can call "rumble" on it
+				event.caxis.axis == SDL_CONTROLLER_AXIS_LEFTX || event.caxis.axis == SDL_CONTROLLER_AXIS_LEFTY ? 0xFFFF : 0x0,
+				event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTX || event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTY ? 0xFFFF : 0x0,
+				10);
+
+			break;
+#endif
 		case SDL_QUIT: done = true; break;
 		case SDL_MOUSEBUTTONUP:
 		case SDL_KEYUP:
