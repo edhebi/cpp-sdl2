@@ -1,5 +1,6 @@
 #pragma once
 
+#include "exception.hpp"
 #include <SDL_gamecontroller.h>
 #include <chrono>
 #include <string>
@@ -15,7 +16,7 @@ public:
 	{
 		if (!controller_)
 		{
-			// error
+			throw Exception("SDL_GameControllerOpen");
 		}
 	}
 
@@ -78,8 +79,10 @@ public:
 
 	static std::string get_controller_name(int joystick_index)
 	{
-		// todo error when SDL return null
-		return {SDL_GameControllerNameForIndex(joystick_index)};
+		const char* name = SDL_GameControllerNameForIndex(joystick_index);
+		if (!name)
+			throw Exception("SDL_GameControllerNameForIndex");
+		return { name };
 	}
 
 	// static std::string get_axis_name(SDL_GameControllerAxis axis)
@@ -105,7 +108,7 @@ public:
 		const auto state = SDL_GameControllerAddMappingsFromFile(file_path);
 		if (state < 0)
 		{
-			// error
+			throw Exception("SDL_GameControllerAddMappingsFromFile");
 		}
 
 		return state;
@@ -121,7 +124,7 @@ public:
 
 		if (state < 0)
 		{
-			// error
+			throw Exception("SDL_GameControllerAddMapping");
 		}
 
 		return state;
