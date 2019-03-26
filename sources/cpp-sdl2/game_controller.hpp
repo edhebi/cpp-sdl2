@@ -54,6 +54,7 @@ public:
 		return SDL_GameControllerGetButton(controller_, button);
 	}
 
+#if SDL_VERSION_ATLEAST(2,0,9)
 	int rumble(
 		uint16_t				  low_freq,
 		uint16_t				  high_freq,
@@ -69,6 +70,7 @@ public:
 		return SDL_GameControllerRumble(
 			controller_, low_freq, high_freq, millisec_duration);
 	}
+#endif
 
 	std::string get_name()
 	{
