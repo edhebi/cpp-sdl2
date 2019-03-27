@@ -146,7 +146,7 @@ public:
 				{
 					controllers.emplace_back(i);
 				}
-				catch (sdl::Exception const& e)
+				catch (sdl::Exception const& /*e*/)
 				{
 					// could not open this controller
 					continue;
