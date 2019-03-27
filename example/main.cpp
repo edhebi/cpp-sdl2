@@ -16,7 +16,8 @@ int main(int argc, char* argv[])
 	// The following classes manages the lifetime of SDL declared resources RAII
 	// style
 
-	auto root = sdl::Root(SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC);
+	auto root =
+		sdl::Root(SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC);
 
 	auto window = sdl::Window{"Random Colors", {600, 600}};
 
@@ -28,41 +29,43 @@ int main(int argc, char* argv[])
 	auto redraw = true;
 	auto event	= sdl::Event{};
 
-
-	//maximum power rumble for 200 millisecond
+	// maximum power rumble for 200 millisecond
 	sdl::Haptic::Effect hard_rumble_effect;
-	hard_rumble_effect.type = SDL_HAPTIC_LEFTRIGHT;
-	hard_rumble_effect.leftright.length = 200;
-	hard_rumble_effect.leftright.large_magnitude = ~0U;
-	hard_rumble_effect.leftright.small_magnitude = ~0U;
+	hard_rumble_effect.type						 = SDL_HAPTIC_LEFTRIGHT;
+	hard_rumble_effect.leftright.length			 = 200;
+	hard_rumble_effect.leftright.large_magnitude = 0xFFFF;
+	hard_rumble_effect.leftright.small_magnitude = 0xFFFF;
 
 	// This utility function will open all the game controllers connected to the
 	// system that are known from the SDL GameController API
 	auto controllers = sdl::GameController::open_all_available_controllers();
 
-	//Try to get the frsit controller's haptic device
-	auto main_haptic = !controllers.empty() ? controllers.front().open_haptic() : sdl::Haptic();
+	// Try to get the frsit controller's haptic device
+	auto main_haptic = !controllers.empty() ? controllers.front().open_haptic()
+											: sdl::Haptic();
 
-
-	//This is to store the effect
-	sdl::Haptic::effect_handle hard_rumble = sdl::Haptic::invalid_effect;
+	// This is to store the effect
+	sdl::Haptic::InstalledEffect hard_rumble;
 
 	try
 	{
-		if (main_haptic.valid() && main_haptic.is_effect_compatible(hard_rumble_effect))
+		if (main_haptic.valid()
+			&& main_haptic.is_effect_compatible(hard_rumble_effect))
 		{
 			hard_rumble = main_haptic.new_effect(hard_rumble_effect);
-			main_haptic.run_effect(hard_rumble, 1);
+			hard_rumble.run(1);
 		}
 	}
-	catch(sdl::Exception const& e)
+	catch (sdl::Exception const& e)
 	{
-		sdl::show_message_box(SDL_MESSAGEBOX_ERROR, "Couldn't install or play SDL haptic effect on controller", e.what(), window);
+		sdl::show_message_box(
+			SDL_MESSAGEBOX_ERROR,
+			"Couldn't install or play SDL haptic effect on controller",
+			e.what(),
+			window);
 	}
 
-
-	//const auto effect = SDL_HapticNewEffect(main_haptic.ptr(), an_effect);
-
+	// const auto effect = SDL_HapticNewEffect(main_haptic.ptr(), an_effect);
 
 	while (!done)
 	{
@@ -103,7 +106,7 @@ int main(int argc, char* argv[])
 			redraw	= true;
 			break;
 		case SDL_CONTROLLERBUTTONUP:
-			if(event.cbutton.button == SDL_CONTROLLER_BUTTON_A)
+			if (event.cbutton.button == SDL_CONTROLLER_BUTTON_A)
 			{
 				main_haptic.run_effect(hard_rumble);
 			}
