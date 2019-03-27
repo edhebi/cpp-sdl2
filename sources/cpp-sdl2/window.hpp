@@ -72,7 +72,7 @@ public:
 	}
 
 	///Getter for the raw SDL2 window pointer
-	SDL_Window* ptr() { return window_; }
+	SDL_Window* ptr() const { return window_; }
 
 	///2D renderer factory. Permit to easily create a 2D renderer.
 	/// Hardware acceleration enabled by default

@@ -3,9 +3,10 @@
 #include <SDL.h>
 #include <string>
 
+#include "window.hpp"
+
 namespace sdl
 {
-
 ///Get version as string
 inline std::string version()
 {
@@ -15,7 +16,18 @@ inline std::string version()
 	SDL_version v;
 	SDL_GetVersion(&v);
 	return std::to_string(int(v.major)) + '.' + std::to_string(int(v.minor)) + '.' + std::to_string(int(v.patch));
+}
 
+///Show a message box, usefull to display error messages
+inline void show_message_box(uint32_t flags, std::string const& title, std::string const& message)
+{
+	SDL_ShowSimpleMessageBox(flags, title.c_str(), message.c_str(), nullptr);
+}
+
+///Show a message box, as a modal child of `parent`
+inline void show_message_box(uint32_t flags, std::string const& title, std::string const& message, sdl::Window const& parent)
+{
+	SDL_ShowSimpleMessageBox(flags, title.c_str(), message.c_str(), parent.ptr());
 }
 
 ///Get information about the system (os, cpu, ram...)

@@ -17,8 +17,11 @@ int main(int argc, char* argv[])
 	// style
 
 	auto root = sdl::Root(SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER);
+	sdl::show_message_box(SDL_MESSAGEBOX_INFORMATION, "This is an info", "This is the message in the info");
 
 	auto window = sdl::Window{"Random Colors", {600, 600}};
+	sdl::show_message_box(SDL_MESSAGEBOX_WARNING, "This is a warning", "This is the message", window);
+	sdl::show_message_box(SDL_MESSAGEBOX_ERROR, "This is an error", "This is the message");
 
 	auto renderer = window.make_renderer();
 
