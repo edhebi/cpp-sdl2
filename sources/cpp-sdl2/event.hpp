@@ -47,6 +47,10 @@ public:
 	SDL_MultiGestureEvent	 mgesture; ///< Gesture event data
 	SDL_DollarGestureEvent	dgesture; ///< Gesture event data
 	SDL_DropEvent			  drop;		///< Drag and drop event data
+#if SDL_VERSION_ATLEAST(2,0,9)
+	SDL_SensorEvent sensor;         /// Sensor event data
+	SDL_DisplayEvent display;       /// Window event data
+#endif
 
 	/*
 	This is necessary for ABI compatibility between Visual C++ and GCC

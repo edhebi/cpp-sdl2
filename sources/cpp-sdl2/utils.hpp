@@ -33,6 +33,20 @@ inline void show_message_box(uint32_t flags, std::string const& title, std::stri
 ///Get information about the system (os, cpu, ram...)
 namespace system
 {
+
+//new in 2.0.9
+#if SDL_VERSION_ATLEAST(2,0,9)
+inline bool is_tablet()
+{
+	return SDL_IsTablet();
+}
+
+inline bool has_AVX512F()
+{
+	return SDL_HasAVX512F();
+}
+#endif
+
 ///Get used platform as a string
 inline std::string platform()
 {

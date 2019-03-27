@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <string>
 #include <utility>
@@ -168,6 +168,13 @@ public:
 	}
 	///Convert this surface to specified format
 	Surface& convert_to(Uint32 format) { return *this = with_format(format); }
+
+#if SDL_VERSION_ATLEAST(2,0,9)
+	bool has_colorkey() const
+	{
+		return SDL_HasColorKey(surface_) == SDL_TRUE;
+	}
+#endif
 
 	///Blit surface on another
 	void blit_on(Rect const& src, Surface& surf, Rect const& dst) const
