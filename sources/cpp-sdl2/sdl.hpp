@@ -5,6 +5,7 @@
 #include "color.hpp"
 #include "event.hpp"
 #include "exception.hpp"
+#include "haptic.hpp"
 #include "rect.hpp"
 #include "renderer.hpp"
 #include "shared_object.hpp"

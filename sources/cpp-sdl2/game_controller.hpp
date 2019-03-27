@@ -5,6 +5,7 @@
 #include <chrono>
 #include <string>
 
+#include "haptic.hpp"
 namespace sdl
 {
 ///\brief Represent a gamepad (game controller)
@@ -40,6 +41,14 @@ public:
 	}
 
 	SDL_GameController* ptr() const { return controller_; }
+
+	Haptic open_haptic()
+	{
+		return { SDL_GameControllerGetJoystick(controller_) };
+	}
+
+
+	
 
 	bool is_attached() const
 	{
