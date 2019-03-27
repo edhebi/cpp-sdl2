@@ -7,12 +7,19 @@ namespace sdl
 {
 class Haptic
 {
+	///Pointer to C sdl haptic device
 	SDL_Haptic* haptic_ = nullptr;
 
+	///Type of an installed "effect" for SDL
 	using effect_sdlid = int;
+
+	///Installed effect storage type
 	using effect_list  = std::vector<effect_sdlid>;
+
+	///Installed effect storage
 	effect_list my_effects{};
 
+	///Move utility for move ctor/assign operations
 	void move_from(Haptic& other)
 	{
 		haptic_		  = other.haptic_;
@@ -21,6 +28,7 @@ class Haptic
 	}
 
 public:
+	///The the C pointer
 	SDL_Haptic* ptr() const { return haptic_; }
 
 	///Installed effect handle
@@ -95,6 +103,7 @@ public:
 			return (SDL_HapticEffect*)(this);
 		}
 
+		///Construct the effect. Fill it with zeroes
 		Effect()
 		{
 			// be sure to fully zero initialize the enclosed effect
@@ -102,8 +111,10 @@ public:
 		}
 	};
 
+	///Uninitialized dummy haptic device
 	Haptic() {}
 
+	///Open haptic device from index
 	Haptic(int haptic_index) : haptic_{SDL_HapticOpen(haptic_index)}
 	{
 		if (!haptic_)
@@ -112,6 +123,7 @@ public:
 		}
 	}
 
+	///Open haptic device from joystick pointer
 	Haptic(SDL_Joystick* joystick)
 		: haptic_{SDL_HapticOpenFromJoystick(joystick)}
 	{
@@ -121,6 +133,7 @@ public:
 		}
 	}
 
+	///close the haptic device automatically
 	~Haptic()
 	{
 		if (haptic_)
@@ -129,19 +142,24 @@ public:
 		}
 	}
 
+	//not copyable
 	Haptic(Haptic const&) = delete;
 	Haptic& operator=(Haptic const&) = delete;
 
+	///move ctor
 	Haptic(Haptic&& other) { move_from(other); }
 
+	///move assign opeartor
 	Haptic& operator=(Haptic&& other)
 	{
 		move_from(other);
 		return *this;
 	}
 
+	///Return true if the device is correctly opened
 	bool valid() const { return haptic_ != nullptr; }
 
+	///Get a bitflag that describe the device capabilities
 	unsigned int get_capabilities() const
 	{
 		if (!valid()) // we're not an opened device... So we should decide what
@@ -159,12 +177,14 @@ public:
 		return capabilities;
 	}
 
+	///Check the SDL_HAPTIC_ flag agianst the device capabilities
 	bool is_capable_of(int haptic_flag) const
 	{
 		const auto caps = get_capabilities();
 		return (haptic_flag & caps) != 0;
 	}
 
+	///Install the effect
 	InstalledEffect new_effect(Effect const& e)
 	{
 		// We need to be able to play the haptic effect
@@ -180,31 +200,38 @@ public:
 		return {my_effects.size() - 1, this};
 	}
 
+	///Get the number of effects installed
 	effect_list::size_type registered_effect_count() const
 	{
 		return my_effects.size();
 	}
 
+	///Get the SDL assigned ID (an integer) to the effect
 	effect_sdlid get_effect_sdlid(InstalledEffect const& h) const
 	{
 		return my_effects.at(h.index_);
 	}
 
+	///Deactiave the effect. This only set the registered id in question to -1 
 	void remove_effect(effect_sdlid e)
 	{
-		my_effects.erase(
-			std::remove(std::begin(my_effects), std::end(my_effects), e),
-			std::end(my_effects));
+		for(int i = 0, nb_effects = my_effects.size(); i < nb_effects; ++i)
+		{
+			if (my_effects[i] == e) my_effects[i] = -1;
+		}
 	}
 
+	///Run an effect, if said effect is valid
 	void run_effect(InstalledEffect const& h, uint32_t iterations = 1) const
 	{
-		if (SDL_HapticRunEffect(haptic_, get_effect_sdlid(h), iterations) < 0)
+		const effect_sdlid e = get_effect_sdlid(h);
+		if (e >= 0 && SDL_HapticRunEffect(haptic_, get_effect_sdlid(h), iterations) < 0)
 		{
 			throw Exception("SDL_HapticRunEffect");
 		}
 	}
 
+	///Check if you can safely attemp to install the effect ont he haptic device
 	bool is_effect_compatible(Effect const& e) const
 	{
 		return is_capable_of(e.type);
