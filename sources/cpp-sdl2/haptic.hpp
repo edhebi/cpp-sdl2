@@ -14,7 +14,7 @@ class Haptic
 	using effect_sdlid = int;
 
 	///Installed effect storage type
-	using effect_list  = std::vector<effect_sdlid>;
+	using effect_list = std::vector<effect_sdlid>;
 
 	///Installed effect storage
 	effect_list my_effects{};
@@ -85,9 +85,10 @@ public:
 	///Effect defintion
 	union Effect
 	{
-		// note : It has been planned by SDL developers to change the `type`
-		// type in 2.1.0 This is analog to how we handle sdl events, this
+		// This is analog to how we handle sdl events: this
 		// definition is copied from SDL_haptic.h
+		// note : It has been planned by SDL developers to change the `type`
+		// type in 2.1.0.
 		Uint16				type;	   /// Effect type.
 		SDL_HapticConstant	constant;  /// Constant effect.
 		SDL_HapticPeriodic	periodic;  /// Periodic effect.
@@ -96,16 +97,29 @@ public:
 		SDL_HapticLeftRight leftright; /// Left/Right effect.
 		SDL_HapticCustom	custom;	   /// Custom effect.
 
-		///this permit to treat an sdl::haptic::effect instance as if it was an SDL_HapticEffect to it's own content
+		///this permit to treat an sdl::haptic::effect instance as if it was an SDL_HapticEffect pointer
 		operator SDL_HapticEffect*() const
 		{
-			//"I solemnly swear that I am up to no good."
+			// "I solemnly swear that I am up to no good."
 			return (SDL_HapticEffect*)(this);
 		}
 
 		///Construct the effect. Fill it with zeroes
 		Effect()
 		{
+			// Hopefully this will prevent the library to work when SDL will
+			// decide to "fix" the "oops, the 'type' variable doesn't have enough
+			// bits" problem they encouterd with 2.0 (this fix is scheduled to be
+			// in 2.1 since it's an API/ABI breakage)
+			static_assert(
+				sizeof(Effect::type) == sizeof(SDL_HapticEffect::type),
+				"please compare the layout between SDL_HapticEffect and "
+				"sdl::Haptic::Effect");
+			static_assert(
+				sizeof(Effect) == sizeof(SDL_HapticEffect),
+				"please compare the layout between SDL_HapticEffect and "
+				"sdl::Haptic::Effect");
+
 			// be sure to fully zero initialize the enclosed effect
 			SDL_memset(this, 0, sizeof(Effect));
 		}
@@ -142,7 +156,7 @@ public:
 		}
 	}
 
-	//not copyable
+	// not copyable
 	Haptic(Haptic const&) = delete;
 	Haptic& operator=(Haptic const&) = delete;
 
@@ -212,10 +226,10 @@ public:
 		return my_effects.at(h.index_);
 	}
 
-	///Deactiave the effect. This only set the registered id in question to -1 
+	///Deactiave the effect. This only set the registered id in question to -1
 	void remove_effect(effect_sdlid e)
 	{
-		for(int i = 0, nb_effects = my_effects.size(); i < nb_effects; ++i)
+		for (int i = 0, nb_effects = my_effects.size(); i < nb_effects; ++i)
 		{
 			if (my_effects[i] == e) my_effects[i] = -1;
 		}
@@ -225,7 +239,9 @@ public:
 	void run_effect(InstalledEffect const& h, uint32_t iterations = 1) const
 	{
 		const effect_sdlid e = get_effect_sdlid(h);
-		if (e >= 0 && SDL_HapticRunEffect(haptic_, get_effect_sdlid(h), iterations) < 0)
+		if (e >= 0
+			&& SDL_HapticRunEffect(haptic_, get_effect_sdlid(h), iterations)
+				   < 0)
 		{
 			throw Exception("SDL_HapticRunEffect");
 		}
