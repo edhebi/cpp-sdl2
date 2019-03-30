@@ -11,6 +11,7 @@
 #include "shared_object.hpp"
 #include "surface.hpp"
 #include "texture.hpp"
+#include "timer.hpp"
 #include "utils.hpp"
 #include "vec2.hpp"
 #include "window.hpp"
