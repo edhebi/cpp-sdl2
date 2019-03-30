@@ -17,6 +17,21 @@ Exception support can be disabled by defining `CPP_SDL2_NOEXCEPTIONS` in the pre
 
 To be able to easilly load images into surfaces, you can install SDL_Image 2, and define `CPP_SDL2_USE_SDL_IMAGE`
 
+## Compile-time configuration
+
+cpp-sdl2 aims at offering a simple and modern API to C++ developers of the functionality available to SDL. Some of these functionalities are only usable with the addition of external libraries, or with the presens of specific SDK on the system.
+
+The additional functionality is disabled by default, as the goal is to be the most compatible out of the box, but they can be easilly toggled in by defining a few perprocessor constants : 
+
+
+| Preprocessor switch | Descripiton | Requirements| 
+|---------------------|-----------|--------------|
+|`CPP_SDL2_GL_WINDOW` | Makes OpenGL functionalities around windows availalbe | You should probably use an OpenGL extension loader like `glew`, `gl3w`, `glad` or `epoxy`|
+|`CPP_SDL2_VK_WINDOW`| Adds the Vulkan-related functions to the window API to help you load Vulkan platform extensions and create your `vk::Instance` and `vk::Surface`| You need both a Vulkan runtime and a recent version of the Vulkan SDK. The wrappers are intened to be used with Nvidia's (now standardized) `vulkan.hpp` wrappers|
+|`CPP_SDL2_USE_SDL_IMAGE`|Add a few helpers that permit to load image files inside `sdl::Surface` objects | Require you to include and link the `SDL_Image` library for `SDL2`|
+|`CPP_SDL2_NOEXCEPTIONS`|Disable `cpp-sdl2` exceptions | This is mostly intended if you want to use `cpp-sdl2` on a platform where exceptions aren't available. Exceptions are used only **exceptionally** by `cpp-sdl2`, and their general problems in the context of game developements shouldn't be an issue as, if correctly used, the library should *not* throw any exceptions. This replaces any thrown exception with a logged message to the error output, followed by an `abort()` of your program.| 
+
+
 ## Dependencies
 
 - SDL2
