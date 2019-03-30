@@ -4,6 +4,7 @@
 #include "exception.hpp"
 #include <cstdint>
 #include <chrono>
+#include <cassert>
 
 namespace sdl
 {
@@ -18,11 +19,6 @@ namespace sdl
 		}
 
 	public:
-
-		SDL_TimerID timer_id() const
-		{
-			return timer_;
-		}
 
 		///A timer object that is not tied to a timer id in SDL doesn't make senes
 		Timer() = delete;
@@ -55,13 +51,14 @@ namespace sdl
 		///Factory function using std::chrono
 		static Timer create(std::chrono::milliseconds interval, Callback function, void* user_context)
 		{
-			return create(interval.count(), function, user_context);
+			return create(static_cast<uint32_t>(interval.count()), function, user_context);
 		}
 
 		///Wait for `millisec` milliseconds
 		static void delay(std::chrono::milliseconds millisec)
 		{
-			delay(millisec.count());
+			assert(millisec.count() >= 0);
+			delay(static_cast<uint32_t>(millisec.count()));
 		}
 
 		///Wait for `millisec` milliseconds
@@ -92,6 +89,17 @@ namespace sdl
 		static uint64_t perf_frequency()
 		{
 			return SDL_GetPerformanceFrequency();
+		}
+
+		///Get the id of this timer
+		SDL_TimerID timer_id() const
+		{
+			return timer_;
+		}
+
+		operator SDL_TimerID() const
+		{
+			return timer_id();
 		}
 	};
 }

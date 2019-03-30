@@ -3,11 +3,13 @@
 #include <cpp-sdl2/sdl.hpp>
 #include <cstdlib> // Using C-style rand
 #include <ctime>
-
+#include <chrono>
 #include <iostream>
 
 int main(int argc, char* argv[])
 {
+	using namespace std::literals::chrono_literals;
+
 	(void)argc;
 	(void)argv;
 
@@ -35,6 +37,8 @@ int main(int argc, char* argv[])
 	hard_rumble_effect.leftright.length			 = 200;
 	hard_rumble_effect.leftright.large_magnitude = 0xFFFF;
 	hard_rumble_effect.leftright.small_magnitude = 0xFFFF;
+
+
 
 	// This utility function will open all the game controllers connected to the
 	// system that are known from the SDL GameController API
@@ -66,6 +70,10 @@ int main(int argc, char* argv[])
 	}
 
 	// const auto effect = SDL_HapticNewEffect(main_haptic.ptr(), an_effect);
+
+	sdl::show_message_box(SDL_MESSAGEBOX_INFORMATION, "waiting", "we're going to wait for 5 seconds", window);
+	sdl::Timer::delay(5s);
+	sdl::show_message_box(SDL_MESSAGEBOX_INFORMATION, "done!", "Thanks for waiting 5 seconds!", window);
 
 	while (!done)
 	{

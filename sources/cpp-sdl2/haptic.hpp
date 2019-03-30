@@ -229,7 +229,7 @@ public:
 	///Deactiave the effect. This only set the registered id in question to -1
 	void remove_effect(effect_sdlid e)
 	{
-		for (int i = 0, nb_effects = my_effects.size(); i < nb_effects; ++i)
+		for (size_t i = 0, nb_effects = my_effects.size(); i < nb_effects; ++i)
 		{
 			if (my_effects[i] == e) my_effects[i] = -1;
 		}
