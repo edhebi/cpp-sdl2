@@ -3,7 +3,7 @@ Basic c++ bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an
 
 ## Doxygen doc
 
-https://edhebi.github.io/cpp-sdl2
+https://edhebi.github.io/cpp-sdl2/doc
 
 ## Usage
 
