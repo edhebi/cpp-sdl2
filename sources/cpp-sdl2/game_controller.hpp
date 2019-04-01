@@ -4,8 +4,9 @@
 #include <SDL_gamecontroller.h>
 #include <chrono>
 #include <string>
-
+#include <cassert>
 #include "haptic.hpp"
+
 namespace sdl
 {
 ///\brief Represent a gamepad (game controller)

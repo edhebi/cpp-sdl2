@@ -99,13 +99,13 @@ public:
 	}
 
 	/// Get a pointer to an SDL_Event
-	SDL_Event const* native_ptr() const
+	SDL_Event const* ptr() const
 	{
 		return reinterpret_cast<SDL_Event const*>(this);
 	}
 
 	/// Get a pointer to an SDL_Event
-	SDL_Event* native_ptr() { return reinterpret_cast<SDL_Event*>(this); }
+	SDL_Event* ptr() { return reinterpret_cast<SDL_Event*>(this); }
 
 	///For type safety, we will use these scoped enum values instead of raw numbers like the C api
 	enum class State : int
@@ -116,19 +116,19 @@ public:
 	};
 
 	///Pool for events, return false when there are no more events to poll
-	bool poll() { return SDL_PollEvent(native_ptr()); }
+	bool poll() { return SDL_PollEvent(ptr()); }
 
 	///Wait until next event occur. This will stop the execution of your code until *something* happens
 	void wait()
 	{
-		if (!SDL_WaitEvent(native_ptr())) throw Exception{"SDL_WaitEvent"};
+		if (!SDL_WaitEvent(ptr())) throw Exception{"SDL_WaitEvent"};
 	}
 
 	///Wait until next event occur, or until the given duration expired
 	/// \param timeout max duration to wait for in milliseconds
 	void wait(int timeout)
 	{
-		if (!SDL_WaitEventTimeout(native_ptr(), timeout))
+		if (!SDL_WaitEventTimeout(ptr(), timeout))
 		{
 			throw Exception{"SDL_WaitEventTimeout"};
 		}
@@ -138,7 +138,7 @@ public:
 	void push() const
 	{
 		// SDL_PushEvent won't modify it's argument
-		if (!SDL_PushEvent(const_cast<SDL_Event*>(native_ptr())))
+		if (!SDL_PushEvent(const_cast<SDL_Event*>(ptr())))
 		{
 			throw Exception{"SDL_PushEvent"};
 		}
@@ -148,7 +148,7 @@ public:
 	void peek()
 	{
 		if (SDL_PeepEvents(
-				native_ptr(), 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT)
+				ptr(), 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT)
 			< 0)
 		{
 			throw Exception{"SDL_PeepEvents"};

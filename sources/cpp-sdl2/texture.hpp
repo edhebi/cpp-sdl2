@@ -73,7 +73,7 @@ public:
 	explicit Texture(SDL_Texture* t) : texture_{t} {};
 	
 	///Get SDL_Texture pointer from texture
-	SDL_Texture* ptr()
+	SDL_Texture* ptr() const
 	{
 		return texture_;
 	}
@@ -137,7 +137,7 @@ public:
 	~Texture() { SDL_DestroyTexture(texture_); }
 
 	///Set texture blend mode
-	void set_blendmode(SDL_BlendMode const& bm)
+	void set_blendmode(SDL_BlendMode const& bm) const
 	{
 		if (SDL_SetTextureBlendMode(texture_, bm) != 0)
 			throw Exception{"SDL_SetTextureBlendMode"};
@@ -152,12 +152,12 @@ public:
 	}
 
 	///Set colormod
-	void set_colormod(Color const& color)
+	void set_colormod(Color const& color) const
 	{
 		set_colormod(color.r, color.g, color.b);
 	}
 	///Set colormod
-	void set_colormod(Uint8 r, Uint8 g, Uint8 b)
+	void set_colormod(Uint8 r, Uint8 g, Uint8 b) const
 	{
 		if (SDL_SetTextureColorMod(texture_, r, g, b) != 0)
 			throw Exception{"SDL_SetTextureColorMod"};
@@ -173,7 +173,7 @@ public:
 	}
 
 	///Set alphamod
-	void set_alphamod(Uint8 alpha)
+	void set_alphamod(Uint8 alpha) const
 	{
 		if (SDL_SetTextureAlphaMod(texture_, alpha) != 0)
 			throw Exception{"SDL_SetTextureAlphaMod"};
@@ -188,19 +188,19 @@ public:
 	}
 
 	///Set coloralphamod
-	void set_coloralphamod(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+	void set_coloralphamod(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 	{
 		set_colormod(r, g, b);
 		set_alphamod(a);
 	}
 	///Set coloralphamod
-	void set_coloralphamod(Color const& c)
+	void set_coloralphamod(Color const& c) const
 	{
 		set_colormod(c);
 		set_alphamod(c.a);
 	}
 	///Get coloralphamod
-	Color coloralphamod()
+	Color coloralphamod() const
 	{
 		auto c = colormod();
 		c.a	= alphamod();
@@ -217,7 +217,7 @@ public:
 	}
 
 	///Access texture
-	int access()
+	int access() const
 	{
 		int a;
 		if (SDL_QueryTexture(texture_, nullptr, &a, nullptr, nullptr) != 0)
@@ -226,7 +226,7 @@ public:
 	}
 
 	///Get texture size
-	Vec2i size()
+	Vec2i size() const
 	{
 		Vec2i s;
 		if (SDL_QueryTexture(texture_, nullptr, nullptr, &s.x, &s.y) != 0)

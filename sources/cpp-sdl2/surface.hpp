@@ -222,20 +222,20 @@ public:
 	}
 
 	///disable colorkey
-	void disable_colorkey()
+	void disable_colorkey() const
 	{
 		if (SDL_SetColorKey(surface_, SDL_FALSE, 0) != 0)
 			throw Exception{"SDL_SetColorKey"};
 	}
 
 	///Set colorkey
-	void set_colorkey(Uint32 key)
+	void set_colorkey(Uint32 key) const
 	{
 		if (SDL_SetColorKey(surface_, SDL_TRUE, key) != 0)
 			throw Exception{"SDL_SetColorKey"};
 	}
 	///Set colorkey
-	void set_colorkey(Color const& color)
+	void set_colorkey(Color const& color) const
 	{
 		if (SDL_SetColorKey(surface_, SDL_TRUE, color.as_uint(pixelformat()))
 			!= 0)
@@ -254,7 +254,7 @@ public:
 	}
 
 	///Set surface blend mode
-	void set_blendmode(SDL_BlendMode const& bm)
+	void set_blendmode(SDL_BlendMode const& bm) const
 	{
 		if (SDL_SetSurfaceBlendMode(surface_, bm) != 0)
 			throw Exception{"SDL_SetSurfaceBlendMode"};
@@ -268,12 +268,12 @@ public:
 	}
 
 	///Set colormod
-	void set_colormod(Color const& color)
+	void set_colormod(Color const& color) const
 	{
 		set_colormod(color.r, color.g, color.b);
 	}
 	///Set colormod
-	void set_colormod(Uint8 r, Uint8 g, Uint8 b)
+	void set_colormod(Uint8 r, Uint8 g, Uint8 b) const
 	{
 		if (SDL_SetSurfaceColorMod(surface_, r, g, b))
 			throw Exception{"SDL_SetSurfaceColorMod"};
@@ -289,7 +289,7 @@ public:
 	}
 
 	///Set alphamod
-	void set_alphamod(Uint8 alpha)
+	void set_alphamod(Uint8 alpha) const
 	{
 		if (SDL_SetSurfaceAlphaMod(surface_, alpha) != 0)
 			throw Exception{"SDL_SetSurfaceAlphaMod"};
@@ -304,19 +304,19 @@ public:
 	}
 
 	///Set color and alpha mod
-	void set_coloralphamod(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+	void set_coloralphamod(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
 	{
 		set_colormod(r, g, b);
 		set_alphamod(a);
 	}
 	///Set color and alpha mod
-	void set_coloralphamod(Color const& c)
+	void set_coloralphamod(Color const& c) const
 	{
 		set_colormod(c.r, c.g, c.b);
 		set_alphamod(c.a);
 	}
 	///Get color and alpha mod
-	Color coloralphamod()
+	Color coloralphamod() const
 	{
 		auto c = colormod();
 		c.a	= alphamod();

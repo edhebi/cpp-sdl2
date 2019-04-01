@@ -77,7 +77,7 @@ public:
 	///2D renderer factory. Permit to easily create a 2D renderer.
 	/// Hardware acceleration enabled by default
 	///\param flags Any flags needed to be passed to SDL_CreateRenderer.
-	Renderer make_renderer(Uint32 flags = SDL_RENDERER_ACCELERATED)
+	Renderer make_renderer(Uint32 flags = SDL_RENDERER_ACCELERATED) const
 	{
 		auto render = SDL_CreateRenderer(window_, -1, flags);
 		if (!render) throw Exception{"SDL_CreateRenderer"};
@@ -85,7 +85,7 @@ public:
 	}
 
 	///Get the current window display index
-	int display_index()
+	int display_index() const
 	{
 		auto r = SDL_GetWindowDisplayIndex(window_);
 		if (r == -1) throw Exception{"SDL_GetWindowDisplayIndex"};
@@ -94,7 +94,7 @@ public:
 
 	///Set the window display mode
 	///\param mode Display mode to use
-	void set_display_mode(SDL_DisplayMode const& mode)
+	void set_display_mode(SDL_DisplayMode const& mode) const
 	{
 		if (SDL_SetWindowDisplayMode(window_, &mode) != 0)
 		{
@@ -103,7 +103,7 @@ public:
 	}
 
 	///Get the current display mode
-	SDL_DisplayMode display_mode()
+	SDL_DisplayMode display_mode() const
 	{
 		SDL_DisplayMode mode;
 		if (SDL_GetWindowDisplayMode(window_, &mode) != 0)
@@ -114,7 +114,7 @@ public:
 	}
 
 	///Get the flags of this window
-	Uint32 flags() { return SDL_GetWindowFlags(window_); }
+	Uint32 flags() const { return SDL_GetWindowFlags(window_); }
 
 	///Grab window
 	Window& grab(bool g = true)
@@ -122,10 +122,12 @@ public:
 		SDL_SetWindowGrab(window_, static_cast<SDL_bool>(g));
 		return *this;
 	}
+
 	///Release window
 	Window& release(bool r = true) { return grab(!r); }
+
 	///Is window grabed
-	bool grabbed() { return SDL_GetWindowGrab(window_); }
+	bool grabbed() const { return SDL_GetWindowGrab(window_); }
 
 	///Move window to specific location on screen
 	///\param v Vector pointing to the new window location
@@ -138,7 +140,7 @@ public:
 	///\param v translation vector
 	Window& move_by(Vec2i const& v) { return move_to(position() + v); }
 	///Get current window position
-	Vec2i position()
+	Vec2i position() const
 	{
 		Vec2i pos;
 		SDL_GetWindowPosition(window_, &pos.x, &pos.y);
@@ -152,7 +154,7 @@ public:
 		SDL_SetWindowSize(window_, newsize.x, newsize.y);
 	}
 	///Get current window size
-	Vec2i size()
+	Vec2i size() const
 	{
 		Vec2i s;
 		SDL_GetWindowSize(window_, &s.x, &s.y);
@@ -167,18 +169,18 @@ public:
 		return *this;
 	}
 	///\Get thte current window title
-	std::string title() { return std::string{SDL_GetWindowTitle(window_)}; }
+	std::string title() const { return std::string{SDL_GetWindowTitle(window_)}; }
 
 	///Set the window icon
 	///\param icon Surface containing the icon to use
-	void set_icon(Surface const& icon)
+	void set_icon(Surface const& icon) const
 	{
 		SDL_SetWindowIcon(window_, icon.ptr());
 	}
 
 	///Set the window icon (may require linking and activating SDL_Image)
 	///\param filename path to a file you can use to set the window icon
-	void set_icon(std::string const& filename)
+	void set_icon(std::string const& filename) const
 	{
 		auto icon = Surface{filename};
 		SDL_SetWindowIcon(window_, icon.ptr());
@@ -217,7 +219,7 @@ public:
 
 	///Returns true if window is currently fullscreen
 	/// (both real and "desktop mode")
-	bool fullscreen()
+	bool fullscreen() const
 	{
 		return flags()
 			   & (SDL_WINDOW_FULLSCREEN | SDL_WINDOW_FULLSCREEN_DESKTOP);
@@ -238,7 +240,7 @@ public:
 	Window& toggle_fullscreen() { return set_fullscreen(!fullscreen()); }
 
 	///Get window manager info. Exact content of this structure is fully platform dependant.
-	SDL_SysWMinfo wm_info()
+	SDL_SysWMinfo wm_info() const
 	{
 		SDL_SysWMinfo info;
 		SDL_VERSION(&info.version);
@@ -400,13 +402,13 @@ public:
 			return *this;
 		}
 
-		void make_current()
+		void make_current() const
 		{
 			if (SDL_GL_MakeCurrent(owner_, context_) < 0)
 				throw Exception("SDL_GL_MakeCurrent");
 		}
 
-		SDL_GLContext ptr()
+		SDL_GLContext ptr() const
 		{
 			return context_;
 		}

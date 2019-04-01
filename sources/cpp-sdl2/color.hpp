@@ -1,9 +1,7 @@
-﻿#pragma once
+#pragma once
 
 #include "exception.hpp"
-
 #include <SDL_pixels.h>
-
 #include <ostream>
 
 namespace sdl

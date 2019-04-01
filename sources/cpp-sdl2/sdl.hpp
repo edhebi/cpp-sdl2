@@ -5,7 +5,9 @@
 #include "color.hpp"
 #include "event.hpp"
 #include "exception.hpp"
+#include "game_controller.hpp"
 #include "haptic.hpp"
+#include "joystick.hpp"
 #include "rect.hpp"
 #include "renderer.hpp"
 #include "shared_object.hpp"
@@ -15,8 +17,6 @@
 #include "utils.hpp"
 #include "vec2.hpp"
 #include "window.hpp"
-#include "game_controller.hpp"
-#include "joystick.hpp"
 
 /**
  *
