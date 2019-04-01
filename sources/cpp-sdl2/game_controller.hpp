@@ -12,6 +12,7 @@ namespace sdl
 class GameController
 {
 public:
+	///Construct a controller from a joystick index, throws if that index is not a game controller
 	GameController(int joystick_index)
 		: controller_(SDL_GameControllerOpen(joystick_index))
 	{
@@ -21,69 +22,80 @@ public:
 		}
 	}
 
+	///Construct a controller from a GameController pointer. This object will take ownership of the controller pointed.
 	GameController(SDL_GameController* controller) : controller_(controller) {}
 
-	GameController()					  = default;
+	///Construct an empty controller
+	GameController() = default;
+
+	///Not copyable
 	GameController(GameController const&) = delete;
 	GameController& operator=(GameController const&) = delete;
 
+	///move ctor
 	GameController(GameController&& other) { move_from(other); }
 
+	///move-assing operator
 	GameController& operator=(GameController&& other)
 	{
 		move_from(other);
 		return *this;
 	}
 
+	///Close the oppened controller pointer, unless this wrapper was created via GameController::non_owning()
 	~GameController()
 	{
 		if (owned_ && controller_) SDL_GameControllerClose(controller_);
 	}
 
+	///Get the SDL pointer
 	SDL_GameController* ptr() const { return controller_; }
 
+	///Open the haptic device from the controller
 	Haptic open_haptic()
 	{
-		return { SDL_GameControllerGetJoystick(controller_) };
+		return {SDL_GameControllerGetJoystick(controller_)};
 	}
 
-
-	
-
+	///Return true if this controller is attached
 	bool is_attached() const
 	{
 		return SDL_GameControllerGetAttached(controller_) == SDL_TRUE;
 	}
 
+	///Get the current imediate value of the given axis
 	int16_t get_axis(SDL_GameControllerAxis axis) const
 	{
 		return SDL_GameControllerGetAxis(controller_, axis);
 	}
 
+	///Get the current imedate value of the given button
 	int8_t get_button(SDL_GameControllerButton button) const
 	{
 		return SDL_GameControllerGetButton(controller_, button);
 	}
 
 #if SDL_VERSION_ATLEAST(2, 0, 9)
+	///Play a simple rumble. If the controller has 2 motors, the two values will control one of them. If the controller only has one, the values will be mixed together
 	int rumble(
 		uint16_t				  low_freq,
 		uint16_t				  high_freq,
-		std::chrono::milliseconds duration)
+		std::chrono::milliseconds duration) const
 	{
 		return rumble(
 			low_freq, high_freq, static_cast<uint32_t>(duration.count()));
 	}
 
+	///\copydoc GameController::rumble
 	int rumble(
-		uint16_t low_freq, uint16_t high_freq, uint32_t millisec_duration)
+		uint16_t low_freq, uint16_t high_freq, uint32_t millisec_duration) const
 	{
 		return SDL_GameControllerRumble(
 			controller_, low_freq, high_freq, millisec_duration);
 	}
 #endif
 
-	std::string get_name()
+	std::string name() const
 	{
 		if (!controller_) return {};
 
@@ -110,11 +122,13 @@ public:
 	//}
 
 	// Bindings management wrappers
+	///Load a file database
 	static int load_mapping_database(std::string const& file_path)
 	{
 		return load_mapping_database(file_path.c_str());
 	}
 
+	///Load a file database
 	static int load_mapping_database(const char* file_path)
 	{
 		const auto state = SDL_GameControllerAddMappingsFromFile(file_path);
@@ -126,10 +140,13 @@ public:
 		return state;
 	}
 
+	///Add a mapping string
 	static int add_mapping(std::string const& mapping_string)
 	{
 		return add_mapping(mapping_string.c_str());
 	}
+
+	///Add a mapping string
 	static int add_mapping(const char* mapping_string)
 	{
 		const auto state = SDL_GameControllerAddMapping(mapping_string);
@@ -143,6 +160,7 @@ public:
 	}
 
 	// convinience functions
+	///Try to open all available controllers, and return an array of all controller sucessfully openned
 	static std::vector<GameController> open_all_available_controllers()
 	{
 		std::vector<GameController> controllers;
@@ -166,17 +184,20 @@ public:
 		return controllers;
 	}
 
+	///Create a non_owning controller around a stick ID, to use the C++ API without managing the controller
 	static GameController non_owning(SDL_JoystickID joystick_id)
 	{
 		return {SDL_GameControllerFromInstanceID(joystick_id), false};
 	}
 
+	///Create a non_owning controller around an SDL controller pointer, to use the C++ aPI withiout managing the controller
 	static GameController non_owning(SDL_GameController* controller)
 	{
 		return {controller, false};
 	}
 
 private:
+	///Internal move utility
 	void move_from(GameController& other)
 	{
 		controller_ = other.ptr();
@@ -193,9 +214,11 @@ private:
 		other.controller_					= nullptr;
 	}
 
+	///Private controller for a non-onwer controller. The bool argument is expected to be false here
 	GameController(SDL_GameController* controller, bool non_owned)
 		: controller_(controller), owned_(non_owned)
 	{
+		assert(!owned_);
 	}
 
 	SDL_GameController* controller_ = nullptr;
