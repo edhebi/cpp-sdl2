@@ -16,6 +16,7 @@
 #include "vec2.hpp"
 #include "window.hpp"
 #include "game_controller.hpp"
+#include "joystick.hpp"
 
 /**
  *
