@@ -38,8 +38,6 @@ int main(int argc, char* argv[])
 	hard_rumble_effect.leftright.large_magnitude = 0xFFFF;
 	hard_rumble_effect.leftright.small_magnitude = 0xFFFF;
 
-
-
 	// This utility function will open all the game controllers connected to the
 	// system that are known from the SDL GameController API
 	auto controllers = sdl::GameController::open_all_available_controllers();
