@@ -63,7 +63,7 @@
  *
  * This softwrae is distributed under the terms of the MIT License
  *
- * Copyright (c) 2018 Edhebi
+ * Copyright (c) 2018-2019 Edhebi and contributors
  *
  */
 

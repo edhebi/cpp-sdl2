@@ -67,10 +67,6 @@ int main(int argc, char* argv[])
 			window);
 	}
 
-	sdl::show_message_box(SDL_MESSAGEBOX_INFORMATION, "waiting", "we're going to wait for 5 seconds", window);
-	sdl::Timer::delay(5s);
-	sdl::show_message_box(SDL_MESSAGEBOX_INFORMATION, "done!", "Thanks for waiting 5 seconds!", window);
-
 	while (!done)
 	{
 		if (redraw)
