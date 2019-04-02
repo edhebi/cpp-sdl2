@@ -8,6 +8,7 @@
 #include "game_controller.hpp"
 #include "haptic.hpp"
 #include "joystick.hpp"
+#include "mouse.hpp"
 #include "rect.hpp"
 #include "renderer.hpp"
 #include "shared_object.hpp"
@@ -75,16 +76,17 @@ namespace sdl
 ///When your instance of Root goes out of scope, SDL will be deinitialized for you.
 ///This pattern (idiom) is called RAII. If you aren't familiar with it, I suggest reading
 ///https://en.cppreference.com/w/cpp/language/raii
-struct [[nodiscard]] Root
-{
+struct [[nodiscard]] Root{
 	///Construct a root object. Will initialize the SDL with the privided flags. Will thow an sdl::Exception if anything fails
-	Root(Uint32 flags)
-	{
-		if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
-	}
+	Root(Uint32 flags){if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
+} // namespace sdl
 
-	///Automatically quit SDL for you!
-	~Root() { SDL_Quit(); }
-};
+///Automatically quit SDL for you!
+~Root()
+{
+	SDL_Quit();
+}
+}
+;
 
 } // namespace sdl
