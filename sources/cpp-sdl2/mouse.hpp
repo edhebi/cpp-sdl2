@@ -5,11 +5,9 @@
 #include "window.hpp"
 #include <SDL.h>
 
-namespace sdl
+namespace sdl::Mouse
 {
 ///Namespace containing everything that has to do with mouse management
-namespace Mouse
-{
 ///Set the mose in relative mode
 inline void set_relative(bool enabled)
 {
@@ -122,5 +120,4 @@ public:
 		return value == SDL_ENABLE;
 	}
 };
-} // namespace Mouse
-} // namespace sdl
+} // namespace sdl::Mouse
