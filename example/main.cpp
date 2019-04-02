@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 	// system that are known from the SDL GameController API
 	auto controllers = sdl::GameController::open_all_available_controllers();
 
-	// Try to get the frsit controller's haptic device
+	// Try to get the first controller's haptic device
 	auto main_haptic = !controllers.empty() ? controllers.front().open_haptic()
 											: sdl::Haptic();
 
@@ -66,8 +66,6 @@ int main(int argc, char* argv[])
 			e.what(),
 			window);
 	}
-
-	// const auto effect = SDL_HapticNewEffect(main_haptic.ptr(), an_effect);
 
 	sdl::show_message_box(SDL_MESSAGEBOX_INFORMATION, "waiting", "we're going to wait for 5 seconds", window);
 	sdl::Timer::delay(5s);
