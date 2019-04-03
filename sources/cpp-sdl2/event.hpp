@@ -2,6 +2,7 @@
 
 #include "exception.hpp"
 
+#include <SDL.h>
 #include <SDL_events.h>
 
 #include <functional>
