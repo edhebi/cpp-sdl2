@@ -23,7 +23,7 @@ class Haptic
 	void move_from(Haptic& other)
 	{
 		haptic_		  = other.haptic_;
-		my_effects	  = std::move(other.my_effects);
+		my_effects	= std::move(other.my_effects);
 		other.haptic_ = nullptr;
 	}
 
@@ -89,13 +89,13 @@ public:
 		// definition is copied from SDL_haptic.h
 		// note : It has been planned by SDL developers to change the `type`
 		// type in 2.1.0.
-		Uint16				type;	   /// Effect type.
-		SDL_HapticConstant	constant;  /// Constant effect.
-		SDL_HapticPeriodic	periodic;  /// Periodic effect.
+		Uint16				type;	  /// Effect type.
+		SDL_HapticConstant  constant;  /// Constant effect.
+		SDL_HapticPeriodic  periodic;  /// Periodic effect.
 		SDL_HapticCondition condition; /// Condition effect.
-		SDL_HapticRamp		ramp;	   /// Ramp effect.
+		SDL_HapticRamp		ramp;	  /// Ramp effect.
 		SDL_HapticLeftRight leftright; /// Left/Right effect.
-		SDL_HapticCustom	custom;	   /// Custom effect.
+		SDL_HapticCustom	custom;	/// Custom effect.
 
 		///this permit to treat an sdl::haptic::effect instance as if it was an SDL_HapticEffect pointer
 		operator SDL_HapticEffect*() const
@@ -108,9 +108,9 @@ public:
 		Effect()
 		{
 			// Hopefully this will prevent the library to work when SDL will
-			// decide to "fix" the "oops, the 'type' variable doesn't have enough
-			// bits" problem they encouterd with 2.0 (this fix is scheduled to be
-			// in 2.1 since it's an API/ABI breakage)
+			// decide to "fix" the "oops, the 'type' variable doesn't have
+			// enough bits" problem they encouterd with 2.0 (this fix is
+			// scheduled to be in 2.1 since it's an API/ABI breakage)
 			static_assert(
 				sizeof(Effect::type) == sizeof(SDL_HapticEffect::type),
 				"please compare the layout between SDL_HapticEffect and "

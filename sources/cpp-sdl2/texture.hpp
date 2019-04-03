@@ -71,12 +71,9 @@ public:
 
 	///Construct texture from C SDL_Texture object
 	explicit Texture(SDL_Texture* t) : texture_{t} {};
-	
+
 	///Get SDL_Texture pointer from texture
-	SDL_Texture* ptr() const
-	{
-		return texture_;
-	}
+	SDL_Texture* ptr() const { return texture_; }
 
 	///Create texture
 	Texture(
@@ -89,7 +86,7 @@ public:
 	{
 		if (!texture_) throw Exception{"SDL_CreateTexture"};
 	}
-	Texture() :texture_{nullptr} {}
+	Texture() : texture_{nullptr} {}
 	///Create texture
 	Texture(
 		SDL_Renderer*	 render,

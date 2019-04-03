@@ -76,6 +76,8 @@ namespace sdl
 ///When your instance of Root goes out of scope, SDL will be deinitialized for you.
 ///This pattern (idiom) is called RAII. If you aren't familiar with it, I suggest reading
 ///https://en.cppreference.com/w/cpp/language/raii
+
+// clang format off
 struct [[nodiscard]] Root{
 	///Construct a root object. Will initialize the SDL with the privided flags. Will thow an sdl::Exception if anything fails
 	Root(Uint32 flags){if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
@@ -88,5 +90,6 @@ struct [[nodiscard]] Root{
 }
 }
 ;
+// clang format on
 
 } // namespace sdl

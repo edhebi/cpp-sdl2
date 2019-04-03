@@ -79,7 +79,7 @@ public:
 		Uint32 bmask,
 		Uint32 amask)
 		: surface_{SDL_CreateRGBSurface(
-			  flags, w, h, depth, rmask, gmask, bmask, amask)}
+			flags, w, h, depth, rmask, gmask, bmask, amask)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurface"};
 	}
@@ -96,7 +96,7 @@ public:
 		Uint32 bmask,
 		Uint32 amask)
 		: surface_{SDL_CreateRGBSurfaceFrom(
-			  pixels, w, h, depth, pitch, rmask, gmask, bmask, amask)}
+			pixels, w, h, depth, pitch, rmask, gmask, bmask, amask)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurfaceFrom"};
 	}
@@ -111,7 +111,7 @@ public:
 	///Create surface from array of pixels
 	Surface(void* pixels, int w, int h, int depth, int pitch, int format)
 		: surface_{SDL_CreateRGBSurfaceWithFormatFrom(
-			  pixels, w, h, depth, pitch, format)}
+			pixels, w, h, depth, pitch, format)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurfaceWithFormatFrom"};
 	}
@@ -169,11 +169,8 @@ public:
 	///Convert this surface to specified format
 	Surface& convert_to(Uint32 format) { return *this = with_format(format); }
 
-#if SDL_VERSION_ATLEAST(2,0,9)
-	bool has_colorkey() const
-	{
-		return SDL_HasColorKey(surface_) == SDL_TRUE;
-	}
+#if SDL_VERSION_ATLEAST(2, 0, 9)
+	bool has_colorkey() const { return SDL_HasColorKey(surface_) == SDL_TRUE; }
 #endif
 
 	///Blit surface on another

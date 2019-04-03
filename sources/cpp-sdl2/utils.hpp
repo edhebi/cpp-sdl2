@@ -10,32 +10,38 @@ namespace sdl
 ///Get version as string
 inline std::string version()
 {
-	//Need to use SDL_GetVersion, not the SDL_VERSION macro.
-	//SDL_VERSION give you the version of SDL used to build the program
-	//SDL_GetVersion get the version number from the dynamically linked library
+	// Need to use SDL_GetVersion, not the SDL_VERSION macro.
+	// SDL_VERSION give you the version of SDL used to build the program
+	// SDL_GetVersion get the version number from the dynamically linked library
 	SDL_version v;
 	SDL_GetVersion(&v);
-	return std::to_string(int(v.major)) + '.' + std::to_string(int(v.minor)) + '.' + std::to_string(int(v.patch));
+	return std::to_string(int(v.major)) + '.' + std::to_string(int(v.minor))
+		   + '.' + std::to_string(int(v.patch));
 }
 
 ///Show a message box, usefull to display error messages
-inline void show_message_box(uint32_t flags, std::string const& title, std::string const& message)
+inline void show_message_box(
+	uint32_t flags, std::string const& title, std::string const& message)
 {
 	SDL_ShowSimpleMessageBox(flags, title.c_str(), message.c_str(), nullptr);
 }
 
 ///Show a message box, as a modal child of `parent`
-inline void show_message_box(uint32_t flags, std::string const& title, std::string const& message, sdl::Window const& parent)
+inline void show_message_box(
+	uint32_t		   flags,
+	std::string const& title,
+	std::string const& message,
+	sdl::Window const& parent)
 {
-	SDL_ShowSimpleMessageBox(flags, title.c_str(), message.c_str(), parent.ptr());
+	SDL_ShowSimpleMessageBox(
+		flags, title.c_str(), message.c_str(), parent.ptr());
 }
 
 ///Get information about the system (os, cpu, ram...)
 namespace system
 {
-
-//new in 2.0.9
-#if SDL_VERSION_ATLEAST(2,0,9)
+// new in 2.0.9
+#if SDL_VERSION_ATLEAST(2, 0, 9)
 inline bool is_tablet()
 {
 	return SDL_IsTablet();
@@ -181,22 +187,22 @@ inline int get_battery_remaining_charge()
 ///Clipboard management functions
 namespace clipboard
 {
-	///Returns true if clipboard has text
-	inline bool has_text()
-	{
-		return SDL_HasClipboardText();
-	}
-
-	///Returns the content of the clipboard
-	inline std::string text()
-	{
-		return SDL_GetClipboardText();
-	}
-
-	///Set the clipboard to a specific value
-	inline int get_text(std::string const& text)
-	{
-		return SDL_SetClipboardText(text.c_str());
-	}
+///Returns true if clipboard has text
+inline bool has_text()
+{
+	return SDL_HasClipboardText();
 }
+
+///Returns the content of the clipboard
+inline std::string text()
+{
+	return SDL_GetClipboardText();
+}
+
+///Set the clipboard to a specific value
+inline int get_text(std::string const& text)
+{
+	return SDL_SetClipboardText(text.c_str());
+}
+} // namespace clipboard
 } // namespace sdl

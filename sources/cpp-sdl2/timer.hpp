@@ -1,105 +1,92 @@
 #pragma once
 
-#include <SDL_timer.h>
 #include "exception.hpp"
-#include <cstdint>
-#include <chrono>
+#include <SDL_timer.h>
 #include <cassert>
+#include <chrono>
+#include <cstdint>
 
 namespace sdl
 {
-	///Represent an SDL timer
-	class Timer
+///Represent an SDL timer
+class Timer
+{
+	SDL_TimerID timer_ = 0;
+
+	///construct
+	Timer(SDL_TimerID timer) : timer_{timer} {}
+
+public:
+	///A timer object that is not tied to a timer id in SDL doesn't make senes
+	Timer() = delete;
+
+	///Just so that the type of a callback function can be
+	using Callback = SDL_TimerCallback;
+
+	///Remove the timer, return true if timer was removed
+	bool remove()
 	{
-		SDL_TimerID timer_ = 0;
+		if (timer_ > 0)
+			return SDL_RemoveTimer(timer_);
+		else
+			return false;
+	}
 
-		///construct 
-		Timer(SDL_TimerID timer) : timer_{timer}
+	///Factory function
+	static Timer create(
+		uint32_t interval, Callback function, void* user_context)
+	{
+		const auto id = SDL_AddTimer(interval, function, user_context);
+
+		if (!id)
 		{
+			throw Exception("SDL_AddTimer");
 		}
 
-	public:
+		return {id};
+	}
 
-		///A timer object that is not tied to a timer id in SDL doesn't make senes
-		Timer() = delete;
+	///Factory function using std::chrono
+	static Timer create(
+		std::chrono::milliseconds interval,
+		Callback				  function,
+		void*					  user_context)
+	{
+		return create(
+			static_cast<uint32_t>(interval.count()), function, user_context);
+	}
 
-		///Just so that the type of a callback function can be 
-		using Callback = SDL_TimerCallback;
+	///Wait for `millisec` milliseconds
+	static void delay(std::chrono::milliseconds millisec)
+	{
+		assert(millisec.count() >= 0);
+		delay(static_cast<uint32_t>(millisec.count()));
+	}
 
-		///Remove the timer, return true if timer was removed
-		bool remove()
-		{
-			if (timer_ > 0)
-				return SDL_RemoveTimer(timer_);
-			else
-				return false;
-		}
+	///Wait for `millisec` milliseconds
+	static void delay(uint32_t millisec) { SDL_Delay(millisec); }
 
-		///Factory function
-		static Timer create(uint32_t interval, Callback function, void* user_context)
-		{
-			const auto id = SDL_AddTimer(interval, function, user_context);
+	///Returns the number of milliseconds elapsed as a unint32_t (standard SDL API)
+	static uint32_t ticks_u32()
+	{
+		return static_cast<uint32_t>(ticks().count());
+	}
 
-			if(!id)
-			{
-				throw Exception("SDL_AddTimer");
-			}
+	///Retruns the number of milliseconds
+	static std::chrono::milliseconds ticks()
+	{
+		return std::chrono::milliseconds(SDL_GetTicks());
+	}
 
-			return { id };
-		}
+	///Return the performance counter value
+	static uint64_t perf_counter() { return SDL_GetPerformanceCounter(); }
 
-		///Factory function using std::chrono
-		static Timer create(std::chrono::milliseconds interval, Callback function, void* user_context)
-		{
-			return create(static_cast<uint32_t>(interval.count()), function, user_context);
-		}
+	///Return the performace frequency value
+	static uint64_t perf_frequency() { return SDL_GetPerformanceFrequency(); }
 
-		///Wait for `millisec` milliseconds
-		static void delay(std::chrono::milliseconds millisec)
-		{
-			assert(millisec.count() >= 0);
-			delay(static_cast<uint32_t>(millisec.count()));
-		}
+	///Get the id of this timer
+	SDL_TimerID timer_id() const { return timer_; }
 
-		///Wait for `millisec` milliseconds
-		static void delay(uint32_t millisec)
-		{
-			SDL_Delay(millisec);
-		}
-
-		///Returns the number of milliseconds elapsed as a unint32_t (standard SDL API)
-		static uint32_t ticks_u32()
-		{
-			return static_cast<uint32_t>(ticks().count());
-		}
-
-		///Retruns the number of milliseconds
-		static std::chrono::milliseconds ticks()
-		{
-			return std::chrono::milliseconds(SDL_GetTicks());
-		}
-
-		///Return the performance counter value
-		static uint64_t perf_counter()
-		{
-			return SDL_GetPerformanceCounter();
-		}
-
-		///Return the performace frequency value
-		static uint64_t perf_frequency()
-		{
-			return SDL_GetPerformanceFrequency();
-		}
-
-		///Get the id of this timer
-		SDL_TimerID timer_id() const
-		{
-			return timer_;
-		}
-
-		operator SDL_TimerID() const
-		{
-			return timer_id();
-		}
-	};
-}
+	operator SDL_TimerID() const { return timer_id(); }
+};
+} // namespace sdl
