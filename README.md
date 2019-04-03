@@ -7,7 +7,7 @@ https://edhebi.github.io/cpp-sdl2/doc
 
 ## Usage
 
-Makes the content of the "sources" directory visible by your compiler. `#include "sdl.hpp"` Link against the SDL2 and SDL_image libraries as usual.
+Makes the content of the "sources" directory visible by your compiler. `#include "cpp-sdl2/sdl.hpp"` Link against the SDL2 and SDL_image libraries as usual.
 
 By default, the code will throw exception in case of an SDL_Error. The Exception will contain the string returned by `SDL_GetError()`
 
