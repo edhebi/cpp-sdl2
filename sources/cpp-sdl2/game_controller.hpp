@@ -2,8 +2,8 @@
 
 #include "exception.hpp"
 #include "haptic.hpp"
-#include <SDL_gamecontroller.h>
 #include <SDL.h>
+#include <SDL_gamecontroller.h>
 #include <cassert>
 #include <chrono>
 #include <string>
