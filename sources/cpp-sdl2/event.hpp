@@ -11,6 +11,17 @@
 
 #include <begin_code.h> // use SDL2 packing
 
+// Visual Studio 2019 has became TOO pedantic about member
+// initialization. Supress IntelliSence CppCoreGuideline
+// "MEMBER_UNINIT" warning. The static ananlyser doesn't like our union
+// initialized only by writing over the whole object with the value of an
+// SDL_Event. Have toa agree with it on the fact that this is using dark magic
+// **BUT** we actually **KNOW** what we are doing here, thank you very much
+#if _MSC_VER >= 1910
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#endif
+
 namespace sdl
 {
 ///\brief Object that represent an event captured by SDL
@@ -368,3 +379,7 @@ public:
 } // namespace sdl
 
 #include <close_code.h>
+
+#if _MSC_VER >= 1910
+#pragma warning(pop)
+#endif

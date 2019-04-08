@@ -82,6 +82,11 @@ public:
 		}
 	};
 
+#if _MSC_VER >= 1910
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#endif
+
 	///Effect defintion
 	union Effect
 	{
@@ -124,6 +129,10 @@ public:
 			SDL_memset(this, 0, sizeof(Effect));
 		}
 	};
+
+#if _MSC_VER >= 1910
+#pragma warning(pop)
+#endif
 
 	///Uninitialized dummy haptic device
 	Haptic() {}
