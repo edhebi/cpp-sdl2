@@ -64,7 +64,25 @@ public:
 	Uint8 padding[56];
 
 	///Default ctor an event
-	Event() = default;
+	Event()
+	{
+		// statically checks the likelyness of this union to lineup with the C
+		// union
+		static_assert(
+			sizeof(Event) == sizeof(SDL_Event),
+			"Hey, it's likely that the bits in sdl::Event and SDL_Event don't "
+			"lineup. Please check you are using a supported version of SDL2!!");
+
+		static_assert(
+			offsetof(Event, common.timestamp)
+			== offsetof(SDL_Event, common.timestamp));
+
+		static_assert(
+			offsetof(Event, user.windowID)
+			== offsetof(SDL_Event, user.windowID));
+
+		memset(this, 0, sizeof(SDL_Event));
+	}
 
 	///converting ctor to create an sdl::Event from an SDL_Event struct
 	Event(SDL_Event const& e) : Event{*reinterpret_cast<Event const*>(&e)} {}
