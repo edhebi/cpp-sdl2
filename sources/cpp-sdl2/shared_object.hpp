@@ -42,14 +42,14 @@ public:
 	SharedObject& operator=(SharedObject const&) = delete;
 
 	/// Move ctor
-	SharedObject(SharedObject&& other)
+	SharedObject(SharedObject&& other) noexcept
 	{
 		handle_		  = other.handle_;
 		other.handle_ = nullptr;
 	}
 
 	///Move shared object into this one
-	SharedObject& operator=(SharedObject&& other)
+	SharedObject& operator=(SharedObject&& other) noexcept
 	{
 		if (handle_) SDL_UnloadObject(handle_);
 		handle_		  = other.handle_;

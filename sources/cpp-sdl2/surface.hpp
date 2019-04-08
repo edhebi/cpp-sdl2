@@ -61,7 +61,7 @@ public:
 	///Use default move ctor
 	Surface(Surface&&) noexcept = default;
 	///Use defautl move assing operator
-	Surface& operator=(Surface&& other)
+	Surface& operator=(Surface&& other) noexcept
 	{
 		SDL_FreeSurface(surface_);
 		surface_ = std::move(other.surface_);

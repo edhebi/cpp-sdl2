@@ -43,7 +43,7 @@ public:
 		
 
 	///Default move ctor
-	Window(Window&& other)
+	Window(Window&& other) noexcept
 	{
 		SDL_DestroyWindow(window_);
 		window_ = std::move(other.window_);
@@ -53,7 +53,7 @@ public:
 	///Move assign operator. If this object represent a valid window, it will be destroyed before
 	///acquiring the window_ pointer from other
 	///\param other Another sdl::Window object
-	Window& operator=(Window&& other)
+	Window& operator=(Window&& other) noexcept
 	{
 		SDL_DestroyWindow(window_);
 		window_ = std::move(other.window_);
@@ -387,13 +387,13 @@ public:
 		GlContext(GlContext const&) = delete;
 		GlContext& operator=(GlContext const&) = delete;
 
-		GlContext(GlContext&& other)
+		GlContext(GlContext&& other) noexcept
 			: context_{other.context_}, owner_{other.owner_}
 		{
 			other.context_ = nullptr;
 		}
 
-		GlContext& operator=(GlContext&& other)
+		GlContext& operator=(GlContext&& other) noexcept
 		{
 			context_	   = other.context_;
 			owner_		   = other.owner_;

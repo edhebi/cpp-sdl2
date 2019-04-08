@@ -57,9 +57,9 @@ public:
 		InstalledEffect(InstalledEffect const&);
 		InstalledEffect& operator=(InstalledEffect const&);
 
-		InstalledEffect(InstalledEffect&& other) { move_from(other); }
+		InstalledEffect(InstalledEffect&& other) noexcept { move_from(other); }
 
-		InstalledEffect& operator=(InstalledEffect&& other)
+		InstalledEffect& operator=(InstalledEffect&& other) noexcept
 		{
 			move_from(other);
 			return *this;
@@ -161,10 +161,10 @@ public:
 	Haptic& operator=(Haptic const&) = delete;
 
 	///move ctor
-	Haptic(Haptic&& other) { move_from(other); }
+	Haptic(Haptic&& other) noexcept { move_from(other); }
 
 	///move assign opeartor
-	Haptic& operator=(Haptic&& other)
+	Haptic& operator=(Haptic&& other) noexcept
 	{
 		move_from(other);
 		return *this;

@@ -49,10 +49,10 @@ public:
 	Joystick& operator=(Joystick const&) = delete;
 
 	///move ctor
-	Joystick(Joystick&& other) { move_from(other); }
+	Joystick(Joystick&& other) noexcept { move_from(other); }
 
 	///move assign operator
-	Joystick& operator=(Joystick&& other)
+	Joystick& operator=(Joystick&& other) noexcept
 	{
 		move_from(other);
 		return *this;

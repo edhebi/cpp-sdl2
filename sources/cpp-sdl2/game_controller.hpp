@@ -34,10 +34,10 @@ public:
 	GameController& operator=(GameController const&) = delete;
 
 	///move ctor
-	GameController(GameController&& other) { move_from(other); }
+	GameController(GameController&& other) noexcept { move_from(other); }
 
 	///move-assing operator
-	GameController& operator=(GameController&& other)
+	GameController& operator=(GameController&& other) noexcept
 	{
 		move_from(other);
 		return *this;

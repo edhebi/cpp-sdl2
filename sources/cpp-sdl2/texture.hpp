@@ -114,13 +114,13 @@ public:
 	}
 
 	///Move texture into this one
-	Texture(Texture&& other) : texture_{other.texture_}
+	Texture(Texture&& other) noexcept : texture_{other.texture_}
 	{
 		other.texture_ = nullptr;
 	}
 
 	///move texture into this one
-	Texture& operator=(Texture&& other)
+	Texture& operator=(Texture&& other) noexcept
 	{
 		SDL_DestroyTexture(texture_);
 		texture_	   = other.texture_;

@@ -27,13 +27,13 @@ public:
 	}
 
 	///Default move ctor
-	Renderer(Renderer&& other) : renderer_{other.renderer_}
+	Renderer(Renderer&& other) noexcept : renderer_{other.renderer_}
 	{
 		other.renderer_ = nullptr;
 	}
 
 	///Move a renderer to this one
-	Renderer& operator=(Renderer&& other)
+	Renderer& operator=(Renderer&& other) noexcept
 	{
 		SDL_DestroyRenderer(renderer_);
 		renderer_		= other.renderer_;
