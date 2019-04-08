@@ -1,11 +1,12 @@
 #pragma once
 
 #include "exception.hpp"
+#include "haptic.hpp"
+#include <SDL.h>
 #include <SDL_gamecontroller.h>
+#include <cassert>
 #include <chrono>
 #include <string>
-#include <cassert>
-#include "haptic.hpp"
 
 namespace sdl
 {

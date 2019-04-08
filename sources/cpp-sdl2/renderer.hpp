@@ -20,11 +20,9 @@ class Renderer
 public:
 	///Construct a renderer from the SDL_Renderer C object
 	explicit Renderer(SDL_Renderer* renderer) : renderer_{renderer} {}
-	
+
 	///Default ctor, create an empty renderer object
-	Renderer()
-	{
-	}
+	Renderer() {}
 
 	///Default move ctor
 	Renderer(Renderer&& other) noexcept : renderer_{other.renderer_}
@@ -78,14 +76,18 @@ public:
 	}
 
 	///Set the drawcolor from color values as bytes
-	void set_drawcolor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = SDL_ALPHA_OPAQUE) const
+	void set_drawcolor(
+		Uint8 r, Uint8 g, Uint8 b, Uint8 a = SDL_ALPHA_OPAQUE) const
 	{
 		if (SDL_SetRenderDrawColor(renderer_, r, g, b, a) != 0)
 			throw Exception{"SDL_SetRenderDrawColor"};
 	}
 
 	///Set the drawcolor from color struct
-	void set_drawcolor(Color const& c) const { set_drawcolor(c.r, c.g, c.b, c.a); }
+	void set_drawcolor(Color const& c) const
+	{
+		set_drawcolor(c.r, c.g, c.b, c.a);
+	}
 
 	///Get the clipping rectangle
 	Rect cliprect()
@@ -149,11 +151,19 @@ public:
 		return Texture{renderer_, filename};
 	}
 
-	void render_copy(Texture const& tex, Rect const& source_rect, Rect const& dest_rect) const
+	void render_copy(
+		Texture const& tex,
+		Rect const&	source_rect,
+		Rect const&	dest_rect) const
 	{
-		//SDL will *not* modify the texture or the rects here, but the signature has a non-const pointer
-		//So we are forced to cast away our const ref on texture
-		SDL_RenderCopy(renderer_, const_cast<Texture&>(tex).ptr(), &source_rect, &dest_rect);
+		// SDL will *not* modify the texture or the rects here, but the
+		// signature has a non-const pointer So we are forced to cast away our
+		// const ref on texture
+		SDL_RenderCopy(
+			renderer_,
+			const_cast<Texture&>(tex).ptr(),
+			&source_rect,
+			&dest_rect);
 	}
 
 	///Present renderer
