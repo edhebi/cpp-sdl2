@@ -1,0 +1,19 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+init:
+- cmd: >-
+    cd ..
+
+    curl -o sdl.zip https://www.libsdl.org/release/SDL2-devel-2.0.9-VC.zip
+
+    7z x -y sdl.zip
+
+    cd cpp-sdl2
+before_build:
+- cmd: >-
+    cd example
+
+    cmake . -G"Visual Studio 15 2017" -DSDL2_INCLUDE_DIR="c:\projects\SDL2-2.0.9\include" -DSDL2_LIBRARY="c:\projects\SDL2-2.0.9\lib\x86\SDL2.lib" -DSDL2_SDLMAIN_LIBRARY="c:\projects\SDL2-2.0.9\lib\x86\SDL2main.lib"
+build:
+  project: example\cpp-sdl2-example.sln
+  verbosity: normal
