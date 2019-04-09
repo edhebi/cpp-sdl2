@@ -63,7 +63,7 @@ public:
 
 		~InstalledEffect()
 		{
-			if (owner_ && index_ != std::numeric_limits<decltype(index_)>::max())
+			if (owner_ && index_ != invalid_index)
 			{
 				const effect_sdlid my_real_id = owner_->get_effect_sdlid(*this);
 				SDL_HapticDestroyEffect(owner_->ptr(), my_real_id);
