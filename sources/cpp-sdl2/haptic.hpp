@@ -19,14 +19,6 @@ class Haptic
 	///Installed effect storage
 	effect_list my_effects{};
 
-	///Move utility for move ctor/assign operations
-	void move_from(Haptic& other)
-	{
-		haptic_		  = other.haptic_;
-		my_effects	= std::move(other.my_effects);
-		other.haptic_ = nullptr;
-	}
-
 public:
 	///The the C pointer
 	SDL_Haptic* ptr() const { return haptic_; }
@@ -34,40 +26,42 @@ public:
 	///Installed effect handle
 	class InstalledEffect
 	{
-		effect_list::size_type index_ = ~0ULL;
+		effect_list::size_type index_ = std::numeric_limits<decltype(index_)>::max();
 		Haptic*				   owner_ = nullptr;
 		friend class Haptic;
 
-		void move_from(InstalledEffect& other)
-		{
-			index_ = other.index_;
-			owner_ = other.owner_;
-
-			other.index_ = ~0ULL;
-			other.owner_ = nullptr;
-		}
+		void move_from(InstalledEffect& other) {}
 
 	public:
 		InstalledEffect(effect_list::size_type index, Haptic* owner)
 			: index_{index}, owner_{owner}
-		{
-		}
+		{}
 
-		InstalledEffect() {}
+		InstalledEffect() = default;
 		InstalledEffect(InstalledEffect const&);
 		InstalledEffect& operator=(InstalledEffect const&);
 
-		InstalledEffect(InstalledEffect&& other) noexcept { move_from(other); }
+		InstalledEffect(InstalledEffect&& other) noexcept
+		{
+			*this = std::move(other);
+		}
 
 		InstalledEffect& operator=(InstalledEffect&& other) noexcept
 		{
-			move_from(other);
+			if (index_ != other.index_)
+			{
+				index_ = other.index_;
+				owner_ = other.owner_;
+
+				other.index_ = ~0ULL;
+				other.owner_ = nullptr;
+			}
 			return *this;
 		}
 
 		~InstalledEffect()
 		{
-			if (owner_ && index_ != ~0ULL)
+			if (owner_ && index_ != std::numeric_limits<decltype(index_)>::max())
 			{
 				const effect_sdlid my_real_id = owner_->get_effect_sdlid(*this);
 				SDL_HapticDestroyEffect(owner_->ptr(), my_real_id);
@@ -170,12 +164,17 @@ public:
 	Haptic& operator=(Haptic const&) = delete;
 
 	///move ctor
-	Haptic(Haptic&& other) noexcept { move_from(other); }
+	Haptic(Haptic&& other) noexcept { *this = std::move(other); }
 
 	///move assign opeartor
 	Haptic& operator=(Haptic&& other) noexcept
 	{
-		move_from(other);
+		if (haptic_ != other.haptic_)
+		{
+			haptic_		  = other.haptic_;
+			my_effects	= std::move(other.my_effects);
+			other.haptic_ = nullptr;
+		}
 		return *this;
 	}
 

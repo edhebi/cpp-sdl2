@@ -42,26 +42,24 @@ public:
 	SharedObject& operator=(SharedObject const&) = delete;
 
 	/// Move ctor
-	SharedObject(SharedObject&& other) noexcept
-	{
-		handle_		  = other.handle_;
-		other.handle_ = nullptr;
-	}
+	SharedObject(SharedObject&& other) noexcept { *this = std::move(other); }
 
 	///Move shared object into this one
 	SharedObject& operator=(SharedObject&& other) noexcept
 	{
-		if (handle_) SDL_UnloadObject(handle_);
-		handle_		  = other.handle_;
-		other.handle_ = nullptr;
-
+		if (handle_ != other.handle_)
+		{
+			if (handle_) SDL_UnloadObject(handle_);
+			handle_		  = other.handle_;
+			other.handle_ = nullptr;
+		}
 		return *this;
 	}
 
 	///Retrieve the raw address of a function inside the owned object. User has to cast this to the correct function pointer type
 	FunctionAddress function_pointer(std::string const& functionName) const
 	{
-		auto address = SDL_LoadFunction(handle_, functionName.c_str());
+		const auto address = SDL_LoadFunction(handle_, functionName.c_str());
 		if (!address) throw Exception("SDL_LoadFunction");
 		return address;
 	}

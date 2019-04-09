@@ -58,13 +58,16 @@ public:
 	///Explicit converting ctor from C SDL_Surface to sdl::Surface
 	explicit Surface(SDL_Surface* surface) : surface_{surface} {}
 
-	///Use default move ctor
-	Surface(Surface&&) noexcept = default;
-	///Use defautl move assing operator
+	Surface(Surface&& other) noexcept { *this = std::move(other); }
+
 	Surface& operator=(Surface&& other) noexcept
 	{
-		SDL_FreeSurface(surface_);
-		surface_ = std::move(other.surface_);
+		if (surface_ != other.surface_)
+		{
+			SDL_FreeSurface(surface_);
+			surface_ = other.surface_;
+			other.surface_ = nullptr;
+		}
 		return *this;
 	}
 
@@ -79,7 +82,7 @@ public:
 		Uint32 bmask,
 		Uint32 amask)
 		: surface_{SDL_CreateRGBSurface(
-			flags, w, h, depth, rmask, gmask, bmask, amask)}
+			  flags, w, h, depth, rmask, gmask, bmask, amask)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurface"};
 	}
@@ -96,7 +99,7 @@ public:
 		Uint32 bmask,
 		Uint32 amask)
 		: surface_{SDL_CreateRGBSurfaceFrom(
-			pixels, w, h, depth, pitch, rmask, gmask, bmask, amask)}
+			  pixels, w, h, depth, pitch, rmask, gmask, bmask, amask)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurfaceFrom"};
 	}
@@ -111,7 +114,7 @@ public:
 	///Create surface from array of pixels
 	Surface(void* pixels, int w, int h, int depth, int pitch, int format)
 		: surface_{SDL_CreateRGBSurfaceWithFormatFrom(
-			pixels, w, h, depth, pitch, format)}
+			  pixels, w, h, depth, pitch, format)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurfaceWithFormatFrom"};
 	}
@@ -331,7 +334,7 @@ public:
 
 private:
 	///Set surface pointer
-	SDL_Surface* surface_;
+	SDL_Surface* surface_ = nullptr;
 };
 
 } // namespace sdl

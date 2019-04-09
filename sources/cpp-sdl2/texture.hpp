@@ -86,7 +86,10 @@ public:
 	{
 		if (!texture_) throw Exception{"SDL_CreateTexture"};
 	}
-	Texture() : texture_{nullptr} {}
+
+	///Default constructor for empty texture object
+	Texture() = default;
+	
 	///Create texture
 	Texture(
 		SDL_Renderer*	 render,
@@ -111,18 +114,19 @@ public:
 	}
 
 	///Move texture into this one
-	Texture(Texture&& other) noexcept : texture_{other.texture_}
-	{
-		other.texture_ = nullptr;
+	Texture(Texture&& other) noexcept { *this = std::move(other);
 	}
 
 	///move texture into this one
 	Texture& operator=(Texture&& other) noexcept
 	{
-		SDL_DestroyTexture(texture_);
-		texture_	   = other.texture_;
-		other.texture_ = nullptr;
-		return *this;
+		if (texture_ != other.texture_)
+		{
+			SDL_DestroyTexture(texture_);
+			texture_= other.texture_;
+			other.texture_ = nullptr;
+			return *this;
+		}
 	}
 
 	///Non copiable
@@ -238,7 +242,7 @@ public:
 	[[nodiscard]] Lock lock(Rect const& rect) { return Lock{texture_, &rect}; }
 
 private:
-	SDL_Texture* texture_;
+	SDL_Texture* texture_ = nullptr;
 };
 
 } // namespace sdl

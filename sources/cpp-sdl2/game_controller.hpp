@@ -35,16 +35,33 @@ public:
 	GameController& operator=(GameController const&) = delete;
 
 	///move ctor
-	GameController(GameController&& other) noexcept { move_from(other); }
+	GameController(GameController&& other) noexcept
+	{
+		*this = std::move(other);
+	}
 
 	///move-assing operator
 	GameController& operator=(GameController&& other) noexcept
 	{
-		move_from(other);
+		if (controller_ != other.controller_)
+		{
+			controller_ = other.ptr();
+			// We never want the value of the "owned_" boolean to change in the
+			// life of one of these objects. however, in case of a move
+			// operation, we need to transfer the owning status of the wrapper
+			// In the general case, we would only want to rely on the fact that
+			// the pointer is null or not. But here, we want to be able to
+			// easily construct and manipulate a pointer that is not managed as
+			// an RAAI object. This is ugly, and I'm upset about it. But we're
+			// gonna cast-away const for once
+			*(const_cast<bool*>(&owned_))		= other.owned_;
+			*(const_cast<bool*>(&other.owned_)) = false;
+			other.controller_					= nullptr;
+		}
 		return *this;
 	}
 
-	///Close the oppened controller pointer, unless this wrapper was created via GameController::non_owning()
+	///Close the opened controller pointer, unless this wrapper was created via GameController::non_owning()
 	~GameController()
 	{
 		if (owned_ && controller_) SDL_GameControllerClose(controller_);
@@ -54,7 +71,7 @@ public:
 	SDL_GameController* ptr() const { return controller_; }
 
 	///Open the haptic device from the controller
-	Haptic open_haptic()
+	Haptic open_haptic() const
 	{
 		return {SDL_GameControllerGetJoystick(controller_)};
 	}
@@ -199,23 +216,6 @@ public:
 	}
 
 private:
-	///Internal move utility
-	void move_from(GameController& other)
-	{
-		controller_ = other.ptr();
-		// We never want the value of the "owned_" boolean to change in the life
-		// of one of these objects. however, in case of a move operation, we
-		// need to transfer the owning status of the wrapper In the general
-		// case, we would only want to rely on the fact that the pointer is null
-		// or not. But here, we want to be able to easilly construct and
-		// manipulate a pointer that is not managed as an RAAI object. This is
-		// ugly, and I'm upset about it. But we're gonna cast-away const for
-		// once
-		*(const_cast<bool*>(&owned_))		= other.owned_;
-		*(const_cast<bool*>(&other.owned_)) = false;
-		other.controller_					= nullptr;
-	}
-
 	///Private controller for a non-onwer controller. The bool argument is expected to be false here
 	GameController(SDL_GameController* controller, bool non_owned)
 		: controller_(controller), owned_(non_owned)

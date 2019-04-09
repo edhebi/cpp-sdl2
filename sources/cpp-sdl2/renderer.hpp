@@ -25,17 +25,17 @@ public:
 	Renderer() {}
 
 	///Default move ctor
-	Renderer(Renderer&& other) noexcept : renderer_{other.renderer_}
-	{
-		other.renderer_ = nullptr;
-	}
+	Renderer(Renderer&& other) noexcept { *this = std::move(other); }
 
 	///Move a renderer to this one
 	Renderer& operator=(Renderer&& other) noexcept
 	{
-		SDL_DestroyRenderer(renderer_);
-		renderer_		= other.renderer_;
-		other.renderer_ = nullptr;
+		if (renderer_ != other.renderer_)
+		{
+			SDL_DestroyRenderer(renderer_);
+			renderer_		= other.renderer_;
+			other.renderer_ = nullptr;
+		}
 		return *this;
 	}
 
@@ -49,7 +49,7 @@ public:
 	Renderer& operator=(Renderer const&) = delete;
 
 	///Return a pointer to the wrapped C SDL_Renderer
-	SDL_Renderer* ptr() { return renderer_; }
+	SDL_Renderer* ptr() const { return renderer_; }
 
 	///Populate renderinfo structure
 	void get_info(SDL_RendererInfo& info) const
@@ -90,7 +90,7 @@ public:
 	}
 
 	///Get the clipping rectangle
-	Rect cliprect()
+	Rect cliprect() const
 	{
 		Rect r;
 		SDL_RenderGetClipRect(renderer_, &r);

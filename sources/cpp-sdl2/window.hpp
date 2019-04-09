@@ -21,19 +21,19 @@ class Window
 public:
 	///Construct a window. This safely create an SDL_Window for you
 	///\param title Name of the window
-	///\param size Size of the window on scren when shown
+	///\param size Size of the window on screen when shown
 	///\param flags Any flags needed to be passed to SDL_CreateWindow
 	Window(
 		std::string const& title,
 		Vec2i const&	   size,
 		Uint32			   flags = SDL_WINDOW_SHOWN)
 		: window_{SDL_CreateWindow(
-			title.c_str(),
-			SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOWPOS_CENTERED,
-			size.x,
-			size.y,
-			flags)}
+			  title.c_str(),
+			  SDL_WINDOWPOS_CENTERED,
+			  SDL_WINDOWPOS_CENTERED,
+			  size.x,
+			  size.y,
+			  flags)}
 	{
 		if (!window_) throw Exception{"SDL_CreateWindow"};
 	}
@@ -42,21 +42,19 @@ public:
 	Window() = default;
 
 	///Default move ctor
-	Window(Window&& other) noexcept
-	{
-		SDL_DestroyWindow(window_);
-		window_		  = std::move(other.window_);
-		other.window_ = nullptr;
-	}
+	Window(Window&& other) noexcept { *this = std::move(other); }
 
 	///Move assign operator. If this object represent a valid window, it will be destroyed before
 	///acquiring the window_ pointer from other
 	///\param other Another sdl::Window object
 	Window& operator=(Window&& other) noexcept
 	{
-		SDL_DestroyWindow(window_);
-		window_		  = std::move(other.window_);
-		other.window_ = nullptr;
+		if (this->window_ != other.window_)
+		{
+			SDL_DestroyWindow(window_);
+			window_		  = other.window_;
+			other.window_ = nullptr;
+		}
 		return *this;
 	}
 
@@ -75,7 +73,7 @@ public:
 	///\param flags Any flags needed to be passed to SDL_CreateRenderer.
 	Renderer make_renderer(Uint32 flags = SDL_RENDERER_ACCELERATED) const
 	{
-		auto render = SDL_CreateRenderer(window_, -1, flags);
+		const auto render = SDL_CreateRenderer(window_, -1, flags);
 		if (!render) throw Exception{"SDL_CreateRenderer"};
 		return Renderer{render};
 	}
@@ -83,7 +81,7 @@ public:
 	///Get the current window display index
 	int display_index() const
 	{
-		auto r = SDL_GetWindowDisplayIndex(window_);
+		const auto r = SDL_GetWindowDisplayIndex(window_);
 		if (r == -1) throw Exception{"SDL_GetWindowDisplayIndex"};
 		return r;
 	}
@@ -145,7 +143,7 @@ public:
 
 	///Change the size of the window
 	///\newsize the size of the window
-	void resize(Vec2i const& newsize)
+	void resize(Vec2i const& newsize) const
 	{
 		SDL_SetWindowSize(window_, newsize.x, newsize.y);
 	}
@@ -164,7 +162,7 @@ public:
 		SDL_SetWindowTitle(window_, t.c_str());
 		return *this;
 	}
-	///\Get thte current window title
+	///\Get the current window title
 	std::string title() const
 	{
 		return std::string{SDL_GetWindowTitle(window_)};
@@ -292,8 +290,8 @@ public:
 #ifdef CPP_SDL2_GL_WINDOW
 
 	// This function is mostly used to set values regarding SDL GL context, and
-	// is intertwined with window createion. However, this can be called before
-	// createing the window. This wrapping is mostly for API consistency and for
+	// is intertwined with window creation. However, this can be called before
+	// creation the window. This wrapping is mostly for API consistency and for
 	// automatic error checking.
 	static void gl_set_attribute(SDL_GLattr attr, int val)
 	{
@@ -335,7 +333,7 @@ public:
 	///Set the swap interval. If exception thrown while attempting to use adaptive vsync, use standard vsync.
 	static void gl_set_swap_interval(gl_swap_interval swap_mode)
 	{
-		int result = 0;
+		auto result = 0;
 		switch (swap_mode)
 		{
 		case gl_swap_interval::immediate:
@@ -380,18 +378,16 @@ public:
 		GlContext(GlContext const&) = delete;
 		GlContext& operator=(GlContext const&) = delete;
 
-		GlContext(GlContext&& other) noexcept
-			: context_{other.context_}, owner_{other.owner_}
-		{
-			other.context_ = nullptr;
-		}
+		GlContext(GlContext&& other) noexcept { *this = std::move(other); }
 
 		GlContext& operator=(GlContext&& other) noexcept
 		{
-			context_	   = other.context_;
-			owner_		   = other.owner_;
-			other.context_ = nullptr;
-
+			if (context_ != other.context_)
+			{
+				context_	   = other.context_;
+				owner_		   = other.owner_;
+				other.context_ = nullptr;
+			}
 			return *this;
 		}
 
@@ -409,10 +405,10 @@ public:
 	};
 
 	///Create an OpenGL context from the current window
-	GlContext create_context() { return GlContext{window_}; }
+	GlContext create_context() const { return GlContext{window_}; }
 
 	///Swap buffers for GL when using double buffering on the current window
-	void gl_swap() { SDL_GL_SwapWindow(window_); }
+	void gl_swap() const { SDL_GL_SwapWindow(window_); }
 #endif
 
 private:

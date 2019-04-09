@@ -79,6 +79,18 @@ public:
 		if (cursor_) SDL_FreeCursor(cursor_);
 	}
 
+	Cursor& operator=(Cursor&& other) noexcept
+	{
+		if (cursor_ != other.cursor_)
+		{
+			cursor_		  = other.cursor_;
+			other.cursor_ = nullptr;
+		}
+		return *this;
+	}
+
+	Cursor(Cursor&& other) noexcept { *this = std::move(other); }
+
 	///Set this cursor as the current cursor
 	void set() const
 	{

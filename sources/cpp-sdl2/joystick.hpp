@@ -20,18 +20,6 @@ class Joystick
 		assert(!owner_);
 	}
 
-	///Move utility
-	void move_from(Joystick& other)
-	{
-		joystick_		= other.joystick_;
-		other.joystick_ = nullptr;
-
-		// this is the exceptional case when we actually want to reassign the
-		// value of the "owner" boolean
-		const_cast<bool&>(owner_)		= other.owner_;
-		const_cast<bool&>(other.owner_) = false; // for good measure
-	}
-
 public:
 	///Default ctor, create a non-valid (empty) joystick object
 	Joystick() : owner_(false) {}
@@ -49,12 +37,21 @@ public:
 	Joystick& operator=(Joystick const&) = delete;
 
 	///move ctor
-	Joystick(Joystick&& other) noexcept { move_from(other); }
+	Joystick(Joystick&& other) noexcept { *this = std::move(other); }
 
 	///move assign operator
 	Joystick& operator=(Joystick&& other) noexcept
 	{
-		move_from(other);
+		if (joystick_ != other.joystick_) //todo do we need to check owner_ here? need to think about that.
+		{
+			joystick_		= other.joystick_;
+			other.joystick_ = nullptr;
+
+			// this is the exceptional case when we actually want to reassign
+			// the value of the "owner" boolean
+			const_cast<bool&>(owner_)		= other.owner_;
+			const_cast<bool&>(other.owner_) = false; // for good measure
+		}
 		return *this;
 	}
 
