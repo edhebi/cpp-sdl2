@@ -26,7 +26,9 @@ public:
 	///Installed effect handle
 	class InstalledEffect
 	{
-		effect_list::size_type index_ = std::numeric_limits<decltype(index_)>::max();
+		static constexpr effect_list::size_type invalid_index =
+			std::numeric_limits<effect_list::size_type>::max();
+		effect_list::size_type index_ = invalid_index;
 		Haptic*				   owner_ = nullptr;
 		friend class Haptic;
 
@@ -53,7 +55,7 @@ public:
 				index_ = other.index_;
 				owner_ = other.owner_;
 
-				other.index_ = ~0ULL;
+				other.index_ = invalid_index;
 				other.owner_ = nullptr;
 			}
 			return *this;
