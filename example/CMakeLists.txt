@@ -15,7 +15,8 @@ endif()
 
 include_directories(../sources/ )
 
-add_executable(example main.cpp)
+file(GLOB cppsdl2headers ../sources/cpp-sdl2/*.hpp)
+add_executable(example main.cpp ${cppsdl2headers})
 target_link_libraries(example SDL2::SDL2 SDL2::SDL2main )
 if(use_vulkan)
 	target_link_libraries(example Vulkan::Vulkan)
