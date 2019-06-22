@@ -23,7 +23,7 @@ rm -rf doc/*
 #Commit the new doxigen pages
 cp -rv ../output/html/* doc/
 git add doc
-git commit -m "Travis automatic documentation update"
+git commit -m ":robot: :gear: :closed_book: :open_book: :black_nib: :green_book: :point_right: :octocat: :computer: :thumbsup:"
 
 #F O R C E   P U S H  to the gh-pages branch on GitHub using Ybalrid's creds
 git push --force origin gh-pages #BE CAREFUL WITH THIS
