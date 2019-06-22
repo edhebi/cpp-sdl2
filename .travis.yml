@@ -24,6 +24,7 @@ after_success:
   - cd ..
   - cd doxygen
   - doxygen Doxyfile
+  - chmod +x gh-pages.sh
   - ./gh-pages.sh
 
 script:
