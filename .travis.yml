@@ -24,9 +24,6 @@ after_success:
   - cd ..
   - cd doxygen
   - doxygen Doxyfile
-  - cd output
-  - tar xvjf cpp-sdl2-doxygen.tar.gz .
-  - cd ..
   - ./gh-pages.sh
 
 script:
