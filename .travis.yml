@@ -36,8 +36,8 @@ script:
   - goback=$(pwd)
   - mkdir vk
   - cd vk
-  - travis_retry curl -L http://ybalrid.info/files/vulkansdk-linux-x86_64-1.1.82.1.tar.gz | tar xz
-  - cd 1.1.82.1
+  - travis_retry curl -L https://sdk.lunarg.com/sdk/download/1.1.108.0/linux/vulkansdk-linux-x86_64-1.1.108.0.tar.gz | tar xz
+  - cd 1.1.108.0
   - source ./setup-env.sh
   - cd $goback 
   - mkdir sdl
