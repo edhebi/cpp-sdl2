@@ -1,4 +1,6 @@
-# cpp-sdl2 [![Build Status](https://travis-ci.com/Edhebi/cpp-sdl2.svg?branch=master)](https://travis-ci.com/Edhebi/cpp-sdl2) [![Build status](https://ci.appveyor.com/api/projects/status/aslfsrskbb02a4r3?svg=true)](https://ci.appveyor.com/project/Ybalrid/cpp-sdl2)
+# cpp-sdl2 [![Build Status](https://travis-ci.com/Edhebi/cpp-sdl2.svg?branch=master)](https://travis-ci.com/Edhebi/cpp-sdl2) [![Build status](https://ci.appveyor.com/api/projects/status/aslfsrskbb02a4r3?svg=true)](https://ci.appveyor.com/project/Ybalrid/cpp-sdl2-84oga)
+
+
 Basic c++ bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an header-only library
 
 ## Doxygen doc
