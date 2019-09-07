@@ -48,7 +48,7 @@
  *
  * This library mainly contains wrapper around SDL resources that are managed
  * using the RAII (Resource Acquisition Is Initialization) idiom. This simply
- * means that theses objects will do the dirty work for you by optaining these
+ * means that theses objects will do the dirty work for you by obtaining these
  * resources (window, memory...) at their construciton, and clean up when they
  * naturally go out of scope, making memory safe and leak-free programs easier
  * to accomplish.
@@ -77,19 +77,25 @@ namespace sdl
 ///This pattern (idiom) is called RAII. If you aren't familiar with it, I suggest reading
 ///https://en.cppreference.com/w/cpp/language/raii
 
-// clang format off
-struct [[nodiscard]] Root{
-	///Construct a root object. Will initialize the SDL with the privided flags. Will thow an sdl::Exception if anything fails
-	Root(Uint32 flags){if (SDL_Init(flags) != 0) throw Exception{"SDL_Init"};
-} // namespace sdl
-
-///Automatically quit SDL for you!
-~Root()
+// clang-format off
+struct [[nodiscard]] Root
 {
-	SDL_Quit();
-}
-}
-;
-// clang format on
+	///\brief Construct a root object. This object initialize SDL for you. SDL is de-initialized when object quit scope
+	///\param flags The intialization flags that you want to pass to SDL_Init. Default value is SDL_INIT_EVERYTHING
+	///
+	///This constructor will throw an sdl::Exception if SDL_Init fails.
+	Root(Uint32 flags = SDL_INIT_EVERYTHING)
+	{
+		if (SDL_Init(flags) != 0)
+			throw Exception{"SDL_Init"};
+	}
+
+	///Automatically quit SDL for you!
+	~Root()
+	{
+		SDL_Quit();
+	}
+};
+// clang-format on
 
 } // namespace sdl
