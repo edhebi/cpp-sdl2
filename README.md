@@ -37,6 +37,12 @@ The additional functionality is disabled by default, as the goal is to be the mo
 - SDL2
 - SDL_image 2 (optional)
 
+The following versions of SDL2 are tesded and confirmed working:
+
+- 2.0.8	(This is a "legacy" version as far as we are concerned. You should upgrade!)
+- 2.0.9
+- 2.0.10
+
 You will need a C++17 complient compiler
 
 ## Example program
