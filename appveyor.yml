@@ -9,8 +9,7 @@ init:
     7z x -y sdl.zip
 
     cd cpp-sdl2
-before_build:
-- cmd: >-
+
     cd example
 
     cmake . -G"Visual Studio 15 2017" -DSDL2_INCLUDE_DIR="c:\projects\SDL2-2.0.10\include" -DSDL2_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2.lib" -DSDL2_SDLMAIN_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2main.lib"
