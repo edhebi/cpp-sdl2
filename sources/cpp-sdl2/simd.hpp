@@ -29,7 +29,7 @@ void free(void* ptr)
 template<typename T>
 struct deleter
 {
-	void operator()(T* ptr) { SDL_SIMDFree(static_cast<void*>(ptr)); }
+	void operator()(T* ptr) { simd::free(static_cast<void*>(ptr)); }
 };
 
 template<typename T>
@@ -82,9 +82,32 @@ public:
 
 	T& operator[](size_t i) { return data[i]; }
 
+	array& operator=(array const&) = delete;
+	array(array const&)			   = delete;
+
+	array& operator=(array&& rhs)
+
+	{
+		if (data) simd::free(data);
+		data = rhs.data;
+
+		// We know what we are doing here. don't do this at home kids!
+		*(cosnt_cast<size_t*>(&len_)) = rhs.len_;
+	}
+
+	array(array&& rhs)
+	{
+		data	 = rhs.data;
+		rhs.data = nullptr;
+
+		*(cosnt_cast<size_t*>(&len_)) = rhs.len_;
+	}
+
+	size_t size() const { return len_; }
+
 private:
-	T* data;
-	const len_;
+	T*			 data = nullptr;
+	const size_t len_;
 };
 
 template<typename T>
