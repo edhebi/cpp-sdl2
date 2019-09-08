@@ -127,7 +127,7 @@ public:
 	explicit shared_ptr(T* ptr)
 	{
 		smart_ptr = std::shared_ptr<T>(ptr, [](T* ptr) {
-			if (ptr) SDL_SIMDFree(static_cast<void*>(ptr))
+			if (ptr) SDL_SIMDFree(static_cast<void*>(ptr));
 		});
 	}
 
