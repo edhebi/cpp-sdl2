@@ -75,32 +75,34 @@ public:
 	explicit array(size_t len) : len_(len)
 	{
 		assert(len >= 0);
-		data = reinterpret_cast<T*> simd::alloc(sizeof(T) * len)
+		data = reinterpret_cast<T*>(simd::alloc(sizeof(T) * len));
 	}
 
 	~array() { SDL_SIMDFree((void*)data); }
 
 	T& operator[](size_t i) { return data[i]; }
 
-	array& operator=(array const&) = delete;
-	array(array const&)			   = delete;
+	array& operator=(array<T> const&) = delete;
+	array(array<T> const&)			  = delete;
 
-	array& operator=(array&& rhs)
+	array& operator=(array<T>&& rhs)
 
 	{
 		if (data) simd::free(data);
-		data = rhs.data;
-
-		// We know what we are doing here. don't do this at home kids!
-		*(cosnt_cast<size_t*>(&len_)) = rhs.len_;
-	}
-
-	array(array&& rhs)
-	{
 		data	 = rhs.data;
 		rhs.data = nullptr;
 
-		*(cosnt_cast<size_t*>(&len_)) = rhs.len_;
+		// We know what we are doing here. don't do this at home kids!
+		*const_cast<size_t*>(&len_) = rhs.len_;
+
+		return *this;
+	}
+
+	array(array<T>&& rhs)
+		: len_(0) // len is assigned in the move operator
+				  // below
+	{
+		*this = std::move(rhs);
 	}
 
 	size_t size() const { return len_; }
