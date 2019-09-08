@@ -26,12 +26,14 @@ void free(void* ptr)
 	return SDL_SIMDFree(ptr);
 }
 
+///Deleter functor that can be used with std::unique_ptr
 template<typename T>
 struct deleter
 {
 	void operator()(T* ptr) { simd::free(static_cast<void*>(ptr)); }
 };
 
+// If you want a pointer to be managed in a unique typed way, here you go!
 template<typename T>
 class unique_ptr
 {
@@ -56,6 +58,8 @@ public:
 
 	unique_ptr(unique_ptr&& rhs) { *this = std::move(rhs); }
 
+	T* get() { return smart_ptr.get(); }
+
 private:
 	std::unique_ptr<T, deleter<T>> smart_ptr = nullptr;
 };
@@ -75,12 +79,12 @@ public:
 	explicit array(size_t len) : len_(len)
 	{
 		assert(len >= 0);
-		data = reinterpret_cast<T*>(simd::alloc(sizeof(T) * len));
+		data_ = reinterpret_cast<T*>(simd::alloc(sizeof(T) * len));
 	}
 
-	~array() { SDL_SIMDFree((void*)data); }
+	~array() { SDL_SIMDFree((void*)data_); }
 
-	T& operator[](size_t i) { return data[i]; }
+	T& operator[](size_t i) { return data_[i]; }
 
 	array& operator=(array<T> const&) = delete;
 	array(array<T> const&)			  = delete;
@@ -88,9 +92,9 @@ public:
 	array& operator=(array<T>&& rhs)
 
 	{
-		if (data) simd::free(data);
-		data	 = rhs.data;
-		rhs.data = nullptr;
+		if (data_) simd::free(data_);
+		data_	  = rhs.data_;
+		rhs.data_ = nullptr;
 
 		// We know what we are doing here. don't do this at home kids!
 		*const_cast<size_t*>(&len_) = rhs.len_;
@@ -107,8 +111,10 @@ public:
 
 	size_t size() const { return len_; }
 
+	T* data() { return data_; }
+
 private:
-	T*			 data = nullptr;
+	T*			 data_ = nullptr;
 	const size_t len_;
 };
 
@@ -141,9 +147,10 @@ public:
 
 	shared_ptr(shared_ptr&& rhs) { *this = std::move(rhs); }
 
+	T* get() { return smart_ptr.get(); }
+
 private:
 	std::shared_ptr<T> smart_ptr = nullptr;
 };
 } // namespace sdl::simd
-
 #endif
