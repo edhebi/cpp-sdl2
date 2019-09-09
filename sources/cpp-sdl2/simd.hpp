@@ -10,6 +10,7 @@
 
 namespace sdl::simd
 {
+///Get the number of bytes of allocation for the current platfrom for CPU vector operations
 size_t get_alignement()
 {
 	return SDL_SIMDGetAlignment();
@@ -21,6 +22,7 @@ void* alloc(size_t len)
 	return SDL_SIMDAlloc(len);
 }
 
+///Free memory allocated with sdl::simd::alloc()
 void free(void* ptr)
 {
 	return SDL_SIMDFree(ptr);
