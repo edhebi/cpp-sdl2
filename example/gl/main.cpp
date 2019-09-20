@@ -9,9 +9,9 @@
 // clang-format off
 GLfloat tri_vertex_buffer[]
 {   /*X   Y   Z    R  G  B*/
-	-.5, -.5, 0,   1, 0, 0,
-	 .5, -.5, 0,   0, 1, 0,
-	  0,  .5, 0,   0, 0, 1
+	-.5, -.5, 0,   1, 0, 0, //Vertex 0
+	 .5, -.5, 0,   0, 1, 0, //Vertex 1
+	  0,  .5, 0,   0, 0, 1, //Vertex 2
 };
 // clang-format on
 
@@ -54,19 +54,27 @@ GLuint build_shader_program(
 
 int main(int argc, char* argv[])
 {
+	(void)argc, (void)argv;
 	// Create an SDL window, with the SDL_WINDOW_OPENGL flags
 	auto window = sdl::Window("OpenGL", {800, 600}, SDL_WINDOW_OPENGL);
 
-	// Core OpenGL 3.3 context
+	// Bevore creating a context, set the flag for the version you want to get,
+	// here we want Core OpenGL 3.3
 	sdl::Window::gl_set_attribute(
 		SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	sdl::Window::gl_set_attribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	sdl::Window::gl_set_attribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+
+	// Create your context
 	auto context = window.create_context();
 
-	gladLoadGL();
-	pirnt_gl_version();
+	// You are done, now you can use OpenGL!
 
+	// Call whatever function loader you want, in this example we use GLAD
+	// because we generated a really small version of it for 3.3 Core:
+	gladLoadGL();
+
+	pirnt_gl_version();
 	GLuint shader_program =
 		build_shader_program(vert_shader_source, frag_shader_source);
 
@@ -166,11 +174,9 @@ void pirnt_gl_version()
 GLuint build_shader_program(
 	const GLchar* vert_source, const GLchar* frag_source)
 {
-	GLuint program;
-	GLuint vert_shader, frag_shader;
-	frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	vert_shader = glCreateShader(GL_VERTEX_SHADER);
-	program		= glCreateProgram();
+	GLuint vert_shader = glCreateShader(GL_VERTEX_SHADER);
+	GLuint frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
+	GLuint program	   = glCreateProgram();
 
 	glShaderSource(vert_shader, 1, &vert_source, nullptr);
 	glShaderSource(frag_shader, 1, &frag_source, nullptr);
