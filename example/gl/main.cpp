@@ -9,9 +9,9 @@
 // clang-format off
 GLfloat tri_vertex_buffer[]
 {   /*X   Y   Z    R  G  B*/
-	-.5, -.5, 0,   1, 0, 0, //Vertex 0
+	  0,  .5, 0,   1, 0, 0, //Vertex 2
 	 .5, -.5, 0,   0, 1, 0, //Vertex 1
-	  0,  .5, 0,   0, 0, 1, //Vertex 2
+	-.5, -.5, 0,   0, 0, 1, //Vertex 0
 };
 // clang-format on
 
