@@ -1,7 +1,5 @@
 #pragma once
 
-// TODO doxygen this!
-
 #include "SDL_version.h"
 #if SDL_VERSION_ATLEAST(2, 0, 10)
 
@@ -66,7 +64,6 @@ private:
 	std::unique_ptr<T, deleter<T>> smart_ptr = nullptr;
 };
 
-// TODO arrays
 template<typename T>
 unique_ptr<T>&& make_unique()
 {
@@ -74,6 +71,7 @@ unique_ptr<T>&& make_unique()
 	return std::move(unique_ptr<T>(allocated_block));
 }
 
+///Array of simd aligned data
 template<typename T>
 class array
 {
@@ -120,6 +118,7 @@ private:
 	const size_t len_;
 };
 
+// Reference counted pointer to simd data, built using std::shared_ptr
 template<typename T>
 class shared_ptr
 {
