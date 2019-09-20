@@ -9,11 +9,11 @@ https://edhebi.github.io/cpp-sdl2/doc
 
 ## Usage
 
-Makes the content of the "sources" directory visible by your compiler. `#include "cpp-sdl2/sdl.hpp"` Link against the SDL2 and SDL_image libraries as usual.
+This is an header-only library, the only needed step to use is is to make the content of the "sources" directory visible by your compiler and to `#include "cpp-sdl2/sdl.hpp"` instead of `SDL.h`. Then you just link against the SDL2 and SDL_image libraries as usual.
 
 By default, the code will throw exception in case of an SDL_Error. The Exception will contain the string returned by `SDL_GetError()`
 
-`cpp-sdl2` also conviniently wrap SDL's functionallities aimed at making cross-platform OpenGL/Vulkan developement easier. For instance, the window class can help you create an opengl context, or a vulkan instance/surface without having to worry if you are running on a Windows platform or something else. This functionality can be activated by defining `CPP_SDL2_GL_WINDOW`or `CPP_SDL2_VK_WINDOW` before including `sdl.hpp`
+`cpp-sdl2` conviniently wrap SDL's functionallities that are aimed at making cross-platform OpenGL and Vulkan developement easier. For instance, the window class can help you create an opengl context, or a vulkan instance/surface without having to worry if you are running on a Windows or a Linux platform or something else. This functionality can be activated by defining `CPP_SDL2_GL_WINDOW`or `CPP_SDL2_VK_WINDOW` before including `sdl.hpp`
 
 Exception support can be disabled by defining `CPP_SDL2_NOEXCEPTIONS` in the preprocessor. 
 
@@ -23,7 +23,9 @@ To be able to easilly load images into surfaces, you can install SDL_Image 2, an
 
 cpp-sdl2 aims at offering a simple and modern API to C++ developers of the functionality available to SDL. Some of these functionalities are only usable with the addition of external libraries, or with the presens of specific SDK on the system.
 
-The additional functionality is disabled by default, as the goal is to be the most compatible out of the box, but they can be easilly toggled in by defining a few perprocessor constants : 
+To enable these functionality, simply `#define CPP_SDL2_TOKEN` the specified token from the table below before including any files from cpp-sdl2.
+
+Additional functionalities are disabled by default, as the goal is to be the most compatible out of the box. They can be easilly toggled in by defining a few perprocessor constants : 
 
 
 | Preprocessor switch | Descripiton | Requirements| 
@@ -38,6 +40,8 @@ The additional functionality is disabled by default, as the goal is to be the mo
 
 - SDL2
 - SDL_image 2 (optional)
+- OpenGL-complient video driver (optional. Only for OpenGL context creation)
+- Vulkan SDK (optnional. for Vulkan instance/surface creation utilities)
 
 The following versions of SDL2 are tesded and confirmed working:
 
