@@ -13,4 +13,13 @@ include_directories(
 ./glad/include/)
 
 file(GLOB cppsdl2headers ../sources/cpp-sdl2/*.hpp)
+
 add_executable(gl-example main.cpp glad/src/glad.c ${cppsdl2headers})
+
+target_link_libraries(gl-example SDL2::SDL2 SDL2::SDL2main)
+target_link_libraries(gl-example OpenGL::GL)
+
+ if (CMAKE_VERSION VERSION_GREATER 3.8.0 AND MSVC)
+	set_target_properties(gl-example PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+ endif()
+

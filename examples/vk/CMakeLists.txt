@@ -14,5 +14,10 @@ file(GLOB cppsdl2headers ../sources/cpp-sdl2/*.hpp)
 file(GLOB shader_code ./*.glsl)
 
 add_executable(vk-example main.cpp ${shader_code} ${cppsdl2headers})
+
 target_link_libraries(vk-example SDL2::SDL2 SDL2::SDL2main)
 target_link_libraries(vk-example Vulkan::Vulkan)
+
+  if (CMAKE_VERSION VERSION_GREATER 3.8.0 AND MSVC)
+	set_target_properties(vk-example PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+  endif()

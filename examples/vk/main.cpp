@@ -214,8 +214,8 @@ int main(int argc, char* argv[])
 			device->createImageViewUnique(imageViewCreateInfo));
 	}
 
-	const auto fragment_data = read_file("../simple_tri.frag.spv");
-	const auto vertex_data	 = read_file("../simple_tri.vert.spv");
+	const auto fragment_data = read_file("../vk/simple_tri.frag.spv");
+	const auto vertex_data	 = read_file("../vk/simple_tri.vert.spv");
 
 	vk::ShaderModuleCreateInfo fragment_shader_module_create_info(
 		{}, fragment_data.size(), (uint32_t*)fragment_data.data()),
