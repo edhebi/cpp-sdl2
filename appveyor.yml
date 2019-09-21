@@ -22,7 +22,7 @@ before_build:
 
     echo "generating build system..."
 
-    cmake . -G"Visual Studio 15 2017" -DSDL2_INCLUDE_DIR="c:/projects\SDL2-2.0.10\include" -DSDL2_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2.lib" -DSDL2_RUNTIME_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2.dll" -DSDL2_SDLMAIN_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2main.lib" -DVulkan_INCLUDE_DIR="%VK_SDK_PATH%\Include" -DVulkan_LIBRARY="%VK_SDK_PATH%\Lib32\vulkan-1.pdb"
+    cmake . -G"Visual Studio 15 2017" -DSDL2_INCLUDE_DIR="c:/projects\SDL2-2.0.10\include" -DSDL2_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2.lib" -DSDL2_RUNTIME_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2.dll" -DSDL2_SDLMAIN_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2main.lib" -DVulkan_INCLUDE_DIR="%VK_SDK_PATH%\Include" -DVulkan_LIBRARY="%VK_SDK_PATH%\Lib32\vulkan-1.lib"
 
 build:
   project: examples\cpp-sdl2-examples.sln
