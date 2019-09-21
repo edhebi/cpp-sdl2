@@ -14,4 +14,3 @@ include_directories(
 
 file(GLOB cppsdl2headers ../sources/cpp-sdl2/*.hpp)
 add_executable(gl-example main.cpp glad/src/glad.c ${cppsdl2headers})
-
