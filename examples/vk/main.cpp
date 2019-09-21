@@ -94,7 +94,8 @@ int main(int argc, char* argv[])
 #endif
 
 	// Create a surface
-	auto surface = window.vk_create_unique_surface(vk_instance.get());
+	auto surface = window.vk_create_unique_surface(
+		static_cast<VkInstance>(vk_instance.get()));
 
 	// enumerate devices
 	auto vk_physical_devices = vk_instance->enumeratePhysicalDevices();
