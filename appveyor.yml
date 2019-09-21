@@ -7,6 +7,10 @@ before_build:
 
     curl -o sdl.zip https://www.libsdl.org/release/SDL2-devel-2.0.10-VC.zip
 
+    curl -L --silent --show-error --output VulkanSDK.exe https://vulkan.lunarg.com/sdk/download/1.0.51.0/windows/VulkanSDK-1.0.51.0-Installer.exe?Human=true
+
+    .\VulkanSDK.exe /S
+
     7z x -y sdl.zip
 
     cd cpp-sdl2
