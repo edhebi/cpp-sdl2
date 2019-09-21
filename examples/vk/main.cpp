@@ -4,6 +4,7 @@
 #include <set>
 #include <vector>
 
+#define VULKAN_HPP_TYPESAFE_CONVERSION 1
 #include <vulkan/vulkan.hpp>
 
 // Define the flollowing token
