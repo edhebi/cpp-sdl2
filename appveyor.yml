@@ -11,11 +11,11 @@ before_build:
 
     cd cpp-sdl2
 
-    cd example
+    cd examples
 
     echo "generating build system..."
 
     cmake . -G"Visual Studio 15 2017" -DSDL2_INCLUDE_DIR="c:\projects\SDL2-2.0.10\include" -DSDL2_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2.lib" -DSDL2_SDLMAIN_LIBRARY="c:\projects\SDL2-2.0.10\lib\x86\SDL2main.lib"
 build:
-  project: example\cpp-sdl2-example.sln
+  project: examples\cpp-sdl2-example.sln
   verbosity: normal

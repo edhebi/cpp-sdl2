@@ -56,6 +56,6 @@ script:
   - make                         > /dev/null 2>&1
   - sudo make install            > /dev/null 2>&1
   - cd $goback
-  - cd example
+  - cd examples/general/
   - cmake .
   - make 
