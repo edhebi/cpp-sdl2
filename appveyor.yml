@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Visual Studio 2017
 clone_folder: C:\projects\cpp-sdl2
 environment:
-  VK_SDK_PATH: c:\VulkanSDK\1.0.51.0
+  VK_SDK_PATH: c:\VulkanSDK\1.1.114.0
 
 before_build:
 - cmd: >-
@@ -10,7 +10,7 @@ before_build:
 
     curl -o sdl.zip https://www.libsdl.org/release/SDL2-devel-2.0.10-VC.zip
 
-    curl -L --silent --show-error --output VulkanSDK.exe https://vulkan.lunarg.com/sdk/download/1.0.51.0/windows/VulkanSDK-1.0.51.0-Installer.exe?Human=true
+    curl -L --silent --show-error --output VulkanSDK.exe https://vulkan.lunarg.com/sdk/download/1.0.51.0/windows/VulkanSDK-1.1.114.0-Installer.exe?Human=true
 
     .\VulkanSDK.exe /S
 
