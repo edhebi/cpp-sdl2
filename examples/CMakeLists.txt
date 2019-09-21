@@ -8,3 +8,6 @@ if(CPP-SDL2_ENABLE_VULKAN)
   add_subdirectory(vk)
 endif()
 add_subdirectory(general)
+add_subdirectory(dll)
+
+file(COPY ${SDL2_RUNTIME_LIBRARY} DESTINATION ${CMAKE_BINARY_DIR})

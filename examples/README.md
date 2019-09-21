@@ -8,6 +8,7 @@ This folder contains a series of short programs that demonstrate this library fo
 ## Folder content 
 
  - **general** : A program that calls a number of functionalities from the API
+ - **dll** : A dynamic library called "my_dll", and a program that loads it and call functions through cpp-sdl2. 0% platform specific code here
  - **gl** : A program that display one triangle on a dark blue background. Used to demonstrate how to initialize painlessly a GL window anc context with cpp-sdl2
  - **vk** : A program that display one triangle on a dark blue background. Used to demonstate how to initialze painlessly a Vulkan Window, Instance and a (platform specific) Surface object with cpp-sdl2
  
