@@ -1,11 +1,12 @@
-dist: trusty
+dist: bionic
 sudo: required
 language: cpp
 compiler: gcc
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev
+  - sudo add-apt-repository ppa:savoury1/multimedia -y
+  - sudo apt-get update -q
+  - sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev libsdl2
 
 addons:
   apt:
@@ -42,12 +43,12 @@ script:
   - cd $goback 
   - mkdir sdl
   - cd sdl
-  - travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
-  - cd SDL2-2.0.10
-  - ./configure                  > /dev/null 2>&1
-  - make                         > /dev/null 2>&1
-  - sudo make install            > /dev/null 2>&1
-  - cd $goback
+    #  - travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
+    #  - cd SDL2-2.0.10
+    #  - ./configure                  > /dev/null 2>&1
+    #  - make                         > /dev/null 2>&1
+    #  - sudo make install            > /dev/null 2>&1
+    #  - cd $goback
   - mkdir sdl_image
   - cd sdl_image
   - travis_retry curl -L https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.3.tar.gz | tar xz
