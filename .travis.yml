@@ -57,5 +57,5 @@ script:
   - sudo make install            > /dev/null 2>&1
   - cd $goback
   - cd examples/general/
-  - cmake .
+  - cmake . 
   - make 
