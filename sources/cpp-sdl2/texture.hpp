@@ -117,7 +117,7 @@ public:
 	Texture(Texture&& other) noexcept { *this = std::move(other);
 	}
 
-	///move texture into this one
+	///Move texture into this one
 	Texture& operator=(Texture&& other) noexcept
 	{
 		if (texture_ != other.texture_)
@@ -125,8 +125,9 @@ public:
 			SDL_DestroyTexture(texture_);
 			texture_= other.texture_;
 			other.texture_ = nullptr;
-			return *this;
 		}
+
+		return *this;
 	}
 
 	///Non copiable

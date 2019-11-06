@@ -120,6 +120,9 @@ private:
 			}
 		case 4: return *static_cast<Uint32*>(target_);
 		}
+
+		//TODO decide if landing here is an important error and throw, or just return a black pixel
+		return 0;
 	}
 
 	///pointer to target structure
