@@ -1,10 +1,14 @@
 #define CPP_SDL2_GL_WINDOW
 
+#include <chrono>
 #include <cpp-sdl2/sdl.hpp>
 #include <cstdlib> // Using C-style rand
 #include <ctime>
-#include <chrono>
 #include <iostream>
+
+// check linkage to other unit
+
+void useless_function();
 
 int main(int argc, char* argv[])
 {
@@ -99,6 +103,9 @@ int main(int argc, char* argv[])
 		case SDL_QUIT: done = true; break;
 		case SDL_MOUSEBUTTONUP:
 		case SDL_KEYUP:
+			if (event.type == SDL_KEYUP // kludge
+				&& event.key.keysym.scancode == SDL_SCANCODE_Q)
+				useless_function();
 		case SDL_CONTROLLERBUTTONDOWN:
 			color.r = std::rand() % 256;
 			color.g = std::rand() % 256;

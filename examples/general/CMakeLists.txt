@@ -11,7 +11,7 @@ include_directories(../../sources/)
 
 file(GLOB cppsdl2headers ../../sources/cpp-sdl2/*.hpp)
 
-add_executable(api-example main.cpp ${cppsdl2headers})
+add_executable(api-example main.cpp other_unit.cpp ${cppsdl2headers})
 
 target_link_libraries(api-example PRIVATE SDL2::SDL2 SDL2::SDL2main)
 
