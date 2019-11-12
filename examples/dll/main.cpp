@@ -13,7 +13,8 @@ int main(int argc, char* argv[])
 
 	// Load function pointer
 	const dll_function_ptr dll_function =
-		(dll_function_ptr)so_instance.function_pointer("print_hello");
+		(dll_function_ptr)so_instance.function_pointer( // note the pointer cast
+			"print_hello");
 
 	// You can specify the function signature as the function pointer type in
 	// template argument. Avoid ugly casts like the one above
@@ -21,11 +22,12 @@ int main(int argc, char* argv[])
 		so_instance.function_pointer<dll_get_int_ptr>(
 			"get_the_answer_to_life_the_universe_and_everything");
 
-	// Call the functions functions
+	// Call the functions
 	dll_function();
 	std::cout << "awnser is : "
 			  << get_the_answer_to_life_the_universe_and_everything() << "\n";
 
+	// The following show how to catch errors gracefully:
 	// Exception are thrown if library or procedure cannot be found
 	std::unique_ptr<sdl::SharedObject> dll_not_here;
 	dll_function_ptr				   print_nuclear_code = nullptr;
