@@ -6,7 +6,7 @@ compiler: gcc
 before_install:
   - sudo add-apt-repository ppa:savoury1/multimedia -y
   - sudo apt-get update -q
-  - sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev libsdl2
+  - sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev libsdl2-dev
 
 addons:
   apt:
