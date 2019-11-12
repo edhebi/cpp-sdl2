@@ -6,7 +6,7 @@ compiler: gcc
 before_install:
   - sudo add-apt-repository ppa:savoury1/multimedia -y
   - sudo apt-get update -q
-  - sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev libsdl2-dev
+  - sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev libsdl2-dev libsdl2-image-dev
 
 addons:
   apt:
@@ -41,22 +41,22 @@ script:
   - cd 1.1.108.0
   - source ./setup-env.sh
   - cd $goback 
-  - mkdir sdl
-  - cd sdl
+    #  - mkdir sdl
+    #  - cd sdl
     #  - travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
     #  - cd SDL2-2.0.10
     #  - ./configure                  > /dev/null 2>&1
     #  - make                         > /dev/null 2>&1
     #  - sudo make install            > /dev/null 2>&1
     #  - cd $goback
-  - mkdir sdl_image
-  - cd sdl_image
-  - travis_retry curl -L https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.3.tar.gz | tar xz
-  - cd SDL2_image-2.0.3
-  - ./configure                  > /dev/null 2>&1
-  - make                         > /dev/null 2>&1
-  - sudo make install            > /dev/null 2>&1
-  - cd $goback
+    #  - mkdir sdl_image
+    #  - cd sdl_image
+    # - travis_retry curl -L https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.3.tar.gz | tar xz
+    # - cd SDL2_image-2.0.3
+    # - ./configure                  > /dev/null 2>&1
+    # - make                         > /dev/null 2>&1
+    # - sudo make install            > /dev/null 2>&1
+    #  - cd $goback
   - cd examples/general/
   - cmake .
   - make 
