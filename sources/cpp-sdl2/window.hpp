@@ -124,14 +124,14 @@ public:
 	bool grabbed() const { return SDL_GetWindowGrab(window_); }
 
 	///Move window to specific location on screen
-	///\param size Vector pointing to the new window location
+	///\param v Vector pointing to the new window location
 	Window& move_to(Vec2i const& v)
 	{
 		SDL_SetWindowPosition(window_, v.x, v.y);
 		return *this;
 	}
 	///Translate window on screen
-	///\param size translation vector
+	///\param v translation vector
 	Window& move_by(Vec2i const& v) { return move_to(position() + v); }
 	///Get current window position
 	Vec2i position() const
