@@ -28,12 +28,12 @@ public:
 		Vec2i const&	   size,
 		Uint32			   flags = SDL_WINDOW_SHOWN)
 		: window_{SDL_CreateWindow(
-			  title.c_str(),
-			  SDL_WINDOWPOS_CENTERED,
-			  SDL_WINDOWPOS_CENTERED,
-			  size.x,
-			  size.y,
-			  flags)}
+			title.c_str(),
+			SDL_WINDOWPOS_CENTERED,
+			SDL_WINDOWPOS_CENTERED,
+			size.x,
+			size.y,
+			flags)}
 	{
 		if (!window_) throw Exception{"SDL_CreateWindow"};
 	}
@@ -124,14 +124,14 @@ public:
 	bool grabbed() const { return SDL_GetWindowGrab(window_); }
 
 	///Move window to specific location on screen
-	///\param v Vector pointing to the new window location
+	///\param size Vector pointing to the new window location
 	Window& move_to(Vec2i const& v)
 	{
 		SDL_SetWindowPosition(window_, v.x, v.y);
 		return *this;
 	}
 	///Translate window on screen
-	///\param v translation vector
+	///\param size translation vector
 	Window& move_by(Vec2i const& v) { return move_to(position() + v); }
 	///Get current window position
 	Vec2i position() const
@@ -285,6 +285,15 @@ public:
 		auto nakedSurface = vk_create_surface(instance);
 		return vk::UniqueSurfaceKHR(nakedSurface, instance);
 	}
+
+	///Get the underlayoing drawable size of the window. Use this for vulkan viewport size, scissor rects and any place you need `VkExtent`s
+	/// \return Size in an integer 2D vector
+	Vec2i vk_get_drawable_size()
+	{
+		Vec2i size;
+		SDL_Vulkan_GetDrawableSize(window_, &size.x, &size.y);
+		return size;
+	}
 #endif // vulkan methods
 
 #ifdef CPP_SDL2_GL_WINDOW
@@ -401,7 +410,7 @@ public:
 
 	private:
 		SDL_GLContext context_ = nullptr;
-		SDL_Window*   owner_   = nullptr;
+		SDL_Window*	  owner_   = nullptr;
 	};
 
 	///Create an OpenGL context from the current window
