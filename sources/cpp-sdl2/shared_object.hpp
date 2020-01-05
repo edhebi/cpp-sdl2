@@ -32,14 +32,11 @@ public:
 		if (!handle_) throw Exception("SDL_LoadObject");
 	}
 
+	///Construct an empty shared object handler. You can move assign to it.
+	SharedObject() = default;
+
 	///Automatically unload the library for you
 	~SharedObject() { SDL_UnloadObject(handle_); }
-
-	///This class isn't copyable
-	SharedObject(SharedObject const&) = delete;
-
-	///This class isn't copyable
-	SharedObject& operator=(SharedObject const&) = delete;
 
 	/// Move ctor
 	SharedObject(SharedObject&& other) noexcept { *this = std::move(other); }
@@ -49,12 +46,26 @@ public:
 	{
 		if (handle_ != other.handle_)
 		{
-			if (handle_) SDL_UnloadObject(handle_);
+			// If we currently hold an object
+			if (handle_)
+			{
+				// Free so we do not leak
+				SDL_UnloadObject(handle_);
+			}
+
+			// Assign from other handle, and set it to null
 			handle_		  = other.handle_;
 			other.handle_ = nullptr;
 		}
+
 		return *this;
 	}
+
+	///This class isn't copyable
+	SharedObject(SharedObject const&) = delete;
+
+	///This class isn't copyable
+	SharedObject& operator=(SharedObject const&) = delete;
 
 	///Retrieve the raw address of a function inside the owned object. User has to cast this to the correct function pointer type
 	FunctionAddress function_pointer(std::string const& functionName) const
