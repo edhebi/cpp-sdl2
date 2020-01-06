@@ -15,7 +15,7 @@
 // initialization. Supress IntelliSence CppCoreGuideline
 // "MEMBER_UNINIT" warning. The static ananlyser doesn't like our union
 // initialized only by writing over the whole object with the value of an
-// SDL_Event. Have toa agree with it on the fact that this is using dark magic
+// SDL_Event. Have to agree with it on the fact that this is using dark magic
 // **BUT** we actually **KNOW** what we are doing here, thank you very much
 #if _MSC_VER >= 1910
 #pragma warning(push)
@@ -35,32 +35,32 @@ union Event
 	// <SDL2/SDL_events.h>
 public:
 	Uint32					  type;		///< Event type, shared with all events
-	SDL_CommonEvent			  common;   ///< Common event data
-	SDL_WindowEvent			  window;   ///< Window event data
+	SDL_CommonEvent			  common;	///< Common event data
+	SDL_WindowEvent			  window;	///< Window event data
 	SDL_KeyboardEvent		  key;		///< Keyboard event data
 	SDL_TextEditingEvent	  edit;		///< Text editing event data
 	SDL_TextInputEvent		  text;		///< Text input event data
-	SDL_MouseMotionEvent	  motion;   ///< Mouse motion event data
-	SDL_MouseButtonEvent	  button;   ///< Mouse button event data
+	SDL_MouseMotionEvent	  motion;	///< Mouse motion event data
+	SDL_MouseButtonEvent	  button;	///< Mouse button event data
 	SDL_MouseWheelEvent		  wheel;	///< Mouse wheel event data
 	SDL_JoyAxisEvent		  jaxis;	///< Joystick axis event data
 	SDL_JoyBallEvent		  jball;	///< Joystick ball event data
 	SDL_JoyHatEvent			  jhat;		///< Joystick hat event data
-	SDL_JoyButtonEvent		  jbutton;  ///< Joystick button event data
-	SDL_JoyDeviceEvent		  jdevice;  ///< Joystick device change event data
-	SDL_ControllerAxisEvent   caxis;	///< Game Controller axis event data
-	SDL_ControllerButtonEvent cbutton;  ///< Game Controller button event data
-	SDL_ControllerDeviceEvent cdevice;  ///< Game Controller device event data
-	SDL_AudioDeviceEvent	  adevice;  ///< Audio device event data
+	SDL_JoyButtonEvent		  jbutton;	///< Joystick button event data
+	SDL_JoyDeviceEvent		  jdevice;	///< Joystick device change event data
+	SDL_ControllerAxisEvent	  caxis;	///< Game Controller axis event data
+	SDL_ControllerButtonEvent cbutton;	///< Game Controller button event data
+	SDL_ControllerDeviceEvent cdevice;	///< Game Controller device event data
+	SDL_AudioDeviceEvent	  adevice;	///< Audio device event data
 	SDL_QuitEvent			  quit;		///< Quit request event data
 	SDL_UserEvent			  user;		///< Custom event data
 	SDL_SysWMEvent			  syswm;	///< System dependent window event data
-	SDL_TouchFingerEvent	  tfinger;  ///< Touch finger event data
-	SDL_MultiGestureEvent	 mgesture; ///< Gesture event data
-	SDL_DollarGestureEvent	dgesture; ///< Gesture event data
+	SDL_TouchFingerEvent	  tfinger;	///< Touch finger event data
+	SDL_MultiGestureEvent	  mgesture; ///< Gesture event data
+	SDL_DollarGestureEvent	  dgesture; ///< Gesture event data
 	SDL_DropEvent			  drop;		///< Drag and drop event data
 #if SDL_VERSION_ATLEAST(2, 0, 9)
-	SDL_SensorEvent  sensor;  /// Sensor event data
+	SDL_SensorEvent	 sensor;  /// Sensor event data
 	SDL_DisplayEvent display; /// Window event data
 #endif
 
@@ -324,8 +324,8 @@ public:
 	{
 		using func_type = bool (*)(void*, Event&);
 
-		void*	 userdata_  = nullptr;
-		func_type filter_	= nullptr;
+		void*	  userdata_	 = nullptr;
+		func_type filter_	 = nullptr;
 		bool	  isWatcher_ = false;
 
 		EventFilter(func_type filter, void* userdata)
