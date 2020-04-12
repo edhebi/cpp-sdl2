@@ -1,13 +1,15 @@
 # cpp-sdl2 [![Build Status](https://travis-ci.com/Edhebi/cpp-sdl2.svg?branch=master)](https://travis-ci.com/Edhebi/cpp-sdl2) [![Build status](https://ci.appveyor.com/api/projects/status/6kqf660jg9i2yvmn?svg=true)](https://ci.appveyor.com/project/Edhebi/cpp-sdl2)
 
 
-Basic c++ bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an header-only library
+Basic C++17 bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an header-only library
 
 ## Doxygen doc
 
 https://edhebi.github.io/cpp-sdl2/doc
 
 ## Usage
+
+This library has been written in C++17. It should work out of the box with any modern version of GCC, Clang and MSVC, but you may need to [set](https://gcc.gnu.org/projects/cxx-status.html#cxx17) [some](https://clang.llvm.org/cxx_status.html) [flags](https://docs.microsoft.com/en-us/cpp/build/reference/std-specify-language-standard-version?view=vs-2019) to C++17.
 
 This is an header-only library, the only needed step to use is is to make the content of the "sources" directory visible by your compiler and to `#include "cpp-sdl2/sdl.hpp"` instead of `SDL.h`. Then you just link against the SDL2 and SDL_image libraries as usual.
 
@@ -49,7 +51,7 @@ The following versions of SDL2 are tesded and confirmed working:
 - 2.0.9
 - 2.0.10
 
-You will need a C++17 complient compiler
+**You will need a C++17 complient compiler**
 
 ## Example program
 
