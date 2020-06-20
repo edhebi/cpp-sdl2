@@ -9,7 +9,7 @@ using dll_get_int_ptr  = int (*)();
 int main(int argc, char* argv[])
 {
 	// Here's how you load a dynamiy library
-	auto so_instance = sdl::SharedObject("my_dll");
+	auto so_instance = sdl::SharedObject("cpp_sdl2_example_dll_shared.dll");
 
 	// Load function pointer
 	const dll_function_ptr dll_function =
@@ -18,13 +18,13 @@ int main(int argc, char* argv[])
 
 	// You can specify the function signature as the function pointer type in
 	// template argument. Avoid ugly casts like the one above
-	const dll_get_int_ptr get_the_answer_to_life_the_universe_and_everything =
+	auto get_the_answer_to_life_the_universe_and_everything =
 		so_instance.function_pointer<dll_get_int_ptr>(
 			"get_the_answer_to_life_the_universe_and_everything");
 
 	// Call the functions
 	dll_function();
-	std::cout << "awnser is : "
+	std::cout << "answer is : "
 			  << get_the_answer_to_life_the_universe_and_everything() << "\n";
 
 	// The following show how to catch errors gracefully:

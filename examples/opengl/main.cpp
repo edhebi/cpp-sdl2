@@ -1,5 +1,4 @@
 // To use the GL wrapper, define the following
-#define CPP_SDL2_GL_WINDOW
 #include <cpp-sdl2/sdl.hpp>
 #include <glad/glad.h>
 
@@ -141,7 +140,7 @@ int main(int argc, char* argv[])
 			if (e.type == SDL_QUIT) running = false;
 		}
 
-		glClearColor(.1, .2, .3, 1);
+		glClearColor(.1f, .2f, .3f, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glUseProgram(shader_program);

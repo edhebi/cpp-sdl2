@@ -7,12 +7,10 @@
 #define VULKAN_HPP_TYPESAFE_CONVERSION 1
 #include <vulkan/vulkan.hpp>
 
-// Define the flollowing token
-#define CPP_SDL2_VK_WINDOW
 #include <cpp-sdl2/sdl.hpp>
 
 // use validation layers only on debug builds
-#if defined(_DEBUG) || defined(DEBUG)
+#if 0 && defined(_DEBUG) || defined(DEBUG)
 #define VK_APP_USE_LAYER true
 #endif
 
@@ -104,20 +102,19 @@ int main(int argc, char* argv[])
 	auto queue_family_properties =
 		vk_physical_device.getQueueFamilyProperties();
 
-	size_t graphicsQueueFamilyIndex = std::distance(
+	auto graphicsQueueFamilyIndex = static_cast<uint32_t>(std::distance(
 		queue_family_properties.begin(),
 		std::find_if(
 			queue_family_properties.begin(),
 			queue_family_properties.end(),
 			[](vk::QueueFamilyProperties const& qfp) {
 				return qfp.queueFlags & vk::QueueFlagBits::eGraphics;
-			}));
+			})));
 
-	size_t presentQueueFamilyIndex = 0u;
-	for (size_t i = 0; i < queue_family_properties.size(); i++)
+	uint32_t presentQueueFamilyIndex = 0u;
+	for (uint32_t i = 0; i < queue_family_properties.size(); ++i)
 	{
-		if (vk_physical_device.getSurfaceSupportKHR(
-				static_cast<uint32_t>(i), surface.get()))
+		if (vk_physical_device.getSurfaceSupportKHR(i, surface.get()))
 		{
 			presentQueueFamilyIndex = i;
 		}
@@ -131,7 +128,7 @@ int main(int argc, char* argv[])
 	std::vector<vk::DeviceQueueCreateInfo> queueCreateInfos;
 
 	float queuePriority = 0.0f;
-	for (int queueFamilyIndex : uniqueQueueFamilyIndices)
+	for (auto queueFamilyIndex : uniqueQueueFamilyIndices)
 	{
 		queueCreateInfos.push_back(
 			vk::DeviceQueueCreateInfo{vk::DeviceQueueCreateFlags(),
@@ -146,11 +143,11 @@ int main(int argc, char* argv[])
 	vk::UniqueDevice device =
 		vk_physical_device.createDeviceUnique(vk::DeviceCreateInfo(
 			vk::DeviceCreateFlags(),
-			queueCreateInfos.size(),
+			static_cast<uint32_t>(queueCreateInfos.size()),
 			queueCreateInfos.data(),
 			0,
 			nullptr,
-			deviceExtensions.size(),
+			static_cast<uint32_t>(deviceExtensions.size()),
 			deviceExtensions.data()));
 
 	uint32_t imageCount = 2;
@@ -364,13 +361,13 @@ int main(int argc, char* argv[])
 									  1});
 	}
 	auto commandPoolUnique = device->createCommandPoolUnique(
-		{{}, static_cast<uint32_t>(graphicsQueueFamilyIndex)});
+		{{}, graphicsQueueFamilyIndex});
 
 	std::vector<vk::UniqueCommandBuffer> commandBuffers =
 		device->allocateCommandBuffersUnique(vk::CommandBufferAllocateInfo(
 			commandPoolUnique.get(),
 			vk::CommandBufferLevel::ePrimary,
-			framebuffers.size()));
+			std::uint32_t(framebuffers.size())));
 
 	auto deviceQueue  = device->getQueue(graphicsQueueFamilyIndex, 0);
 	auto presentQueue = device->getQueue(presentQueueFamilyIndex, 0);

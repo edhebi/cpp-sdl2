@@ -1,5 +1,3 @@
-#define CPP_SDL2_GL_WINDOW
-
 #include <chrono>
 #include <cpp-sdl2/sdl.hpp>
 #include <cstdlib> // Using C-style rand

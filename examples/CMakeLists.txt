@@ -1,19 +1,24 @@
-cmake_minimum_required(VERSION 2.8)
+add_executable(cpp_sdl2_example_general general/main.cpp general/other_unit.cpp)
+target_link_libraries(cpp_sdl2_example_general PRIVATE cpp_sdl2 SDL2::SDL2main)
 
-set(CMAKE_CXX_STANDARD 17)
+add_library(cpp_sdl2_example_dll_shared SHARED dll/dll.c)
+target_link_libraries(cpp_sdl2_example_dll_shared PRIVATE cpp_sdl2)
+add_executable(cpp_sdl2_example_dll dll/main.cpp)
+target_link_libraries(cpp_sdl2_example_dll PRIVATE cpp_sdl2_example_dll_shared cpp_sdl2 SDL2::SDL2main)
 
-project(cpp-sdl2-examples)
-
-option(CPP-SDL2_ENABLE_VULKAN "Build the Vulkan based examples" off)
-option(CPP-SDL2_ENABLE_OPENGL "Build the OpenGL based examples" off)
-
-if(CPP-SDL2_ENABLE_OPENGL)
-  add_subdirectory(gl)
+if(CPP_SDL2_ENABLE_OPENGL)
+	add_executable(cpp_sdl2_example_opengl opengl/main.cpp opengl/glad/src/glad.c)
+	target_include_directories(cpp_sdl2_example_opengl PRIVATE opengl/glad/include)
+	target_link_libraries(cpp_sdl2_example_opengl PRIVATE cpp_sdl2 SDL2::SDL2main)
 endif()
-if(CPP-SDL2_ENABLE_VULKAN)
-  add_subdirectory(vk)
-endif()
-add_subdirectory(general)
-add_subdirectory(dll)
 
-file(COPY ${SDL2_RUNTIME_LIBRARY} DESTINATION ${CMAKE_BINARY_DIR})
+if(CPP_SDL2_ENABLE_VULKAN)
+	add_executable(cpp_sdl2_example_vulkan vulkan/main.cpp)
+	target_sources(cpp_sdl2_example_vulkan PRIVATE
+		vulkan/simple_tri.frag.glsl
+		vulkan/simple_tri.frag.spv
+		vulkan/simple_tri.vert.glsl
+		vulkan/simple_tri.vert.spv
+		)
+	target_link_libraries(cpp_sdl2_example_vulkan PRIVATE cpp_sdl2 SDL2::SDL2main)
+endif()
