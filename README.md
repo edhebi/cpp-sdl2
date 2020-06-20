@@ -1,5 +1,7 @@
-# cpp-sdl2 [![Build Status](https://travis-ci.com/Edhebi/cpp-sdl2.svg?branch=master)](https://travis-ci.com/Edhebi/cpp-sdl2) [![Build status](https://ci.appveyor.com/api/projects/status/6kqf660jg9i2yvmn?svg=true)](https://ci.appveyor.com/project/Edhebi/cpp-sdl2)
-
+# cpp-sdl2 
+![linux](https://github.com/Edhebi/cpp-sdl2/workflows/linux/badge.svg)
+![windows](https://github.com/Edhebi/cpp-sdl2/workflows/windows/badge.svg)
+![doc](https://github.com/Edhebi/cpp-sdl2/workflows/doc/badge.svg)
 
 Basic C++17 bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an header-only library
 

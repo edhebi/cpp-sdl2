@@ -1,0 +1,65 @@
+name: linux
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    env:
+      VULKAN_SDK_VER: 1.1.114.0
+      VCPKG_VER: 2020.06
+     
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: set environment
+        run: |
+          echo "::set-env name=VULKAN_SDK_URL:: https://sdk.lunarg.com/sdk/download/$VULKAN_SDK_VER/linux/vulkansdk-linux-x86_64-$VULKAN_SDK_VER.tar.gz"
+          echo "::set-env name=VCPKG_PATH::${{github.workspace}}/vcpkg"
+          echo "::set-env name=VULKAN_SDK::${{github.workspace}}/vulkan/$VULKAN_SDK_VER/x86_64"
+
+      - name: install apt dependencies
+        run: sudo apt-get install g++-8 libgl1-mesa-dev libgles2-mesa-dev
+
+      - name: cache vulkan sdk
+        id: cache-vulkan
+        uses: actions/cache@v2
+        with:
+          path: ${{env.VULKAN_SDK}}
+          key: vulkan-${{env.VULKAN_SDK_VER}}
+
+      - name: install vulkan sdk
+        if: steps.cache-vulkan.outputs.cache-hit != 'true'
+        run: |
+          mkdir vulkan
+          cd vulkan
+          wget -qO vulkansdk.tar.gz $VULKAN_SDK_URL
+          tar xf vulkansdk.tar.gz
+          cd ${{github.workspace}}
+
+      - name: cache vcpkg
+        id: cache-vcpkg
+        uses: actions/cache@v2
+        with:
+          path: ${{env.VCPKG_PATH}}
+          key: vcpkg-${{env.VCPKG_VER}}-vk-${{env.VULKAN_SDK_VER}}
+
+      - name: install vcpkg
+        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+          cd vcpkg
+          git checkout --force $VCPKG_VER
+          ./bootstrap-vcpkg.sh
+          ./vcpkg install sdl2[*]:x64-linux
+          ./vcpkg install opengl:x64-linux
+          cd ${{github.workspace}}
+
+      - name: configure cmake
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=$VCPKG_PATH/scripts/buildsystems/vcpkg.cmake -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON -DCPP_SDL2_ENABLE_VULKAN=ON
+
+      - name: build
+        run: cmake --build build
+
+          

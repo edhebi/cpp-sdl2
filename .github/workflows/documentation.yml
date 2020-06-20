@@ -1,0 +1,48 @@
+name: doc
+
+on:
+  push:
+    branches: [trunk]
+
+jobs:
+  build-doc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: get doxygen
+        run: sudo apt-get install doxygen
+      - name: build documentation
+        run: |
+          cd doxygen
+          mkdir output
+          doxygen Doxyfile
+          cd ..
+      - name: upload documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation
+          path: doxygen/output/html
+
+  push-doc:
+    runs-on: ubuntu-latest
+    needs: build-doc
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+      - name: clear previous doc
+        run: rm -rf doc
+      - name: download documentation
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation
+          path: doc
+      - name: commit documentation
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add doc
+          git commit -m ':robot: :gear: :black_nib: :green_book: :point_right: :octocat: :computer: :thumbsup:'
+      - name: push documentation
+        run: git push
