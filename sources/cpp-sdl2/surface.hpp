@@ -5,7 +5,7 @@
 
 #include <SDL_surface.h>
 
-#ifdef CPP_SDL2_USE_SDL_IMAGE
+#ifdef CPP_SDL2_ENABLE_SDL_IMAGE
 #include <SDL_image.h>
 #endif
 
@@ -119,7 +119,7 @@ public:
 		if (!surface_) throw Exception{"SDL_CreateRGBSurfaceWithFormatFrom"};
 	}
 
-#ifdef CPP_SDL2_USE_SDL_IMAGE
+#ifdef CPP_SDL2_ENABLE_SDL_IMAGE
 	///Construct surface from image file, require SDL_Image
 	Surface(std::string const& filename) : surface_{IMG_Load(filename.c_str())}
 	{

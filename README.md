@@ -28,35 +28,35 @@ visible and properly linked.
 ## Configuration flags
 
 Some SDL2 features require external libraries. Since we want to be as compatible as possible out of the box, those are
-behind `#define` flags. Those flags must be defined before any include to the library. See below for a list of those:
+behind `#define` flags. Those flags must be defined before any include to the library.
+ 
+You can either define those flags yourself, or use the cmake options with the same name, which will add those flags to
+your compiler definitions list.
 
-### CPP_SDL2_GL_WINDOW
+### CPP_SDL2_ENABLE_OPENGL
 
 This flag enables opengl features around windows. Note that you still need an opengl loader, like [glew], [gl3w],
-[glad], or [epoxy]. If you use the `CPP_SDL2_ENABLE_OPENGL` cmake flag, it will be added to your compiler definitions.
+[glad], or [epoxy].
 
 [glew]: http://glew.sourceforge.net/
 [gl3w]: https://github.com/skaslev/gl3w
 [glad]: https://github.com/Dav1dde/glad
 [epoxy]: https://github.com/anholt/libepoxy
 
-### CPP_SDL2_VK_WINDOW
+### CPP_SDL2_ENABLE_VULKAN
 
 This flag enable vulkan features around window. It's intended to be uses with nvidia's (now standard) `vulkan.hpp`
-header. You still need a vulkan runtime and a recent version of the vulkan sdk. If you use the `CPP_SDL2_ENABLE_VULKAN`
-cmake flag, it will be added to your compiler definitions.
+header. You still need a vulkan runtime and a recent version of the vulkan sdk.
 
-### CPP_SDL2_USE_SDL_IMAGE
+### CPP_SDL2_ENABLE_SDL_IMAGE
 
 This uses the SDL2_Image library to load surfaces more easily. You still need to have the library installed and visible.
-If you use the `CPP_SDL2_ENABLE_SDL_IMAGE` cmake flag, it will be added to your compiler definitions.
 
-### CPP_SDL2_NOEXCEPTIONS
+### CPP_SDL2_DISABLE_EXCEPTIONS
 
 `cpp-sdl2` uses exceptions very conservatively, and most of them indicate a failure that it probably not recoverable.
 Correctly used, this library shouldn't throw *any* exception. If you still need to disable exceptions, this flag will
-replace exceptions by a log to `stderr` followed by an `abort()`. If you use the `CPP_SDL2_DISABLE_EXCEPTIONS` cmake
-flag, it will be added to your compiler definitions.
+replace exceptions by a log to `stderr` followed by an `abort()`.
 
 ## Dependencies
 

@@ -7,7 +7,7 @@
 #include "renderer.hpp"
 #include "vec2.hpp"
 
-#ifdef CPP_SDL2_VK_WINDOW
+#ifdef CPP_SDL2_ENABLE_VULKAN
 #include <SDL_vulkan.h>
 #include <vulkan/vulkan.hpp>
 #endif
@@ -248,7 +248,7 @@ public:
 		return info;
 	}
 
-#ifdef CPP_SDL2_VK_WINDOW
+#ifdef CPP_SDL2_ENABLE_VULKAN
 	///Enumerate the required extensions to create a VkSurfaceKHR on the current system
 	/// \return a vector of const char strings containing the extensions names
 	std::vector<const char*> vk_get_instance_extensions()
@@ -296,7 +296,7 @@ public:
 	}
 #endif // vulkan methods
 
-#ifdef CPP_SDL2_GL_WINDOW
+#ifdef CPP_SDL2_ENABLE_OPENGL
 
 	// This function is mostly used to set values regarding SDL GL context, and
 	// is intertwined with window creation. However, this can be called before

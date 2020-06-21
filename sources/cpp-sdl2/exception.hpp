@@ -7,14 +7,14 @@
 #include <SDL_error.h>
 
 ///Define to deactivate exception support
-#ifdef CPP_SDL2_NOEXCEPTIONS
+#ifdef CPP_SDL2_DISABLE_EXCEPTIONS
 #include <iostream> //Instead of throwing, we are going to dump the function and error into stderr via std::cerr
 #endif
 
 namespace sdl
 {
 ///Define to deactivate exception support
-#ifndef CPP_SDL2_NOEXCEPTIONS
+#ifndef CPP_SDL2_DISABLE_EXCEPTIONS
 
 ///Custom exception object
 class Exception : public std::exception
