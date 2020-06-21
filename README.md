@@ -1,7 +1,11 @@
 # cpp-sdl2 
-![linux](https://github.com/Edhebi/cpp-sdl2/workflows/linux/badge.svg)
-![windows](https://github.com/Edhebi/cpp-sdl2/workflows/windows/badge.svg)
-![doc](https://github.com/Edhebi/cpp-sdl2/workflows/doc/badge.svg)
+[![linux](https://github.com/Edhebi/cpp-sdl2/workflows/linux/badge.svg)][linux-badge]
+[![windows](https://github.com/Edhebi/cpp-sdl2/workflows/windows/badge.svg)][windows-badge]
+[![doc](https://github.com/Edhebi/cpp-sdl2/workflows/doc/badge.svg)][doc-badge]
+
+[linux-badge]: https://github.com/Edhebi/cpp-sdl2/actions?query=workflow%3Alinux
+[windows-badge]: https://github.com/Edhebi/cpp-sdl2/actions?query=workflow%3Awindows
+[doc-badge]: https://edhebi.github.io/cpp-sdl2/doc/
 
 Basic C++17 bindings to [SDL2], implemented as an header-only library
 
