@@ -1,4 +1,4 @@
 var namespacesdl_1_1details =
 [
-    [ "_Vec2_Base", "structsdl_1_1details_1_1___vec2___base.html", "structsdl_1_1details_1_1___vec2___base" ]
+    [ "Vec2Base", "structsdl_1_1details_1_1_vec2_base.html", "structsdl_1_1details_1_1_vec2_base" ]
 ];

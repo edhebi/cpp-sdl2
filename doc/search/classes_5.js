@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pixel',['Pixel',['../classsdl_1_1_pixel.html',1,'sdl']]]
+  ['joystick',['Joystick',['../classsdl_1_1_joystick.html',1,'sdl']]]
 ];

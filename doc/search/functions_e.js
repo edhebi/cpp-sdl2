@@ -1,15 +1,17 @@
 var searchData=
 [
-  ['r',['r',['../classsdl_1_1_pixel.html#aff8c695ae8818fa89ec25f51f04b04b8',1,'sdl::Pixel']]],
-  ['raise',['raise',['../classsdl_1_1_window.html#ae13a4b0e35ac2c66c6b5e88ec6137b11',1,'sdl::Window']]],
-  ['raw_5farray',['raw_array',['../classsdl_1_1_surface_1_1_lock.html#a7d5aa3c2d3b027b425679ba307396f0f',1,'sdl::Surface::Lock']]],
-  ['rect',['Rect',['../classsdl_1_1_rect.html#ae21ee2c74964908752531dc911156b95',1,'sdl::Rect::Rect()'],['../classsdl_1_1_rect.html#ad2aac468e6f81c4db5cca8cb250657f6',1,'sdl::Rect::Rect(int x, int y, int w, int h)'],['../classsdl_1_1_rect.html#a10f4495b556a0722001ec6471a3bf111',1,'sdl::Rect::Rect(Vec2i const &amp;corner, Vec2i const &amp;size)'],['../classsdl_1_1_rect.html#a97e77a767c7487003b72b21484f57757',1,'sdl::Rect::Rect(SDL_Rect const &amp;r)'],['../classsdl_1_1_rect.html#a2e4eb8f0f7205d1758728c1deddc6aeb',1,'sdl::Rect::Rect(Rect const &amp;) noexcept=default'],['../classsdl_1_1_rect.html#aac6d44fd64601db37d49bbc1d3511772',1,'sdl::Rect::Rect(Rect &amp;&amp;) noexcept=default']]],
-  ['red',['Red',['../classsdl_1_1_color.html#a339aaa3dca5caabd5daf46f807923205',1,'sdl::Color']]],
-  ['ref_5ffrom',['ref_from',['../unionsdl_1_1_event.html#a266868a7443759a368cb4eec1f6225a6',1,'sdl::Event::ref_from(SDL_Event const &amp;e)'],['../unionsdl_1_1_event.html#acb5847c46c77ab023cb79392cafc907d',1,'sdl::Event::ref_from(SDL_Event &amp;e)'],['../unionsdl_1_1_event.html#ad548f04e3a1867f74b0deb2b14ceb70b',1,'sdl::Event::ref_from(SDL_Event const *e)'],['../unionsdl_1_1_event.html#a46ad0dcf6848119cf7a2a40c34a773a2',1,'sdl::Event::ref_from(SDL_Event *e)']]],
-  ['release',['release',['../classsdl_1_1_window.html#ab56cc5416dfabd7ae8d9b23e1f4de2a8',1,'sdl::Window']]],
-  ['rename',['rename',['../classsdl_1_1_window.html#a7af0f7eefce4a94a3c29e52f34cbd43f',1,'sdl::Window']]],
-  ['renderer',['Renderer',['../classsdl_1_1_renderer.html#a1842d1aebe22cd7f09a3c31b4a3f997d',1,'sdl::Renderer::Renderer(SDL_Renderer *renderer)'],['../classsdl_1_1_renderer.html#ac66c107fffd1ada831fe0bea6028e81a',1,'sdl::Renderer::Renderer(Renderer &amp;&amp;other)=default'],['../classsdl_1_1_renderer.html#a162f66ac0ace1d2c66f02175c33329c0',1,'sdl::Renderer::Renderer(Renderer const &amp;)=delete']]],
-  ['resize',['resize',['../classsdl_1_1_window.html#aba488917c91888f3ac092a7e667beea7',1,'sdl::Window']]],
-  ['restore',['restore',['../classsdl_1_1_window.html#adc15a50cd56bfb4d198237b1c78f9aae',1,'sdl::Window']]],
-  ['root',['Root',['../classsdl_1_1_root.html#aaf3ebe659abddb3888348c22f10b11a7',1,'sdl::Root']]]
+  ['peek',['peek',['../unionsdl_1_1_event.html#a0b42d08912dd3856df7b781d351374d6',1,'sdl::Event']]],
+  ['peek_5fevents',['peek_events',['../unionsdl_1_1_event.html#a6dfa98022928182b5088e133d96f2c0f',1,'sdl::Event::peek_events(size_t maxEvents, Uint32 minType, Uint32 maxType)'],['../unionsdl_1_1_event.html#aec65adf66735c30d1bb1c51b88eab84c',1,'sdl::Event::peek_events(size_t maxEvents)'],['../unionsdl_1_1_event.html#a9c05ae0c2d737cd3cfa1c14e8b1636db',1,'sdl::Event::peek_events(size_t maxEvents, Uint32 type)']]],
+  ['perf_5fcounter',['perf_counter',['../classsdl_1_1_timer.html#afee245ebb8b77a47d40863a48fc061d7',1,'sdl::Timer']]],
+  ['perf_5ffrequency',['perf_frequency',['../classsdl_1_1_timer.html#a69ec66442e61b1453f6bccbae511263b',1,'sdl::Timer']]],
+  ['pixel',['Pixel',['../classsdl_1_1_pixel.html#a017c676520d4e11fd1a307d46e6eb757',1,'sdl::Pixel']]],
+  ['pixelformat',['pixelformat',['../classsdl_1_1_surface.html#a1ab7aeef4ae4d24f07d1f0930e1f2a7c',1,'sdl::Surface']]],
+  ['platform',['platform',['../namespacesdl_1_1system.html#ab6808937ade266ef5bf523c2045d9881',1,'sdl::system']]],
+  ['poll',['poll',['../unionsdl_1_1_event.html#a5e05af9de57d15c414c0eaebe2eef175',1,'sdl::Event']]],
+  ['position',['position',['../classsdl_1_1_window.html#a830ca86d0933944e42c2003380195999',1,'sdl::Window']]],
+  ['power_5flevel',['power_level',['../classsdl_1_1_joystick.html#a0f053ec62e2d3b7fb31a4f91353ac931',1,'sdl::Joystick']]],
+  ['present',['present',['../classsdl_1_1_renderer.html#af157fbd112692bf205de7c141aa1562a',1,'sdl::Renderer']]],
+  ['ptr',['ptr',['../unionsdl_1_1_event.html#a8393eae563e5c3f51ab38f7b2d9a2b72',1,'sdl::Event::ptr() const'],['../unionsdl_1_1_event.html#a85b628a466f5c7701f21a58b26293951',1,'sdl::Event::ptr()'],['../classsdl_1_1_game_controller.html#abb25a82d557eeae9b575c59889b62346',1,'sdl::GameController::ptr()'],['../classsdl_1_1_haptic.html#a0176c217d926ef365137c239b314d80b',1,'sdl::Haptic::ptr()'],['../classsdl_1_1_renderer.html#a9a4b74bb98befaac9d9825eeaa178c82',1,'sdl::Renderer::ptr()'],['../classsdl_1_1_surface.html#ad2919448df2e26c3d2c9e404c565c761',1,'sdl::Surface::ptr()'],['../classsdl_1_1_texture.html#a40a7b7f1e9895d2d580e987445aa7736',1,'sdl::Texture::ptr()'],['../classsdl_1_1_window.html#a1d96ba7c39d1cf5b51dc905c892aede1',1,'sdl::Window::ptr()']]],
+  ['pump_5fevents',['pump_events',['../unionsdl_1_1_event.html#a2f007808de0f50a73d3daf83d9625a96',1,'sdl::Event']]],
+  ['push',['push',['../unionsdl_1_1_event.html#a7640d424fda776781dc7dfd0c2640e0c',1,'sdl::Event']]]
 ];

@@ -1,0 +1,27 @@
+var classsdl_1_1_haptic =
+[
+    [ "Effect", "unionsdl_1_1_haptic_1_1_effect.html", "unionsdl_1_1_haptic_1_1_effect" ],
+    [ "InstalledEffect", "classsdl_1_1_haptic_1_1_installed_effect.html", "classsdl_1_1_haptic_1_1_installed_effect" ],
+    [ "effect_list", "classsdl_1_1_haptic.html#a5937247ebab729934debad047766534b", null ],
+    [ "effect_sdlid", "classsdl_1_1_haptic.html#a613eefca047c688e36f1984908a12de9", null ],
+    [ "Haptic", "classsdl_1_1_haptic.html#aeb2a381db77ea54824560d2452471bdd", null ],
+    [ "Haptic", "classsdl_1_1_haptic.html#a31893f4478570b0cc8263e0b5589eb78", null ],
+    [ "Haptic", "classsdl_1_1_haptic.html#aa6953821640efc0adf113a45f2b11158", null ],
+    [ "~Haptic", "classsdl_1_1_haptic.html#ac83fa1e210bd97d54d8d371349f3fd8d", null ],
+    [ "Haptic", "classsdl_1_1_haptic.html#aeb35f363fb50564ccfe588f49e4beb42", null ],
+    [ "Haptic", "classsdl_1_1_haptic.html#a5ac638dad21cd058fb94375c2282de6f", null ],
+    [ "get_capabilities", "classsdl_1_1_haptic.html#a6075b07da6818bda504a709e744db8bf", null ],
+    [ "get_effect_sdlid", "classsdl_1_1_haptic.html#a4843d8d31508c33c2f4f3bbc00fe9fa5", null ],
+    [ "is_capable_of", "classsdl_1_1_haptic.html#a57cb250561f1f29c2683e1ff0d7a4539", null ],
+    [ "is_effect_compatible", "classsdl_1_1_haptic.html#a7c8f7cb8514f64c9bbb66fa6762354f8", null ],
+    [ "new_effect", "classsdl_1_1_haptic.html#a451bbca4aba02f3a03c7acaadbfead18", null ],
+    [ "operator=", "classsdl_1_1_haptic.html#a428256a62b300f7a02d0bc342d399e43", null ],
+    [ "operator=", "classsdl_1_1_haptic.html#ab1f6279ded8ddfbcb7e8c582b309f4da", null ],
+    [ "ptr", "classsdl_1_1_haptic.html#a0176c217d926ef365137c239b314d80b", null ],
+    [ "registered_effect_count", "classsdl_1_1_haptic.html#acbf8cb9934b6d2ff51fea2e635b4065a", null ],
+    [ "remove_effect", "classsdl_1_1_haptic.html#a80fcf9cbb983d2fcb172f00cfa79e61d", null ],
+    [ "run_effect", "classsdl_1_1_haptic.html#a769e41dc8c25e344606679bef57fd55d", null ],
+    [ "valid", "classsdl_1_1_haptic.html#a40c101d792be6c02ad9d0f96a972d219", null ],
+    [ "haptic_", "classsdl_1_1_haptic.html#a920f08d98cc8ce1cc98a4de344d81427", null ],
+    [ "my_effects", "classsdl_1_1_haptic.html#a7b772f5f8c41ab2f7c96245ccaff6616", null ]
+];

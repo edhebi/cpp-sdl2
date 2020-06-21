@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['window',['Window',['../classsdl_1_1_window.html',1,'sdl']]]
+  ['texture',['Texture',['../classsdl_1_1_texture.html',1,'sdl']]],
+  ['timer',['Timer',['../classsdl_1_1_timer.html',1,'sdl']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['padding',['padding',['../unionsdl_1_1_event.html#a934740df0354b367b83bf8e3443ff772',1,'sdl::Event']]],
-  ['pitch_5f',['pitch_',['../classsdl_1_1_texture_1_1_lock.html#ad1bd61598aa103011be563a6ac74ecd3',1,'sdl::Texture::Lock']]],
-  ['pixels_5f',['pixels_',['../classsdl_1_1_texture_1_1_lock.html#aff3cd00f16021d810885d13ee35ae686',1,'sdl::Texture::Lock']]]
+  ['owned_5f',['owned_',['../classsdl_1_1_game_controller.html#a11be943d19aa179815b4bf80733112c5',1,'sdl::GameController']]],
+  ['owner_5f',['owner_',['../classsdl_1_1_haptic_1_1_installed_effect.html#a58c32369c6feae35e87df2721723f84c',1,'sdl::Haptic::InstalledEffect::owner_()'],['../classsdl_1_1_joystick.html#a7d36c5b9ed63354ef191f48a3e799953',1,'sdl::Joystick::owner_()']]]
 ];

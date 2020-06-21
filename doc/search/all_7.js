@@ -1,14 +1,22 @@
 var searchData=
 [
-  ['g',['g',['../classsdl_1_1_pixel.html#a8a65d50b3f651e4dcd7a2fb6b9093386',1,'sdl::Pixel']]],
-  ['get_5fevents',['get_events',['../namespacesdl.html#a29cd8a0455f451b523d57d4003c6942a',1,'sdl::get_events(size_t maxEvents, Uint32 minType, Uint32 maxType)'],['../namespacesdl.html#a395ec0dd8afc27c40eddc917b001c65f',1,'sdl::get_events(size_t maxEvents)'],['../namespacesdl.html#acf4c5347436ae55a56a676232c32e63f',1,'sdl::get_events(size_t maxEvents, Uint32 type)']]],
-  ['get_5finfo',['get_info',['../classsdl_1_1_renderer.html#a4553debf260af86d38825483bbd518a2',1,'sdl::Renderer']]],
-  ['get_5fraw',['get_raw',['../classsdl_1_1_pixel.html#a143275fe054b76b8d8d1d368985147be',1,'sdl::Pixel']]],
-  ['get_5funion',['get_union',['../classsdl_1_1_rect.html#a716647b474476d8ca20e5b6f9246c516',1,'sdl::Rect']]],
-  ['gl_5fset_5fattribute',['gl_set_attribute',['../classsdl_1_1_window.html#a0688b4b042a9c71035eab926ae5ff7f9',1,'sdl::Window']]],
-  ['gl_5fswap',['gl_swap',['../classsdl_1_1_window.html#aae8d46d7141e808c077c37584a9b9f74',1,'sdl::Window']]],
-  ['glcontext',['GlContext',['../classsdl_1_1_window_1_1_gl_context.html',1,'sdl::Window::GlContext'],['../classsdl_1_1_window_1_1_gl_context.html#a18156f219707a9d3522237b8f96b880e',1,'sdl::Window::GlContext::GlContext(SDL_Window *w)'],['../classsdl_1_1_window_1_1_gl_context.html#aa1194f24773e14de95b0c10ea0b794ac',1,'sdl::Window::GlContext::GlContext(GlContext const &amp;)=delete'],['../classsdl_1_1_window_1_1_gl_context.html#a499dd70ef617a2046db74b08209c5974',1,'sdl::Window::GlContext::GlContext(GlContext &amp;&amp;other)']]],
-  ['grab',['grab',['../classsdl_1_1_window.html#ab4534d03553e40a77cc4351f6273c609',1,'sdl::Window']]],
-  ['grabbed',['grabbed',['../classsdl_1_1_window.html#a96ab07e03629434650e0055371645937',1,'sdl::Window']]],
-  ['green',['Green',['../classsdl_1_1_color.html#a761fece81155629229ec8605d971594e',1,'sdl::Color']]]
+  ['handle_5f',['handle_',['../classsdl_1_1_shared_object.html#ac77ae09d5b59dd6e1f0a28ee0f301d73',1,'sdl::SharedObject']]],
+  ['haptic',['Haptic',['../classsdl_1_1_haptic.html',1,'sdl::Haptic'],['../classsdl_1_1_haptic_1_1_installed_effect.html#a4e43632814f3fd0bbf2c08f8411c38bf',1,'sdl::Haptic::InstalledEffect::Haptic()'],['../classsdl_1_1_haptic.html#aeb2a381db77ea54824560d2452471bdd',1,'sdl::Haptic::Haptic()'],['../classsdl_1_1_haptic.html#a31893f4478570b0cc8263e0b5589eb78',1,'sdl::Haptic::Haptic(int haptic_index)'],['../classsdl_1_1_haptic.html#aa6953821640efc0adf113a45f2b11158',1,'sdl::Haptic::Haptic(SDL_Joystick *joystick)'],['../classsdl_1_1_haptic.html#aeb35f363fb50564ccfe588f49e4beb42',1,'sdl::Haptic::Haptic(Haptic const &amp;)=delete'],['../classsdl_1_1_haptic.html#a5ac638dad21cd058fb94375c2282de6f',1,'sdl::Haptic::Haptic(Haptic &amp;&amp;other) noexcept']]],
+  ['haptic_2ehpp',['haptic.hpp',['../haptic_8hpp.html',1,'']]],
+  ['haptic_5f',['haptic_',['../classsdl_1_1_haptic.html#a920f08d98cc8ce1cc98a4de344d81427',1,'sdl::Haptic']]],
+  ['has_5f3dnow',['has_3DNow',['../namespacesdl_1_1system.html#a2f2e1f6fde3a580e501f44467c1d65d9',1,'sdl::system']]],
+  ['has_5faltivec',['has_AltiVec',['../namespacesdl_1_1system.html#a40feee94cd54f8c6b2e3e4bc2674d04d',1,'sdl::system']]],
+  ['has_5favx',['has_AVX',['../namespacesdl_1_1system.html#a531bc315001df972e33c0d1ef1a93003',1,'sdl::system']]],
+  ['has_5favx2',['has_AVX2',['../namespacesdl_1_1system.html#aeab84f18929ab6e7f21159d93b70d286',1,'sdl::system']]],
+  ['has_5fevents',['has_events',['../unionsdl_1_1_event.html#a28b943079f75e42fd471f0717d585af1',1,'sdl::Event::has_events()'],['../unionsdl_1_1_event.html#a627a98b2a2a37b0342814f2e4598bee0',1,'sdl::Event::has_events(Uint32 type)'],['../unionsdl_1_1_event.html#af8dd850efb8f3f63925d0a1e7c45104a',1,'sdl::Event::has_events(Uint32 minType, Uint32 maxType)']]],
+  ['has_5fmmx',['has_MMX',['../namespacesdl_1_1system.html#acbce1d8e2093f59259e58ae09788dee7',1,'sdl::system']]],
+  ['has_5frdtsc',['has_RDTSC',['../namespacesdl_1_1system.html#ab035c8ac7d7a5e771f348cb719e60564',1,'sdl::system']]],
+  ['has_5fsse',['has_SSE',['../namespacesdl_1_1system.html#acedaa58e138b5b8e615099d3c62130ca',1,'sdl::system']]],
+  ['has_5fsse2',['has_SSE2',['../namespacesdl_1_1system.html#a324a1427fbc1652b7aa6c6231d8dd1b1',1,'sdl::system']]],
+  ['has_5fsse3',['has_SSE3',['../namespacesdl_1_1system.html#a1c2ed3aa5012ad0f56e8201f89b8d21b',1,'sdl::system']]],
+  ['has_5fsse41',['has_SSE41',['../namespacesdl_1_1system.html#a23e3fb6552b5f1fef6f7798b3f3bcd2c',1,'sdl::system']]],
+  ['has_5fsse42',['has_SSE42',['../namespacesdl_1_1system.html#a663f708d6e2710829fb1ba91380a337c',1,'sdl::system']]],
+  ['has_5ftext',['has_text',['../namespacesdl_1_1clipboard.html#ae35c8094de4bf5ec004f86b926c89031',1,'sdl::clipboard']]],
+  ['height',['height',['../classsdl_1_1_surface.html#ab9e7e021d048bb748a9302531cf518a7',1,'sdl::Surface']]],
+  ['hide',['hide',['../classsdl_1_1_mouse_1_1_cursor.html#a65f02471611618d19a76535a622dc614',1,'sdl::Mouse::Cursor::hide()'],['../classsdl_1_1_window.html#a71bae211d6e4c841c9106f0d1fb8b986',1,'sdl::Window::hide()']]]
 ];

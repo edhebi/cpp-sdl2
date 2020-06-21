@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['rect',['Rect',['../classsdl_1_1_rect.html',1,'sdl']]],
-  ['renderer',['Renderer',['../classsdl_1_1_renderer.html',1,'sdl']]],
-  ['root',['Root',['../classsdl_1_1_root.html',1,'sdl']]]
+  ['lock',['Lock',['../classsdl_1_1_surface_1_1_lock.html',1,'sdl::Surface::Lock'],['../classsdl_1_1_texture_1_1_lock.html',1,'sdl::Texture::Lock']]]
 ];

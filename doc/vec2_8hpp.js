@@ -1,6 +1,6 @@
 var vec2_8hpp =
 [
-    [ "_Vec2_Base", "structsdl_1_1details_1_1___vec2___base.html", "structsdl_1_1details_1_1___vec2___base" ],
+    [ "Vec2Base", "structsdl_1_1details_1_1_vec2_base.html", "structsdl_1_1details_1_1_vec2_base" ],
     [ "Vec2", "classsdl_1_1_vec2.html", "classsdl_1_1_vec2" ],
     [ "Vec2d", "vec2_8hpp.html#ad97a0e4b8ded6b4d6d3c48e818577723", null ],
     [ "Vec2f", "vec2_8hpp.html#a989a14b61f51b20938f178498295e96d", null ],

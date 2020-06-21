@@ -1,18 +1,16 @@
 var searchData=
 [
-  ['del_5fwatcher',['del_watcher',['../structsdl_1_1_event_filter.html#acac504956808e136532bbe2238e0dead',1,'sdl::EventFilter']]],
-  ['dgesture',['dgesture',['../unionsdl_1_1_event.html#a9f9d6b35b3f39921331c1733edd190b0',1,'sdl::Event']]],
-  ['disable_5fclip',['disable_clip',['../classsdl_1_1_renderer.html#a9de79f5a183ad7824b8c3014326c55c9',1,'sdl::Renderer']]],
-  ['disable_5fcolorkey',['disable_colorkey',['../classsdl_1_1_surface.html#a6d8f312da4091a845c75a8dba54b8ef1',1,'sdl::Surface']]],
-  ['display_5findex',['display_index',['../classsdl_1_1_window.html#a27a6a9f78ef2fe247f77e1e48b79f86d',1,'sdl::Window']]],
-  ['display_5fmode',['display_mode',['../classsdl_1_1_window.html#a149ed61f473df8806c0576db8f2ce3b4',1,'sdl::Window::display_mode(SDL_DisplayMode &amp;mode)'],['../classsdl_1_1_window.html#ad4d83ceadd9189c0b14d27bf5d6b13aa',1,'sdl::Window::display_mode()']]],
-  ['draw_5fline',['draw_line',['../classsdl_1_1_renderer.html#a2d921b904409efe597c8cc3950db8d2c',1,'sdl::Renderer::draw_line(Vec2i const &amp;pos1, Vec2i const &amp;pos2)'],['../classsdl_1_1_renderer.html#a73ffb4d92d52741b260f8a51b11d36ef',1,'sdl::Renderer::draw_line(Vec2i const &amp;pos1, Vec2i const &amp;pos2, Color const &amp;c)']]],
-  ['draw_5flines',['draw_lines',['../classsdl_1_1_renderer.html#a94a0fd616a5741638d53bc36fc3ef699',1,'sdl::Renderer::draw_lines(std::vector&lt; Vec2i &gt; const &amp;points)'],['../classsdl_1_1_renderer.html#a467588627cc40b4acef026f90918f027',1,'sdl::Renderer::draw_lines(std::vector&lt; Vec2i &gt; const &amp;points, Color const &amp;c)']]],
-  ['draw_5fpoint',['draw_point',['../classsdl_1_1_renderer.html#a43c5f59c98e1a789dd9d25405ad01d89',1,'sdl::Renderer::draw_point(Vec2i const &amp;point)'],['../classsdl_1_1_renderer.html#a1bb7bf2f58fb0380cb605e52127edbac',1,'sdl::Renderer::draw_point(Vec2i const &amp;point, Color const &amp;c)']]],
-  ['draw_5fpoints',['draw_points',['../classsdl_1_1_renderer.html#af23dfdf2d140eb00406b7be77f1c5f25',1,'sdl::Renderer::draw_points(std::vector&lt; Vec2i &gt; const &amp;points)'],['../classsdl_1_1_renderer.html#a98d3697bd644e460e4b7d21b04f5a709',1,'sdl::Renderer::draw_points(std::vector&lt; Vec2i &gt; const &amp;points, Color const &amp;c)']]],
-  ['draw_5fray',['draw_ray',['../classsdl_1_1_renderer.html#ad0e00a8c47a8971ec6699f216defa089',1,'sdl::Renderer::draw_ray(Vec2i const &amp;orig, Vec2i const &amp;ray)'],['../classsdl_1_1_renderer.html#a97d5797e984fde8591d105db42d77533',1,'sdl::Renderer::draw_ray(Vec2i const &amp;orig, Vec2i const &amp;ray, Color const &amp;c)']]],
-  ['draw_5frect',['draw_rect',['../classsdl_1_1_renderer.html#a24635f329c96ad2fa32e5ea5c253c7f0',1,'sdl::Renderer::draw_rect(Rect const &amp;rect)'],['../classsdl_1_1_renderer.html#afa2435fc8389e25537de5ca37affde64',1,'sdl::Renderer::draw_rect(Rect const &amp;rect, Color const &amp;c)']]],
-  ['draw_5frects',['draw_rects',['../classsdl_1_1_renderer.html#aa8bd8b29facb04ff4090aaee9ed8eea4',1,'sdl::Renderer::draw_rects(std::vector&lt; Rect &gt; const &amp;rects)'],['../classsdl_1_1_renderer.html#a7077ba93fe53886b7896196bd1f26d20',1,'sdl::Renderer::draw_rects(std::vector&lt; Rect &gt; const &amp;rects, const Color &amp;c)']]],
-  ['drawcolor',['drawcolor',['../classsdl_1_1_renderer.html#a8dff82b0c9d99b95a239952614a6a6ad',1,'sdl::Renderer']]],
-  ['drop',['drop',['../unionsdl_1_1_event.html#ab76a549d04d8a3446a11c8e01e09f8d2',1,'sdl::Event']]]
+  ['edit',['edit',['../unionsdl_1_1_event.html#afedac6f3073b5b150fdcf1274582dede',1,'sdl::Event']]],
+  ['effect',['Effect',['../unionsdl_1_1_haptic_1_1_effect.html',1,'sdl::Haptic::Effect'],['../unionsdl_1_1_haptic_1_1_effect.html#a422d788dc78cd469b14a902b0034ebf7',1,'sdl::Haptic::Effect::Effect()']]],
+  ['effect_5flist',['effect_list',['../classsdl_1_1_haptic.html#a5937247ebab729934debad047766534b',1,'sdl::Haptic']]],
+  ['effect_5fsdlid',['effect_sdlid',['../classsdl_1_1_haptic.html#a613eefca047c688e36f1984908a12de9',1,'sdl::Haptic']]],
+  ['enable',['Enable',['../unionsdl_1_1_event.html#a2b06e83e673f072c9b3620be037a0ddda2faec1f9f8cc7f8f40d521c4dd574f49',1,'sdl::Event']]],
+  ['error',['error',['../classsdl_1_1_exception.html#a5a1e106931dbee28b8e4ff250a57a01f',1,'sdl::Exception']]],
+  ['error_5f',['error_',['../classsdl_1_1_exception.html#af82ff2849820b3b2b2759fbc617378b3',1,'sdl::Exception']]],
+  ['event',['Event',['../unionsdl_1_1_event.html',1,'sdl::Event'],['../unionsdl_1_1_event.html#a2ec14d9777e54cfc6786bb25e5313a38',1,'sdl::Event::Event()'],['../unionsdl_1_1_event.html#a64cc70c4ade83c907840be0749dc1941',1,'sdl::Event::Event(SDL_Event const &amp;e)']]],
+  ['event_2ehpp',['event.hpp',['../event_8hpp.html',1,'']]],
+  ['event_5fstate',['event_state',['../unionsdl_1_1_event.html#adb0beffec79789e227bc8ceb4316e7f5',1,'sdl::Event']]],
+  ['eventfilter',['EventFilter',['../structsdl_1_1_event_1_1_event_filter.html',1,'sdl::Event::EventFilter'],['../structsdl_1_1_event_1_1_event_filter.html#aa5c94b5e4d5fc2c76c509edff8d17626',1,'sdl::Event::EventFilter::EventFilter(func_type filter, void *userdata)'],['../structsdl_1_1_event_1_1_event_filter.html#a120fc880a652f5b2f74c925b34c70f31',1,'sdl::Event::EventFilter::EventFilter(func_type filter)']]],
+  ['exception',['Exception',['../classsdl_1_1_exception.html',1,'sdl::Exception'],['../classsdl_1_1_exception.html#a9a5d27ae8c2cf62bec541834b84e406e',1,'sdl::Exception::Exception()']]],
+  ['exception_2ehpp',['exception.hpp',['../exception_8hpp.html',1,'']]]
 ];

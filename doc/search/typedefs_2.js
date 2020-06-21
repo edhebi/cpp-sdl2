@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['vec2d',['Vec2d',['../namespacesdl.html#ad97a0e4b8ded6b4d6d3c48e818577723',1,'sdl']]],
-  ['vec2f',['Vec2f',['../namespacesdl.html#a989a14b61f51b20938f178498295e96d',1,'sdl']]],
-  ['vec2i',['Vec2i',['../namespacesdl.html#aa98170a1d7a65e083de0c0b31b08e3f9',1,'sdl']]]
+  ['func_5ftype',['func_type',['../structsdl_1_1_event_1_1_event_filter.html#a923db291da3ab7f997cf341ba8e972a7',1,'sdl::Event::EventFilter']]],
+  ['functionaddress',['FunctionAddress',['../classsdl_1_1_shared_object.html#a5eeaa2016c2862df75ceeb2792b4245f',1,'sdl::SharedObject']]]
 ];

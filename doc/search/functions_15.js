@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['y1',['y1',['../classsdl_1_1_rect.html#aa2bc3e18802f2732fb6e123e517b28ca',1,'sdl::Rect']]],
-  ['y2',['y2',['../classsdl_1_1_rect.html#a393915d0bec88624499da885c9fc02b1',1,'sdl::Rect']]]
+  ['x1',['x1',['../classsdl_1_1_rect.html#a42abd33563471242c41cb1f88bc53c07',1,'sdl::Rect']]],
+  ['x2',['x2',['../classsdl_1_1_rect.html#a7ea2e7a603fb9d1d18067b1cedac9ebb',1,'sdl::Rect']]]
 ];

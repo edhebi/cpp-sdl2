@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['ignore',['Ignore',['../unionsdl_1_1_event.html#a2b06e83e673f072c9b3620be037a0dddafd038fc7f319e48f3115d92bf5bdbef9',1,'sdl::Event']]],
-  ['info',['info',['../classsdl_1_1_renderer.html#aacd43c1c50d71d3ed897d1d944d69b23',1,'sdl::Renderer']]],
-  ['inter',['inter',['../classsdl_1_1_rect.html#a0878b28f65b457ccf72eee4def59c3c4',1,'sdl::Rect']]],
-  ['intersect',['intersect',['../classsdl_1_1_rect.html#a8edefb2c1f15a0ee8bccce9305c23804',1,'sdl::Rect']]],
-  ['intersects',['intersects',['../classsdl_1_1_rect.html#ac17e7366e2f4f313e30640df9399e091',1,'sdl::Rect']]],
-  ['intscale',['intscale',['../classsdl_1_1_renderer.html#a7ed0782ffed3639794ee681fd5f05e68',1,'sdl::Renderer']]],
-  ['is_5fempty',['is_empty',['../classsdl_1_1_rect.html#a69a8b361fbfa87b38f668fdaa3c62f77',1,'sdl::Rect']]],
-  ['is_5fnull',['is_null',['../classsdl_1_1_vec2.html#aec63671587b1348202931ccc52ea8fa2',1,'sdl::Vec2']]],
-  ['is_5fwatcher',['is_watcher',['../structsdl_1_1_event_filter.html#a896c72aa1c12d80dba6aac875d8c7fcd',1,'sdl::EventFilter']]]
+  ['jaxis',['jaxis',['../unionsdl_1_1_event.html#a7d02bd37a90b6ec6a90ea3f59a9adccc',1,'sdl::Event']]],
+  ['jball',['jball',['../unionsdl_1_1_event.html#a18d3f651367c3244ca9facfa26ad4ef9',1,'sdl::Event']]],
+  ['jbutton',['jbutton',['../unionsdl_1_1_event.html#a4f1931d2a0a0c0973a169b0e36abe577',1,'sdl::Event']]],
+  ['jdevice',['jdevice',['../unionsdl_1_1_event.html#a806cf53bac47a5d888eba390176fd1d3',1,'sdl::Event']]],
+  ['jhat',['jhat',['../unionsdl_1_1_event.html#ac71defe5bb81f80ecf1a050601e24e2b',1,'sdl::Event']]],
+  ['joystick',['Joystick',['../classsdl_1_1_joystick.html',1,'sdl::Joystick'],['../classsdl_1_1_joystick.html#a15ce1c7a3d39a068f3dab6efd3270683',1,'sdl::Joystick::Joystick(SDL_Joystick *stick, bool owning_state)'],['../classsdl_1_1_joystick.html#ae85d2568ab2d063cdf02354f6d71dbed',1,'sdl::Joystick::Joystick()'],['../classsdl_1_1_joystick.html#a0d3374608ebbd2057523ee4ce346bae2',1,'sdl::Joystick::Joystick(int device_index)'],['../classsdl_1_1_joystick.html#a329e15fae360404b186de0e3699fa77c',1,'sdl::Joystick::Joystick(SDL_Joystick *joystick)'],['../classsdl_1_1_joystick.html#a75a3ad90d4876fd4d98aadde2fc7c318',1,'sdl::Joystick::Joystick(Joystick const &amp;)=delete'],['../classsdl_1_1_joystick.html#add89c90912f1b82df7746b87660adfca',1,'sdl::Joystick::Joystick(Joystick &amp;&amp;other) noexcept']]],
+  ['joystick_2ehpp',['joystick.hpp',['../joystick_8hpp.html',1,'']]],
+  ['joystick_5f',['joystick_',['../classsdl_1_1_joystick.html#a6ee39be37ed092ea09cc637ac1f42459',1,'sdl::Joystick']]]
 ];

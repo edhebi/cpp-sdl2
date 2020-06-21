@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_5fvec2_5fbase',['_Vec2_Base',['../structsdl_1_1details_1_1___vec2___base.html',1,'sdl::details']]]
+  ['color',['Color',['../classsdl_1_1_color.html',1,'sdl']]],
+  ['cursor',['Cursor',['../classsdl_1_1_mouse_1_1_cursor.html',1,'sdl::Mouse']]]
 ];

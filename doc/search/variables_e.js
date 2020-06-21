@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['renderer_5f',['renderer_',['../classsdl_1_1_renderer.html#ac9b73001dfbb5b87cf8c9db9177ebb37',1,'sdl::Renderer']]]
+  ['quit',['quit',['../unionsdl_1_1_event.html#adb7544b91bd5c08266773d520c851e79',1,'sdl::Event']]]
 ];
