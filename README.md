@@ -3,115 +3,126 @@
 ![windows](https://github.com/Edhebi/cpp-sdl2/workflows/windows/badge.svg)
 ![doc](https://github.com/Edhebi/cpp-sdl2/workflows/doc/badge.svg)
 
-Basic C++17 bindings of SDL2 (https://wiki.libsdl.org/FrontPage) implemented as an header-only library
+Basic C++17 bindings to [SDL2], implemented as an header-only library
 
-## Doxygen doc
+[SDL2]: https://wiki.libsdl.org/FrontPage
 
-https://edhebi.github.io/cpp-sdl2/doc
+## Documentation
+
+This project uses doxygen for its documentation, you can find it [here](https://edhebi.github.io/cpp-sdl2/doc).
 
 ## Usage
 
-This library has been written in C++17. It should work out of the box with any modern version of GCC, Clang and MSVC, but you may need to [set](https://gcc.gnu.org/projects/cxx-status.html#cxx17) [some](https://clang.llvm.org/cxx_status.html) [flags](https://docs.microsoft.com/en-us/cpp/build/reference/std-specify-language-standard-version?view=vs-2019) to C++17.
+This library has been written in C++17. It should work out of the box with any modern compiler, but you may need to set
+some flags ([gcc][gcc-c++17], [clang][clang-c++17], [msvc][msvc-c++17]). If you use the cmake target, this will be done
+automatically.
 
-This is an header-only library, the only needed step to use is is to make the content of the "sources" directory visible by your compiler and to `#include "cpp-sdl2/sdl.hpp"` instead of `SDL.h`. Then you just link against the SDL2 and SDL_image libraries as usual.
+[gcc-c++17]: https://gcc.gnu.org/projects/cxx-status.html#cxx17
+[clang-c++17]: https://clang.llvm.org/cxx_status.html#cxx17
+[msvc-c++17]: https://docs.microsoft.com/en-us/cpp/build/reference/std-specify-language-standard-version
 
-By default, the code will throw exception in case of an SDL_Error. The Exception will contain the string returned by `SDL_GetError()`
+This library is header-only, meaning that there is no build step. You only need to make the `sources` directory visible
+to your compiler, and replace your `SDL.h` include by `#include <cpp-sdl2/sdl.hpp`. You still need to have SDL2 be
+visible and properly linked.
 
-`cpp-sdl2` conviniently wrap SDL's functionallities that are aimed at making cross-platform OpenGL and Vulkan developement easier. For instance, the window class can help you create an opengl context, or a vulkan instance/surface without having to worry if you are running on a Windows or a Linux platform or something else. This functionality can be activated by defining `CPP_SDL2_GL_WINDOW`or `CPP_SDL2_VK_WINDOW` before including `sdl.hpp`
+## Configuration flags
 
-Exception support can be disabled by defining `CPP_SDL2_NOEXCEPTIONS` in the preprocessor. 
+Some SDL2 features require external libraries. Since we want to be as compatible as possible out of the box, those are
+behind `#define` flags. Those flags must be defined before any include to the library. See below for a list of those:
 
-To be able to easilly load images into surfaces, you can install SDL_Image 2, and define `CPP_SDL2_USE_SDL_IMAGE`
+### CPP_SDL2_GL_WINDOW
 
-## Compile-time configuration
+This flag enables opengl features around windows. Note that you still need an opengl loader, like [glew], [gl3w],
+[glad], or [epoxy]. If you use the `CPP_SDL2_ENABLE_OPENGL` cmake flag, it will be added to your compiler definitions.
 
-cpp-sdl2 aims at offering a simple and modern API to C++ developers of the functionality available to SDL. Some of these functionalities are only usable with the addition of external libraries, or with the presens of specific SDK on the system.
+[glew]: http://glew.sourceforge.net/
+[gl3w]: https://github.com/skaslev/gl3w
+[glad]: https://github.com/Dav1dde/glad
+[epoxy]: https://github.com/anholt/libepoxy
 
-To enable these functionality, simply `#define CPP_SDL2_TOKEN` the specified token from the table below before including any files from cpp-sdl2.
+### CPP_SDL2_VK_WINDOW
 
-Additional functionalities are disabled by default, as the goal is to be the most compatible out of the box. They can be easilly toggled in by defining a few perprocessor constants : 
+This flag enable vulkan features around window. It's intended to be uses with nvidia's (now standard) `vulkan.hpp`
+header. You still need a vulkan runtime and a recent version of the vulkan sdk. If you use the `CPP_SDL2_ENABLE_VULKAN`
+cmake flag, it will be added to your compiler definitions.
 
+### CPP_SDL2_USE_SDL_IMAGE
 
-| Preprocessor switch | Descripiton | Requirements| 
-|---------------------|-----------|--------------|
-|`CPP_SDL2_GL_WINDOW` | Makes OpenGL functionalities around windows availalbe | You should probably use an OpenGL extension loader like `glew`, `gl3w`, `glad` or `epoxy`|
-|`CPP_SDL2_VK_WINDOW`| Adds the Vulkan-related functions to the window API to help you load Vulkan platform extensions and create your `vk::Instance` and `vk::Surface`| You need both a Vulkan runtime and a recent version of the Vulkan SDK. The wrappers are intened to be used with Nvidia's (now standardized) `vulkan.hpp` wrappers|
-|`CPP_SDL2_USE_SDL_IMAGE`|Add a few helpers that permit to load image files inside `sdl::Surface` objects | Require you to include and link the `SDL_Image` library for `SDL2`|
-|`CPP_SDL2_NOEXCEPTIONS`|Disable `cpp-sdl2` exceptions | This is mostly intended if you want to use `cpp-sdl2` on a platform where exceptions aren't available. Exceptions are used only **exceptionally** by `cpp-sdl2`, and their general problems in the context of game developements shouldn't be an issue as, if correctly used, the library should *not* throw any exceptions. This replaces any thrown exception with a logged message to the error output, followed by an `abort()` of your program.| 
+This uses the SDL2_Image library to load surfaces more easily. You still need to have the library installed and visible.
+If you use the `CPP_SDL2_ENABLE_SDL_IMAGE` cmake flag, it will be added to your compiler definitions.
 
+### CPP_SDL2_NOEXCEPTIONS
+
+`cpp-sdl2` uses exceptions very conservatively, and most of them indicate a failure that it probably not recoverable.
+Correctly used, this library shouldn't throw *any* exception. If you still need to disable exceptions, this flag will
+replace exceptions by a log to `stderr` followed by an `abort()`. If you use the `CPP_SDL2_DISABLE_EXCEPTIONS` cmake
+flag, it will be added to your compiler definitions.
 
 ## Dependencies
 
-- SDL2
-- SDL_image 2 (optional)
-- OpenGL-complient video driver (optional. Only for OpenGL context creation)
-- Vulkan SDK (optnional. for Vulkan instance/surface creation utilities)
+### Mandatory
 
-The following versions of SDL2 are tesded and confirmed working:
+- [SDL2]
+- A C++17 capable compiler
 
-- 2.0.8	(This is a "legacy" version as far as we are concerned. You should upgrade!)
-- 2.0.9
-- 2.0.10
+### Optional
 
-**You will need a C++17 complient compiler**
+- SDL2_image
+- OpenGL
+- Vulkan
 
-## Example program
+SDL versions from `2.0.8` to `2.0.12` have been tested and should work.
+
+## Example
 
 ```cpp
-#include "cpp-sdl2/sdl.hpp"
+#include <cpp-sdl2/sdl.hpp>
+#include <iostream>
+
 #include <cstdlib> // Using C-style rand
 #include <ctime>
 
-#include <iostream>
-
-int main(int argc, char * argv[])
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
-	(void)argc;
-	(void)argv;
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
+    
+    // The following objects manages the lifetime of SDL resources RAII style
+    
+    sdl::Root root{SDL_INIT_EVENTS};
+    sdl::Window window{"Random Colors", {600, 600}};
+    
+    sdl::Renderer renderer = window.make_renderer();
+    
+    sdl::Color background = sdl::Color::Black();
+    
+    bool done = false;
+    bool redraw = true;
+    
+    while (!done)
+    {
+        if (redraw)
+        {
+            renderer.clear(background);
+            renderer.present();
+            redraw = false;
+        }
+        
+        sdl::Event event;
+        while (event.pull())
+        {
+            if (event.type == SDL_QUIT) done = true;
+            
+            if (event.type == SDL_MOUSEBUTTONUP)
+            {
+                color.r = std::rand() % 256;
+                color.g = std::rand() % 256;
+                color.b = std::rand() % 256;
+                redraw = true;
+            }
+        }
+    }
 
-	std::srand(unsigned(std::time(nullptr)));
-
-	// The following classes manages the lifetime of SDL declared resources RAII style
-
-	auto root = sdl::Root(SDL_INIT_EVENTS);
-
-	auto window = sdl::Window{ "Random Colors", {600, 600} };
-
-	auto renderer = window.make_renderer();
-	
-	auto color = sdl::Color::Black();
-
-	auto done   = false;
-	auto redraw = true;
-	auto event = sdl::Event{};
-
-	while (!done)
-	{
-		if (redraw)
-		{
-			renderer.clear(color);
-			renderer.present();
-			redraw = false;
-		}
-	
-		event.wait();
-		
-		if (event.type == SDL_QUIT)
-		{
-			done = true;
-		}
-
-		if (event.type == SDL_MOUSEBUTTONUP)
-		{
-			color.r = std::rand() % 256;
-			color.g = std::rand() % 256;
-			color.b = std::rand() % 256;
-			redraw = true;
-		}
-	}
-	return 0;
-
-	// Cleanup is done automatically
-
+    // Cleanup is done automatically
+    return 0;
 }
 ```
