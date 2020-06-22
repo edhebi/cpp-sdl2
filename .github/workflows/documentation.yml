@@ -22,6 +22,11 @@ jobs:
         with:
           name: documentation
           path: doxygen/output/html
+      - name: upload readme
+        uses: actions/upload-artifact@v2
+        with:
+          name: readme
+          path: README.md
 
   push-doc:
     runs-on: ubuntu-latest
@@ -31,18 +36,24 @@ jobs:
         with:
           ref: gh-pages
           fetch-depth: 0
-      - name: clear previous doc
-        run: rm -rf doc
+      - name: reset to previous state
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git reset --hard HEAD~1
+          rm -rf index.md doc
       - name: download documentation
         uses: actions/download-artifact@v2
         with:
           name: documentation
           path: doc
-      - name: commit documentation
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add doc
-          git commit -m ':robot: :gear: :black_nib: :green_book: :point_right: :octocat: :computer: :thumbsup:'
+      - name: download readme
+        uses: actions/download-artifact@v2
+        with:
+          name: readme
       - name: push documentation
-        run: git push
+        run: |
+          mv README.md index.md
+          git add index.md doc
+          git commit -m ':robot: :gear: :black_nib: :green_book: :point_right: :octocat: :computer: :thumbsup:'
+          git push --force origin gh-pages
