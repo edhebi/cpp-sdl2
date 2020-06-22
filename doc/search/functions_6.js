@@ -2,6 +2,7 @@ var searchData=
 [
   ['g',['g',['../classsdl_1_1_pixel.html#a8a65d50b3f651e4dcd7a2fb6b9093386',1,'sdl::Pixel']]],
   ['gamecontroller',['GameController',['../classsdl_1_1_game_controller.html#a5e43f27ff4fe60723a0131081feca315',1,'sdl::GameController::GameController(int joystick_index)'],['../classsdl_1_1_game_controller.html#a80293959fedbee094fcdd5c50e24bd64',1,'sdl::GameController::GameController(SDL_GameController *controller)'],['../classsdl_1_1_game_controller.html#adb5fb86d08e10ef8426c365bf429c4a0',1,'sdl::GameController::GameController()=default'],['../classsdl_1_1_game_controller.html#a6f3c40b5d9e9d203e6445ed99d59f3ea',1,'sdl::GameController::GameController(GameController const &amp;)=delete'],['../classsdl_1_1_game_controller.html#a0928551d2da460b252c033c62fc3be40',1,'sdl::GameController::GameController(GameController &amp;&amp;other) noexcept'],['../classsdl_1_1_game_controller.html#aea69f921293a2eeff57def12cec25c83',1,'sdl::GameController::GameController(SDL_GameController *controller, bool non_owned)']]],
+  ['get_5falignment',['get_alignment',['../namespacesdl_1_1simd.html#ab4b4c5c3f73a902c52bea93957ac23bc',1,'sdl::simd']]],
   ['get_5faxis',['get_axis',['../classsdl_1_1_game_controller.html#ab323cf1392942402cb8e2e9b0f3679dc',1,'sdl::GameController::get_axis()'],['../classsdl_1_1_joystick.html#ac1c76d3667b6406c38a9787132c4f5e0',1,'sdl::Joystick::get_axis()']]],
   ['get_5fball',['get_ball',['../classsdl_1_1_joystick.html#ab7b635b2687847b2a27597051bfcd9fb',1,'sdl::Joystick']]],
   ['get_5fbattery_5fremaining_5fcharge',['get_battery_remaining_charge',['../namespacesdl_1_1power.html#abfea466169222d417a5fc7ef73adc872',1,'sdl::power']]],
@@ -18,6 +19,14 @@ var searchData=
   ['get_5fstate',['get_state',['../namespacesdl_1_1power.html#abd402eb68663bca0da526667bafb0861',1,'sdl::power']]],
   ['get_5ftext',['get_text',['../namespacesdl_1_1clipboard.html#ae2e36058bdc61a0a3d12dba019303b4a',1,'sdl::clipboard']]],
   ['get_5funion',['get_union',['../classsdl_1_1_rect.html#a716647b474476d8ca20e5b6f9246c516',1,'sdl::Rect']]],
+  ['gl_5fget_5fattribute',['gl_get_attribute',['../classsdl_1_1_window.html#a30258536819f7b0bee9561c772221cf1',1,'sdl::Window']]],
+  ['gl_5fget_5fswap_5finterval',['gl_get_swap_interval',['../classsdl_1_1_window.html#a648eab9ee0a50cee8e6eb66abfca93da',1,'sdl::Window']]],
+  ['gl_5fis_5fextension_5fsupported',['gl_is_extension_supported',['../classsdl_1_1_window.html#a7ea6712d6b7b1372944dc00e401a421f',1,'sdl::Window']]],
+  ['gl_5freset_5fattribute',['gl_reset_attribute',['../classsdl_1_1_window.html#af277f8ea6a9abba8bb177687a9efbbc0',1,'sdl::Window']]],
+  ['gl_5fset_5fattribute',['gl_set_attribute',['../classsdl_1_1_window.html#a0688b4b042a9c71035eab926ae5ff7f9',1,'sdl::Window::gl_set_attribute(SDL_GLattr attr, int val)'],['../classsdl_1_1_window.html#a14131a673828e988d0a953df3f6bc803',1,'sdl::Window::gl_set_attribute(SDL_GLattr attr, bool val)']]],
+  ['gl_5fset_5fswap_5finterval',['gl_set_swap_interval',['../classsdl_1_1_window.html#af0c26451168fded682dc18a7b09ad685',1,'sdl::Window']]],
+  ['gl_5fswap',['gl_swap',['../classsdl_1_1_window.html#a16ec42637ae710ec4798d5994ffbda52',1,'sdl::Window']]],
+  ['glcontext',['GlContext',['../classsdl_1_1_window_1_1_gl_context.html#a18156f219707a9d3522237b8f96b880e',1,'sdl::Window::GlContext::GlContext(SDL_Window *w)'],['../classsdl_1_1_window_1_1_gl_context.html#a1e32e7de5f427e6045584551c1de2ec6',1,'sdl::Window::GlContext::GlContext()=default'],['../classsdl_1_1_window_1_1_gl_context.html#aa1194f24773e14de95b0c10ea0b794ac',1,'sdl::Window::GlContext::GlContext(GlContext const &amp;)=delete'],['../classsdl_1_1_window_1_1_gl_context.html#a2cbdeca95ad978f2b25df7cb2da810cb',1,'sdl::Window::GlContext::GlContext(GlContext &amp;&amp;other) noexcept']]],
   ['grab',['grab',['../classsdl_1_1_window.html#ab4534d03553e40a77cc4351f6273c609',1,'sdl::Window']]],
   ['grabbed',['grabbed',['../classsdl_1_1_window.html#a9e622d7e71092bfeb0da684b97c1a0f3',1,'sdl::Window']]],
   ['green',['Green',['../classsdl_1_1_color.html#a761fece81155629229ec8605d971594e',1,'sdl::Color']]]

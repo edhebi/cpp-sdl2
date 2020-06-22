@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('structsdl_1_1_root.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>This class represent the "library entry point". Create and keep an instance of this object before creating any other sdl object (e.g. <a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. Also contains accessor to any window related adjacent functionality like Ope...">sdl::Window</a>)  
+<p>This class represent the "library entry point".  
  <a href="structsdl_1_1_root.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="sdl_8hpp_source.html">sdl.hpp</a>&gt;</code></p>
@@ -96,15 +96,16 @@ $(document).ready(function(){initNavTree('structsdl_1_1_root.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0520e05a68fb390afc128fc44cd6a165"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsdl_1_1_root.html#a0520e05a68fb390afc128fc44cd6a165">Root</a> (Uint32 flags=SDL_INIT_EVERYTHING)</td></tr>
-<tr class="memdesc:a0520e05a68fb390afc128fc44cd6a165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a root object. This object initialize SDL for you. SDL is de-initialized when object quit scope.  <a href="#a0520e05a68fb390afc128fc44cd6a165">More...</a><br /></td></tr>
+<tr class="memdesc:a0520e05a68fb390afc128fc44cd6a165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a root object.  <a href="#a0520e05a68fb390afc128fc44cd6a165">More...</a><br /></td></tr>
 <tr class="separator:a0520e05a68fb390afc128fc44cd6a165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a634e70193608b11b96efb303094eb410"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsdl_1_1_root.html#a634e70193608b11b96efb303094eb410">~Root</a> ()</td></tr>
 <tr class="memdesc:a634e70193608b11b96efb303094eb410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically quit SDL for you!  <a href="#a634e70193608b11b96efb303094eb410">More...</a><br /></td></tr>
 <tr class="separator:a634e70193608b11b96efb303094eb410"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class represent the "library entry point". Create and keep an instance of this object before creating any other sdl object (e.g. <a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. Also contains accessor to any window related adjacent functionality like Ope...">sdl::Window</a>) </p>
-<p>Create an <a class="el" href="structsdl_1_1_root.html" title="This class represent the &quot;library entry point&quot;. Create and keep an instance of this object before cre...">sdl::Root</a> object on the stack, and SDL is initialized. When your instance of <a class="el" href="structsdl_1_1_root.html" title="This class represent the &quot;library entry point&quot;. Create and keep an instance of this object before cre...">Root</a> goes out of scope, SDL will be deinitialized for you. This pattern (idiom) is called RAII. If you aren't familiar with it, I suggest reading <a href="https://en.cppreference.com/w/cpp/language/raii">https://en.cppreference.com/w/cpp/language/raii</a> </p>
+<div class="textblock"><p>This class represent the "library entry point". </p>
+<p>Create and keep an instance of this object before creating any other sdl object (e.g. <a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. ">sdl::Window</a>)</p>
+<p>Create an <a class="el" href="structsdl_1_1_root.html" title="This class represent the &quot;library entry point&quot;. ">sdl::Root</a> object on the stack, and SDL is initialized. When your instance of <a class="el" href="structsdl_1_1_root.html" title="This class represent the &quot;library entry point&quot;. ">Root</a> goes out of scope, SDL will be deinitialized for you. This pattern (idiom) is called RAII. If you aren't familiar with it, I suggest reading <a href="https://en.cppreference.com/w/cpp/language/raii">https://en.cppreference.com/w/cpp/language/raii</a> </p>
 
 <p class="definition">Definition at line <a class="el" href="sdl_8hpp_source.html#l00082">82</a> of file <a class="el" href="sdl_8hpp_source.html">sdl.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -132,8 +133,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Construct a root object. This object initialize SDL for you. SDL is de-initialized when object quit scope. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Construct a root object. </p>
+<p>This object initialize SDL for you. SDL is de-initialized when object quit scope </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">flags</td><td>The intialization flags that you want to pass to SDL_Init. Default value is SDL_INIT_EVERYTHING</td></tr>
   </table>
@@ -183,7 +184,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesdl.html">sdl</a></li><li class="navelem"><a class="el" href="structsdl_1_1_root.html">Root</a></li>
-    <li class="footer">Generated on Sun Jun 21 2020 17:03:28 for cpp-sdl2 by
+    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

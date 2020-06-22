@@ -23,6 +23,8 @@ var classsdl_1_1_game_controller =
     [ "operator=", "classsdl_1_1_game_controller.html#af4a8b4e2b783221c3cd6f34b73e080e5", null ],
     [ "operator=", "classsdl_1_1_game_controller.html#ae8909e4fb671f859bbcd23e715dcabca", null ],
     [ "ptr", "classsdl_1_1_game_controller.html#abb25a82d557eeae9b575c59889b62346", null ],
+    [ "rumble", "classsdl_1_1_game_controller.html#aee102c6b97afbe2ff2bfd5e51feee3c5", null ],
+    [ "rumble", "classsdl_1_1_game_controller.html#a34f5314c339050420121da01834f703e", null ],
     [ "controller_", "classsdl_1_1_game_controller.html#ac4f6e45ac68e85e150fe5c9ffef8aab5", null ],
     [ "owned_", "classsdl_1_1_game_controller.html#a11be943d19aa179815b4bf80733112c5", null ]
 ];

@@ -136,6 +136,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a655c8535a890f3cf6bdb2d1069d37e40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until next event occur. This will stop the execution of your code until <em>something</em> happens.  <a href="#a655c8535a890f3cf6bdb2d1069d37e40">More...</a><br /></td></tr>
 <tr class="separator:a655c8535a890f3cf6bdb2d1069d37e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a4224d51ba3e27310deaaf302755004"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a4a4224d51ba3e27310deaaf302755004">wait</a> (int timeout)</td></tr>
+<tr class="memdesc:a4a4224d51ba3e27310deaaf302755004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until next event occur, or until the given duration expired.  <a href="#a4a4224d51ba3e27310deaaf302755004">More...</a><br /></td></tr>
 <tr class="separator:a4a4224d51ba3e27310deaaf302755004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7640d424fda776781dc7dfd0c2640e0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a7640d424fda776781dc7dfd0c2640e0c">push</a> () const</td></tr>
 <tr class="memdesc:a7640d424fda776781dc7dfd0c2640e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push the current event to the list of event to process.  <a href="#a7640d424fda776781dc7dfd0c2640e0c">More...</a><br /></td></tr>
@@ -147,12 +148,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a28b943079f75e42fd471f0717d585af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if there are events in the queue.  <a href="#a28b943079f75e42fd471f0717d585af1">More...</a><br /></td></tr>
 <tr class="separator:a28b943079f75e42fd471f0717d585af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a627a98b2a2a37b0342814f2e4598bee0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a627a98b2a2a37b0342814f2e4598bee0">has_events</a> (Uint32 <a class="el" href="unionsdl_1_1_event.html#ae96fcade63f58309d19cacc8ef299d5f">type</a>)</td></tr>
+<tr class="memdesc:a627a98b2a2a37b0342814f2e4598bee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if there are events of a specific type in the queue.  <a href="#a627a98b2a2a37b0342814f2e4598bee0">More...</a><br /></td></tr>
 <tr class="separator:a627a98b2a2a37b0342814f2e4598bee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8dd850efb8f3f63925d0a1e7c45104a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#af8dd850efb8f3f63925d0a1e7c45104a">has_events</a> (Uint32 minType, Uint32 maxType)</td></tr>
+<tr class="memdesc:af8dd850efb8f3f63925d0a1e7c45104a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if there are events of a specific range of types in the queue.  <a href="#af8dd850efb8f3f63925d0a1e7c45104a">More...</a><br /></td></tr>
 <tr class="separator:af8dd850efb8f3f63925d0a1e7c45104a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f007808de0f50a73d3daf83d9625a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a2f007808de0f50a73d3daf83d9625a96">pump_events</a> ()</td></tr>
+<tr class="memdesc:a2f007808de0f50a73d3daf83d9625a96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pump the event loop from the OS event system.  <a href="#a2f007808de0f50a73d3daf83d9625a96">More...</a><br /></td></tr>
 <tr class="separator:a2f007808de0f50a73d3daf83d9625a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a510198536a376655a1d52ec284e9bbc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a510198536a376655a1d52ec284e9bbc9">flush_events</a> (Uint32 minType, Uint32 maxType)</td></tr>
+<tr class="memdesc:a510198536a376655a1d52ec284e9bbc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear events of a range of types from the event queue.  <a href="#a510198536a376655a1d52ec284e9bbc9">More...</a><br /></td></tr>
 <tr class="separator:a510198536a376655a1d52ec284e9bbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee28a7d72e6ee8d5212c6092431c577a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#aee28a7d72e6ee8d5212c6092431c577a">flush_events</a> ()</td></tr>
 <tr class="memdesc:aee28a7d72e6ee8d5212c6092431c577a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all events from the event queue.  <a href="#aee28a7d72e6ee8d5212c6092431c577a">More...</a><br /></td></tr>
@@ -161,23 +166,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aaf55815c3efefac8ec909bd43d289b02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear events from a specific type from the event queue.  <a href="#aaf55815c3efefac8ec909bd43d289b02">More...</a><br /></td></tr>
 <tr class="separator:aaf55815c3efefac8ec909bd43d289b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c466b35e8326e5b7b44c32a48052059"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a0c466b35e8326e5b7b44c32a48052059">add_events</a> (std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt; const &amp;events, Uint32 minType, Uint32 maxType)</td></tr>
+<tr class="memdesc:a0c466b35e8326e5b7b44c32a48052059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add events of a specific range of types to the event queue.  <a href="#a0c466b35e8326e5b7b44c32a48052059">More...</a><br /></td></tr>
 <tr class="separator:a0c466b35e8326e5b7b44c32a48052059"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41738554361640df5df504b1ac7abd69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a41738554361640df5df504b1ac7abd69">add_events</a> (std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt; const &amp;events)</td></tr>
+<tr class="memdesc:a41738554361640df5df504b1ac7abd69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add events to the queue.  <a href="#a41738554361640df5df504b1ac7abd69">More...</a><br /></td></tr>
 <tr class="separator:a41738554361640df5df504b1ac7abd69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ff9659acd990ce3349afe5cf3f19729"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a6ff9659acd990ce3349afe5cf3f19729">add_events</a> (std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt; const &amp;events, Uint32 <a class="el" href="unionsdl_1_1_event.html#ae96fcade63f58309d19cacc8ef299d5f">type</a>)</td></tr>
+<tr class="memdesc:a6ff9659acd990ce3349afe5cf3f19729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add events of a specific type to the queue.  <a href="#a6ff9659acd990ce3349afe5cf3f19729">More...</a><br /></td></tr>
 <tr class="separator:a6ff9659acd990ce3349afe5cf3f19729"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dfa98022928182b5088e133d96f2c0f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a6dfa98022928182b5088e133d96f2c0f">peek_events</a> (size_t maxEvents, Uint32 minType, Uint32 maxType)</td></tr>
+<tr class="memdesc:a6dfa98022928182b5088e133d96f2c0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek at multiple future events.  <a href="#a6dfa98022928182b5088e133d96f2c0f">More...</a><br /></td></tr>
 <tr class="separator:a6dfa98022928182b5088e133d96f2c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec65adf66735c30d1bb1c51b88eab84c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#aec65adf66735c30d1bb1c51b88eab84c">peek_events</a> (size_t maxEvents)</td></tr>
 <tr class="memdesc:aec65adf66735c30d1bb1c51b88eab84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek at future events.  <a href="#aec65adf66735c30d1bb1c51b88eab84c">More...</a><br /></td></tr>
 <tr class="separator:aec65adf66735c30d1bb1c51b88eab84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c05ae0c2d737cd3cfa1c14e8b1636db"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a9c05ae0c2d737cd3cfa1c14e8b1636db">peek_events</a> (size_t maxEvents, Uint32 <a class="el" href="unionsdl_1_1_event.html#ae96fcade63f58309d19cacc8ef299d5f">type</a>)</td></tr>
+<tr class="memdesc:a9c05ae0c2d737cd3cfa1c14e8b1636db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek events from a specific type.  <a href="#a9c05ae0c2d737cd3cfa1c14e8b1636db">More...</a><br /></td></tr>
 <tr class="separator:a9c05ae0c2d737cd3cfa1c14e8b1636db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa72491880e0bfd2366c0d07bafaac8b1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#aa72491880e0bfd2366c0d07bafaac8b1">get_events</a> (size_t maxEvents, Uint32 minType, Uint32 maxType)</td></tr>
+<tr class="memdesc:aa72491880e0bfd2366c0d07bafaac8b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get events from the queue  maxEvents max number of events to get.  <a href="#aa72491880e0bfd2366c0d07bafaac8b1">More...</a><br /></td></tr>
 <tr class="separator:aa72491880e0bfd2366c0d07bafaac8b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa477f06ba4f51d41406d48b2c44c5bae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#aa477f06ba4f51d41406d48b2c44c5bae">get_events</a> (size_t maxEvents)</td></tr>
+<tr class="memdesc:aa477f06ba4f51d41406d48b2c44c5bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get events from the queue.  <a href="#aa477f06ba4f51d41406d48b2c44c5bae">More...</a><br /></td></tr>
 <tr class="separator:aa477f06ba4f51d41406d48b2c44c5bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98b29053af9e4bd79411c62c75319d83"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="unionsdl_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a98b29053af9e4bd79411c62c75319d83">get_events</a> (size_t maxEvents, Uint32 <a class="el" href="unionsdl_1_1_event.html#ae96fcade63f58309d19cacc8ef299d5f">type</a>)</td></tr>
+<tr class="memdesc:a98b29053af9e4bd79411c62c75319d83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get events from a specific type.  <a href="#a98b29053af9e4bd79411c62c75319d83">More...</a><br /></td></tr>
 <tr class="separator:a98b29053af9e4bd79411c62c75319d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb0beffec79789e227bc8ceb4316e7f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionsdl_1_1_event.html#a2b06e83e673f072c9b3620be037a0ddd">Event::State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#adb0beffec79789e227bc8ceb4316e7f5">event_state</a> (Uint32 <a class="el" href="unionsdl_1_1_event.html#ae96fcade63f58309d19cacc8ef299d5f">type</a>)</td></tr>
 <tr class="separator:adb0beffec79789e227bc8ceb4316e7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,7 +221,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a90caf6d089bad9edbc91f0f3c73e3edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common event data.  <a href="#a90caf6d089bad9edbc91f0f3c73e3edb">More...</a><br /></td></tr>
 <tr class="separator:a90caf6d089bad9edbc91f0f3c73e3edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae93d0bc0d5a7a915c52afbbad92bb480"><td class="memItemLeft" align="right" valign="top">SDL_WindowEvent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#ae93d0bc0d5a7a915c52afbbad92bb480">window</a></td></tr>
-<tr class="memdesc:ae93d0bc0d5a7a915c52afbbad92bb480"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. Also contains accessor to any window related adjacent functionality like Ope...">Window</a> event data.  <a href="#ae93d0bc0d5a7a915c52afbbad92bb480">More...</a><br /></td></tr>
+<tr class="memdesc:ae93d0bc0d5a7a915c52afbbad92bb480"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. ">Window</a> event data.  <a href="#ae93d0bc0d5a7a915c52afbbad92bb480">More...</a><br /></td></tr>
 <tr class="separator:ae93d0bc0d5a7a915c52afbbad92bb480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3e303e61d97d507e1c93adb8f4cb0a4"><td class="memItemLeft" align="right" valign="top">SDL_KeyboardEvent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#ae3e303e61d97d507e1c93adb8f4cb0a4">key</a></td></tr>
 <tr class="memdesc:ae3e303e61d97d507e1c93adb8f4cb0a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard event data.  <a href="#ae3e303e61d97d507e1c93adb8f4cb0a4">More...</a><br /></td></tr>
@@ -276,7 +289,13 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ab76a549d04d8a3446a11c8e01e09f8d2"><td class="memItemLeft" align="right" valign="top">SDL_DropEvent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#ab76a549d04d8a3446a11c8e01e09f8d2">drop</a></td></tr>
 <tr class="memdesc:ab76a549d04d8a3446a11c8e01e09f8d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drag and drop event data.  <a href="#ab76a549d04d8a3446a11c8e01e09f8d2">More...</a><br /></td></tr>
 <tr class="separator:ab76a549d04d8a3446a11c8e01e09f8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6941f60c692dd5356b3b8cf34facfde"><td class="memItemLeft" align="right" valign="top">SDL_SensorEvent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#ae6941f60c692dd5356b3b8cf34facfde">sensor</a></td></tr>
+<tr class="separator:ae6941f60c692dd5356b3b8cf34facfde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa15a474ee766d1d8e6b4725fe906c50c"><td class="memItemLeft" align="right" valign="top">SDL_DisplayEvent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#aa15a474ee766d1d8e6b4725fe906c50c">display</a></td></tr>
+<tr class="memdesc:aa15a474ee766d1d8e6b4725fe906c50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sensor event data.  <a href="#aa15a474ee766d1d8e6b4725fe906c50c">More...</a><br /></td></tr>
+<tr class="separator:aa15a474ee766d1d8e6b4725fe906c50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a934740df0354b367b83bf8e3443ff772"><td class="memItemLeft" align="right" valign="top">Uint8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsdl_1_1_event.html#a934740df0354b367b83bf8e3443ff772">padding</a> [56]</td></tr>
+<tr class="memdesc:a934740df0354b367b83bf8e3443ff772"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. ">Window</a> event data.  <a href="#a934740df0354b367b83bf8e3443ff772">More...</a><br /></td></tr>
 <tr class="separator:a934740df0354b367b83bf8e3443ff772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -416,7 +435,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Add events of a specific range of types to the event queue </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Add events of a specific range of types to the event queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">events</td><td>vector of events to be added </td></tr>
     <tr><td class="paramname">minType</td><td>lower type boundary of the range </td></tr>
@@ -454,7 +475,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Add events to the queue </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Add events to the queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">events</td><td>vector of events to be added </td></tr>
   </table>
@@ -500,7 +523,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Add events of a specific type to the queue </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Add events of a specific type to the queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">events</td><td>vector of events to be added </td></tr>
     <tr><td class="paramname">type</td><td>type of events to be added </td></tr>
@@ -575,7 +600,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Clear events of a range of types from the event queue </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Clear events of a range of types from the event queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">minType</td><td>lower type boundary of the range </td></tr>
     <tr><td class="paramname">maxType</td><td>upper type boundary of the range </td></tr>
@@ -693,7 +720,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get events from the queue  maxEvents max number of events to get </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Get events from the queue  maxEvents max number of events to get. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">minType</td><td>lower bound of type range </td></tr>
     <tr><td class="paramname">maxType</td><td>upper bound of type range </td></tr>
@@ -730,7 +759,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get events from the queue </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Get events from the queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The type of events to look for </td></tr>
     <tr><td class="paramname">maxEvents</td><td>max number of events to get </td></tr>
@@ -777,7 +808,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get events from a specific type </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Get events from a specific type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The type of events to look for </td></tr>
     <tr><td class="paramname">maxEvents</td><td>max number of events to get </td></tr>
@@ -843,7 +876,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return true if there are events of a specific type in the queue </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return true if there are events of a specific type in the queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>the type of the events you want to check for </td></tr>
   </table>
@@ -887,7 +922,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return true if there are events of a specific range of types in the queue </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return true if there are events of a specific range of types in the queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">minType</td><td>lower type boundary of the range </td></tr>
     <tr><td class="paramname">maxType</td><td>upper type boundary of the range </td></tr>
@@ -998,7 +1035,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Peek at multiple future events </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Peek at multiple future events. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">maxEvents</td><td>max number of events to get </td></tr>
     <tr><td class="paramname">minType</td><td>lower bound of event type range </td></tr>
@@ -1078,7 +1117,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Peek events from a specific type </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Peek events from a specific type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The type of events to look for </td></tr>
   </table>
@@ -1204,7 +1245,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pump the event loop from the OS event system. only call this from the main thread (or the thread that initialized the video/window systems) This is only usefull if you aren't polling or waiting for events </p>
+
+<p>Pump the event loop from the OS event system. </p>
+<p>only call this from the main thread (or the thread that initialized the video/window systems) This is only usefull if you aren't polling or waiting for events </p>
 
 <p class="definition">Definition at line <a class="el" href="event_8hpp_source.html#l00208">208</a> of file <a class="el" href="event_8hpp_source.html">event.hpp</a>.</p>
 
@@ -1457,7 +1500,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Wait until next event occur, or until the given duration expired </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Wait until next event occur, or until the given duration expired. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">timeout</td><td>max duration to wait for in milliseconds </td></tr>
   </table>
@@ -1594,6 +1639,24 @@ Public Attributes</h2></td></tr>
 <p>Gesture event data. </p>
 
 <p class="definition">Definition at line <a class="el" href="event_8hpp_source.html#l00060">60</a> of file <a class="el" href="event_8hpp_source.html">event.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aa15a474ee766d1d8e6b4725fe906c50c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa15a474ee766d1d8e6b4725fe906c50c">&#9670;&nbsp;</a></span>display</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_DisplayEvent sdl::Event::display</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sensor event data. </p>
+
+<p class="definition">Definition at line <a class="el" href="event_8hpp_source.html#l00064">64</a> of file <a class="el" href="event_8hpp_source.html">event.hpp</a>.</p>
 
 </div>
 </div>
@@ -1789,6 +1852,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. ">Window</a> event data. </p>
+
 <p class="definition">Definition at line <a class="el" href="event_8hpp_source.html#l00075">75</a> of file <a class="el" href="event_8hpp_source.html">event.hpp</a>.</p>
 
 </div>
@@ -1808,6 +1873,22 @@ Public Attributes</h2></td></tr>
 <p>Quit request event data. </p>
 
 <p class="definition">Definition at line <a class="el" href="event_8hpp_source.html#l00055">55</a> of file <a class="el" href="event_8hpp_source.html">event.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ae6941f60c692dd5356b3b8cf34facfde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6941f60c692dd5356b3b8cf34facfde">&#9670;&nbsp;</a></span>sensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_SensorEvent sdl::Event::sensor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="event_8hpp_source.html#l00063">63</a> of file <a class="el" href="event_8hpp_source.html">event.hpp</a>.</p>
 
 </div>
 </div>
@@ -1931,7 +2012,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. Also contains accessor to any window related adjacent functionality like Ope...">Window</a> event data. </p>
+<p><a class="el" href="classsdl_1_1_window.html" title="Represent an SDL window. ">Window</a> event data. </p>
 
 <p class="definition">Definition at line <a class="el" href="event_8hpp_source.html#l00039">39</a> of file <a class="el" href="event_8hpp_source.html">event.hpp</a>.</p>
 
@@ -1946,7 +2027,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesdl.html">sdl</a></li><li class="navelem"><a class="el" href="unionsdl_1_1_event.html">Event</a></li>
-    <li class="footer">Generated on Sun Jun 21 2020 17:03:28 for cpp-sdl2 by
+    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

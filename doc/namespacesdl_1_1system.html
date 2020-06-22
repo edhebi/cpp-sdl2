@@ -92,15 +92,21 @@ $(document).ready(function(){initNavTree('namespacesdl_1_1system.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:af011358091cb2898765d319a54146a52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1system.html#af011358091cb2898765d319a54146a52">is_tablet</a> ()</td></tr>
+<tr class="separator:af011358091cb2898765d319a54146a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add15780ef1cee72da5470005dcdb3da0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1system.html#add15780ef1cee72da5470005dcdb3da0">has_AVX512F</a> ()</td></tr>
+<tr class="separator:add15780ef1cee72da5470005dcdb3da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6808937ade266ef5bf523c2045d9881"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1system.html#ab6808937ade266ef5bf523c2045d9881">platform</a> ()</td></tr>
 <tr class="memdesc:ab6808937ade266ef5bf523c2045d9881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get used platform as a string.  <a href="#ab6808937ade266ef5bf523c2045d9881">More...</a><br /></td></tr>
 <tr class="separator:ab6808937ade266ef5bf523c2045d9881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa991d36b291db11c3bd257f8d45209fc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1system.html#aa991d36b291db11c3bd257f8d45209fc">cpu_cacheline_size</a> ()</td></tr>
+<tr class="memdesc:aa991d36b291db11c3bd257f8d45209fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of a cacheline.  <a href="#aa991d36b291db11c3bd257f8d45209fc">More...</a><br /></td></tr>
 <tr class="separator:aa991d36b291db11c3bd257f8d45209fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb2d754ceb3d3b510058d5af27f6dac6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1system.html#aeb2d754ceb3d3b510058d5af27f6dac6">cpu_count</a> ()</td></tr>
 <tr class="memdesc:aeb2d754ceb3d3b510058d5af27f6dac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the numbers of CPU in the system.  <a href="#aeb2d754ceb3d3b510058d5af27f6dac6">More...</a><br /></td></tr>
 <tr class="separator:aeb2d754ceb3d3b510058d5af27f6dac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad22122421ec9c31080ccf89fc2a43824"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1system.html#ad22122421ec9c31080ccf89fc2a43824">system_ram</a> ()</td></tr>
+<tr class="memdesc:ad22122421ec9c31080ccf89fc2a43824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of ram in the system `.  <a href="#ad22122421ec9c31080ccf89fc2a43824">More...</a><br /></td></tr>
 <tr class="separator:ad22122421ec9c31080ccf89fc2a43824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f2e1f6fde3a580e501f44467c1d65d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1system.html#a2f2e1f6fde3a580e501f44467c1d65d9">has_3DNow</a> ()</td></tr>
 <tr class="memdesc:a2f2e1f6fde3a580e501f44467c1d65d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if system has AMD 3DNow! support.  <a href="#a2f2e1f6fde3a580e501f44467c1d65d9">More...</a><br /></td></tr>
@@ -161,7 +167,9 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the size of a cacheline </p><dl class="section return"><dt>Returns</dt><dd>size of "L1" cache, in bytes </dd></dl>
+
+<p>Get the size of a cacheline. </p>
+<dl class="section return"><dt>Returns</dt><dd>size of "L1" cache, in bytes </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utils_8hpp_source.html#l00064">64</a> of file <a class="el" href="utils_8hpp_source.html">utils.hpp</a>.</p>
 
@@ -309,6 +317,33 @@ Functions</h2></td></tr>
 <p>Return true if CPU has AVX2 instruction set support. </p>
 
 <p class="definition">Definition at line <a class="el" href="utils_8hpp_source.html#l00095">95</a> of file <a class="el" href="utils_8hpp_source.html">utils.hpp</a>.</p>
+
+</div>
+</div>
+<a id="add15780ef1cee72da5470005dcdb3da0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add15780ef1cee72da5470005dcdb3da0">&#9670;&nbsp;</a></span>has_AVX512F()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sdl::system::has_AVX512F </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utils_8hpp_source.html#l00050">50</a> of file <a class="el" href="utils_8hpp_source.html">utils.hpp</a>.</p>
 
 </div>
 </div>
@@ -515,6 +550,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af011358091cb2898765d319a54146a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af011358091cb2898765d319a54146a52">&#9670;&nbsp;</a></span>is_tablet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sdl::system::is_tablet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utils_8hpp_source.html#l00045">45</a> of file <a class="el" href="utils_8hpp_source.html">utils.hpp</a>.</p>
+
+</div>
+</div>
 <a id="ab6808937ade266ef5bf523c2045d9881"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab6808937ade266ef5bf523c2045d9881">&#9670;&nbsp;</a></span>platform()</h2>
 
@@ -566,7 +628,9 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the amount of ram in the system `</p><dl class="section return"><dt>Returns</dt><dd>amount of RAM in MB </dd></dl>
+
+<p>Get the amount of ram in the system `. </p>
+<dl class="section return"><dt>Returns</dt><dd>amount of RAM in MB </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utils_8hpp_source.html#l00077">77</a> of file <a class="el" href="utils_8hpp_source.html">utils.hpp</a>.</p>
 
@@ -578,7 +642,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesdl.html">sdl</a></li><li class="navelem"><a class="el" href="namespacesdl_1_1system.html">system</a></li>
-    <li class="footer">Generated on Sun Jun 21 2020 17:03:28 for cpp-sdl2 by
+    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

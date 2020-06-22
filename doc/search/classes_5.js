@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joystick',['Joystick',['../classsdl_1_1_joystick.html',1,'sdl']]]
+  ['haptic',['Haptic',['../classsdl_1_1_haptic.html',1,'sdl']]]
 ];

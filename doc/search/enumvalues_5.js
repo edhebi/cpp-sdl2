@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['query',['Query',['../unionsdl_1_1_event.html#a2b06e83e673f072c9b3620be037a0ddda66c1b4c7f3dc385b68a9fa903ccd016d',1,'sdl::Event']]]
+  ['on_5fbattery',['on_battery',['../namespacesdl_1_1power.html#a01738f4f3cd469c27dcebd4451618d21ae0c6b97d642863feb21ed192e6945fa9',1,'sdl::power']]]
 ];

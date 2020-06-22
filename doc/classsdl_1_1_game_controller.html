@@ -136,6 +136,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2c19991fbc293a6b2b60b29ac278ce8"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_game_controller.html#ac2c19991fbc293a6b2b60b29ac278ce8">get_button</a> (SDL_GameControllerButton button) const</td></tr>
 <tr class="memdesc:ac2c19991fbc293a6b2b60b29ac278ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current imedate value of the given button.  <a href="#ac2c19991fbc293a6b2b60b29ac278ce8">More...</a><br /></td></tr>
 <tr class="separator:ac2c19991fbc293a6b2b60b29ac278ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee102c6b97afbe2ff2bfd5e51feee3c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_game_controller.html#aee102c6b97afbe2ff2bfd5e51feee3c5">rumble</a> (uint16_t low_freq, uint16_t high_freq, std::chrono::milliseconds duration) const</td></tr>
+<tr class="memdesc:aee102c6b97afbe2ff2bfd5e51feee3c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play a simple rumble. If the controller has 2 motors, the two values will control one of them. If the controller only has one, the values will be mixed together.  <a href="#aee102c6b97afbe2ff2bfd5e51feee3c5">More...</a><br /></td></tr>
+<tr class="separator:aee102c6b97afbe2ff2bfd5e51feee3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f5314c339050420121da01834f703e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_game_controller.html#a34f5314c339050420121da01834f703e">rumble</a> (uint16_t low_freq, uint16_t high_freq, uint32_t millisec_duration) const</td></tr>
+<tr class="memdesc:a34f5314c339050420121da01834f703e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play a simple rumble. If the controller has 2 motors, the two values will control one of them. If the controller only has one, the values will be mixed together.  <a href="#a34f5314c339050420121da01834f703e">More...</a><br /></td></tr>
+<tr class="separator:a34f5314c339050420121da01834f703e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65c5d81dfea1594a42e812e04ba7609a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_game_controller.html#a65c5d81dfea1594a42e812e04ba7609a">name</a> () const</td></tr>
 <tr class="separator:a65c5d81dfea1594a42e812e04ba7609a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -528,7 +534,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="game__controller_8hpp_source.html#l00092">92</a> of file <a class="el" href="game__controller_8hpp_source.html">game_controller.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="game__controller_8hpp_source.html#l00226">controller_</a>.</p>
+<p class="reference">References <a class="el" href="game__controller_8hpp_source.html#l00226">controller_</a>, and <a class="el" href="game__controller_8hpp_source.html#l00099">rumble()</a>.</p>
 
 </div>
 </div>
@@ -895,6 +901,102 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="aee102c6b97afbe2ff2bfd5e51feee3c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee102c6b97afbe2ff2bfd5e51feee3c5">&#9670;&nbsp;</a></span>rumble() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sdl::GameController::rumble </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>low_freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>high_freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::milliseconds&#160;</td>
+          <td class="paramname"><em>duration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Play a simple rumble. If the controller has 2 motors, the two values will control one of them. If the controller only has one, the values will be mixed together. </p>
+
+<p class="definition">Definition at line <a class="el" href="game__controller_8hpp_source.html#l00099">99</a> of file <a class="el" href="game__controller_8hpp_source.html">game_controller.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game__controller_8hpp_source.html#l00092">get_button()</a>.</p>
+
+</div>
+</div>
+<a id="a34f5314c339050420121da01834f703e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f5314c339050420121da01834f703e">&#9670;&nbsp;</a></span>rumble() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sdl::GameController::rumble </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>low_freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>high_freq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>millisec_duration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Play a simple rumble. If the controller has 2 motors, the two values will control one of them. If the controller only has one, the values will be mixed together. </p>
+
+<p class="definition">Definition at line <a class="el" href="game__controller_8hpp_source.html#l00109">109</a> of file <a class="el" href="game__controller_8hpp_source.html">game_controller.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="game__controller_8hpp_source.html#l00226">controller_</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="ac4f6e45ac68e85e150fe5c9ffef8aab5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac4f6e45ac68e85e150fe5c9ffef8aab5">&#9670;&nbsp;</a></span>controller_</h2>
@@ -918,7 +1020,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="game__controller_8hpp_source.html#l00226">226</a> of file <a class="el" href="game__controller_8hpp_source.html">game_controller.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="game__controller_8hpp_source.html#l00018">GameController()</a>, <a class="el" href="game__controller_8hpp_source.html#l00086">get_axis()</a>, <a class="el" href="game__controller_8hpp_source.html#l00092">get_button()</a>, <a class="el" href="game__controller_8hpp_source.html#l00080">is_attached()</a>, <a class="el" href="game__controller_8hpp_source.html#l00117">name()</a>, <a class="el" href="game__controller_8hpp_source.html#l00074">open_haptic()</a>, <a class="el" href="game__controller_8hpp_source.html#l00044">operator=()</a>, <a class="el" href="game__controller_8hpp_source.html#l00071">ptr()</a>, and <a class="el" href="game__controller_8hpp_source.html#l00065">~GameController()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="game__controller_8hpp_source.html#l00018">GameController()</a>, <a class="el" href="game__controller_8hpp_source.html#l00086">get_axis()</a>, <a class="el" href="game__controller_8hpp_source.html#l00092">get_button()</a>, <a class="el" href="game__controller_8hpp_source.html#l00080">is_attached()</a>, <a class="el" href="game__controller_8hpp_source.html#l00117">name()</a>, <a class="el" href="game__controller_8hpp_source.html#l00074">open_haptic()</a>, <a class="el" href="game__controller_8hpp_source.html#l00044">operator=()</a>, <a class="el" href="game__controller_8hpp_source.html#l00071">ptr()</a>, <a class="el" href="game__controller_8hpp_source.html#l00109">rumble()</a>, and <a class="el" href="game__controller_8hpp_source.html#l00065">~GameController()</a>.</p>
 
 </div>
 </div>
@@ -957,7 +1059,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesdl.html">sdl</a></li><li class="navelem"><a class="el" href="classsdl_1_1_game_controller.html">GameController</a></li>
-    <li class="footer">Generated on Sun Jun 21 2020 17:03:28 for cpp-sdl2 by
+    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

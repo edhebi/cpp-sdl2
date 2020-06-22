@@ -105,6 +105,7 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aeea8d51a3d5644c21613ac4483ee117b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_shared_object.html#aeea8d51a3d5644c21613ac4483ee117b">SharedObject</a> (std::string const &amp;objectName)</td></tr>
+<tr class="memdesc:aeea8d51a3d5644c21613ac4483ee117b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a shared object ( = Load the named library dynamically)  <a href="#aeea8d51a3d5644c21613ac4483ee117b">More...</a><br /></td></tr>
 <tr class="separator:aeea8d51a3d5644c21613ac4483ee117b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afad03783da92e128881c73e4a422d4cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_shared_object.html#afad03783da92e128881c73e4a422d4cc">SharedObject</a> ()=default</td></tr>
 <tr class="memdesc:afad03783da92e128881c73e4a422d4cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an empty shared object handler. You can move assign to it.  <a href="#afad03783da92e128881c73e4a422d4cc">More...</a><br /></td></tr>
@@ -129,6 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abe2e67c5fa93ebf3b9d4573d3864b015"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55d18d2e7895edf820870b6a81adab98"><td class="memTemplParams" colspan="2">template&lt;typename FunctionPointerSignature &gt; </td></tr>
 <tr class="memitem:a55d18d2e7895edf820870b6a81adab98"><td class="memTemplItemLeft" align="right" valign="top">FunctionPointerSignature&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsdl_1_1_shared_object.html#a55d18d2e7895edf820870b6a81adab98">function_pointer</a> (std::string const &amp;functionName) const</td></tr>
+<tr class="memdesc:a55d18d2e7895edf820870b6a81adab98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Syntactic sugar overload, provide you a way to specify the actual type of the function pointer e.g: mySharedObject.function_pointer&lt;returnType (*) (args)&gt;("nameOfExportedFunction");.  <a href="#a55d18d2e7895edf820870b6a81adab98">More...</a><br /></td></tr>
 <tr class="separator:a55d18d2e7895edf820870b6a81adab98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
@@ -217,7 +219,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get a shared object ( = Load the named library dynamically) </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Get a shared object ( = Load the named library dynamically) </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">objectName</td><td>Name of the library. </td></tr>
   </table>
@@ -404,7 +408,9 @@ template&lt;typename FunctionPointerSignature &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Syntactic sugar overload, provide you a way to specify the actual type of the function pointer e.g: mySharedObject.function_pointer&lt;returnType (*) (args)&gt;("nameOfExportedFunction"); </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Syntactic sugar overload, provide you a way to specify the actual type of the function pointer e.g: mySharedObject.function_pointer&lt;returnType (*) (args)&gt;("nameOfExportedFunction");. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">functionName</td><td>The name of a callable symbol that can be found in the loaded library </td></tr>
   </table>
@@ -513,7 +519,7 @@ template&lt;typename FunctionPointerSignature &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesdl.html">sdl</a></li><li class="navelem"><a class="el" href="classsdl_1_1_shared_object.html">SharedObject</a></li>
-    <li class="footer">Generated on Sun Jun 21 2020 17:03:28 for cpp-sdl2 by
+    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

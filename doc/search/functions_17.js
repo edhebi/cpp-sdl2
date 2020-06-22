@@ -3,6 +3,7 @@ var searchData=
   ['_7ecursor',['~Cursor',['../classsdl_1_1_mouse_1_1_cursor.html#a60317c56db0caf246e2f25e4d58bc4e2',1,'sdl::Mouse::Cursor']]],
   ['_7eeventfilter',['~EventFilter',['../structsdl_1_1_event_1_1_event_filter.html#ad1249f4a569bc0ceecd40695e8113d85',1,'sdl::Event::EventFilter']]],
   ['_7egamecontroller',['~GameController',['../classsdl_1_1_game_controller.html#a1a61f608d9d36a01b1a16999f1fb8200',1,'sdl::GameController']]],
+  ['_7eglcontext',['~GlContext',['../classsdl_1_1_window_1_1_gl_context.html#a341ae71a1aa7644bda4e8cf763664948',1,'sdl::Window::GlContext']]],
   ['_7ehaptic',['~Haptic',['../classsdl_1_1_haptic.html#ac83fa1e210bd97d54d8d371349f3fd8d',1,'sdl::Haptic']]],
   ['_7einstalledeffect',['~InstalledEffect',['../classsdl_1_1_haptic_1_1_installed_effect.html#a5066e10372f497568e98220491fc5427',1,'sdl::Haptic::InstalledEffect']]],
   ['_7ejoystick',['~Joystick',['../classsdl_1_1_joystick.html#a1addd855a912f0f9dd929fd6cb5b983c',1,'sdl::Joystick']]],

@@ -5,6 +5,8 @@ var searchData=
   ['has_5faltivec',['has_AltiVec',['../namespacesdl_1_1system.html#a40feee94cd54f8c6b2e3e4bc2674d04d',1,'sdl::system']]],
   ['has_5favx',['has_AVX',['../namespacesdl_1_1system.html#a531bc315001df972e33c0d1ef1a93003',1,'sdl::system']]],
   ['has_5favx2',['has_AVX2',['../namespacesdl_1_1system.html#aeab84f18929ab6e7f21159d93b70d286',1,'sdl::system']]],
+  ['has_5favx512f',['has_AVX512F',['../namespacesdl_1_1system.html#add15780ef1cee72da5470005dcdb3da0',1,'sdl::system']]],
+  ['has_5fcolorkey',['has_colorkey',['../classsdl_1_1_surface.html#a3b16ad2048e0d4fd661a04abbdf04aef',1,'sdl::Surface']]],
   ['has_5fevents',['has_events',['../unionsdl_1_1_event.html#a28b943079f75e42fd471f0717d585af1',1,'sdl::Event::has_events()'],['../unionsdl_1_1_event.html#a627a98b2a2a37b0342814f2e4598bee0',1,'sdl::Event::has_events(Uint32 type)'],['../unionsdl_1_1_event.html#af8dd850efb8f3f63925d0a1e7c45104a',1,'sdl::Event::has_events(Uint32 minType, Uint32 maxType)']]],
   ['has_5fmmx',['has_MMX',['../namespacesdl_1_1system.html#acbce1d8e2093f59259e58ae09788dee7',1,'sdl::system']]],
   ['has_5frdtsc',['has_RDTSC',['../namespacesdl_1_1system.html#ab035c8ac7d7a5e771f348cb719e60564',1,'sdl::system']]],

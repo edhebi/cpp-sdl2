@@ -10,5 +10,6 @@ var searchData=
   ['is_5fcapable_5fof',['is_capable_of',['../classsdl_1_1_haptic.html#a57cb250561f1f29c2683e1ff0d7a4539',1,'sdl::Haptic']]],
   ['is_5feffect_5fcompatible',['is_effect_compatible',['../classsdl_1_1_haptic.html#a7c8f7cb8514f64c9bbb66fa6762354f8',1,'sdl::Haptic']]],
   ['is_5fempty',['is_empty',['../classsdl_1_1_rect.html#a69a8b361fbfa87b38f668fdaa3c62f77',1,'sdl::Rect']]],
-  ['is_5fnull',['is_null',['../classsdl_1_1_vec2.html#aec63671587b1348202931ccc52ea8fa2',1,'sdl::Vec2']]]
+  ['is_5fnull',['is_null',['../classsdl_1_1_vec2.html#aec63671587b1348202931ccc52ea8fa2',1,'sdl::Vec2']]],
+  ['is_5ftablet',['is_tablet',['../namespacesdl_1_1system.html#af011358091cb2898765d319a54146a52',1,'sdl::system']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['charged',['charged',['../namespacesdl_1_1power.html#a01738f4f3cd469c27dcebd4451618d21a48aee20d947736a18c6e9d09b526f75a',1,'sdl::power']]],
-  ['charging',['charging',['../namespacesdl_1_1power.html#a01738f4f3cd469c27dcebd4451618d21a05a0c26d8e746429c786c8e53378b9c9',1,'sdl::power']]]
+  ['adaptive_5fvsync',['adaptive_vsync',['../classsdl_1_1_window.html#a2918cff432e49ef4716a8a5be8ed7dd7a784e64be0340a9f030a95865a05b8cc6',1,'sdl::Window']]]
 ];

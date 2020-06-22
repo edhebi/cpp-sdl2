@@ -2,6 +2,7 @@ var namespacesdl =
 [
     [ "details", "namespacesdl_1_1details.html", "namespacesdl_1_1details" ],
     [ "Mouse", "namespacesdl_1_1_mouse.html", "namespacesdl_1_1_mouse" ],
+    [ "simd", "namespacesdl_1_1simd.html", "namespacesdl_1_1simd" ],
     [ "Color", "classsdl_1_1_color.html", "classsdl_1_1_color" ],
     [ "Event", "unionsdl_1_1_event.html", "unionsdl_1_1_event" ],
     [ "Exception", "classsdl_1_1_exception.html", "classsdl_1_1_exception" ],

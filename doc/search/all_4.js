@@ -11,6 +11,6 @@ var searchData=
   ['event_2ehpp',['event.hpp',['../event_8hpp.html',1,'']]],
   ['event_5fstate',['event_state',['../unionsdl_1_1_event.html#adb0beffec79789e227bc8ceb4316e7f5',1,'sdl::Event']]],
   ['eventfilter',['EventFilter',['../structsdl_1_1_event_1_1_event_filter.html',1,'sdl::Event::EventFilter'],['../structsdl_1_1_event_1_1_event_filter.html#aa5c94b5e4d5fc2c76c509edff8d17626',1,'sdl::Event::EventFilter::EventFilter(func_type filter, void *userdata)'],['../structsdl_1_1_event_1_1_event_filter.html#a120fc880a652f5b2f74c925b34c70f31',1,'sdl::Event::EventFilter::EventFilter(func_type filter)']]],
-  ['exception',['Exception',['../classsdl_1_1_exception.html',1,'sdl::Exception'],['../classsdl_1_1_exception.html#a9a5d27ae8c2cf62bec541834b84e406e',1,'sdl::Exception::Exception()']]],
+  ['exception',['Exception',['../classsdl_1_1_exception.html',1,'sdl::Exception'],['../classsdl_1_1_exception.html#a9a5d27ae8c2cf62bec541834b84e406e',1,'sdl::Exception::Exception(std::string const &amp;function)'],['../classsdl_1_1_exception.html#a9a5d27ae8c2cf62bec541834b84e406e',1,'sdl::Exception::Exception(std::string const &amp;function)']]],
   ['exception_2ehpp',['exception.hpp',['../exception_8hpp.html',1,'']]]
 ];

@@ -1,11 +1,17 @@
 var searchData=
 [
+  ['deallocate',['deallocate',['../structsdl_1_1simd_1_1allocator.html#aab474b08ab5113ea0dd1ac10dd8228b0',1,'sdl::simd::allocator']]],
   ['del_5fwatcher',['del_watcher',['../structsdl_1_1_event_1_1_event_filter.html#a89de1bfa8940f5b8b87f39f0dc8b44ba',1,'sdl::Event::EventFilter']]],
   ['delay',['delay',['../classsdl_1_1_timer.html#a17d62022b9ff39ffa14e04087fc22c59',1,'sdl::Timer::delay(std::chrono::milliseconds millisec)'],['../classsdl_1_1_timer.html#ab709b03f354db396254916ce9a3b8738',1,'sdl::Timer::delay(uint32_t millisec)']]],
+  ['deleter',['deleter',['../structsdl_1_1simd_1_1deleter.html#aafee2edb475f2941b9a39fd13fd95a12',1,'sdl::simd::deleter::deleter() noexcept=default'],['../structsdl_1_1simd_1_1deleter.html#ab7ca8d7672113cd08a0ef85fd63589bc',1,'sdl::simd::deleter::deleter(deleter&lt; U &gt;) noexcept'],['../classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a840827a93a8767a89cb21fb96576c068',1,'sdl::simd::deleter&lt; T[]&gt;::deleter()=delete'],['../classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#ae361c6f9082cd5d125836fdc3000b86e',1,'sdl::simd::deleter&lt; T[]&gt;::deleter(std::size_t size) noexcept'],['../classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a979d7927f94e154395a3e6fdb8a0bf3c',1,'sdl::simd::deleter&lt; T[]&gt;::deleter(deleter&lt; U[]&gt; const &amp;other) noexcept']]],
+  ['destroy_5fat',['destroy_at',['../namespacesdl_1_1simd_1_1details.html#a26a2241b0964bfc804c5919ff51ceac5',1,'sdl::simd::details']]],
   ['disable_5fclip',['disable_clip',['../classsdl_1_1_renderer.html#ac1c3b9298519e7d03fac2c57b4883cad',1,'sdl::Renderer']]],
   ['disable_5fcolorkey',['disable_colorkey',['../classsdl_1_1_surface.html#a4f6ed3aff43811227afd2e3adb8c8e3d',1,'sdl::Surface']]],
   ['display_5findex',['display_index',['../classsdl_1_1_window.html#a12a4436eb013ff586f601f01f3437d51',1,'sdl::Window']]],
   ['display_5fmode',['display_mode',['../classsdl_1_1_window.html#ab50510e7b94eff5e01f675c6c4d74dea',1,'sdl::Window']]],
+  ['do_5fallocate',['do_allocate',['../structsdl_1_1simd_1_1memory__resource.html#a93dc017b0fe39839e012dddefb805dac',1,'sdl::simd::memory_resource']]],
+  ['do_5fdeallocate',['do_deallocate',['../structsdl_1_1simd_1_1memory__resource.html#a5634d5e760ebac4063edaba72250768f',1,'sdl::simd::memory_resource']]],
+  ['do_5fis_5fequal',['do_is_equal',['../structsdl_1_1simd_1_1memory__resource.html#acb58225eb74a5c2539ac9c07949a02d9',1,'sdl::simd::memory_resource']]],
   ['draw_5fline',['draw_line',['../classsdl_1_1_renderer.html#afcf5023c7fcf0a0978ed7a6142eca4e1',1,'sdl::Renderer::draw_line(Vec2i const &amp;pos1, Vec2i const &amp;pos2) const'],['../classsdl_1_1_renderer.html#a69491551ffbbc2b6b907669d74b54fef',1,'sdl::Renderer::draw_line(Vec2i const &amp;pos1, Vec2i const &amp;pos2, Color const &amp;c) const']]],
   ['draw_5flines',['draw_lines',['../classsdl_1_1_renderer.html#ab7fe5d66143f0280beaf8fe30873af6d',1,'sdl::Renderer::draw_lines(std::vector&lt; Vec2i &gt; const &amp;points) const'],['../classsdl_1_1_renderer.html#a4b908e4e4f9349ead939586ccef569a0',1,'sdl::Renderer::draw_lines(std::vector&lt; Vec2i &gt; const &amp;points, Color const &amp;c) const']]],
   ['draw_5fpoint',['draw_point',['../classsdl_1_1_renderer.html#ab74d38ead1a5d86db62ebe0bbf9704e9',1,'sdl::Renderer::draw_point(Vec2i const &amp;point) const'],['../classsdl_1_1_renderer.html#a458181633f2a5fb8a5a9f042e49a4b1e',1,'sdl::Renderer::draw_point(Vec2i const &amp;point, Color const &amp;c) const']]],

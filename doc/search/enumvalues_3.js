@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['no_5fbattery',['no_battery',['../namespacesdl_1_1power.html#a01738f4f3cd469c27dcebd4451618d21a1009b81e098d9d62e1ac074bbf1a7f71',1,'sdl::power']]]
+  ['ignore',['Ignore',['../unionsdl_1_1_event.html#a2b06e83e673f072c9b3620be037a0dddafd038fc7f319e48f3115d92bf5bdbef9',1,'sdl::Event']]],
+  ['immediate',['immediate',['../classsdl_1_1_window.html#a2918cff432e49ef4716a8a5be8ed7dd7a516ff1e73f558b0ae701ae4561a63e2c',1,'sdl::Window']]]
 ];

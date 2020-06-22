@@ -8,6 +8,7 @@ var dir_43d8b99e35687b1eb761ebb38cd37e48 =
       [ "EventFilter", "structsdl_1_1_event_1_1_event_filter.html", "structsdl_1_1_event_1_1_event_filter" ]
     ] ],
     [ "exception.hpp", "exception_8hpp.html", [
+      [ "Exception", "classsdl_1_1_exception.html", "classsdl_1_1_exception" ],
       [ "Exception", "classsdl_1_1_exception.html", "classsdl_1_1_exception" ]
     ] ],
     [ "game_controller.hpp", "game__controller_8hpp.html", [
@@ -37,7 +38,7 @@ var dir_43d8b99e35687b1eb761ebb38cd37e48 =
     [ "shared_object.hpp", "shared__object_8hpp.html", [
       [ "SharedObject", "classsdl_1_1_shared_object.html", "classsdl_1_1_shared_object" ]
     ] ],
-    [ "simd.hpp", "simd_8hpp.html", null ],
+    [ "simd.hpp", "simd_8hpp.html", "simd_8hpp" ],
     [ "surface.hpp", "surface_8hpp.html", [
       [ "Surface", "classsdl_1_1_surface.html", "classsdl_1_1_surface" ],
       [ "Lock", "classsdl_1_1_surface_1_1_lock.html", "classsdl_1_1_surface_1_1_lock" ]
@@ -52,6 +53,7 @@ var dir_43d8b99e35687b1eb761ebb38cd37e48 =
     [ "utils.hpp", "utils_8hpp.html", "utils_8hpp" ],
     [ "vec2.hpp", "vec2_8hpp.html", "vec2_8hpp" ],
     [ "window.hpp", "window_8hpp.html", [
-      [ "Window", "classsdl_1_1_window.html", "classsdl_1_1_window" ]
+      [ "Window", "classsdl_1_1_window.html", "classsdl_1_1_window" ],
+      [ "GlContext", "classsdl_1_1_window_1_1_gl_context.html", "classsdl_1_1_window_1_1_gl_context" ]
     ] ]
 ];

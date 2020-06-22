@@ -16,6 +16,7 @@ var searchData=
   ['resize',['resize',['../classsdl_1_1_window.html#a8d300d2fdcedc44ffde5801ac0b7a800',1,'sdl::Window']]],
   ['restore',['restore',['../classsdl_1_1_window.html#adc15a50cd56bfb4d198237b1c78f9aae',1,'sdl::Window']]],
   ['root',['Root',['../structsdl_1_1_root.html#a0520e05a68fb390afc128fc44cd6a165',1,'sdl::Root']]],
+  ['rumble',['rumble',['../classsdl_1_1_game_controller.html#aee102c6b97afbe2ff2bfd5e51feee3c5',1,'sdl::GameController::rumble(uint16_t low_freq, uint16_t high_freq, std::chrono::milliseconds duration) const'],['../classsdl_1_1_game_controller.html#a34f5314c339050420121da01834f703e',1,'sdl::GameController::rumble(uint16_t low_freq, uint16_t high_freq, uint32_t millisec_duration) const']]],
   ['run',['run',['../classsdl_1_1_haptic_1_1_installed_effect.html#a35c7943d8f5d667c8f84b47af771e54e',1,'sdl::Haptic::InstalledEffect']]],
   ['run_5feffect',['run_effect',['../classsdl_1_1_haptic.html#a769e41dc8c25e344606679bef57fd55d',1,'sdl::Haptic']]]
 ];

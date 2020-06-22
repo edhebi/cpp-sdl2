@@ -111,6 +111,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af07cb9e865e2b72322431f6aa6ba9ca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an <a class="el" href="classsdl_1_1_color.html" title="C++ wrapping around the SDL_Color structure. ">sdl::Color</a> object. <a class="el" href="classsdl_1_1_color.html" title="C++ wrapping around the SDL_Color structure. ">Color</a> will be black by default.  <a href="#af07cb9e865e2b72322431f6aa6ba9ca9">More...</a><br /></td></tr>
 <tr class="separator:af07cb9e865e2b72322431f6aa6ba9ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7d777aa7aa844a0e39bf597face7db3"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_color.html#ac7d777aa7aa844a0e39bf597face7db3">Color</a> (Uint8 r, Uint8 g, Uint8 b, Uint8 a=255)</td></tr>
+<tr class="memdesc:ac7d777aa7aa844a0e39bf597face7db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an sdl Color::object with the given 8 bit color values.  <a href="#ac7d777aa7aa844a0e39bf597face7db3">More...</a><br /></td></tr>
 <tr class="separator:ac7d777aa7aa844a0e39bf597face7db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f62c0cf43ed023f0b5965c6b620b714"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_color.html#a7f62c0cf43ed023f0b5965c6b620b714">Color</a> (<a class="el" href="classsdl_1_1_color.html">Color</a> const &amp;)=default</td></tr>
 <tr class="memdesc:a7f62c0cf43ed023f0b5965c6b620b714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default copy ctor.  <a href="#a7f62c0cf43ed023f0b5965c6b620b714">More...</a><br /></td></tr>
@@ -131,8 +132,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3d31fe51e04179729a05e82963aca525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default move assing operator.  <a href="#a3d31fe51e04179729a05e82963aca525">More...</a><br /></td></tr>
 <tr class="separator:a3d31fe51e04179729a05e82963aca525"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40609840c7124522f992518a4b59bda9"><td class="memItemLeft" align="right" valign="top">Uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_color.html#a40609840c7124522f992518a4b59bda9">as_uint</a> (SDL_PixelFormat const &amp;format) const</td></tr>
+<tr class="memdesc:a40609840c7124522f992518a4b59bda9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the color of the current object as a 32bit number (4 bytes)  <a href="#a40609840c7124522f992518a4b59bda9">More...</a><br /></td></tr>
 <tr class="separator:a40609840c7124522f992518a4b59bda9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b9c5efda567e69d00a464c37dcab15b"><td class="memItemLeft" align="right" valign="top">Uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_color.html#a1b9c5efda567e69d00a464c37dcab15b">as_uint</a> (Uint32 format) const</td></tr>
+<tr class="memdesc:a1b9c5efda567e69d00a464c37dcab15b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the color of the current object as a 32bit number (4 bytes)  <a href="#a1b9c5efda567e69d00a464c37dcab15b">More...</a><br /></td></tr>
 <tr class="separator:a1b9c5efda567e69d00a464c37dcab15b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad696cb8a482bb9d41b24718bc5ecf7c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdl_1_1_color.html#ad696cb8a482bb9d41b24718bc5ecf7c3">operator==</a> (<a class="el" href="classsdl_1_1_color.html">Color</a> const &amp;c) const</td></tr>
 <tr class="memdesc:ad696cb8a482bb9d41b24718bc5ecf7c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if both colors are identical.  <a href="#ad696cb8a482bb9d41b24718bc5ecf7c3">More...</a><br /></td></tr>
@@ -240,7 +243,9 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Construct an sdl Color::object with the given 8 bit color values. Alpha channel to fully opaque by default </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Construct an sdl Color::object with the given 8 bit color values. </p>
+<p>Alpha channel to fully opaque by default </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>8 bit quantity of red </td></tr>
     <tr><td class="paramname">g</td><td>8 bit quantity of green </td></tr>
@@ -252,7 +257,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="color_8hpp_source.html#l00021">21</a> of file <a class="el" href="color_8hpp_source.html">color.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="color_8hpp_source.html#l00014">Color()</a>.</p>
+<p class="reference">References <a class="el" href="simd_8hpp_source.html#l00151">sdl::simd::a</a>, and <a class="el" href="color_8hpp_source.html#l00014">Color()</a>.</p>
 
 </div>
 </div>
@@ -350,6 +355,8 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="color_8hpp_source.html#l00033">33</a> of file <a class="el" href="color_8hpp_source.html">color.hpp</a>.</p>
 
+<p class="reference">References <a class="el" href="simd_8hpp_source.html#l00151">sdl::simd::a</a>.</p>
+
 </div>
 </div>
 <a id="ae8cec13ec210e1b7e725d877c9cd3766"></a>
@@ -390,7 +397,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="color_8hpp_source.html#l00039">39</a> of file <a class="el" href="color_8hpp_source.html">color.hpp</a>.</p>
 
-<p class="reference">References <a class="el" href="classsdl_1_1_color.html#a469d09bdb6d3a9f94123107475572ab2">operator=()</a>.</p>
+<p class="reference">References <a class="el" href="simd_8hpp_source.html#l00151">sdl::simd::a</a>, and <a class="el" href="classsdl_1_1_color.html#a469d09bdb6d3a9f94123107475572ab2">operator=()</a>.</p>
 
 </div>
 </div>
@@ -418,7 +425,9 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return the color of the current object as a 32bit number (4 bytes) </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Return the color of the current object as a 32bit number (4 bytes) </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">format</td><td>pixel format to use </td></tr>
   </table>
@@ -426,6 +435,8 @@ Friends</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="color_8hpp_source.html#l00055">55</a> of file <a class="el" href="color_8hpp_source.html">color.hpp</a>.</p>
+
+<p class="reference">References <a class="el" href="simd_8hpp_source.html#l00151">sdl::simd::a</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="color_8hpp_source.html#l00068">as_uint()</a>, <a class="el" href="pixel_8hpp_source.html#l00025">sdl::Pixel::set_color()</a>, and <a class="el" href="surface_8hpp_source.html#l00238">sdl::Surface::set_colorkey()</a>.</p>
 
@@ -455,8 +466,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Return the color of the current object as a 32bit number (4 bytes) </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Return the color of the current object as a 32bit number (4 bytes) </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">format</td><td>pixel format to use </td></tr>
   </table>
@@ -636,6 +647,8 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="color_8hpp_source.html#l00078">78</a> of file <a class="el" href="color_8hpp_source.html">color.hpp</a>.</p>
 
+<p class="reference">References <a class="el" href="simd_8hpp_source.html#l00151">sdl::simd::a</a>.</p>
+
 </div>
 </div>
 <a id="a339aaa3dca5caabd5daf46f807923205"></a>
@@ -769,7 +782,7 @@ Friends</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacesdl.html">sdl</a></li><li class="navelem"><a class="el" href="classsdl_1_1_color.html">Color</a></li>
-    <li class="footer">Generated on Sun Jun 21 2020 17:03:28 for cpp-sdl2 by
+    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

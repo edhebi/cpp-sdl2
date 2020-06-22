@@ -1,9 +1,12 @@
 var hierarchy =
 [
+    [ "sdl::simd::allocator< T >", "structsdl_1_1simd_1_1allocator.html", null ],
     [ "Base", null, [
       [ "sdl::Vec2< T, Base >", "classsdl_1_1_vec2.html", null ]
     ] ],
     [ "sdl::Mouse::Cursor", "classsdl_1_1_mouse_1_1_cursor.html", null ],
+    [ "sdl::simd::deleter< T >", "structsdl_1_1simd_1_1deleter.html", null ],
+    [ "sdl::simd::deleter< T[]>", "classsdl_1_1simd_1_1deleter_3_01_t[]_4.html", null ],
     [ "sdl::Haptic::Effect", "unionsdl_1_1_haptic_1_1_effect.html", null ],
     [ "sdl::Event", "unionsdl_1_1_event.html", null ],
     [ "sdl::Event::EventFilter", "structsdl_1_1_event_1_1_event_filter.html", null ],
@@ -11,11 +14,15 @@ var hierarchy =
       [ "sdl::Exception", "classsdl_1_1_exception.html", null ]
     ] ],
     [ "sdl::GameController", "classsdl_1_1_game_controller.html", null ],
+    [ "sdl::Window::GlContext", "classsdl_1_1_window_1_1_gl_context.html", null ],
     [ "sdl::Haptic", "classsdl_1_1_haptic.html", null ],
     [ "sdl::Haptic::InstalledEffect", "classsdl_1_1_haptic_1_1_installed_effect.html", null ],
     [ "sdl::Joystick", "classsdl_1_1_joystick.html", null ],
     [ "sdl::Surface::Lock", "classsdl_1_1_surface_1_1_lock.html", null ],
     [ "sdl::Texture::Lock", "classsdl_1_1_texture_1_1_lock.html", null ],
+    [ "memory_resource", null, [
+      [ "sdl::simd::memory_resource", "structsdl_1_1simd_1_1memory__resource.html", null ]
+    ] ],
     [ "sdl::Pixel", "classsdl_1_1_pixel.html", null ],
     [ "sdl::Renderer", "classsdl_1_1_renderer.html", null ],
     [ "sdl::Root", "structsdl_1_1_root.html", null ],

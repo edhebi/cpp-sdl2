@@ -1,14 +1,29 @@
 var classsdl_1_1_window =
 [
+    [ "GlContext", "classsdl_1_1_window_1_1_gl_context.html", "classsdl_1_1_window_1_1_gl_context" ],
+    [ "gl_swap_interval", "classsdl_1_1_window.html#a2918cff432e49ef4716a8a5be8ed7dd7", [
+      [ "immediate", "classsdl_1_1_window.html#a2918cff432e49ef4716a8a5be8ed7dd7a516ff1e73f558b0ae701ae4561a63e2c", null ],
+      [ "vsync", "classsdl_1_1_window.html#a2918cff432e49ef4716a8a5be8ed7dd7aa84bd8253de7cc96e76fcfd5dcefe957", null ],
+      [ "adaptive_vsync", "classsdl_1_1_window.html#a2918cff432e49ef4716a8a5be8ed7dd7a784e64be0340a9f030a95865a05b8cc6", null ]
+    ] ],
     [ "Window", "classsdl_1_1_window.html#ac0e52de979a53d84af6f475c870bed38", null ],
     [ "Window", "classsdl_1_1_window.html#a81f2e488e557c714cb0636ec47d29d3d", null ],
     [ "Window", "classsdl_1_1_window.html#a891f6f9b21efe5977923f8e0cf425c02", null ],
     [ "Window", "classsdl_1_1_window.html#a6b39deb5def87b3e38124aa9f01eec28", null ],
     [ "~Window", "classsdl_1_1_window.html#a9eb5568e9913aeb3dc87405e72f25cd4", null ],
+    [ "create_context", "classsdl_1_1_window.html#a31245f1be5627607b0eaf34294f0025a", null ],
     [ "display_index", "classsdl_1_1_window.html#a12a4436eb013ff586f601f01f3437d51", null ],
     [ "display_mode", "classsdl_1_1_window.html#ab50510e7b94eff5e01f675c6c4d74dea", null ],
     [ "flags", "classsdl_1_1_window.html#a308bdd97fb43901fd892b011af3a9b58", null ],
     [ "fullscreen", "classsdl_1_1_window.html#acf9b407155ae4bb15920e3456beebc73", null ],
+    [ "gl_get_attribute", "classsdl_1_1_window.html#a30258536819f7b0bee9561c772221cf1", null ],
+    [ "gl_get_swap_interval", "classsdl_1_1_window.html#a648eab9ee0a50cee8e6eb66abfca93da", null ],
+    [ "gl_is_extension_supported", "classsdl_1_1_window.html#a7ea6712d6b7b1372944dc00e401a421f", null ],
+    [ "gl_reset_attribute", "classsdl_1_1_window.html#af277f8ea6a9abba8bb177687a9efbbc0", null ],
+    [ "gl_set_attribute", "classsdl_1_1_window.html#a0688b4b042a9c71035eab926ae5ff7f9", null ],
+    [ "gl_set_attribute", "classsdl_1_1_window.html#a14131a673828e988d0a953df3f6bc803", null ],
+    [ "gl_set_swap_interval", "classsdl_1_1_window.html#af0c26451168fded682dc18a7b09ad685", null ],
+    [ "gl_swap", "classsdl_1_1_window.html#a16ec42637ae710ec4798d5994ffbda52", null ],
     [ "grab", "classsdl_1_1_window.html#ab4534d03553e40a77cc4351f6273c609", null ],
     [ "grabbed", "classsdl_1_1_window.html#a9e622d7e71092bfeb0da684b97c1a0f3", null ],
     [ "hide", "classsdl_1_1_window.html#a71bae211d6e4c841c9106f0d1fb8b986", null ],
@@ -33,6 +48,10 @@ var classsdl_1_1_window =
     [ "size", "classsdl_1_1_window.html#a592aeb715a4a43e455dce4f20195f53f", null ],
     [ "title", "classsdl_1_1_window.html#a8caa1aa6d6db471ef5ee0808263b4276", null ],
     [ "toggle_fullscreen", "classsdl_1_1_window.html#a9264740f21cc41def477d231584c1b2b", null ],
+    [ "vk_create_surface", "classsdl_1_1_window.html#a53da5970aa90e97dc69b52e6213a8dd2", null ],
+    [ "vk_create_unique_surface", "classsdl_1_1_window.html#a83d43bbbde1cf0caa4fed3d2f76475cf", null ],
+    [ "vk_get_drawable_size", "classsdl_1_1_window.html#a830fcd8d1f419caa62187c8f88f1f61c", null ],
+    [ "vk_get_instance_extensions", "classsdl_1_1_window.html#ad4e8c1c2102086b08cc1edf68c796d04", null ],
     [ "wm_info", "classsdl_1_1_window.html#a9b695a7e68fd2765ed66b7fd29dfe20c", null ],
     [ "window_", "classsdl_1_1_window.html#a7411c9329a27ce8c3c60d8f014d44be8", null ]
 ];
