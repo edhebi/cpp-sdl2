@@ -12,7 +12,6 @@
 #include "rect.hpp"
 #include "renderer.hpp"
 #include "shared_object.hpp"
-#include "simd.hpp"
 #include "surface.hpp"
 #include "texture.hpp"
 #include "timer.hpp"
