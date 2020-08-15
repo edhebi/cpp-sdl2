@@ -418,6 +418,15 @@ public:
 
 	///Swap buffers for GL when using double buffering on the current window
 	void gl_swap() const { SDL_GL_SwapWindow(window_); }
+
+    ///Get the actual size of the OpenGL drawing area on the window. May not match window size on platform that uses display scaling.
+    Vec2i gl_get_drawable_size() const
+    {
+        Vec2i size{};
+        SDL_GL_GetDrawableSize(window_, &size.x, &size.y);
+        return size;
+    }
+
 #endif
 
 private:
