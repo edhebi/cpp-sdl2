@@ -15,26 +15,21 @@ inline std::string version()
 	// SDL_GetVersion get the version number from the dynamically linked library
 	SDL_version v;
 	SDL_GetVersion(&v);
-	return std::to_string(int(v.major)) + '.' + std::to_string(int(v.minor))
-		   + '.' + std::to_string(int(v.patch));
+	return std::to_string(int(v.major)) + '.' + std::to_string(int(v.minor)) + '.'
+		   + std::to_string(int(v.patch));
 }
 
 ///Show a message box, usefull to display error messages
-inline void show_message_box(
-	uint32_t flags, std::string const& title, std::string const& message)
+inline void show_message_box(uint32_t flags, std::string const& title, std::string const& message)
 {
 	SDL_ShowSimpleMessageBox(flags, title.c_str(), message.c_str(), nullptr);
 }
 
 ///Show a message box, as a modal child of `parent`
 inline void show_message_box(
-	uint32_t		   flags,
-	std::string const& title,
-	std::string const& message,
-	sdl::Window const& parent)
+	uint32_t flags, std::string const& title, std::string const& message, sdl::Window const& parent)
 {
-	SDL_ShowSimpleMessageBox(
-		flags, title.c_str(), message.c_str(), parent.ptr());
+	SDL_ShowSimpleMessageBox(flags, title.c_str(), message.c_str(), parent.ptr());
 }
 
 ///Get information about the system (os, cpu, ram...)
@@ -152,11 +147,11 @@ namespace power
 ///Power states
 enum class state
 {
-	unknown	= SDL_POWERSTATE_UNKNOWN,
+	unknown	   = SDL_POWERSTATE_UNKNOWN,
 	on_battery = SDL_POWERSTATE_ON_BATTERY,
 	no_battery = SDL_POWERSTATE_NO_BATTERY,
 	charging   = SDL_POWERSTATE_CHARGING,
-	charged	= SDL_POWERSTATE_CHARGED
+	charged	   = SDL_POWERSTATE_CHARGED
 };
 
 ///Get current powerstate. See sdl::power::state enumeration for values

@@ -11,11 +11,10 @@ namespace sdl
 class Joystick
 {
 	SDL_Joystick* joystick_ = nullptr;
-	const bool	owner_	= true;
+	const bool	  owner_	= true;
 
 	///Construct a non-owning joystick object
-	Joystick(SDL_Joystick* stick, bool owning_state)
-		: joystick_(stick), owner_(owning_state)
+	Joystick(SDL_Joystick* stick, bool owning_state) : joystick_(stick), owner_(owning_state)
 	{
 		assert(!owner_);
 	}
@@ -42,7 +41,8 @@ public:
 	///move assign operator
 	Joystick& operator=(Joystick&& other) noexcept
 	{
-		if (joystick_ != other.joystick_) //todo do we need to check owner_ here? need to think about that.
+		if (joystick_
+			!= other.joystick_) // todo do we need to check owner_ here? need to think about that.
 		{
 			joystick_		= other.joystick_;
 			other.joystick_ = nullptr;
@@ -69,28 +69,21 @@ public:
 	{
 		const auto power = SDL_JoystickCurrentPowerLevel(joystick_);
 
-		if (power == SDL_JOYSTICK_POWER_UNKNOWN)
-			throw Exception("SDL_JoystickCurrentPowerLevel");
+		if (power == SDL_JOYSTICK_POWER_UNKNOWN) throw Exception("SDL_JoystickCurrentPowerLevel");
 
 		return power;
 	}
 
 	///Return true if device is currently attached
-	bool attached() const
-	{
-		return SDL_JoystickGetAttached(joystick_) == SDL_TRUE;
-	}
+	bool attached() const { return SDL_JoystickGetAttached(joystick_) == SDL_TRUE; }
 
 	///Get the current immediate value of the given axis
-	int16_t get_axis(int axis) const
-	{
-		return SDL_JoystickGetAxis(joystick_, axis);
-	}
+	int16_t get_axis(int axis) const { return SDL_JoystickGetAxis(joystick_, axis); }
 
 	///Get the current immediate value of the given trackball
 	sdl::Vec2i get_ball(int ball) const
 	{
-		Vec2i	 d;
+		Vec2i	  d;
 		const int status = SDL_JoystickGetBall(joystick_, ball, &d.x, &d.y);
 
 		if (status < 0) throw Exception("SDL_JoystickGetBall");
@@ -99,16 +92,10 @@ public:
 	}
 
 	///Get the current immediate value of the given button
-	uint8_t get_button(int button) const
-	{
-		return SDL_JoystickGetButton(joystick_, button);
-	}
+	uint8_t get_button(int button) const { return SDL_JoystickGetButton(joystick_, button); }
 
 	///Get the current immediate value of the given hat
-	uint8_t get_hat(int hat) const
-	{
-		return SDL_JoystickGetHat(joystick_, hat);
-	}
+	uint8_t get_hat(int hat) const { return SDL_JoystickGetHat(joystick_, hat); }
 
 	///Get the name of the joystick
 	std::string name() const { return {SDL_JoystickName(joystick_)}; }
@@ -171,22 +158,15 @@ public:
 	{
 		auto object = Joystick(SDL_JoystickFromInstanceID(joyid), false);
 
-		if (object.joystick_ == nullptr)
-			throw Exception("SDL_JoystickFromInstanceID");
+		if (object.joystick_ == nullptr) throw Exception("SDL_JoystickFromInstanceID");
 
 		return object;
 	}
 
-	bool operator==(Joystick const& other) const
-	{
-		return joystick_ == other.joystick_;
-	}
+	bool operator==(Joystick const& other) const { return joystick_ == other.joystick_; }
 
 	bool operator==(SDL_Joystick* other) const { return joystick_ == other; }
 
-	bool operator==(SDL_JoystickID other) const
-	{
-		return instance_id() == other;
-	}
+	bool operator==(SDL_JoystickID other) const { return instance_id() == other; }
 };
 } // namespace sdl

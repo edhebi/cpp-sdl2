@@ -23,17 +23,9 @@ public:
 	///\param title Name of the window
 	///\param size Size of the window on screen when shown
 	///\param flags Any flags needed to be passed to SDL_CreateWindow
-	Window(
-		std::string const& title,
-		Vec2i const&	   size,
-		Uint32			   flags = SDL_WINDOW_SHOWN)
+	Window(std::string const& title, Vec2i const& size, Uint32 flags = SDL_WINDOW_SHOWN)
 		: window_{SDL_CreateWindow(
-			title.c_str(),
-			SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOWPOS_CENTERED,
-			size.x,
-			size.y,
-			flags)}
+			title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, size.x, size.y, flags)}
 	{
 		if (!window_) throw Exception{"SDL_CreateWindow"};
 	}
@@ -143,10 +135,7 @@ public:
 
 	///Change the size of the window
 	///\newsize the size of the window
-	void resize(Vec2i const& newsize) const
-	{
-		SDL_SetWindowSize(window_, newsize.x, newsize.y);
-	}
+	void resize(Vec2i const& newsize) const { SDL_SetWindowSize(window_, newsize.x, newsize.y); }
 	///Get current window size
 	Vec2i size() const
 	{
@@ -163,17 +152,11 @@ public:
 		return *this;
 	}
 	///\Get the current window title
-	std::string title() const
-	{
-		return std::string{SDL_GetWindowTitle(window_)};
-	}
+	std::string title() const { return std::string{SDL_GetWindowTitle(window_)}; }
 
 	///Set the window icon
 	///\param icon Surface containing the icon to use
-	void set_icon(Surface const& icon) const
-	{
-		SDL_SetWindowIcon(window_, icon.ptr());
-	}
+	void set_icon(Surface const& icon) const { SDL_SetWindowIcon(window_, icon.ptr()); }
 
 	///Set the window icon (may require linking and activating SDL_Image)
 	///\param filename path to a file you can use to set the window icon
@@ -218,15 +201,12 @@ public:
 	/// (both real and "desktop mode")
 	bool fullscreen() const
 	{
-		return flags()
-			   & (SDL_WINDOW_FULLSCREEN | SDL_WINDOW_FULLSCREEN_DESKTOP);
+		return flags() & (SDL_WINDOW_FULLSCREEN | SDL_WINDOW_FULLSCREEN_DESKTOP);
 	}
 	///Set the window fullscreen
 	Window& set_fullscreen(bool fs)
 	{
-		if (SDL_SetWindowFullscreen(
-				window_, fs ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0)
-			!= 0)
+		if (SDL_SetWindowFullscreen(window_, fs ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0) != 0)
 		{
 			throw Exception{"SDL_SetWindowFullscreen"};
 		}
@@ -261,8 +241,7 @@ public:
 
 		extensions.resize(count);
 
-		if (!SDL_Vulkan_GetInstanceExtensions(
-				window_, &count, extensions.data()))
+		if (!SDL_Vulkan_GetInstanceExtensions(window_, &count, extensions.data()))
 			throw Exception("SDL_Vulkan_GetInstaceExtensions");
 
 		return extensions; // Benefit from enforced RVO
@@ -304,21 +283,16 @@ public:
 	// automatic error checking.
 	static void gl_set_attribute(SDL_GLattr attr, int val)
 	{
-		if (SDL_GL_SetAttribute(attr, val) < 0)
-			throw Exception("SDL_GL_SetAttribute");
+		if (SDL_GL_SetAttribute(attr, val) < 0) throw Exception("SDL_GL_SetAttribute");
 	}
 
-	static void gl_set_attribute(SDL_GLattr attr, bool val)
-	{
-		gl_set_attribute(attr, val ? 1 : 0);
-	}
+	static void gl_set_attribute(SDL_GLattr attr, bool val) { gl_set_attribute(attr, val ? 1 : 0); }
 
 	///Get the value of the specified OpenGL attribute
 	static int gl_get_attribute(SDL_GLattr attr)
 	{
 		int value;
-		if (SDL_GL_GetAttribute(attr, &value) != 0)
-			throw Exception("SDL_GL_GetAttribute");
+		if (SDL_GL_GetAttribute(attr, &value) != 0) throw Exception("SDL_GL_GetAttribute");
 		return value;
 	}
 
@@ -345,13 +319,9 @@ public:
 		auto result = 0;
 		switch (swap_mode)
 		{
-		case gl_swap_interval::immediate:
-			result = SDL_GL_SetSwapInterval(0);
-			break;
+		case gl_swap_interval::immediate: result = SDL_GL_SetSwapInterval(0); break;
 		case gl_swap_interval::vsync: result = SDL_GL_SetSwapInterval(1); break;
-		case gl_swap_interval::adaptive_vsync:
-			result = SDL_GL_SetSwapInterval(-1);
-			break;
+		case gl_swap_interval::adaptive_vsync: result = SDL_GL_SetSwapInterval(-1); break;
 		}
 
 		if (result != 0) throw Exception("SDL_GL_SetSwapInterval");
@@ -402,8 +372,7 @@ public:
 
 		void make_current() const
 		{
-			if (SDL_GL_MakeCurrent(owner_, context_) < 0)
-				throw Exception("SDL_GL_MakeCurrent");
+			if (SDL_GL_MakeCurrent(owner_, context_) < 0) throw Exception("SDL_GL_MakeCurrent");
 		}
 
 		SDL_GLContext ptr() const { return context_; }

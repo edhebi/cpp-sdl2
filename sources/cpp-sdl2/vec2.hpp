@@ -77,25 +77,13 @@ public:
 	}
 
 	///Add vectors together
-	constexpr Vec2 operator+(Vec2 const& other) const
-	{
-		return Vec2{Base::x, Base::y} += other;
-	}
+	constexpr Vec2 operator+(Vec2 const& other) const { return Vec2{Base::x, Base::y} += other; }
 	///Substract vectors together
-	constexpr Vec2 operator-(Vec2 const& other) const
-	{
-		return Vec2{Base::x, Base::y} -= other;
-	}
+	constexpr Vec2 operator-(Vec2 const& other) const { return Vec2{Base::x, Base::y} -= other; }
 	///Multiply vectors together
-	constexpr Vec2 operator*(T value) const
-	{
-		return Vec2{Base::x, Base::y} *= value;
-	}
+	constexpr Vec2 operator*(T value) const { return Vec2{Base::x, Base::y} *= value; }
 	///Divide vectors together
-	constexpr Vec2 operator/(T value) const
-	{
-		return Vec2{Base::x, Base::y} /= value;
-	}
+	constexpr Vec2 operator/(T value) const { return Vec2{Base::x, Base::y} /= value; }
 
 	///Compare vectors, true if they are the same
 	constexpr bool operator==(Vec2 const& other) const
@@ -103,16 +91,10 @@ public:
 		return (Base::x == other.x && Base::y == other.y);
 	}
 	///Compare vectors, false if they are the same
-	constexpr bool operator!=(Vec2 const& other) const
-	{
-		return !(*this == other);
-	}
+	constexpr bool operator!=(Vec2 const& other) const { return !(*this == other); }
 
 	///Multiply operator that works on the other side
-	friend constexpr Vec2 operator*(T lhs, Vec2 const& rhs)
-	{
-		return rhs * lhs;
-	}
+	friend constexpr Vec2 operator*(T lhs, Vec2 const& rhs) { return rhs * lhs; }
 
 	///Clamp vector inside a box
 	///\box rectangle were to clamp vector
@@ -131,10 +113,7 @@ public:
 	}
 
 	///Get lenghts of this vector
-	T length() const
-	{
-		return std::sqrt(Base::x * Base::x + Base::y * Base::y);
-	}
+	T length() const { return std::sqrt(Base::x * Base::x + Base::y * Base::y); }
 	///Get squared lenght of this vector
 	T sqlength() const { return Base::x * Base::x + Base::y * Base::y; }
 

@@ -32,10 +32,10 @@ public:
 		///Get pixel at specified location inside surface
 		Pixel at(size_t x, size_t y) const
 		{
-			return Pixel{static_cast<Uint8*>(surface_->pixels)
-							 + (y * surface_->pitch)
-							 + (x * surface_->format->BytesPerPixel),
-						 *surface_->format};
+			return Pixel{
+				static_cast<Uint8*>(surface_->pixels) + (y * surface_->pitch)
+					+ (x * surface_->format->BytesPerPixel),
+				*surface_->format};
 		}
 
 		///Get pixel at specified location via operator[]
@@ -65,7 +65,7 @@ public:
 		if (surface_ != other.surface_)
 		{
 			SDL_FreeSurface(surface_);
-			surface_ = other.surface_;
+			surface_	   = other.surface_;
 			other.surface_ = nullptr;
 		}
 		return *this;
@@ -74,15 +74,14 @@ public:
 	///Create surface for given parameters
 	Surface(
 		Uint32 flags,
-		int	w,
-		int	h,
-		int	depth,
+		int	   w,
+		int	   h,
+		int	   depth,
 		Uint32 rmask,
 		Uint32 gmask,
 		Uint32 bmask,
 		Uint32 amask)
-		: surface_{SDL_CreateRGBSurface(
-			  flags, w, h, depth, rmask, gmask, bmask, amask)}
+		: surface_{SDL_CreateRGBSurface(flags, w, h, depth, rmask, gmask, bmask, amask)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurface"};
 	}
@@ -90,16 +89,15 @@ public:
 	///Create surface from array of pixels
 	Surface(
 		void*  pixels,
-		int	w,
-		int	h,
-		int	depth,
-		int	pitch,
+		int	   w,
+		int	   h,
+		int	   depth,
+		int	   pitch,
 		Uint32 rmask,
 		Uint32 gmask,
 		Uint32 bmask,
 		Uint32 amask)
-		: surface_{SDL_CreateRGBSurfaceFrom(
-			  pixels, w, h, depth, pitch, rmask, gmask, bmask, amask)}
+		: surface_{SDL_CreateRGBSurfaceFrom(pixels, w, h, depth, pitch, rmask, gmask, bmask, amask)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurfaceFrom"};
 	}
@@ -113,8 +111,7 @@ public:
 
 	///Create surface from array of pixels
 	Surface(void* pixels, int w, int h, int depth, int pitch, int format)
-		: surface_{SDL_CreateRGBSurfaceWithFormatFrom(
-			  pixels, w, h, depth, pitch, format)}
+		: surface_{SDL_CreateRGBSurfaceWithFormatFrom(pixels, w, h, depth, pitch, format)}
 	{
 		if (!surface_) throw Exception{"SDL_CreateRGBSurfaceWithFormatFrom"};
 	}
@@ -165,10 +162,7 @@ public:
 	}
 
 	///Convert this surface to specified format
-	Surface& convert_to(SDL_PixelFormat const& format)
-	{
-		return *this = with_format(format);
-	}
+	Surface& convert_to(SDL_PixelFormat const& format) { return *this = with_format(format); }
 	///Convert this surface to specified format
 	Surface& convert_to(Uint32 format) { return *this = with_format(format); }
 
@@ -224,21 +218,18 @@ public:
 	///disable colorkey
 	void disable_colorkey() const
 	{
-		if (SDL_SetColorKey(surface_, SDL_FALSE, 0) != 0)
-			throw Exception{"SDL_SetColorKey"};
+		if (SDL_SetColorKey(surface_, SDL_FALSE, 0) != 0) throw Exception{"SDL_SetColorKey"};
 	}
 
 	///Set colorkey
 	void set_colorkey(Uint32 key) const
 	{
-		if (SDL_SetColorKey(surface_, SDL_TRUE, key) != 0)
-			throw Exception{"SDL_SetColorKey"};
+		if (SDL_SetColorKey(surface_, SDL_TRUE, key) != 0) throw Exception{"SDL_SetColorKey"};
 	}
 	///Set colorkey
 	void set_colorkey(Color const& color) const
 	{
-		if (SDL_SetColorKey(surface_, SDL_TRUE, color.as_uint(pixelformat()))
-			!= 0)
+		if (SDL_SetColorKey(surface_, SDL_TRUE, color.as_uint(pixelformat())) != 0)
 		{
 			throw Exception{"SDL_SetColorKey"};
 		}
@@ -248,35 +239,28 @@ public:
 	Color colorkey() const
 	{
 		Uint32 k;
-		if (SDL_GetColorKey(surface_, &k) != 0)
-			throw Exception{"SDL_GetColorKey"};
+		if (SDL_GetColorKey(surface_, &k) != 0) throw Exception{"SDL_GetColorKey"};
 		return Color{k, pixelformat()};
 	}
 
 	///Set surface blend mode
 	void set_blendmode(SDL_BlendMode const& bm) const
 	{
-		if (SDL_SetSurfaceBlendMode(surface_, bm) != 0)
-			throw Exception{"SDL_SetSurfaceBlendMode"};
+		if (SDL_SetSurfaceBlendMode(surface_, bm) != 0) throw Exception{"SDL_SetSurfaceBlendMode"};
 	}
 	SDL_BlendMode blendmode() const
 	{
 		SDL_BlendMode bm;
-		if (SDL_GetSurfaceBlendMode(surface_, &bm) != 0)
-			throw Exception{"SDL_GetSurfaceBlendMode"};
+		if (SDL_GetSurfaceBlendMode(surface_, &bm) != 0) throw Exception{"SDL_GetSurfaceBlendMode"};
 		return bm;
 	}
 
 	///Set colormod
-	void set_colormod(Color const& color) const
-	{
-		set_colormod(color.r, color.g, color.b);
-	}
+	void set_colormod(Color const& color) const { set_colormod(color.r, color.g, color.b); }
 	///Set colormod
 	void set_colormod(Uint8 r, Uint8 g, Uint8 b) const
 	{
-		if (SDL_SetSurfaceColorMod(surface_, r, g, b))
-			throw Exception{"SDL_SetSurfaceColorMod"};
+		if (SDL_SetSurfaceColorMod(surface_, r, g, b)) throw Exception{"SDL_SetSurfaceColorMod"};
 	}
 
 	///Get colormod
@@ -291,8 +275,7 @@ public:
 	///Set alphamod
 	void set_alphamod(Uint8 alpha) const
 	{
-		if (SDL_SetSurfaceAlphaMod(surface_, alpha) != 0)
-			throw Exception{"SDL_SetSurfaceAlphaMod"};
+		if (SDL_SetSurfaceAlphaMod(surface_, alpha) != 0) throw Exception{"SDL_SetSurfaceAlphaMod"};
 	}
 	///Get alphamod
 	Uint8 alphamod() const
@@ -319,7 +302,7 @@ public:
 	Color coloralphamod() const
 	{
 		auto c = colormod();
-		c.a	= alphamod();
+		c.a	   = alphamod();
 		return c;
 	}
 

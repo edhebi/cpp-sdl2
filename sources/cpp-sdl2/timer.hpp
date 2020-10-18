@@ -33,8 +33,7 @@ public:
 	}
 
 	///Factory function
-	static Timer create(
-		uint32_t interval, Callback function, void* user_context)
+	static Timer create(uint32_t interval, Callback function, void* user_context)
 	{
 		const auto id = SDL_AddTimer(interval, function, user_context);
 
@@ -47,13 +46,9 @@ public:
 	}
 
 	///Factory function using std::chrono
-	static Timer create(
-		std::chrono::milliseconds interval,
-		Callback				  function,
-		void*					  user_context)
+	static Timer create(std::chrono::milliseconds interval, Callback function, void* user_context)
 	{
-		return create(
-			static_cast<uint32_t>(interval.count()), function, user_context);
+		return create(static_cast<uint32_t>(interval.count()), function, user_context);
 	}
 
 	///Wait for `millisec` milliseconds
@@ -67,16 +62,10 @@ public:
 	static void delay(uint32_t millisec) { SDL_Delay(millisec); }
 
 	///Returns the number of milliseconds elapsed as a unint32_t (standard SDL API)
-	static uint32_t ticks_u32()
-	{
-		return static_cast<uint32_t>(ticks().count());
-	}
+	static uint32_t ticks_u32() { return static_cast<uint32_t>(ticks().count()); }
 
 	///Retruns the number of milliseconds
-	static std::chrono::milliseconds ticks()
-	{
-		return std::chrono::milliseconds(SDL_GetTicks());
-	}
+	static std::chrono::milliseconds ticks() { return std::chrono::milliseconds(SDL_GetTicks()); }
 
 	///Return the performance counter value
 	static uint64_t perf_counter() { return SDL_GetPerformanceCounter(); }

@@ -5,7 +5,6 @@
 
 #include "SDL_cpuinfo.h"
 #include <memory>
-#include <memory_resource>
 #include <type_traits>
 
 namespace sdl::simd
@@ -29,24 +28,18 @@ inline void free(void* ptr)
 {
 	return SDL_SIMDFree(ptr);
 }
-/// memory_resource usable with `std::pmr::polymorphic_allocator`
-struct memory_resource final : public std::pmr::memory_resource
-{
-	void* do_allocate(std::size_t size, std::size_t) override { return simd::alloc(size); }
-
-	void do_deallocate(void* ptr, std::size_t, std::size_t) override { simd::free(ptr); }
-
-	bool do_is_equal(std::pmr::memory_resource const& other) const noexcept override
-	{
-		return dynamic_cast<memory_resource const*>(&other) == this;
-	}
-};
 
 /// Allocator usable with standard containers.
 template<typename T>
 struct allocator
 {
 	using value_type = T;
+
+	template<typename U>
+	struct rebind
+	{
+		using other = allocator<U>;
+	};
 
 	constexpr allocator() noexcept = default;
 
@@ -57,7 +50,7 @@ struct allocator
 
 	T* allocate(std::size_t size)
 	{
-		void* mem = alloc(size);
+		void* mem = simd::alloc(size);
 #ifndef CPP_SDL2_DISABLE_EXCEPTIONS
 		if (!mem) throw std::bad_alloc();
 #endif
@@ -76,7 +69,7 @@ namespace details
 template<typename T>
 void destroy_at(T* ptr)
 {
-	static_assert(!std::is_array_v<T> || std::extent_v<T> != 0, "destroy_at<T[]> is invalid");
+	static_assert(!(std::is_array_v<T> && std::extent_v<T> == 0), "destroy_at<T[]> is invalid");
 
 	if constexpr (std::is_array_v<T>)
 		for (auto& elem : *p) details::destroy_at(std::addressof(elem));
@@ -132,15 +125,15 @@ using unique_ptr = std::unique_ptr<T, simd::deleter<T>>;
 
 /// Equivalent of `std::make_unique<T>` that returns a simd::unique_ptr.
 template<typename T, typename... Args>
-std::enable_if_t<!std::is_array_v<T>, unique_ptr<T>> make_unique(Args&&... args)
+auto make_unique(Args&&... args) -> std::enable_if_t<!std::is_array_v<T>, unique_ptr<T>>
 {
 	allocator<T> a;
-	return unique_ptr<T>(new (a.allocate(1)) T(std::forward<Args>(args...)));
+	return unique_ptr<T>(new (a.allocate(1)) T(std::forward<Args>(args)...));
 }
 
 /// `make_unique<T[N]>` is deleted.
 template<typename T, typename... Args>
-std::enable_if_t<std::extent_v<T> != 0> make_unique(Args&&... args) = delete;
+auto make_unique(Args&&... args) -> std::enable_if_t<std::extent_v<T> != 0, unique_ptr<T>> = delete;
 
 /// Allocate and default construct `count` elements.
 template<typename T>
@@ -156,10 +149,10 @@ auto make_unique(std::size_t count)
 
 /// Equivalent of `std::make_shared<T>` that uses simd-friendly storage.
 template<typename T, typename... Args>
-std::enable_if<!std::is_array_v<T>, std::shared_ptr<T>> make_shared(Args&&... args)
+auto make_shared(Args&&... args) // -> std::enable_if<!std::is_array_v<T>, std::shared_ptr<T>>
 {
 	allocator<T> a;
-	auto* mem = new (a.allocate(1)) T(std::forward<Args>(args)...);
+	auto*		 mem = new (a.allocate(1)) T(std::forward<Args>(args)...);
 	return std::shared_ptr<T>(mem, deleter<T>());
 }
 

@@ -54,8 +54,7 @@ public:
 	///Populate renderinfo structure
 	void get_info(SDL_RendererInfo& info) const
 	{
-		if (SDL_GetRendererInfo(renderer_, &info) != 0)
-			throw Exception{"SDL_GetRendererInfo"};
+		if (SDL_GetRendererInfo(renderer_, &info) != 0) throw Exception{"SDL_GetRendererInfo"};
 	}
 
 	///Get renderer infos
@@ -76,18 +75,14 @@ public:
 	}
 
 	///Set the drawcolor from color values as bytes
-	void set_drawcolor(
-		Uint8 r, Uint8 g, Uint8 b, Uint8 a = SDL_ALPHA_OPAQUE) const
+	void set_drawcolor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = SDL_ALPHA_OPAQUE) const
 	{
 		if (SDL_SetRenderDrawColor(renderer_, r, g, b, a) != 0)
 			throw Exception{"SDL_SetRenderDrawColor"};
 	}
 
 	///Set the drawcolor from color struct
-	void set_drawcolor(Color const& c) const
-	{
-		set_drawcolor(c.r, c.g, c.b, c.a);
-	}
+	void set_drawcolor(Color const& c) const { set_drawcolor(c.r, c.g, c.b, c.a); }
 
 	///Get the clipping rectangle
 	Rect cliprect() const
@@ -100,8 +95,7 @@ public:
 	///Set the clipping rectangle
 	void set_cliprect(Rect const& r) const
 	{
-		if (SDL_RenderSetClipRect(renderer_, &r) != 0)
-			throw Exception{"SDL_RenderSetClipRect"};
+		if (SDL_RenderSetClipRect(renderer_, &r) != 0) throw Exception{"SDL_RenderSetClipRect"};
 	}
 
 	///Return true if clipping is enable
@@ -125,45 +119,30 @@ public:
 	}
 
 	///Make a new texture
-	Texture make_texture(
-		Uint32 format, SDL_TextureAccess access, int w, int h) const
+	Texture make_texture(Uint32 format, SDL_TextureAccess access, int w, int h) const
 	{
 		return Texture{renderer_, format, access, w, h};
 	}
 
 	///Make a new texture
-	Texture make_texture(
-		Uint32 format, SDL_TextureAccess access, Vec2i size) const
+	Texture make_texture(Uint32 format, SDL_TextureAccess access, Vec2i size) const
 	{
 		return Texture{renderer_, format, access, size.x, size.y};
 	}
 
 	///Make a texture from a surface
-	Texture make_texture(Surface const& surface) const
-	{
-		return Texture{renderer_, surface};
-	}
+	Texture make_texture(Surface const& surface) const { return Texture{renderer_, surface}; }
 
 	///Make a texture from a file
 	///\param filename file path
-	Texture make_texture(std::string const& filename) const
-	{
-		return Texture{renderer_, filename};
-	}
+	Texture make_texture(std::string const& filename) const { return Texture{renderer_, filename}; }
 
-	void render_copy(
-		Texture const& tex,
-		Rect const&	source_rect,
-		Rect const&	dest_rect) const
+	void render_copy(Texture const& tex, Rect const& source_rect, Rect const& dest_rect) const
 	{
 		// SDL will *not* modify the texture or the rects here, but the
 		// signature has a non-const pointer So we are forced to cast away our
 		// const ref on texture
-		SDL_RenderCopy(
-			renderer_,
-			const_cast<Texture&>(tex).ptr(),
-			&source_rect,
-			&dest_rect);
+		SDL_RenderCopy(renderer_, const_cast<Texture&>(tex).ptr(), &source_rect, &dest_rect);
 	}
 
 	///Present renderer
@@ -227,8 +206,7 @@ public:
 	///Draw array of points
 	void draw_points(std::vector<Vec2i> const& points) const
 	{
-		if (SDL_RenderDrawPoints(renderer_, &points[0], (int)points.size())
-			!= 0)
+		if (SDL_RenderDrawPoints(renderer_, &points[0], (int)points.size()) != 0)
 			throw Exception{"SDL_RenderDrawPoints"};
 	}
 
@@ -239,10 +217,7 @@ public:
 		draw_points(points);
 	}
 
-	void draw_ray(Vec2i const& orig, Vec2i const& ray) const
-	{
-		draw_line(orig, orig + ray);
-	}
+	void draw_ray(Vec2i const& orig, Vec2i const& ray) const { draw_line(orig, orig + ray); }
 	void draw_ray(Vec2i const& orig, Vec2i const& ray, Color const& c) const
 	{
 		draw_line(orig, orig + ray, c);
@@ -251,8 +226,7 @@ public:
 	///Draw rectangle
 	void draw_rect(Rect const& rect) const
 	{
-		if (SDL_RenderDrawRect(renderer_, &rect) != 0)
-			throw Exception{"SDL_RenderDrawRect"};
+		if (SDL_RenderDrawRect(renderer_, &rect) != 0) throw Exception{"SDL_RenderDrawRect"};
 	}
 
 	///Draw rectangle with specified color
@@ -278,8 +252,7 @@ public:
 	///Fill rectangle
 	void fill_rect(Rect const& rect) const
 	{
-		if (SDL_RenderFillRect(renderer_, &rect) != 0)
-			throw Exception{"SDL_RenderFillRect"};
+		if (SDL_RenderFillRect(renderer_, &rect) != 0) throw Exception{"SDL_RenderFillRect"};
 	}
 	///Fill rectangle with specified color
 	void fill_rect(Rect const& rect, Color const& c) const

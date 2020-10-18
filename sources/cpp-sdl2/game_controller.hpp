@@ -15,8 +15,7 @@ class GameController
 {
 public:
 	///Construct a controller from a joystick index, throws if that index is not a game controller
-	GameController(int joystick_index)
-		: controller_(SDL_GameControllerOpen(joystick_index))
+	GameController(int joystick_index) : controller_(SDL_GameControllerOpen(joystick_index))
 	{
 		if (!controller_)
 		{
@@ -35,10 +34,7 @@ public:
 	GameController& operator=(GameController const&) = delete;
 
 	///move ctor
-	GameController(GameController&& other) noexcept
-	{
-		*this = std::move(other);
-	}
+	GameController(GameController&& other) noexcept { *this = std::move(other); }
 
 	///move-assing operator
 	GameController& operator=(GameController&& other) noexcept
@@ -71,16 +67,10 @@ public:
 	SDL_GameController* ptr() const { return controller_; }
 
 	///Open the haptic device from the controller
-	Haptic open_haptic() const
-	{
-		return {SDL_GameControllerGetJoystick(controller_)};
-	}
+	Haptic open_haptic() const { return {SDL_GameControllerGetJoystick(controller_)}; }
 
 	///Return true if this controller is attached
-	bool is_attached() const
-	{
-		return SDL_GameControllerGetAttached(controller_) == SDL_TRUE;
-	}
+	bool is_attached() const { return SDL_GameControllerGetAttached(controller_) == SDL_TRUE; }
 
 	///Get the current imediate value of the given axis
 	int16_t get_axis(SDL_GameControllerAxis axis) const
@@ -96,21 +86,15 @@ public:
 
 #if SDL_VERSION_ATLEAST(2, 0, 9)
 	///Play a simple rumble. If the controller has 2 motors, the two values will control one of them. If the controller only has one, the values will be mixed together
-	int rumble(
-		uint16_t				  low_freq,
-		uint16_t				  high_freq,
-		std::chrono::milliseconds duration) const
+	int rumble(uint16_t low_freq, uint16_t high_freq, std::chrono::milliseconds duration) const
 	{
-		return rumble(
-			low_freq, high_freq, static_cast<uint32_t>(duration.count()));
+		return rumble(low_freq, high_freq, static_cast<uint32_t>(duration.count()));
 	}
 
 	///\copydoc GameController::rumble
-	int rumble(
-		uint16_t low_freq, uint16_t high_freq, uint32_t millisec_duration) const
+	int rumble(uint16_t low_freq, uint16_t high_freq, uint32_t millisec_duration) const
 	{
-		return SDL_GameControllerRumble(
-			controller_, low_freq, high_freq, millisec_duration);
+		return SDL_GameControllerRumble(controller_, low_freq, high_freq, millisec_duration);
 	}
 #endif
 
@@ -210,10 +194,7 @@ public:
 	}
 
 	///Create a non_owning controller around an SDL controller pointer, to use the C++ aPI withiout managing the controller
-	static GameController non_owning(SDL_GameController* controller)
-	{
-		return {controller, false};
-	}
+	static GameController non_owning(SDL_GameController* controller) { return {controller, false}; }
 
 private:
 	///Private controller for a non-onwer controller. The bool argument is expected to be false here

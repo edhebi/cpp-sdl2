@@ -28,9 +28,9 @@ public:
 		///Get pixel at given location on texture
 		Pixel at(size_t x, size_t y) const
 		{
-			return Pixel{static_cast<Uint8*>(pixels_) + (y * pitch_)
-							 + (x * format_->BytesPerPixel),
-						 *format_};
+			return Pixel{
+				static_cast<Uint8*>(pixels_) + (y * pitch_) + (x * format_->BytesPerPixel),
+				*format_};
 		}
 
 		///Get pixel at location with operator[]
@@ -76,12 +76,7 @@ public:
 	SDL_Texture* ptr() const { return texture_; }
 
 	///Create texture
-	Texture(
-		SDL_Renderer*	 render,
-		Uint32			  format,
-		SDL_TextureAccess access,
-		int				  w,
-		int				  h)
+	Texture(SDL_Renderer* render, Uint32 format, SDL_TextureAccess access, int w, int h)
 		: Texture{SDL_CreateTexture(render, format, access, w, h)}
 	{
 		if (!texture_) throw Exception{"SDL_CreateTexture"};
@@ -89,13 +84,9 @@ public:
 
 	///Default constructor for empty texture object
 	Texture() = default;
-	
+
 	///Create texture
-	Texture(
-		SDL_Renderer*	 render,
-		Uint32			  format,
-		SDL_TextureAccess access,
-		Vec2i			  size)
+	Texture(SDL_Renderer* render, Uint32 format, SDL_TextureAccess access, Vec2i size)
 		: Texture{render, format, access, size.x, size.y}
 	{
 	}
@@ -108,14 +99,12 @@ public:
 	}
 
 	///Create texture from file
-	Texture(SDL_Renderer* render, std::string const& filename)
-		: Texture{render, Surface{filename}}
+	Texture(SDL_Renderer* render, std::string const& filename) : Texture{render, Surface{filename}}
 	{
 	}
 
 	///Move texture into this one
-	Texture(Texture&& other) noexcept { *this = std::move(other);
-	}
+	Texture(Texture&& other) noexcept { *this = std::move(other); }
 
 	///Move texture into this one
 	Texture& operator=(Texture&& other) noexcept
@@ -123,7 +112,7 @@ public:
 		if (texture_ != other.texture_)
 		{
 			SDL_DestroyTexture(texture_);
-			texture_= other.texture_;
+			texture_	   = other.texture_;
 			other.texture_ = nullptr;
 		}
 
@@ -141,23 +130,18 @@ public:
 	///Set texture blend mode
 	void set_blendmode(SDL_BlendMode const& bm) const
 	{
-		if (SDL_SetTextureBlendMode(texture_, bm) != 0)
-			throw Exception{"SDL_SetTextureBlendMode"};
+		if (SDL_SetTextureBlendMode(texture_, bm) != 0) throw Exception{"SDL_SetTextureBlendMode"};
 	}
 	///Get texture blend mode
 	SDL_BlendMode blendmode() const
 	{
 		SDL_BlendMode bm;
-		if (SDL_GetTextureBlendMode(texture_, &bm) != 0)
-			throw Exception{"SDL_GetTextureBlendMode"};
+		if (SDL_GetTextureBlendMode(texture_, &bm) != 0) throw Exception{"SDL_GetTextureBlendMode"};
 		return bm;
 	}
 
 	///Set colormod
-	void set_colormod(Color const& color) const
-	{
-		set_colormod(color.r, color.g, color.b);
-	}
+	void set_colormod(Color const& color) const { set_colormod(color.r, color.g, color.b); }
 	///Set colormod
 	void set_colormod(Uint8 r, Uint8 g, Uint8 b) const
 	{
@@ -177,8 +161,7 @@ public:
 	///Set alphamod
 	void set_alphamod(Uint8 alpha) const
 	{
-		if (SDL_SetTextureAlphaMod(texture_, alpha) != 0)
-			throw Exception{"SDL_SetTextureAlphaMod"};
+		if (SDL_SetTextureAlphaMod(texture_, alpha) != 0) throw Exception{"SDL_SetTextureAlphaMod"};
 	}
 	///Set alphamod
 	Uint8 alphamod() const
@@ -205,7 +188,7 @@ public:
 	Color coloralphamod() const
 	{
 		auto c = colormod();
-		c.a	= alphamod();
+		c.a	   = alphamod();
 		return c;
 	}
 

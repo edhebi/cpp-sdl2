@@ -26,8 +26,7 @@ public:
 
 	///Get a shared object ( = Load the named library dynamically)
 	///\param objectName Name of the library.
-	SharedObject(std::string const& objectName)
-		: handle_{SDL_LoadObject(objectName.c_str())}
+	SharedObject(std::string const& objectName) : handle_{SDL_LoadObject(objectName.c_str())}
 	{
 		if (!handle_) throw Exception("SDL_LoadObject");
 	}
@@ -79,11 +78,9 @@ public:
 	/// e.g: mySharedObject.function_pointer<returnType (*) (args)>("nameOfExportedFunction");
 	///\param functionName The name of a callable symbol that can be found in the loaded library
 	template<typename FunctionPointerSignature>
-	FunctionPointerSignature function_pointer(
-		std::string const& functionName) const
+	FunctionPointerSignature function_pointer(std::string const& functionName) const
 	{
-		return reinterpret_cast<FunctionPointerSignature>(
-			function_pointer(functionName));
+		return reinterpret_cast<FunctionPointerSignature>(function_pointer(functionName));
 	}
 };
 

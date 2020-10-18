@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <SDL_rect.h>
 #include <algorithm>
@@ -68,11 +68,9 @@ public:
 	///Construct a rect from 2 corner points
 	///\param corner1 X/Y position of the first corner as a 2D vector
 	///\param corner2 X/Y position of the second corner as a 2D vector
-	static constexpr Rect from_corners(
-		Vec2i const& corner1, Vec2i const& corner2)
+	static constexpr Rect from_corners(Vec2i const& corner1, Vec2i const& corner2)
 	{
-		return Rect(
-			corner1.x, corner1.y, corner2.x - corner1.x, corner2.y - corner1.y);
+		return Rect(corner1.x, corner1.y, corner2.x - corner1.x, corner2.y - corner1.y);
 	}
 
 	///Copy assign a Rect
@@ -81,10 +79,7 @@ public:
 	Rect& operator=(Rect&&) noexcept = default;
 
 	///Returns true if the two rect are the same
-	bool operator==(Rect const& other) const
-	{
-		return SDL_RectEquals(this, &other);
-	}
+	bool operator==(Rect const& other) const { return SDL_RectEquals(this, &other); }
 
 	///Return the 'min X' position of the Rect
 	constexpr int x1() const { return x; }
@@ -122,10 +117,7 @@ public:
 
 	///Return true if this rect contains the given point
 	///\param point The X/Y coordinates of the point as a vector 2D
-	bool contains(Vec2i const& point) const
-	{
-		return contains(point.x, point.y);
-	}
+	bool contains(Vec2i const& point) const { return contains(point.x, point.y); }
 
 	///Return true if this rect intersect another rect
 	bool intersects(Rect const& r) const
@@ -141,8 +133,7 @@ public:
 		auto p1mut = const_cast<Vec2i&>(p1);
 		auto p2mut = const_cast<Vec2i&>(p2);
 
-		return SDL_IntersectRectAndLine(
-			this, &p1mut.x, &p1mut.y, &p2mut.x, &p2mut.y);
+		return SDL_IntersectRectAndLine(this, &p1mut.x, &p1mut.y, &p2mut.x, &p2mut.y);
 	}
 
 	///Return the intersection of the two rects

@@ -35,18 +35,15 @@ public:
 		void move_from(InstalledEffect& other) {}
 
 	public:
-		InstalledEffect(effect_list::size_type index, Haptic* owner)
-			: index_{index}, owner_{owner}
-		{}
+		InstalledEffect(effect_list::size_type index, Haptic* owner) : index_{index}, owner_{owner}
+		{
+		}
 
 		InstalledEffect() = default;
 		InstalledEffect(InstalledEffect const&);
 		InstalledEffect& operator=(InstalledEffect const&);
 
-		InstalledEffect(InstalledEffect&& other) noexcept
-		{
-			*this = std::move(other);
-		}
+		InstalledEffect(InstalledEffect&& other) noexcept { *this = std::move(other); }
 
 		InstalledEffect& operator=(InstalledEffect&& other) noexcept
 		{
@@ -72,10 +69,7 @@ public:
 			}
 		}
 
-		void run(uint32_t iterations = 1)
-		{
-			owner_->run_effect(*this, iterations);
-		}
+		void run(uint32_t iterations = 1) { owner_->run_effect(*this, iterations); }
 	};
 
 #if _MSC_VER >= 1910
@@ -90,13 +84,13 @@ public:
 		// definition is copied from SDL_haptic.h
 		// note : It has been planned by SDL developers to change the `type`
 		// type in 2.1.0.
-		Uint16				type;	  /// Effect type.
-		SDL_HapticConstant  constant;  /// Constant effect.
-		SDL_HapticPeriodic  periodic;  /// Periodic effect.
+		Uint16				type;	   /// Effect type.
+		SDL_HapticConstant	constant;  /// Constant effect.
+		SDL_HapticPeriodic	periodic;  /// Periodic effect.
 		SDL_HapticCondition condition; /// Condition effect.
-		SDL_HapticRamp		ramp;	  /// Ramp effect.
+		SDL_HapticRamp		ramp;	   /// Ramp effect.
 		SDL_HapticLeftRight leftright; /// Left/Right effect.
-		SDL_HapticCustom	custom;	/// Custom effect.
+		SDL_HapticCustom	custom;	   /// Custom effect.
 
 		///this permit to treat an sdl::haptic::effect instance as if it was an SDL_HapticEffect pointer
 		operator SDL_HapticEffect*() const
@@ -143,8 +137,7 @@ public:
 	}
 
 	///Open haptic device from joystick pointer
-	Haptic(SDL_Joystick* joystick)
-		: haptic_{SDL_HapticOpenFromJoystick(joystick)}
+	Haptic(SDL_Joystick* joystick) : haptic_{SDL_HapticOpenFromJoystick(joystick)}
 	{
 		if (!haptic_)
 		{
@@ -174,7 +167,7 @@ public:
 		if (haptic_ != other.haptic_)
 		{
 			haptic_		  = other.haptic_;
-			my_effects	= std::move(other.my_effects);
+			my_effects	  = std::move(other.my_effects);
 			other.haptic_ = nullptr;
 		}
 		return *this;
@@ -225,10 +218,7 @@ public:
 	}
 
 	///Get the number of effects installed
-	effect_list::size_type registered_effect_count() const
-	{
-		return my_effects.size();
-	}
+	effect_list::size_type registered_effect_count() const { return my_effects.size(); }
 
 	///Get the SDL assigned ID (an integer) to the effect
 	effect_sdlid get_effect_sdlid(InstalledEffect const& h) const
@@ -249,18 +239,13 @@ public:
 	void run_effect(InstalledEffect const& h, uint32_t iterations = 1) const
 	{
 		const effect_sdlid e = get_effect_sdlid(h);
-		if (e >= 0
-			&& SDL_HapticRunEffect(haptic_, get_effect_sdlid(h), iterations)
-				   < 0)
+		if (e >= 0 && SDL_HapticRunEffect(haptic_, get_effect_sdlid(h), iterations) < 0)
 		{
 			throw Exception("SDL_HapticRunEffect");
 		}
 	}
 
 	///Check if you can safely attemp to install the effect ont he haptic device
-	bool is_effect_compatible(Effect const& e) const
-	{
-		return is_capable_of(e.type);
-	}
+	bool is_effect_compatible(Effect const& e) const { return is_capable_of(e.type); }
 };
 } // namespace sdl

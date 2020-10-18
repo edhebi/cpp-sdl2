@@ -50,11 +50,7 @@ public:
 	}
 
 	///Construct a cursor from MSB bitmap data
-	Cursor(
-		const uint8_t* data,
-		const uint8_t* mask,
-		Vec2i const&   size,
-		Vec2i const&   hot)
+	Cursor(const uint8_t* data, const uint8_t* mask, Vec2i const& size, Vec2i const& hot)
 		: cursor_(SDL_CreateCursor(data, mask, size.x, size.y, hot.x, hot.y))
 	{
 		if (!cursor_)

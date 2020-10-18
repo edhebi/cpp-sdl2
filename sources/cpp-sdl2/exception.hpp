@@ -1,5 +1,6 @@
 #pragma once
 
+#include <exception>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -22,8 +23,7 @@ class Exception : public std::exception
 public:
 	///Construct an exception object. Will get the content of SDL_GetError() ont the '.what()' message
 	///\param function string containing the name of the SDL function
-	Exception(std::string const& function)
-		: function_{function}, error_{SDL_GetError()}
+	Exception(std::string const& function) : function_{function}, error_{SDL_GetError()}
 	{
 		SDL_ClearError();
 	}

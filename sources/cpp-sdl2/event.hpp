@@ -84,13 +84,9 @@ public:
 			"Hey, it's likely that the bits in sdl::Event and SDL_Event don't "
 			"lineup. Please check you are using a supported version of SDL2!!");
 
-		static_assert(
-			offsetof(Event, common.timestamp)
-			== offsetof(SDL_Event, common.timestamp));
+		static_assert(offsetof(Event, common.timestamp) == offsetof(SDL_Event, common.timestamp));
 
-		static_assert(
-			offsetof(Event, user.windowID)
-			== offsetof(SDL_Event, user.windowID));
+		static_assert(offsetof(Event, user.windowID) == offsetof(SDL_Event, user.windowID));
 
 		memset(this, 0, sizeof(SDL_Event));
 	}
@@ -99,40 +95,22 @@ public:
 	Event(SDL_Event const& e) : Event{*reinterpret_cast<Event const*>(&e)} {}
 
 	///Get a const reference to an sdl::Event from an SDL_Event
-	static Event const& ref_from(SDL_Event const& e)
-	{
-		return *reinterpret_cast<Event const*>(&e);
-	}
+	static Event const& ref_from(SDL_Event const& e) { return *reinterpret_cast<Event const*>(&e); }
 
 	///Get a non-const reference to an sdl::Event from an SDL_Event
-	static Event& ref_from(SDL_Event& e)
-	{
-		return *reinterpret_cast<Event*>(&e);
-	}
+	static Event& ref_from(SDL_Event& e) { return *reinterpret_cast<Event*>(&e); }
 
 	/// \copydoc Event const& ref_from(SDL_Event const* e)
-	static Event const& ref_from(SDL_Event const* e)
-	{
-		return *reinterpret_cast<Event const*>(e);
-	}
+	static Event const& ref_from(SDL_Event const* e) { return *reinterpret_cast<Event const*>(e); }
 
 	/// \copydoc Event& ref_from(SDL_Event& e)
-	static Event& ref_from(SDL_Event* e)
-	{
-		return *reinterpret_cast<Event*>(e);
-	}
+	static Event& ref_from(SDL_Event* e) { return *reinterpret_cast<Event*>(e); }
 
 	/// Implicit convertion to SDL_Event()
-	operator SDL_Event() const
-	{
-		return *reinterpret_cast<SDL_Event const*>(this);
-	}
+	operator SDL_Event() const { return *reinterpret_cast<SDL_Event const*>(this); }
 
 	/// Get a pointer to an SDL_Event
-	SDL_Event const* ptr() const
-	{
-		return reinterpret_cast<SDL_Event const*>(this);
-	}
+	SDL_Event const* ptr() const { return reinterpret_cast<SDL_Event const*>(this); }
 
 	/// Get a pointer to an SDL_Event
 	SDL_Event* ptr() { return reinterpret_cast<SDL_Event*>(this); }
@@ -177,19 +155,14 @@ public:
 	/// Peek the next event in the list
 	void peek()
 	{
-		if (SDL_PeepEvents(
-				ptr(), 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT)
-			< 0)
+		if (SDL_PeepEvents(ptr(), 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT) < 0)
 		{
 			throw Exception{"SDL_PeepEvents"};
 		}
 	}
 
 	///Return true if there are events in the queue
-	inline bool has_events()
-	{
-		return SDL_HasEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
-	}
+	inline bool has_events() { return SDL_HasEvents(SDL_FIRSTEVENT, SDL_LASTEVENT); }
 
 	///Return true if there are events of a specific type in the queue
 	///\param type the type of the events you want to check for
@@ -210,10 +183,7 @@ public:
 	///Clear events of a range of types from the event queue
 	///\param minType lower type boundary of the range
 	///\param maxType upper type boundary of the range
-	inline void flush_events(Uint32 minType, Uint32 maxType)
-	{
-		SDL_FlushEvents(minType, maxType);
-	}
+	inline void flush_events(Uint32 minType, Uint32 maxType) { SDL_FlushEvents(minType, maxType); }
 
 	///Clear all events from the event queue
 	inline void flush_events() { flush_events(SDL_FIRSTEVENT, SDL_LASTEVENT); }
@@ -225,15 +195,11 @@ public:
 	///\param events vector of events to be added
 	///\param minType lower type boundary of the range
 	///\param maxType upper type boundary of the range
-	inline void add_events(
-		std::vector<Event> const& events, Uint32 minType, Uint32 maxType)
+	inline void add_events(std::vector<Event> const& events, Uint32 minType, Uint32 maxType)
 	{
 		// This use of SDL_PeepEvents don't modify the events
-		auto array = const_cast<SDL_Event*>(
-			reinterpret_cast<SDL_Event const*>(&events[0]));
-		if (SDL_PeepEvents(
-				array, int(events.size()), SDL_ADDEVENT, minType, maxType)
-			< 0)
+		auto array = const_cast<SDL_Event*>(reinterpret_cast<SDL_Event const*>(&events[0]));
+		if (SDL_PeepEvents(array, int(events.size()), SDL_ADDEVENT, minType, maxType) < 0)
 		{
 			throw Exception{"SDL_PeepEvents"};
 		}
@@ -258,14 +224,11 @@ public:
 	///\param maxEvents max number of events to get
 	///\param minType lower bound of event type range
 	///\param maxType upper bound of event type range
-	inline std::vector<Event> peek_events(
-		size_t maxEvents, Uint32 minType, Uint32 maxType)
+	inline std::vector<Event> peek_events(size_t maxEvents, Uint32 minType, Uint32 maxType)
 	{
 		auto res   = std::vector<Event>(maxEvents);
 		auto array = reinterpret_cast<SDL_Event*>(&res[0]);
-		if (SDL_PeepEvents(
-				array, int(maxEvents), SDL_PEEKEVENT, minType, maxType)
-			< 0)
+		if (SDL_PeepEvents(array, int(maxEvents), SDL_PEEKEVENT, minType, maxType) < 0)
 		{
 			throw Exception{"SDL_PeepEvents"};
 		}
@@ -289,14 +252,11 @@ public:
 	///\prarm maxEvents max number of events to get
 	///\param minType lower bound of type range
 	///\param maxType upper bound of type range
-	inline std::vector<Event> get_events(
-		size_t maxEvents, Uint32 minType, Uint32 maxType)
+	inline std::vector<Event> get_events(size_t maxEvents, Uint32 minType, Uint32 maxType)
 	{
 		auto res   = std::vector<Event>(maxEvents);
 		auto array = reinterpret_cast<SDL_Event*>(&res[0]);
-		if (SDL_PeepEvents(
-				array, int(maxEvents), SDL_GETEVENT, minType, maxType)
-			< 0)
+		if (SDL_PeepEvents(array, int(maxEvents), SDL_GETEVENT, minType, maxType) < 0)
 		{
 			throw Exception{"SDL_PeepEvents"};
 		}
@@ -328,10 +288,7 @@ public:
 		func_type filter_	 = nullptr;
 		bool	  isWatcher_ = false;
 
-		EventFilter(func_type filter, void* userdata)
-			: filter_{filter}, userdata_{userdata}
-		{
-		}
+		EventFilter(func_type filter, void* userdata) : filter_{filter}, userdata_{userdata} {}
 
 		EventFilter(func_type filter) : filter_{filter} {}
 
@@ -343,8 +300,7 @@ public:
 		static int call_filter(void* data, SDL_Event* event)
 		{
 			auto filter = static_cast<EventFilter*>(data);
-			return filter->filter_(
-				filter->userdata_, sdl::Event::ref_from(event));
+			return filter->filter_(filter->userdata_, sdl::Event::ref_from(event));
 		}
 
 		void filter_queue() { SDL_FilterEvents(&call_filter, this); }
