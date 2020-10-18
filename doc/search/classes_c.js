@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sharedobject',['SharedObject',['../classsdl_1_1_shared_object.html',1,'sdl']]],
-  ['surface',['Surface',['../classsdl_1_1_surface.html',1,'sdl']]]
+  ['texture',['Texture',['../classsdl_1_1_texture.html',1,'sdl']]],
+  ['timer',['Timer',['../classsdl_1_1_timer.html',1,'sdl']]]
 ];

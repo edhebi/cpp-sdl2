@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['rect',['Rect',['../classsdl_1_1_rect.html',1,'sdl']]],
-  ['renderer',['Renderer',['../classsdl_1_1_renderer.html',1,'sdl']]],
-  ['root',['Root',['../structsdl_1_1_root.html',1,'sdl']]]
+  ['sharedobject',['SharedObject',['../classsdl_1_1_shared_object.html',1,'sdl']]],
+  ['surface',['Surface',['../classsdl_1_1_surface.html',1,'sdl']]]
 ];

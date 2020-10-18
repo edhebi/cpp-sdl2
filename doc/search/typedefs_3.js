@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sharedobjecthandle',['SharedObjectHandle',['../classsdl_1_1_shared_object.html#ae5d9e818c2a2a883ecce8472a7c41e96',1,'sdl::SharedObject']]]
+  ['other',['other',['../structsdl_1_1simd_1_1allocator_1_1rebind.html#a2f0253c3cc0acec07ddd661b4c099cd0',1,'sdl::simd::allocator::rebind']]]
 ];

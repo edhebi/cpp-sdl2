@@ -17,6 +17,7 @@ var classsdl_1_1_window =
     [ "flags", "classsdl_1_1_window.html#a308bdd97fb43901fd892b011af3a9b58", null ],
     [ "fullscreen", "classsdl_1_1_window.html#acf9b407155ae4bb15920e3456beebc73", null ],
     [ "gl_get_attribute", "classsdl_1_1_window.html#a30258536819f7b0bee9561c772221cf1", null ],
+    [ "gl_get_drawable_size", "classsdl_1_1_window.html#ae28eb56826d8d5355cfdb4c36d272a01", null ],
     [ "gl_get_swap_interval", "classsdl_1_1_window.html#a648eab9ee0a50cee8e6eb66abfca93da", null ],
     [ "gl_is_extension_supported", "classsdl_1_1_window.html#a7ea6712d6b7b1372944dc00e401a421f", null ],
     [ "gl_reset_attribute", "classsdl_1_1_window.html#af277f8ea6a9abba8bb177687a9efbbc0", null ],

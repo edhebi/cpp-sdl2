@@ -20,10 +20,8 @@ var hierarchy =
     [ "sdl::Joystick", "classsdl_1_1_joystick.html", null ],
     [ "sdl::Surface::Lock", "classsdl_1_1_surface_1_1_lock.html", null ],
     [ "sdl::Texture::Lock", "classsdl_1_1_texture_1_1_lock.html", null ],
-    [ "memory_resource", null, [
-      [ "sdl::simd::memory_resource", "structsdl_1_1simd_1_1memory__resource.html", null ]
-    ] ],
     [ "sdl::Pixel", "classsdl_1_1_pixel.html", null ],
+    [ "sdl::simd::allocator< T >::rebind< U >", "structsdl_1_1simd_1_1allocator_1_1rebind.html", null ],
     [ "sdl::Renderer", "classsdl_1_1_renderer.html", null ],
     [ "sdl::Root", "structsdl_1_1_root.html", null ],
     [ "SDL_Color", null, [

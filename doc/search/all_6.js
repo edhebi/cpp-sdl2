@@ -21,6 +21,7 @@ var searchData=
   ['get_5ftext',['get_text',['../namespacesdl_1_1clipboard.html#ae2e36058bdc61a0a3d12dba019303b4a',1,'sdl::clipboard']]],
   ['get_5funion',['get_union',['../classsdl_1_1_rect.html#a716647b474476d8ca20e5b6f9246c516',1,'sdl::Rect']]],
   ['gl_5fget_5fattribute',['gl_get_attribute',['../classsdl_1_1_window.html#a30258536819f7b0bee9561c772221cf1',1,'sdl::Window']]],
+  ['gl_5fget_5fdrawable_5fsize',['gl_get_drawable_size',['../classsdl_1_1_window.html#ae28eb56826d8d5355cfdb4c36d272a01',1,'sdl::Window']]],
   ['gl_5fget_5fswap_5finterval',['gl_get_swap_interval',['../classsdl_1_1_window.html#a648eab9ee0a50cee8e6eb66abfca93da',1,'sdl::Window']]],
   ['gl_5fis_5fextension_5fsupported',['gl_is_extension_supported',['../classsdl_1_1_window.html#a7ea6712d6b7b1372944dc00e401a421f',1,'sdl::Window']]],
   ['gl_5freset_5fattribute',['gl_reset_attribute',['../classsdl_1_1_window.html#af277f8ea6a9abba8bb177687a9efbbc0',1,'sdl::Window']]],

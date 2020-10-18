@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unique_5fptr',['unique_ptr',['../namespacesdl_1_1simd.html#a34939df3735d1aa3bbbb6e20b78e56c6',1,'sdl::simd']]]
+  ['sharedobjecthandle',['SharedObjectHandle',['../classsdl_1_1_shared_object.html#ae5d9e818c2a2a883ecce8472a7c41e96',1,'sdl::SharedObject']]]
 ];

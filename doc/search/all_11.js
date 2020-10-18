@@ -4,6 +4,7 @@ var searchData=
   ['raise',['raise',['../classsdl_1_1_window.html#ae13a4b0e35ac2c66c6b5e88ec6137b11',1,'sdl::Window']]],
   ['ramp',['ramp',['../unionsdl_1_1_haptic_1_1_effect.html#a6d5187b51b82d3a6ce04f87f268a523a',1,'sdl::Haptic::Effect']]],
   ['raw_5farray',['raw_array',['../classsdl_1_1_surface_1_1_lock.html#a7d5aa3c2d3b027b425679ba307396f0f',1,'sdl::Surface::Lock']]],
+  ['rebind',['rebind',['../structsdl_1_1simd_1_1allocator_1_1rebind.html',1,'sdl::simd::allocator']]],
   ['rect',['Rect',['../classsdl_1_1_rect.html',1,'sdl::Rect'],['../classsdl_1_1_rect.html#ae21ee2c74964908752531dc911156b95',1,'sdl::Rect::Rect()'],['../classsdl_1_1_rect.html#ad2aac468e6f81c4db5cca8cb250657f6',1,'sdl::Rect::Rect(int x, int y, int w, int h)'],['../classsdl_1_1_rect.html#a10f4495b556a0722001ec6471a3bf111',1,'sdl::Rect::Rect(Vec2i const &amp;corner, Vec2i const &amp;size)'],['../classsdl_1_1_rect.html#a97e77a767c7487003b72b21484f57757',1,'sdl::Rect::Rect(SDL_Rect const &amp;r)'],['../classsdl_1_1_rect.html#a2e4eb8f0f7205d1758728c1deddc6aeb',1,'sdl::Rect::Rect(Rect const &amp;) noexcept=default'],['../classsdl_1_1_rect.html#aac6d44fd64601db37d49bbc1d3511772',1,'sdl::Rect::Rect(Rect &amp;&amp;) noexcept=default']]],
   ['rect_2ehpp',['rect.hpp',['../rect_8hpp.html',1,'']]],
   ['red',['Red',['../classsdl_1_1_color.html#a339aaa3dca5caabd5daf46f807923205',1,'sdl::Color']]],

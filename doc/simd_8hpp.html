@@ -95,11 +95,10 @@ $(document).ready(function(){initNavTree('simd_8hpp.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsdl_1_1simd_1_1memory__resource.html">sdl::simd::memory_resource</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structsdl_1_1simd_1_1memory__resource.html" title="memory_resource usable with std::pmr::polymorphic_allocator ">memory_resource</a> usable with <code>std::pmr::polymorphic_allocator</code>  <a href="structsdl_1_1simd_1_1memory__resource.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsdl_1_1simd_1_1allocator.html">sdl::simd::allocator&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocator usable with standard containers.  <a href="structsdl_1_1simd_1_1allocator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsdl_1_1simd_1_1allocator_1_1rebind.html">sdl::simd::allocator&lt; T &gt;::rebind&lt; U &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsdl_1_1simd_1_1deleter.html">sdl::simd::deleter&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">deleter usable with <code>std::unique_ptr&lt;T&gt;</code>.  <a href="structsdl_1_1simd_1_1deleter.html#details">More...</a><br /></td></tr>
@@ -136,14 +135,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a26a2241b0964bfc804c5919ff51ceac5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd_1_1details.html#a26a2241b0964bfc804c5919ff51ceac5">sdl::simd::details::destroy_at</a> (T *ptr)</td></tr>
 <tr class="memdesc:a26a2241b0964bfc804c5919ff51ceac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">recursive implementation of <code>std::destroy_at</code>, only available from C++20 onwards.  <a href="namespacesdl_1_1simd_1_1details.html#a26a2241b0964bfc804c5919ff51ceac5">More...</a><br /></td></tr>
 <tr class="separator:a26a2241b0964bfc804c5919ff51ceac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9364d5b5f4f4cf042da204a4d29e926"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:ad9364d5b5f4f4cf042da204a4d29e926"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!std::is_array_v&lt; T &gt;, unique_ptr&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#ad9364d5b5f4f4cf042da204a4d29e926">sdl::simd::make_unique</a> (Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:ad9364d5b5f4f4cf042da204a4d29e926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent of <code>std::make_unique&lt;T&gt;</code> that returns a <a class="el" href="namespacesdl_1_1simd.html#a34939df3735d1aa3bbbb6e20b78e56c6">simd::unique_ptr</a>.  <a href="namespacesdl_1_1simd.html#ad9364d5b5f4f4cf042da204a4d29e926">More...</a><br /></td></tr>
-<tr class="separator:ad9364d5b5f4f4cf042da204a4d29e926"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03194f38c95c958aac06b94d2f35f202"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:a03194f38c95c958aac06b94d2f35f202"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::extent_v&lt; T &gt; !=0 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#a03194f38c95c958aac06b94d2f35f202">sdl::simd::make_unique</a> (Args &amp;&amp;... args)=delete</td></tr>
-<tr class="memdesc:a03194f38c95c958aac06b94d2f35f202"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>make_unique&lt;T[N]&gt;</code> is deleted.  <a href="namespacesdl_1_1simd.html#a03194f38c95c958aac06b94d2f35f202">More...</a><br /></td></tr>
-<tr class="separator:a03194f38c95c958aac06b94d2f35f202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc06715c0f85bf111dfe57a184c95471"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
+<tr class="memitem:adc06715c0f85bf111dfe57a184c95471"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#adc06715c0f85bf111dfe57a184c95471">sdl::simd::make_unique</a> (Args &amp;&amp;... args) -&gt; std::enable_if_t&lt;!std::is_array_v&lt; T &gt;, unique_ptr&lt; T &gt;&gt;</td></tr>
+<tr class="memdesc:adc06715c0f85bf111dfe57a184c95471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent of <code>std::make_unique&lt;T&gt;</code> that returns a <a class="el" href="namespacesdl_1_1simd.html#a34939df3735d1aa3bbbb6e20b78e56c6">simd::unique_ptr</a>.  <a href="namespacesdl_1_1simd.html#adc06715c0f85bf111dfe57a184c95471">More...</a><br /></td></tr>
+<tr class="separator:adc06715c0f85bf111dfe57a184c95471"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd76096ea2dc96858c06a1cc0068d81e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:abd76096ea2dc96858c06a1cc0068d81e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#abd76096ea2dc96858c06a1cc0068d81e">sdl::simd::make_unique</a> (std::size_t count) -&gt; std::enable_if_t&lt; std::is_array_v&lt; T &gt; &amp;&amp;std::extent_v&lt; T &gt;==0</td></tr>
 <tr class="memdesc:abd76096ea2dc96858c06a1cc0068d81e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate and default construct <code>count</code> elements.  <a href="namespacesdl_1_1simd.html#abd76096ea2dc96858c06a1cc0068d81e">More...</a><br /></td></tr>
@@ -152,14 +147,14 @@ Functions</h2></td></tr>
 <tr class="separator:a01140ac6842fadbfd91b7e05cfe4e14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73cf7b8fa2bbefc73e350c14082a6d30"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#a73cf7b8fa2bbefc73e350c14082a6d30">sdl::simd::unique_ptr&lt; T &gt;</a> (mem, deleter&lt; T &gt;(count))</td></tr>
 <tr class="separator:a73cf7b8fa2bbefc73e350c14082a6d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec7e9a8fa215b7cf4259a86e47ba2f6e"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:aec7e9a8fa215b7cf4259a86e47ba2f6e"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_array_v&lt; T &gt;, std::shared_ptr&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#aec7e9a8fa215b7cf4259a86e47ba2f6e">sdl::simd::make_shared</a> (Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:aec7e9a8fa215b7cf4259a86e47ba2f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent of <code>std::make_shared&lt;T&gt;</code> that uses simd-friendly storage.  <a href="namespacesdl_1_1simd.html#aec7e9a8fa215b7cf4259a86e47ba2f6e">More...</a><br /></td></tr>
-<tr class="separator:aec7e9a8fa215b7cf4259a86e47ba2f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10fc6a5a0c647535adfdd858d2c27b7d"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
+<tr class="memitem:a10fc6a5a0c647535adfdd858d2c27b7d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#a10fc6a5a0c647535adfdd858d2c27b7d">sdl::simd::make_shared</a> (Args &amp;&amp;... args) -&gt; std::enable_if&lt;!std::is_array_v&lt; T &gt;, std::shared_ptr&lt; T &gt;&gt;</td></tr>
+<tr class="memdesc:a10fc6a5a0c647535adfdd858d2c27b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent of <code>std::make_shared&lt;T&gt;</code> that uses simd-friendly storage.  <a href="namespacesdl_1_1simd.html#a10fc6a5a0c647535adfdd858d2c27b7d">More...</a><br /></td></tr>
+<tr class="separator:a10fc6a5a0c647535adfdd858d2c27b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a56b3f9230f70251d0fed2c6c2c9a3cfa"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#a56b3f9230f70251d0fed2c6c2c9a3cfa">sdl::simd::unique_ptr&lt; T &gt;</a></td></tr>
+<tr class="memitem:a56b3f9230f70251d0fed2c6c2c9a3cfa"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#a56b3f9230f70251d0fed2c6c2c9a3cfa">sdl::simd::unique_ptr&lt; T &gt;</a> = delete</td></tr>
 <tr class="separator:a56b3f9230f70251d0fed2c6c2c9a3cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99f1c9d19c1fd8ff6421059f7842efa8"><td class="memItemLeft" align="right" valign="top">allocator&lt; U &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesdl_1_1simd.html#a99f1c9d19c1fd8ff6421059f7842efa8">sdl::simd::a</a></td></tr>
 <tr class="separator:a99f1c9d19c1fd8ff6421059f7842efa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,7 +167,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_43d8b99e35687b1eb761ebb38cd37e48.html">cpp-sdl2</a></li><li class="navelem"><a class="el" href="simd_8hpp.html">simd.hpp</a></li>
-    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
+    <li class="footer">Generated on Sun Oct 18 2020 08:03:02 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

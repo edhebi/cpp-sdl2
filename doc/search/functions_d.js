@@ -7,7 +7,7 @@ var searchData=
   ['operator_20sdl_5ftimerid',['operator SDL_TimerID',['../classsdl_1_1_timer.html#a009f095f42efc512f7a04ae1c5b3a6d1',1,'sdl::Timer']]],
   ['operator_20vec2_3c_20u_20_3e',['operator Vec2&lt; U &gt;',['../classsdl_1_1_vec2.html#a0a1fe90493b8c5fd938f3ba99fbd7407',1,'sdl::Vec2']]],
   ['operator_21_3d',['operator!=',['../classsdl_1_1_vec2.html#a95af1fe75b883508b67e5520c834ff31',1,'sdl::Vec2']]],
-  ['operator_28_29',['operator()',['../structsdl_1_1simd_1_1deleter.html#a3a35b6b81f2201554056ec3ab7dc31f0',1,'sdl::simd::deleter::operator()()'],['../classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a167c1fe520e8fc5689eda9daf3a84f1b',1,'sdl::simd::deleter&lt; T[]&gt;::operator()()']]],
+  ['operator_28_29',['operator()',['../structsdl_1_1simd_1_1deleter.html#a3a35b6b81f2201554056ec3ab7dc31f0',1,'sdl::simd::deleter::operator()()'],['../classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a7a34f8eaebf91352e4ca6c81c6feb42f',1,'sdl::simd::deleter&lt; T[]&gt;::operator()()']]],
   ['operator_2a',['operator*',['../classsdl_1_1_vec2.html#a4633568a74f88cff7c8b46f18f195d07',1,'sdl::Vec2']]],
   ['operator_2a_3d',['operator*=',['../classsdl_1_1_vec2.html#a9747573dd617eb639fd1223aa6808603',1,'sdl::Vec2']]],
   ['operator_2b',['operator+',['../classsdl_1_1_vec2.html#ac82e885110a886245bcf9cffb3e05df9',1,'sdl::Vec2']]],

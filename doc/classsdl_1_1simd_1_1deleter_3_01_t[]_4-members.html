@@ -91,13 +91,13 @@ $(document).ready(function(){initNavTree('classsdl_1_1simd_1_1deleter_3_01_t[]_4
   <tr><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a840827a93a8767a89cb21fb96576c068">deleter</a>()=delete</td><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html">sdl::simd::deleter&lt; T[]&gt;</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#ae361c6f9082cd5d125836fdc3000b86e">deleter</a>(std::size_t size) noexcept</td><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html">sdl::simd::deleter&lt; T[]&gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">explicit</span></td></tr>
   <tr><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a979d7927f94e154395a3e6fdb8a0bf3c">deleter</a>(deleter&lt; U[]&gt; const &amp;other) noexcept</td><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html">sdl::simd::deleter&lt; T[]&gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">explicit</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a167c1fe520e8fc5689eda9daf3a84f1b">operator()</a>(U *ptr)</td><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html">sdl::simd::deleter&lt; T[]&gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html#a7a34f8eaebf91352e4ca6c81c6feb42f">operator()</a>(U *ptr) -&gt; std::enable_if_t&lt; std::is_convertible_v&lt; U(*)[], T(*)[]&gt;&gt;</td><td class="entry"><a class="el" href="classsdl_1_1simd_1_1deleter_3_01_t[]_4.html">sdl::simd::deleter&lt; T[]&gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jun 22 2020 05:31:41 for cpp-sdl2 by
+    <li class="footer">Generated on Sun Oct 18 2020 08:03:02 for cpp-sdl2 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

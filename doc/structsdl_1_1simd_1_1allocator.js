@@ -1,5 +1,6 @@
 var structsdl_1_1simd_1_1allocator =
 [
+    [ "rebind", "structsdl_1_1simd_1_1allocator_1_1rebind.html", "structsdl_1_1simd_1_1allocator_1_1rebind" ],
     [ "value_type", "structsdl_1_1simd_1_1allocator.html#afd7f4f50d96f7ec3bcaec5bf719d5006", null ],
     [ "allocator", "structsdl_1_1simd_1_1allocator.html#af7552cdd6771bd046d53998a8ac741e1", null ],
     [ "allocator", "structsdl_1_1simd_1_1allocator.html#af5f1689dd3eb7c273acb066cff8d6aea", null ],
