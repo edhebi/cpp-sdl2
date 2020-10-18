@@ -72,9 +72,9 @@ void destroy_at(T* ptr)
 	static_assert(!(std::is_array_v<T> && std::extent_v<T> == 0), "destroy_at<T[]> is invalid");
 
 	if constexpr (std::is_array_v<T>)
-		for (auto& elem : *p) details::destroy_at(std::addressof(elem));
+		for (auto& elem : *ptr) details::destroy_at(std::addressof(elem));
 	else
-		p->~T();
+		ptr->~T();
 }
 } // namespace details
 
@@ -105,7 +105,7 @@ class deleter<T[]>
 public:
 	deleter() = delete;
 
-	explicit constexpr deleter(std::size_t size) noexcept : count(count) {}
+	explicit constexpr deleter(std::size_t size) noexcept : count(size) {}
 
 	template<typename U, typename = std::enable_if_t<std::is_convertible_v<U (*)[], T (*)[]>>>
 	explicit constexpr deleter(deleter<U[]> const& other) noexcept : count(other.count)
@@ -113,9 +113,9 @@ public:
 	}
 
 	template<typename U>
-	std::enable_if_t<std::is_convertible_v<U (*)[], T (*)[]>> operator()(U* ptr)
+	auto operator()(U* ptr) -> std::enable_if_t<std::is_convertible_v<U (*)[], T (*)[]>>
 	{
-		for (std::size_t i = 0; i < N; ++i) details::destroy_at(std::addressof((*ptr)[i]));
+		for (std::size_t i = 0; i < count; ++i) details::destroy_at(std::addressof((*ptr)[i]));
 		simd::free(ptr);
 	}
 };
@@ -149,7 +149,7 @@ auto make_unique(std::size_t count)
 
 /// Equivalent of `std::make_shared<T>` that uses simd-friendly storage.
 template<typename T, typename... Args>
-auto make_shared(Args&&... args) // -> std::enable_if<!std::is_array_v<T>, std::shared_ptr<T>>
+auto make_shared(Args&&... args) -> std::enable_if<!std::is_array_v<T>, std::shared_ptr<T>>
 {
 	allocator<T> a;
 	auto*		 mem = new (a.allocate(1)) T(std::forward<Args>(args)...);
