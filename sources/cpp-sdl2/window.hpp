@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <string>
+#include <functional>
 
 #include "renderer.hpp"
 #include "vec2.hpp"
@@ -86,6 +87,13 @@ public:
 		{
 			throw Exception{"SDL_SetWindowDisplayMode"};
 		}
+	}
+
+	///Set resizability
+	///\param resizable User-resizable window?
+	void set_resizable(const bool resizable) const
+	{
+		SDL_SetWindowResizable(window_, resizable ? SDL_TRUE : SDL_FALSE);
 	}
 
 	///Get the current display mode
