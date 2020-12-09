@@ -15,9 +15,9 @@ jobs:
 
       - name: set environment
         run: |
-          echo "::set-env name=VULKAN_SDK_URL:: https://sdk.lunarg.com/sdk/download/$VULKAN_SDK_VER/linux/vulkansdk-linux-x86_64-$VULKAN_SDK_VER.tar.gz"
-          echo "::set-env name=VCPKG_PATH::${{github.workspace}}/vcpkg"
-          echo "::set-env name=VULKAN_SDK::${{github.workspace}}/vulkan/$VULKAN_SDK_VER/x86_64"
+          echo "VULKAN_SDK_URL=https://sdk.lunarg.com/sdk/download/$VULKAN_SDK_VER/linux/vulkansdk-linux-x86_64-$VULKAN_SDK_VER.tar.gz" >> $GITHUB_ENV
+          echo "VCPKG_PATH=${{github.workspace}}/vcpkg" >> $GITHUB_ENV
+          echo "VULKAN_SDK=${{github.workspace}}/vulkan/$VULKAN_SDK_VER/x86_64" >> $GITHUB_ENV
 
       - name: install apt dependencies
         run: sudo apt-get install g++-8 libgl1-mesa-dev libgles2-mesa-dev

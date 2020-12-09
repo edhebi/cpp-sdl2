@@ -406,6 +406,15 @@ public:
 
 #endif
 
+	///Add event watcher
+	void add_event_watch(std::function<int(sdl::Event&)> lambda) {
+		SDL_AddEventWatch([](void* userdata, SDL_Event* event) {
+			auto& lambda = *(std::function<int(sdl::Event&)>*)(userdata);
+			auto evt = sdl::Event(*event);
+			return lambda(evt);
+		}, &lambda);
+	}
+
 private:
 	///Raw naked pointer to an SDL window
 	SDL_Window* window_ = nullptr;
