@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <string>
+#include <functional>
 
 #include "renderer.hpp"
 #include "vec2.hpp"
@@ -86,6 +87,13 @@ public:
 		{
 			throw Exception{"SDL_SetWindowDisplayMode"};
 		}
+	}
+
+	///Set resizability
+	///\param resizable User-resizable window?
+	void set_resizable(const bool resizable) const
+	{
+		SDL_SetWindowResizable(window_, resizable ? SDL_TRUE : SDL_FALSE);
 	}
 
 	///Get the current display mode
@@ -397,6 +405,15 @@ public:
     }
 
 #endif
+
+	///Add event watcher
+	void add_event_watch(std::function<int(sdl::Event&)> lambda) {
+		SDL_AddEventWatch([](void* userdata, SDL_Event* event) {
+			auto& lambda = *(std::function<int(sdl::Event&)>*)(userdata);
+			auto evt = sdl::Event(*event);
+			return lambda(evt);
+		}, &lambda);
+	}
 
 private:
 	///Raw naked pointer to an SDL window

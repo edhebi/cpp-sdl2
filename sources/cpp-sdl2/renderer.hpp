@@ -65,7 +65,25 @@ public:
 		return info;
 	}
 
-	// Get the current draw color
+	///Get output size
+	std::pair<int, int> get_output_size() const
+	{
+		int w, h;
+		SDL_GetRendererOutputSize(renderer_, &w, &h);
+		return std::pair(w, h);
+	}
+
+	///Set device-independent render size
+	///\param w Width
+	///\param h Height
+	void set_logical_size(int w, int h) const
+	{
+		if (SDL_RenderSetLogicalSize(renderer_, w, h) != 0) {
+			throw Exception{"SDL_RenderSetLogicalSize"};
+		}
+	}
+
+	///Get the current draw color
 	Color drawcolor() const
 	{
 		Color c;

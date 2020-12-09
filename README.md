@@ -56,6 +56,10 @@ header. You still need a vulkan runtime and a recent version of the vulkan sdk.
 
 This uses the SDL2_Image library to load surfaces more easily. You still need to have the library installed and visible.
 
+### CPP_SDL2_ENABLE_SDL_TTF
+
+This uses the SDL2_TTF library to load fonts more easily. You still need to have the library installed and visible.
+
 ### CPP_SDL2_DISABLE_EXCEPTIONS
 
 `cpp-sdl2` uses exceptions very conservatively, and most of them indicate a failure that it probably not recoverable.
@@ -72,6 +76,7 @@ replace exceptions by a log to `stderr` followed by an `abort()`.
 ### Optional
 
 - SDL2_image
+- SDL_ttf
 - OpenGL
 - Vulkan
 
@@ -118,9 +123,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
             
             if (event.type == SDL_MOUSEBUTTONUP)
             {
-                color.r = std::rand() % 256;
-                color.g = std::rand() % 256;
-                color.b = std::rand() % 256;
+                background.r = std::rand() % 256;
+                background.g = std::rand() % 256;
+                background.b = std::rand() % 256;
                 redraw = true;
             }
         }
