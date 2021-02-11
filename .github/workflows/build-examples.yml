@@ -74,7 +74,7 @@ jobs:
         shell: bash
         run: >
           echo "MANIFEST: $(cat vcpkg.json)"
-          cmake -B build -DDCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON
+          cmake -B build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON
 
       - name: cmake build
         run: cmake --build build
