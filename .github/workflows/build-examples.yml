@@ -62,7 +62,7 @@ jobs:
             "dependencies": [
               {
                 "name": "sdl2",
-                "version": "${{matrix.sdl2_ver}}"
+                "version>=": "${{matrix.sdl2_ver}}"
               },
               { "name": "opengl" }
             ]
