@@ -69,7 +69,7 @@ jobs:
               { "name": "sdl2" },
               { "name": "opengl" }
             ],
-            "override": [
+            "overrides": [
               { "name": "sdl2", "version": "${{matrix.sdl2_ver}}" }
             ]
           }' > vcpkg.json
