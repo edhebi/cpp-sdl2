@@ -53,7 +53,7 @@ jobs:
 #         echo "::set-env name=VULKAN_SDK::${{github.workspace}}/vcpkg"
 
       - name: generate manifest
-      - run: |
+        run: |
           echo '{
                 "name":"cpp-sdl2",
                 "version-string": "sdl${{matrix.sdl2_ver}}_vk${{matrix.vulkan_ver}}",
