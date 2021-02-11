@@ -71,7 +71,7 @@ jobs:
         shell: bash
         run: |
           git clone https://github.com/microsoft/vcpkg.git
-          ./vcpkg/boostrap-vcpkg.sh
+          ./vcpkg/bootstrap-vcpkg.sh
 
       - name: install dependencies
         run: ./vcpkg/vcpkg install --triplet ${{ matrix.vcpkg_triplet }}
