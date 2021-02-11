@@ -56,13 +56,13 @@ jobs:
         run: |
           git clone https://github.com/microsoft/vcpkg.git
           echo '{
-            "name":"cpp_sdl2",
+            "name":"cpp-sdl2",
             "version-string": "sdl${{matrix.sdl2_ver}}_vk${{matrix.vulkan_ver}}",
             "builtin-baseline": "5459adf5decc9e64b7f0cf3b1ab57e2f2a636a87",
             "dependencies": [
               {
                 "name": "sdl2",
-                "version-string": "${{matrix.sdl2_ver}}"
+                "version": "${{matrix.sdl2_ver}}"
               },
               { "name": "opengl" }
             ]
