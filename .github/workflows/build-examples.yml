@@ -60,19 +60,22 @@ jobs:
         run: git clone https://github.com/microsoft/vcpkg.git
 
       - name: generate manifest
+        shell: bash
         run: |
-          echo '{
-            "name":"cpp-sdl2-examples",
-            "version-string": "sdl${{matrix.sdl2_ver}}",
-            "builtin-baseline": "$(git -C ./vcpkg rev-parse HEAD)",
-            "dependencies": [
-              { "name": "sdl2" },
-              { "name": "opengl" }
-            ],
-            "overrides": [
-              { "name": "sdl2", "version": "${{matrix.sdl2_ver}}" }
-            ]
-          }' > vcpkg.json
+          cat <<EOF > vcpkg.json
+            {
+              "name":"cpp-sdl2-examples",
+              "version-string": "sdl${{matrix.sdl2_ver}}",
+              "builtin-baseline": "$(git -C ./vcpkg rev-parse HEAD)",
+              "dependencies": [
+                { "name": "sdl2" },
+                { "name": "opengl" }
+              ],
+              "overrides": [
+                { "name": "sdl2", "version": "${{matrix.sdl2_ver}}" }
+              ]
+            }
+          EOF
 
       - name: bootstrap vcpkg
         shell: bash
