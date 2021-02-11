@@ -1,0 +1,76 @@
+name: examples
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-20.04]
+        vulkan_ver: [ 1.1.114.0 ]
+        sdl2_ver: [ 2.0.8, 2.0.9, 2.0.10, 2.0.11, 2.0.12, 2.0.13, 2.0.14]
+        include:
+          - os: windows-latest
+            os_family: windows
+            vulkan_url: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/windows/VulkanSDK-${{matrix.vulkan_ver}}-Installer.exe
+            vulkan_path: C:\VulkanSDK\${{matrix.vulkan_ver}}
+            vcpkg_bootstrap: bootstrap-vcpkg.bat
+            vcpkg_triplet: x64-windows
+            configure_flags: -G "Visual Studio 16 2019" -A x64
+
+          - os: ubuntu-20.04
+            os_family: linux
+            vulkan_url: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/linux/vulkansdk-linux-x86_64-${{matrix.vulkan_ver}}.tar.gz
+            vulkan_path: ${{github.workspace}}/vulkan/${{matrix.vulkan_ver}}/x86_64
+            vcpkg_bootstrap: bootstrap-vcpkg.sh
+            vcpkg_triplet: x64-linux
+            configure_flags
+
+    env:
+      VCPKG_FEATURE_FLAGS: versions
+      VULKAN_SDK: ${{ matrix.vulkan_path }}
+
+    steps:
+      - uses: action/checkout@v2
+
+      - name: install vulkan (windows)
+        if: matrix.os_family == 'windows'
+        run: |
+          Invoke-WebRequest "${{matrix.vulkan_url}}?Human=true" -OutFile VulkanSDK.exe -v
+          echo "Installing SDK ..."
+          Start-Process .\VulkanSDK.exe /S -Wait
+
+      - name: install vulkan (linux)
+        if: matrix.os_family == 'linux'
+        run: |
+          mkdir vulkan
+          cd vulkan
+          wget -qO vulkansdk.tar.gz ${{matrix.vulkan_url}}
+          tar xf vulkansdk.tar.gz
+          cd ..
+
+      - name: setup vcpkg
+        shell: bash
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          echo '{
+            "name":"cpp_sdl2",
+            "version-string": "sdl${{matrix.sdl2_ver}}_vk${{matrix.vulkan_ver}}",
+            "builtin-baseline": "5459adf5decc9e64b7f0cf3b1ab57e2f2a636a87",
+            "dependencies": [
+              {
+                "name": "sdl2",
+                "features": ["vulkan"],
+                "version-string": "${{matrix.sdl2_ver}}"
+              },
+              { "name": "opengl" }
+            ]
+          }' > vcpkg.json
+
+      - name: cmake configure
+        run: cmake -B build -DDCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON -DCPP_SDL2_ENABLE_VULKAN=ON
+
+      - name: cmake build
+        run: cmake --build build
