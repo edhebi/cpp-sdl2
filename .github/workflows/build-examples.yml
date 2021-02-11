@@ -24,7 +24,7 @@ jobs:
       VULKAN_BASE_URL: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/${{matrix.os_family}}
 
     steps:
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: install vulkan (windows)
         if: matrix.os_family == 'windows'
