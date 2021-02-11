@@ -31,6 +31,7 @@ jobs:
         env:
           VULKAN_URL: ${{env.VULKAN_BASE_URL}}/VulkanSDK-${{matrix.vulkan_ver}}-Installer.exe
         run: |
+          echo "Downloading SDK ..."
           Invoke-WebRequest "${env:VULKAN_URL}?Human=true" -OutFile VulkanSDK.exe -v
           echo "Installing SDK ..."
           Start-Process .\VulkanSDK.exe /S -Wait
@@ -44,6 +45,7 @@ jobs:
         run: |
           mkdir vulkan
           cd vulkan
+          echo "Downloading SDK ..."
           wget -qO vulkansdk.tar.gz "$VULKAN_URL"
           tar xf vulkansdk.tar.gz
           cd ..
