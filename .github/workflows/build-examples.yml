@@ -10,22 +10,18 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-20.04]
 #       vulkan_ver: [ 1.1.114.0 ]
-        sdl2_ver: [
-          # 2.0.8, 2.0.9, 2.0.10, 2.0.11, 2.0.12, 2.0.13,
-          2.0.14#2 ]
+#        sdl2_ver: [ 2.0.8, 2.0.9, 2.0.10, 2.0.11, 2.0.12, 2.0.13, 2.0.14 ]
         include:
           - os: windows-latest
             os_family: windows
-            vcpkg_triplet: x64-windows
 
           - os: ubuntu-20.04
             os_family: linux
-            vcpkg_triplet: x64-linux
 
 
 
     env:
-      VCPKG_FEATURE_FLAGS: manifests,versions
+#     VCPKG_FEATURE_FLAGS: manifests,versions
 #     VULKAN_BASE_URL: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/${{matrix.os_family}}
 
     steps:
@@ -66,13 +62,9 @@ jobs:
             {
               "name":"cpp-sdl2-examples",
               "version-string": "sdl${{matrix.sdl2_ver}}",
-              "builtin-baseline": "$(git -C ./vcpkg rev-parse HEAD)",
               "dependencies": [
                 { "name": "sdl2" },
                 { "name": "opengl" }
-              ],
-              "overrides": [
-                { "name": "sdl2", "version": "${{matrix.sdl2_ver}}" }
               ]
             }
           EOF
