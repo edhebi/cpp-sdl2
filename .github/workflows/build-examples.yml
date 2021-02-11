@@ -62,13 +62,12 @@ jobs:
               "version-string": "sdl${{matrix.sdl2_ver}}",
               "dependencies": [
                 { "name": "sdl2" },
-                { "name": "opengl" }
               ]
             }
           EOF
 
       - name: cmake configure
-        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON
 
       - name: cmake build
         run: cmake --build build
