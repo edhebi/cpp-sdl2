@@ -20,7 +20,8 @@ jobs:
             os_family: linux
             vcpkg_triplet: x64-linux
 
-#   env:
+    env:
+      VCPKG_FEATURE_FLAGS: versions
 #     VULKAN_BASE_URL: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/${{matrix.os_family}}
 
     steps:
@@ -51,31 +52,32 @@ jobs:
 #         cd ..
 #         echo "::set-env name=VULKAN_SDK::${{github.workspace}}/vcpkg"
 
+      - name: generate manifest
+      - run: |
+          echo '{
+                "name":"cpp-sdl2",
+                "version-string": "sdl${{matrix.sdl2_ver}}_vk${{matrix.vulkan_ver}}",
+                "builtin-baseline": "5459adf5decc9e64b7f0cf3b1ab57e2f2a636a87",
+                "dependencies": [
+                  {
+                    "name": "sdl2",
+                    "version>=": "${{matrix.sdl2_ver}}"
+                  },
+                  { "name": "opengl" }
+                ]
+              }' > vcpkg.json
+
       - name: setup vcpkg
         shell: bash
         run: |
           git clone https://github.com/microsoft/vcpkg.git
-          echo '{
-            "name":"cpp-sdl2",
-            "version-string": "sdl${{matrix.sdl2_ver}}_vk${{matrix.vulkan_ver}}",
-            "builtin-baseline": "5459adf5decc9e64b7f0cf3b1ab57e2f2a636a87",
-            "dependencies": [
-              {
-                "name": "sdl2",
-                "version>=": "${{matrix.sdl2_ver}}"
-              },
-              { "name": "opengl" }
-            ]
-          }' > vcpkg.json
+          ./vcpkg/boostrap-vcpkg.sh
+
+      - name: install dependencies
+        run: ./vcpkg/vcpkg install --triplet ${{ matrix.vcpkg_triplet }}
 
       - name: cmake configure
-        env:
-          VCPKG_FEATURE_FLAGS: versions
-        shell: bash
-        run: |
-          echo "MANIFEST: $(cat vcpkg.json)"
-          echo "CMAKE VERSION: $(cmake --version)"
-          cmake -B build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON
 
       - name: cmake build
         run: cmake --build build
