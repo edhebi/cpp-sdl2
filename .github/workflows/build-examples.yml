@@ -62,7 +62,7 @@ jobs:
       - name: generate manifest
         run: |
           echo '{
-            "name":"cpp-sdl2.examples",
+            "name":"cpp-sdl2-examples",
             "version-string": "sdl${{matrix.sdl2_ver}}",
             "builtin-baseline": "$(git -C ./vcpkg rev-parse HEAD)",
             "dependencies": [
