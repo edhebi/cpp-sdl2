@@ -21,7 +21,7 @@ jobs:
             vcpkg_triplet: x64-linux
 
     env:
-      VCPKG_FEATURE_FLAGS: versions
+      VCPKG_FEATURE_FLAGS: manifests,versions
 #     VULKAN_BASE_URL: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/${{matrix.os_family}}
 
     steps:
