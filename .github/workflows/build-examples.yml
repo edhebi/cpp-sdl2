@@ -72,7 +72,7 @@ jobs:
         env:
           VCPKG_FEATURE_FLAGS: versions
         shell: bash
-        run: >
+        run: |
           echo "MANIFEST: $(cat vcpkg.json)"
           echo "CMAKE VERSION: $(cmake --version)"
           cmake -B build -DCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON
