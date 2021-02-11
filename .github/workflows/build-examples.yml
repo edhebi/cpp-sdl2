@@ -10,44 +10,44 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-20.04]
         vulkan_ver: [ 1.1.114.0 ]
-        sdl2_ver: [ 2.0.8, 2.0.9, 2.0.10, 2.0.11, 2.0.12, 2.0.13, 2.0.14]
+        sdl2_ver: [ 2.0.8, 2.0.9, 2.0.10, 2.0.11, 2.0.12, 2.0.13, 2.0.14 ]
         include:
           - os: windows-latest
             os_family: windows
-            vulkan_url: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/windows/VulkanSDK-${{matrix.vulkan_ver}}-Installer.exe
-            vulkan_path: C:\VulkanSDK\${{matrix.vulkan_ver}}
-            vcpkg_bootstrap: bootstrap-vcpkg.bat
             vcpkg_triplet: x64-windows
 
           - os: ubuntu-20.04
             os_family: linux
-            vulkan_url: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/linux/vulkansdk-linux-x86_64-${{matrix.vulkan_ver}}.tar.gz
-            vulkan_path: ${{github.workspace}}/vulkan/${{matrix.vulkan_ver}}/x86_64
-            vcpkg_bootstrap: bootstrap-vcpkg.sh
             vcpkg_triplet: x64-linux
 
     env:
-      VCPKG_FEATURE_FLAGS: versions
-      VULKAN_SDK: ${{ matrix.vulkan_path }}
+      VULKAN_BASE_URL: https://sdk.lunarg.com/sdk/download/${{matrix.vulkan_ver}}/${{matrix.os_family}}
 
     steps:
       - uses: action/checkout@v2
 
       - name: install vulkan (windows)
         if: matrix.os_family == 'windows'
+        env:
+          VULKAN_URL: ${{env.VULKAN_BASE_URL}}/VulkanSDK-${{matrix.vulkan_ver}}-Installer.exe
         run: |
-          Invoke-WebRequest "${{matrix.vulkan_url}}?Human=true" -OutFile VulkanSDK.exe -v
+          Invoke-WebRequest "${env:VULKAN_URL}?Human=true" -OutFile VulkanSDK.exe -v
           echo "Installing SDK ..."
           Start-Process .\VulkanSDK.exe /S -Wait
+          echo "::set-env name=VULKAN_SDK::C:\VulkanSDK\${{matrix.vulkan_ver}}"
+
 
       - name: install vulkan (linux)
         if: matrix.os_family == 'linux'
+        env:
+          VULKAN_URL: ${{env.VULKAN_BASE_URL}}/vulkansdk-linux-x86_64-${{matrix.vulkan_ver}}.tar.gz
         run: |
           mkdir vulkan
           cd vulkan
-          wget -qO vulkansdk.tar.gz ${{matrix.vulkan_url}}
+          wget -qO vulkansdk.tar.gz "$VULKAN_URL"
           tar xf vulkansdk.tar.gz
           cd ..
+          echo "::set-env name=VULKAN_SDK::${{github.workspace}}/vcpkg"
 
       - name: setup vcpkg
         shell: bash
@@ -68,6 +68,8 @@ jobs:
           }' > vcpkg.json
 
       - name: cmake configure
+        env:
+          VCPKG_FEATURE_FLAGS: versions
         run: cmake -B build -DDCMAKE_TOOLCHAIN_FILE="./vcpkg/scripts/buildsystems/vcpkg.cmake" -DCPP_SDL2_BUILD_EXAMPLES=ON -DCPP_SDL2_ENABLE_OPENGL=ON -DCPP_SDL2_ENABLE_VULKAN=ON
 
       - name: cmake build
