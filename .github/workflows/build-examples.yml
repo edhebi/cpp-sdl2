@@ -61,7 +61,7 @@ jobs:
               "name":"cpp-sdl2-examples",
               "version-string": "sdl${{matrix.sdl2_ver}}",
               "dependencies": [
-                { "name": "sdl2" },
+                { "name": "sdl2" }
               ]
             }
           EOF
