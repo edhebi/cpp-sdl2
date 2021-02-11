@@ -18,7 +18,6 @@ jobs:
             vulkan_path: C:\VulkanSDK\${{matrix.vulkan_ver}}
             vcpkg_bootstrap: bootstrap-vcpkg.bat
             vcpkg_triplet: x64-windows
-            configure_flags: -G "Visual Studio 16 2019" -A x64
 
           - os: ubuntu-20.04
             os_family: linux
@@ -26,7 +25,6 @@ jobs:
             vulkan_path: ${{github.workspace}}/vulkan/${{matrix.vulkan_ver}}/x86_64
             vcpkg_bootstrap: bootstrap-vcpkg.sh
             vcpkg_triplet: x64-linux
-            configure_flags
 
     env:
       VCPKG_FEATURE_FLAGS: versions
